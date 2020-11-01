@@ -1,0 +1,19 @@
+An HTML iframe is used to display a web page within a web page.
+The HTML Inline Frame element (<iframe>) represents a nested browsing context, embedding another HTML page into the current one.
+Tip: It is a good practice to always include a title attribute for the <iframe>. 
+This is used by screen readers to read out what the content of the iframe is.
+Usage: 
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>HTML Iframes</h2>
+<p>You can use the height and width attributes to specify the size of the iframe:</p>
+<iframe 
+src="https://www.w3schools.com/html/tryit.asp?filename=tryhtml_iframe_height_width" 
+height="200" width="300"
+title="Iframe Example">
+</iframe>
+
+</body>
+</html>
