@@ -1,3 +1,4 @@
+[](/WebDevPic1)
 What is getElementById()?
 Syntax:
 
