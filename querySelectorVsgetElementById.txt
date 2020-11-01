@@ -1,4 +1,4 @@
-[](/WebDevPic1)
+[](images/WebDevInterviewPic1.PNG)
 What is getElementById()?
 Syntax:
 
