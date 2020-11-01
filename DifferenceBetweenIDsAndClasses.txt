@@ -1,0 +1,34 @@
+https://css-tricks.com/the-difference-between-id-and-class/
+
+* ID’s are unique
+Each element can have only one ID
+Each page can have only one element with that ID
+you should only use ID’s once, but you can use classes over and over.
+
+*****************************ID’s have special browser functionality*********************************
+Classes have no special abilities in the browser, but ID’s do have one very important trick up their sleeve.
+This is the “hash value” in the URL. If you have a URL like http://yourdomain.com#comments, the browser will attempt 
+to locate the element with an ID of “comments” and will automatically scroll the page to show that element.
+It is important to note here that the browser will scroll whatever element it needs to in order to show that element,
+so if you did something special like a scrollable DIV area within your regular body, that div will be scrolled too.
+
+This is an important reason right here why having ID’s be absolutely unique is important. So your browser knows where to scroll!
+
+
+* Classes are not unique
+You can use the same class on multiple elements.
+You can use multiple classes on the same element.
+Any styling information that needs to be applied to multiple objects on a page should be done with a class.
+
+* Elements can have BOTH
+There is nothing stopping you from having both an ID and a Class on a single element. In fact, it is often a very good idea.
+Take for example the default markup for a WordPress comment list item:
+
+<li id="comment-27299" class="item">
+
+*CSS doesn’t care
+Regarding CSS, there is nothing you can do with an ID that you can’t do with a Class and vise versa.
+
+*JavaScript cares
+JavaScript depends on there being only one page element with any particular id, or else the commonly used
+getElementById function wouldn’t be dependable. 
