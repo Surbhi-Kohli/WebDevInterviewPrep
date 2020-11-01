@@ -4,6 +4,8 @@ Syntax:
 element = document.getElementById(id);
 
 Returns a reference to the element by its ID. If the element with the specified ID is not in the document, it will returns null.
+This method comes with a sister function called querySelectorAll() which selects all the elements
+that match a particular selector from the DOM.
 
 What is querySelector()?
 Syntax:
@@ -12,7 +14,17 @@ element = document.querySelector(selectors);
 Returns the first element within the document that matches the specified group of selectors, or null if no matches are found.
 
 getElementById vs querySelector:SIMILARITY
+The obvious similarity between these two methods is that they both select elements from a web page. 
+They do so in different ways.
 
+With a querySelector statement, you can select an element based on a CSS selector. This means you can 
+select elements by ID, class, or any other type of selector. 
+Using the getElementById method, you can only select an element by its ID.
+
+Generally, you should opt for the selector that most clearly gets the job done.
+
+If you only need to select an element by ID or class, you can use getElementById or getElementsByClassName, respectively.
+If you need to use a more elaborate rule to select elements, the querySelector method is your best option.
 To help you understand better, please look at the following example:
 
 <ul>
