@@ -1,0 +1,44 @@
+What is getElementById()?
+Syntax:
+
+element = document.getElementById(id);
+
+Returns a reference to the element by its ID. If the element with the specified ID is not in the document, it will returns null.
+
+What is querySelector()?
+Syntax:
+element = document.querySelector(selectors);
+
+Returns the first element within the document that matches the specified group of selectors, or null if no matches are found.
+
+getElementById vs querySelector:SIMILARITY
+
+To help you understand better, please look at the following example:
+
+<ul>
+ <li id="web-id">PHP</li>
+ <li>HTML</li>
+ <li class="web-class">CSS</li>
+ <li class="web-class">JavaScript</li>
+</ul>
+To get the HTML content of the first li, whose id is web-id, with getElementById:
+
+document.getElementById('web-id');
+
+Now with querySelector:
+document.querySelector('#web-id');
+
+getElementById vs querySelector: DIFFERENCE
+What if you want to get the HTML content of the third li? You will not be able to use getElementById because 
+there is no id associated with it. But you can so with querySelector.
+
+document.querySelector('ul li.web-class').innerHTML;
+Or just simply
+document.querySelector('li.web-class').innerHTML;
+
+getElementById vs querySelector: Performance
+getElementById is faster and better supported than querySelector.
+
+Both of these functions are powerful but you must decide which one better suits your need.If you have a complicated page
+and you do not want to add id over all it, then use querySelector.
+
