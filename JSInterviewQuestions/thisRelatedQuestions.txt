@@ -1,0 +1,15 @@
+What will be the output of the following code snippet?
+const human={
+  age:10,
+ grow:()=>{
+   this.age++;
+ } 
+}
+human.grow();
+console.log(human.age);
+a.NaN b.11 c.12 d.None of these
+ans- d.None of these as the above program outputs 10
+Explanation:when we call human.grow(), the this.age++ executed
+inside an arrow function,which takes this of its surrounding and not 
+of the calling object.Here this in arrow function-window object.
+So this.age++ didnt result in increment of age value.
