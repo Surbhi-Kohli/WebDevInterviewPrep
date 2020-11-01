@@ -1,0 +1,17 @@
+1.What will be the output for the following                   |  2.What will be the output for the following code snippet?
+ code?                                                        |    
+                                                              |    var x=21;
+var b=1;                                                      |      const test_result=function(){
+function outer(){                                             |      console.log(x);
+  var b=2;                                                    |        let x=20;
+  function inner(){                                           |       }
+    b++;                                                      |       test_result(); 
+    var b=4;                                                  |     a.20 b.21 c.Undefined value d.None of these
+    console.log(b);                                           |   ans- d
+  }                                                           |   Uncaught ReferenceError: Cannot access 'x' before initialization.
+  inner();                                                    |   All declarations (function, var, let, const and class) are hoisted in JavaScript,
+  }                                                           |   while the var declarations are initialized with undefined,
+                                                              |   but let and const declarations remain uninitialized.
+outer();
+a:1 b.2 c.4 d.3
+ans-c.4
