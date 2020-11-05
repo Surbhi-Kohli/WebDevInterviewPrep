@@ -1,0 +1,37 @@
+1.For the html code below, when will "Sample text" display to name browser?
+
+<noscript>Sample text</noscript>
+a. When Javascript is not supported by the browser or if Javascript is disabled in the browser.
+b. When JS is disabled in the browser.
+c. When there is no JS used on the webpage.
+
+Ans- a. When Javascript is not supported by the browser or if Javascript is disabled in the browser.
+EXPLANATION:The HTML <noscript> element defines a section of HTML to be inserted if a script type on the page is
+unsupported or if scripting is currently turned off in the browser.
+The <noscript> tag defines an alternate content to be displayed to users that have disabled scripts in their browser 
+or have a browser that doesn't support script.
+
+The <noscript> element can be used in both <head> and <body>. When used inside <head>, the <noscript> element
+could only contain <link>, <style>, and <meta> elements.
+
+2.When is a link tag used?
+a.When linking stylesheets,favicons and preloading assets.
+b.When linking stylesheets and favicons.
+c.When linking stylesheets,external URLs and favicons.
+d.When linking stylesheets,javascript and icons for mobile apps.
+
+Ans-c.When linking stylesheets,external URLs and favicons.
+EXPLANATION: The <link> tag defines the relationship between the current document and an external resource.It is most often 
+used to link to external style sheets.
+The <link> element is an empty element, it contains attributes only.
+
+3.Which tag or tags is used to embed a webpage inside of a webpage?
+a.<iframe>,<frame>,<frameset>
+b.<iframe>
+c.<frame>
+d.<frame> and <frameset>
+
+
+
+ 
+
