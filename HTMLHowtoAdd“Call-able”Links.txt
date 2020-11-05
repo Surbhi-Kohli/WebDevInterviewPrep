@@ -1,0 +1,44 @@
+1.Which snippet of html ,when clicked ,makes a phone call on a mobile device?
+a. <a href="tel:802-555-1212">802-555-1212</a>
+b. <a href="tel">628-483-5765</a>
+c. <a href="pone">628-483-5765</a>
+d. <a href="phone:802-555-1212">802-555-1212</a>
+
+Ans-a. <a href="tel:802-555-1212">802-555-1212</a>
+Explanation:
+Making a phone number clickable is easily done with HTML. HTML5 includes protocols such as tel: and mailto: that browsers can use. 
+Browsers respond differently to these protocols. Some will launch the phone app and add the number to the display while waiting for 
+you to click the Call button. Others will make the call, while others will ask if it’s okay first.
+
+Since it’s HTML, you can add the protocols anywhere on your site including the header, footer, sidebars, 
+within the content of posts and pages, and within widgets.
+
+Adding an HTML Phone Number Call Link to your Website:
+
+Add the code as text to the location you want the link to appear:
+<a href="tel:123-456-7890">123-456-7890</a>
+
+href=tel: creates the call link. This tells the browser how to use the number.
+
+"tel: 123-456-7890" creates the HTML phone number. The number within the quotes is the number it will call.
+The number within the >< tags is the visual portion and it can be anything you want it to be including the phone number,
+a line of text such as “Click to Call” or “Call Now”, or any other call to action you want.
+It should be descriptive of what’s going to happen when they click.
+
+Displaying a message instead of the number would look like this:
+<a href="tel:123-456-7890">CLICK TO CALL</a>
+********************
+Adding an Extension
+Some phone numbers have an extension. You can add code that will create a brief pause before
+dialing the extension number. Adding P in front of the extension will add a one-second pause. The code might look like this:
+
+<a href="tel:123-456-7890p123">CLICK TO CALL</a>
+This dials the number, waits one second, and then dials extension.
+
+You can have it to wait for a dial tone by using w instead of p.
+
+Adding Country Codes
+Country codes can be added by including a + along with your country’s code before
+the phone number. An example might look like this:
+
+<a href="tel:+1123-456-7890">123-456-7890</a>
