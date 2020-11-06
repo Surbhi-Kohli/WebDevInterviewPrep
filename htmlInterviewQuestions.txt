@@ -32,6 +32,39 @@ c.<frame>
 d.<frame> and <frameset>
 
 
+4.Which choice contains 3 valid block level elements?
+a.<dt>,<table>,<pre>
+b.<details>,<abbr>,<figcaption>
+c.<canvas>,<select>,<noscript>
+
+ans-a.
+EXPLANATION: 
+The following is a complete list of all HTML "block-level" elements:
+<address>-Contact information;      <article> -Article content;                          <blockquote>-Long ("block") quotation.
+<details>-Disclosure widget;        <dialog>  -Dialog box.                               <dd>-Describes a term in a description list.
+<div>-Document division;            <dl>      -Description list.                         <dt> - Description list term.
+<fieldset> -Field set label;        <figcaption> -Figure caption.                        <figure>-Groups media content with a caption 
+<footer>-Section or page footer.    <form>    -Input form.                               <h1>, <h2>, <h3>, <h4>, <h5>, <h6>-Heading levels 1-6.
+<header>-Section or page header.    <hgroup>  -Groups header information.                <hr> -Horizontal rule (dividing line).
+<li>- List item.                    <main>-Contains the central content unique to this document.   <nav> -Contains navigation links.
+<ol>-Ordered list.                  <p> -Paragraph.                                      <pre>-Preformatted text.
+<section>-Section of a web page.    <table>-Table.                                        <ul> -Unordered list.   <aside>-Aside content;
 
  
+5.What does a poster attribute do in a video tag?
 
+a.It specifies an image that displays only if there is a problem with the video.
+b.It specifies an image that should display until the video is played.
+c.It specifies an image that should display while the video downloads.
+d.It specifies an image that should display while the video downloads and until the video is played.
+ans-d
+EXPLANATION:The <video> tag is used to embed video content in a document, such as a movie clip or other video streams.
+The <video> tag contains one or more <source> tags with different video sources. The browser will choose the first source it supports.
+eg
+<video width="320" height="240" controls>
+  <source src="movie.mp4" type="video/mp4">
+  <source src="movie.ogg" type="video/ogg">
+  Your browser does not support the video tag.
+</video>
+The poster attribute specifies an image to be shown while the video is downloading, or until the user hits the play button
+The text between the <video> and </video> tags will only be displayed in browsers that do not support the <video> element.
