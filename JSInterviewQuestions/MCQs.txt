@@ -41,5 +41,14 @@ b.false
 c.TypeError
 d.None of these
 
-4.
+4.In Javascript,what is the following sub expression used for?
+a.Matches 'java' followed by any number of 'script'.
+b.Matches 'java' followed by optional 'script'.
+c.Macthes 'java' followed by minimum of 1 'script'.
+d.None of these.
+ans-b
+Regex notes: *The (x|y) expression is used to find any of the alternatives specified.
+             *The n? quantifier matches any string that contains zero or one occurrences of n.
+
+
  
