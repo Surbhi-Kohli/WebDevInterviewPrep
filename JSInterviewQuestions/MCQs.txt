@@ -1,0 +1,45 @@
+1.Which of these is the possible use of return value of 'setTimeout'?
+a.The returned value is a positive integer value that identifies the timer created by the call to setTimeout.
+b.The returned value is a positive integer value that tells the remaining time left for the timeout.
+c.The returned value is a positive integer value that tells the total number of timers running in the window object.
+d.The returned value is a callback function which when called cancels the setTimeout.
+
+ans-a.The returned value is a positive integer value that identifies the timer created by the call to setTimeout.
+
+EXPLANATION:
+https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout#:~:text=Return%20value,()%20to%20cancel%20the%20timeout.
+<p>Live Example</p>
+<button onclick="delayedAlert();">Show an alert box after two seconds</button>
+<p></p>
+<button onclick="clearAlert();">Cancel alert before it happens</button>
+
+var timeoutID;
+function delayedAlert() {
+  timeoutID = window.setTimeout(window.alert, 2*1000, 'That was really slow!');
+  //timeoutID gets value 2 
+}
+
+function clearAlert() {
+  console.log(timeoutID);//2
+  window.clearTimeout(timeoutID);
+}
+
+
+2.What is the output 
+true+false>2+true
+a.true b.false c.TypeError d.NaN
+
+ans-false
+console.log(true+false>2+true);  //false
+console.log(true+false);         //1
+console.log(2+true);              //3
+
+3.What is the output of the following code?
+Number("1")-1 == 0
+a.true
+b.false
+c.TypeError
+d.None of these
+
+4.
+ 
