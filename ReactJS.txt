@@ -11,3 +11,12 @@ EXPLANATION:All consumers that are descendants of a Provider will re-render when
 The propagation from Provider to its descendant consumers (including .contextType and useContext) is not subject to the
 shouldComponentUpdate method, so the consumer is updated even when an ancestor component skips an update.
 https://reactjs.org/docs/context.html#contextprovider
+
+2.In ReactJS components that render differently are based on whether a client reads a state variable.If your application architecture allows 
+you to render something different on the server and client,intentionally ,by using 2-pass rendering technique,then which of the
+following methods is used to set this variable in this scenario?
+
+a.componentWillMount() b.componentDidMount() c.componentWillReceiveProps() d.shouldComponentUpdate()
+ans-a
+EXPLANATION:   https://stackoverflow.com/questions/35850118/setting-state-on-componentdidmount
+https://reactjs.org/docs/react-dom.html#:~:text=If%20you%20intentionally%20need%20to,to%20true%20in%20componentDidMount()%20.
