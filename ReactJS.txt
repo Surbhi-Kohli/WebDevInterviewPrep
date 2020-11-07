@@ -1,0 +1,13 @@
+1.There are several consumers who are descendents of the Context Provider component and were allocated using the following code:
+<MyContext.Provider value={<valid value>}>
+Some of the consumers have anscestor components that were bailed out of updates using shouldComponentUpdate().
+What will happen when the value for the prop of the provider changes in this scenario?
+a.All consumers will re-render.
+b.Only those consumers who do not have such anscestors will re-render.
+c.None of the consumers will re-render.
+d.Such an architecture will lead to an error.
+ans-a.All consumers will re-render.
+EXPLANATION:All consumers that are descendants of a Provider will re-render whenever the Provider’s value prop changes.
+The propagation from Provider to its descendant consumers (including .contextType and useContext) is not subject to the
+shouldComponentUpdate method, so the consumer is updated even when an ancestor component skips an update.
+https://reactjs.org/docs/context.html#contextprovider
