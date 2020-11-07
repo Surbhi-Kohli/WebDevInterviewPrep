@@ -20,3 +20,14 @@ a.componentWillMount() b.componentDidMount() c.componentWillReceiveProps() d.sho
 ans-a
 EXPLANATION:   https://stackoverflow.com/questions/35850118/setting-state-on-componentdidmount
 https://reactjs.org/docs/react-dom.html#:~:text=If%20you%20intentionally%20need%20to,to%20true%20in%20componentDidMount()%20.
+
+3.You find that your architecture needs you to mutate a component's prototype inside a higher-order-component.
+However ,doing so results in leaky-abstraction.
+WHich of the following could be valid reason for this behaviour
+1.The HOC will have to use Composition.
+2.The Consumer must know how the HOC is implemented
+
+a.Both 1 and 2
+b. 1 c.2 d.Neither of 1 and 2
+ans-d.the listed points are solution to be used during leaky abstraction scenario and not a cause of it
+https://reactjs.org/docs/higher-order-components.html#dont-mutate-the-original-component-use-composition
