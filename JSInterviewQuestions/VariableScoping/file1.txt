@@ -15,7 +15,7 @@ function outer(){                                                               
 outer();                                                                         |
 a:1 b.2 c.4 d.3                                                                  |
 ans-c.4                                                                          |
-________________________________________________________________________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________________________________________________________________________
                                                                                  
 3. What's the output?                                                            | 4.  What's the output?
 function sayHi() {                                                               |      console.log(homeTown) //--(i)
@@ -69,7 +69,7 @@ keyword: variables declared with the let (and const) keyword are block-scoped   
 (a block is anything between { }). During each iteration, i will have a new      |
 value, and each value is scoped inside the loop.                                 |   If we wouldn't have declared the name variable within the getName function,JS engine would
                                                                                  |   have looked down the scope chain.The outer scope has a variable called name with the value 
-                                                                                 |   of Lydia.In that case, it would've logged Lydia.                                                                                                                              |
+                                                                                 |   of Lydia.In that case, it would've logged Lydia.                                                                                                                             
                                                                                  |
                                                                                  |   let name = 'Lydia';
                                                                                  |    function getName() {
