@@ -1,17 +1,88 @@
-1.What will be the output for the following                   |  2.What will be the output for the following code snippet?
- code?                                                        |    
-                                                              |    var x=21;
-var b=1;                                                      |      const test_result=function(){
-function outer(){                                             |      console.log(x);
-  var b=2;                                                    |        let x=20;
-  function inner(){                                           |       }
-    b++;                                                      |       test_result(); 
-    var b=4;                                                  |     a.20 b.21 c.Undefined value d.None of these
-    console.log(b);                                           |   ans- d
-  }                                                           |   Uncaught ReferenceError: Cannot access 'x' before initialization.
-  inner();                                                    |   All declarations (function, var, let, const and class) are hoisted in JavaScript,
-  }                                                           |   while the var declarations are initialized with undefined,
-                                                              |   but let and const declarations remain uninitialized.
-outer();
-a:1 b.2 c.4 d.3
-ans-c.4
+1.What will be the output for the following                                      |  2.What will be the output for the following code snippet?
+ code?                                                                           |    
+                                                                                 |    var x=21;
+var b=1;                                                                         |      const test_result=function(){
+function outer(){                                                                |      console.log(x);
+  var b=2;                                                                       |        let x=20;
+  function inner(){                                                              |       }
+    b++;                                                                         |       test_result(); 
+    var b=4;                                                                     |     a.20 b.21 c.Undefined value d.None of these
+    console.log(b);                                                              |   ans- d
+  }                                                                              |   Uncaught ReferenceError: Cannot access 'x' before initialization.
+  inner();                                                                       |   All declarations (function, var, let, const and class) are hoisted in JavaScript,
+  }                                                                              |   while the var declarations are initialized with undefined,
+                                                                                 |   but let and const declarations remain uninitialized.
+outer();                                                                         |
+a:1 b.2 c.4 d.3                                                                  |
+ans-c.4                                                                          |
+_________________________________________________________________________________________________________________________________________________________________________________
+                                                                                 |
+3. What's the output?                                                            | 4.  What's the output?
+function sayHi() {                                                               |      console.log(homeTown) //--(i)
+  console.log(name);                                                             |
+  console.log(age);                                                              |     let obj={
+  var name = 'Lydia';                                                            |            name:"Surbhi"
+  let age = 21;                                                                  |            }
+}                                                                                |
+                                                                                 |      console.log(obj.homeTown) //-(ii)
+sayHi();                                                                         |
+A: Lydia and undefined                                                           |
+B: Lydia and ReferenceError                                                      |   ans-(i) ReferenceError
+C: ReferenceError and 21                                                         |       (ii) undefined
+D: undefined and ReferenceError                                                  |
+ ans-D undefined and ReferenceError                                              |
+                                                                                 |  EXPLANATION:That's just how the language works. Its object-based approach is                                                                                                  | very flexible, and you can dynamically add,update, and remove properties  
+EXPLANATION:                                                                     | from objects at runtime. Accessing one that is currently not existing should 
+Within the function, we first declare the name variable with the var keyword.    | yield undefined instead of raising an exception. 
+This means that the variable gets hoisted(memory space is set up during the      |
+creation phase)with the default value of undefined                               |                                               
+, until we actually get to the line where we define                              | In contrast, variables are declared statically in their scope.
+the variable. We haven't defined the variable yet on the line where we try       | Accessing an undeclared variable is always an error,which legitimates 
+ to log the name variable,so it still holds the value of undefined.              | throwing ReferenceErrors.
+                                                                                 |                 
+Variables with the let keyword (and const) are hoisted, but unlike var,don't get |
+initialized.They are not accessible before the line we declare (initialize) them.|     
+This is called the "temporal dead zone".                                         |
+When we try to access the variables before they are declared,                    |
+JavaScript throws a ReferenceError.                                              |
+                                                                                 |
+_________________________________________________________________________________________________________________________________________________________________________________
+4.Whats the output?                                                              |  5. What's the output?
+for (var i = 0; i < 3; i++) {                                                    |     let name = 'Lydia';
+  setTimeout(() => console.log(i), 1);                                           |     function getName() {
+}                                                                                |       console.log(name);
+                                                                                 |       let name = 'Sarah';
+for (let i = 0; i < 3; i++) {                                                    |      }
+  setTimeout(() => console.log(i), 1);                                           |
+}                                                                                |     getName();
+Ans- 3 3 3 and 0 1 2                                                             |     a: Lydia  b:Sarah c:undefined  d:ReferenceError
+Because of the event queue in JavaScript, the setTimeout callback                |    
+function is called after the loop has been executed.                             |      Ans- d:ReferenceError
+Since the variable i in the first loop was declared using the                    |   Each function has its own execution context (or scope). The getName function first looks
+var keyword,this value was global. During the loop, we incremented               |   within its own context (scope) to see if it contains the variable name we're trying to
+the value of i by 1 each time,using the unary operator ++. By the                |   access.In this case, the getName function contains its own name variable: we declare the
+time the setTimeout callback function was invoked,                               |   variable name with the let keyword, and with the value of 'Sarah'.
+i was equal to 3 in the first example.                                           |   Variables with the let keyword (and const) are hoisted but unlike var,don't get initialized.
+                                                                                 |   They are not accessible before the line we declare (initialize) them.
+In the second loop, the variable i was declared using the let                    |   This is called the "temporal dead zone". When we try to access the variables.
+keyword: variables declared with the let (and const) keyword are block-scoped    |   before they are declared,JavaScript throws a ReferenceError.
+(a block is anything between { }). During each iteration, i will have a new      |
+value, and each value is scoped inside the loop.                                 |   If we wouldn't have declared the name variable within the getName function,JS engine would
+                                                                                 |   have looked down the scope chain.The outer scope has a variable called name with the value 
+                                                                                 |   of Lydia.In that case, it would've logged Lydia.                                                                                                                              |
+                                                                                 |
+                                                                                 |   let name = 'Lydia';
+                                                                                 |    function getName() {
+                                                                                 |       console.log(name);
+                                                                                 |    }
+                                                                                 |   getName(); // Lydia
+                                                                                 |
+_________________________________________________________________________________________________________________________________________________________________________________ 6.var num = 8;                                                                   |
+  var num = 10;                                                                  |
+console.log(num);                                                                |
+a:8  b:10  c:Syntax Error  d:ReferenceError                                      |
+                                                                                 |
+ans-10                                                                           |
+EXPLANATION:With the var keyword,you can declare multiple variables              |
+ with the same name .The variable will then hold the latest value.               |
+You cannot do this with let or const since they're block-scoped.                 |
