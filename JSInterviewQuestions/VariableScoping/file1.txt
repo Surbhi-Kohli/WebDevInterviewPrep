@@ -31,10 +31,10 @@ B: Lydia and ReferenceError                                                     
 C: ReferenceError and 21                                                         |       (ii) undefined
 D: undefined and ReferenceError                                                  |
  ans-D undefined and ReferenceError                                              |
-                                                                                 |  EXPLANATION:That's just how the language works. Its object-based approach is                                                                                                  | very flexible, and you can dynamically add,update, and remove properties  
-EXPLANATION:                                                                     | from objects at runtime. Accessing one that is currently not existing should 
-Within the function, we first declare the name variable with the var keyword.    | yield undefined instead of raising an exception. 
-This means that the variable gets hoisted(memory space is set up during the      |
+                                                                                 |  EXPLANATION:That's just how the language works. Its object-based approach is very flexible,  
+EXPLANATION:                                                                     |  and you can dynamically add,update, and remove properties from objects at runtime.  
+Within the function, we first declare the name variable with the var keyword.    |  Accessing one that is currently not existing should yield 
+This means that the variable gets hoisted(memory space is set up during the      |   undefined instead of raising an exception. 
 creation phase)with the default value of undefined                               |                                               
 , until we actually get to the line where we define                              | In contrast, variables are declared statically in their scope.
 the variable. We haven't defined the variable yet on the line where we try       | Accessing an undeclared variable is always an error,which legitimates 
@@ -77,7 +77,9 @@ value, and each value is scoped inside the loop.                                
                                                                                  |    }
                                                                                  |   getName(); // Lydia
                                                                                  |
-_______________________________________________________________________________________________________________________________________________________________________________ 6.var num = 8;                                                                   |
+______________________________________________________________________________________________________________________________________________________________________________ 
+
+6.var num = 8;                                                                   |
   var num = 10;                                                                  |
 console.log(num);                                                                |
 a:8  b:10  c:Syntax Error  d:ReferenceError                                      |
