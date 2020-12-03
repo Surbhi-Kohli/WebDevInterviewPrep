@@ -49,3 +49,32 @@ console.log("First Me");
 // next in line
 /* All lines post await are like chained then() blocks whether they inturn await promises or not  */
 // hey after approx 10 seconds
+
+/* **********Returning values from async functions    ***************/
+function abc2(seconds){
+return new Promise((resolve)=>{
+setTimeout(resolve,seconds*1000);
+ });
+}
+
+const whereAmI3 = async function(country){
+ let res= await abc2(5);
+ console.log("hey after 5 seconds");
+ console.log("next in line");
+ await abc2(4);
+ console.log("hey after approx 10 seconds")
+  return "Done with all logs";
+}
+// Output:
+// hey after 5 seconds
+// next in line
+// hey after approx 10 seconds
+// Done with all logs
+
+whereAmI3()
+.then(res=>{
+ console.log(res);
+});
+
+
+
