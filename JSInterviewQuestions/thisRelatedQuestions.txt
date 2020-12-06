@@ -1,15 +1,109 @@
-What will be the output of the following code snippet?
-const human={
-  age:10,
- grow:()=>{
-   this.age++;
- } 
-}
-human.grow();
-console.log(human.age);
-a.NaN b.11 c.12 d.None of these
-ans- d.None of these as the above program outputs 10
-Explanation:when we call human.grow(), the this.age++ executed
-inside an arrow function,which takes this of its surrounding and not 
-of the calling object.Here this in arrow function-window object.
-So this.age++ didnt result in increment of age value.
+1.                                                                                  |2.
+What will be the output of the following code snippet?                              |
+let age=9;                                                                          |
+const human={                                                                       |    const call = {
+  age:10,                                                                           |      caller: "mom", 
+ grow:()=>{                                                                         |       says: function() {
+   this.age++;                                                                      |           console.log(`Hey, ${this.caller} just called.`);
+ }                                                                                  |           }   
+}                                                                                   |      };
+human.grow();                                                                       |   
+console.log(human.age);                                                             |       call.says();
+a.NaN b.11 c.12 d.None of these                                                     |
+ans- d.None of these as the above program outputs 10                                |    What will the code above log to the console?
+Explanation:when we call human.grow(), the this.age++ executed                      |    a.Hey, undefined just called.
+inside an arrow function,which takes this of its surrounding and not                |    b.Hey, mom just called.
+of the calling object.Here this in arrow function-window object.                    |    c.Hey, caller just called.
+So this.age++ didnt result in increment of age value.                               |    Ans-b
+_____________________________________________________________________________________________________________________________________________________________________
+                                                                                    |
+3.Predict the output.                                                               |4.Predict the output
+const call = {                                                                      |  const call = {
+  caller: "mom",                                                                    |             caller: "mom", 
+  says: () => {                                                                     |              says: function() {
+    console.log(`Hey, ${this.caller} just called.`);                                |               console.log(`Hey, ${this.caller} just called.`);
+  }                                                                                 |              }
+};                                                                                  |           };
+                                                                                    |      let newCall=call.says;
+call.says();                                                                        |       newCall();
+a.Hey, undefined just called.                                                       |
+b.Hey, mom just called.                                                             | a.Hey, undefined just called.
+c.Hey, caller just called.                                                          | b.Hey, mom just called.
+                                                                                    | ans-a
+ans-a                                                                               | Explanation:Here, we assign a new variable to the says function inside the call object.
+Explanation:Arrow functions, as part of ES6 syntax, do NOT have their               | And then we invoke the variable, which is a simple function call.Notice where we invoke
+own 'this' keyword.Instead, they will use the 'this' keyword of whatever 'this'     | the function. Is it inside the call object?No. We are invoking newCall() function globally
+was outside the function when it was created.                                       | which in turn makes the 'this' keyword equal to the global object.
+                                                                                    |
+In other words, 'this' inside the arrow function is not bound to our call object,   |
+but instead is already bound to where the call object is being created originally,  |
+which in this case is the global object. And because the global object does not know|
+anything about say() function, 'this' is undefined. And because the global object   |
+does not have a caller property, this.caller is undefined.                          |
+_________________________________________________________________________________________________________________________________________________________________________
+5.Predict the output:                                                               | 6.What will be the output:
+                                                                                    |
+function anotherCaller() {                                                          |  let lastname="henry";
+  console.log(`${this.caller} called, too!`);                                       |    let obj={
+}                                                                                   |      lastname:"joe",
+const call = {                                                                      |      getName:function(){
+  caller: "mom",                                                                    |       console.log(this.lastname+"from inside");
+  anotherCaller: anotherCaller,                                                     |       }
+  says: function() {                                                                |      }
+    console.log(`Hey, ${this.caller} just called.`);                                | obj.getName(); //!!joe from inside
+  }                                                                                 | console.log("lastname outside with this is "+this.lastname);//** lastname outside with
+};                                                                                  |                                                           //this is undefined   
+                                                                                    |  console.log(this); //##Window object
+let newCall = call.anotherCaller;                                                   |  console.log(lastname);//@@ henry
+newCall();                                                                          |
+a.mom called, too!                                                                  |!! Explanation:obj is the calling object ,so it calls getName and this is bound to obj so
+b.Hey, mom just called.                                                             |   we get joe as output.
+c.undefined called, too!                                                            |**Explanantion:lastname property doesnt exist on window object ,so output is
+ans-c.                                                                              |  undefined when we acces lastname on window
+Explanation:We are invoking newCall() function globally, which means the 'this'     | ##Explanantion:this is window object in non strict mode
+keyword is referring to the global object. It doesn't matter that we are assigning  | @@Explanation: lastname value is henry
+newCall to a function inside the call object. We are calling newCall globally, and  |
+globally is where 'this' is assigned.                                               |
+__________________________________________________________________________________________________________________________________________________________________________
+                                                                                    |8.Predict the output
+7.What will be the output for the following code snippet?                           |
+                                                                                    |   let lastname="henry";
+let lastname="henry";                                                               |   let obj={
+let obj={                                                                           |    lastname:"joe",
+  lastname:"joe",                                                                   |    nestedObj:{
+    getName:()=>{                                                                   |      lastname:"lilly",
+      console.log(this.lastname+" from inside")                                     |       getName:()=>{
+  }                                                                                 |          console.log(this.lastname+" from inside")
+                                                                                    |          }
+}                                                                                   |       }
+obj.getName();   //**                                                               |    }
+console.log("lastname from outside is  "+this.lastname); //@@                       |  obj.nestedObj.getName(); //**
+console.log(this);  //!!                                                            |
+                                                                                    |  Output:undefined from inside
+ Output:                                                                            |Explanation:the getName() function is an arrow function,so this would refer to window 
+ **- undefined from inside                                                          |   object and window doesn't have lastname
+ Explanation:as getName is an arrow function,so this would refer to window object   |
+ and window doesn't have lastname                                                   |
+ @@-lastname from outside is undefined                                              |
+ Explanation:this here is Window object,so lastName is undefined                    |
+ !!-Window                                                                          |
+ ________________________________________________________________________________________________________________________________________________________________________
+ 9.What will be the output:                                                         |10.What will be the output:
+ let lastname="henry";                                                              | let lastname="henry";
+let obj={                                                                           |  let obj={
+  lastname:"joe",                                                                   |     lastname:"joe",
+  nestedObj:{                                                                       |     nestedObj:{
+    lastname:"lilly",                                                               |       getName:function(){
+    getName:function(){                                                             |        console.log(this.lastname+" from inside");
+      console.log(this.lastname)                                                    |        }
+  }                                                                                 |     }
+  }                                                                                 |  }
+}                                                                                   |obj.nestedObj.getName();//**
+obj.nestedObj.getName(); //**                                                       |
+Output:lilly                                                                        |Output:undefined
+                                                                                    |Explanation:As the getName is being called by nestedObj of obj,the this in 
+                                                                                    | getName refers to nestedObj .so the output is undefined as there is no lastname property
+                                                                                    | inside the nestedObj
+                                                                                    
+__________________________________________________________________________________________________________________________________________________________________________
+11.use strict based questions
