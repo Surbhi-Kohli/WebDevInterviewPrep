@@ -106,4 +106,16 @@ Output:lilly                                                                    
                                                                                     | inside the nestedObj
                                                                                     
 __________________________________________________________________________________________________________________________________________________________________________
-11.use strict based questions
+11.Predict the output of the **ed line                                              |12. Predict the output
+<body>                                                                              |       clickFunction=()=>{
+<button id="button">click me</button>                                               |          console.log(this);
+<script>                                                                            |        }
+clickFunction=()=>{                                                                 |   const b=document.querySelector("button")
+  console.log(this);//**                                                            |   b.addEventListener('click',clickFunction);
+  console.log("clicked");                                                           |
+}                                                                                   | ans-Window object
+const b=document.querySelector("button")                                            |
+b.addEventListener('click',clickFunction);                                          |
+</script>                                                                           |
+</body>                                                                             |
+ans-<button></button>                                                               |
