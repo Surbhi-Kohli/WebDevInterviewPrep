@@ -1,0 +1,472 @@
+ this lesson if you're not new to hooks ⚠️ )
+Photo by Daniil Silantev on Unsplash
+Early this year, the React team released a new addition, hooks, to React in version 16.8.0.
+
+If React were a big bowl of candies, then hooks are the latest additions, very chewy candies with great taste!
+
+So, what exactly do hooks mean? And why are they worth your time?
+
+Introduction
+One of the main reasons hooks were added to React is to offer a more powerful and expressive way to write (and share) functionality between components.
+
+In the longer term, we expect Hooks to be the primary way people write React components — React Team
+
+If hooks are going to be that important, why not learn about them in a fun way!
+
+
+
+The Candy Bowl
+Consider React to be a beautiful bowl of candy.
+
+
+
+
+The bowl of candy has been incredibly helpful to people around the world.
+
+
+
+
+The people who made this bowl of candy realized that some of the candies in the bowl weren’t doing people much good.
+
+A couple of the candies tasted great, yes! But they brought about some complexity when people ate them — think render props and higher-order components?
+
+
+
+
+
+
+So, what did they do?
+
+
+
+
+They did the right thing — not throwing away all the previous candies, but making new sets of candies.
+
+These candies were called Hooks.
+
+
+
+
+These candies exist for one purpose: to make it easier for you to do the things you were already doing.
+
+
+
+
+These candies aren’t super special. In fact, as you begin to eat them you’ll realize they taste familiar — they are just Javascript functions!
+
+
+As with all good candies, these 10 new candies all have their unique names. Though they are collectively called hooks.
+
+Their names always begin with the three-letter word, use … e.g. useState, useEffect etc.
+
+Just like chocolate, these 10 candies all share some of the same ingredients. Knowing how one tastes, helps you relate to the other.
+
+Sounds fun? Now let’s have these candies.
+
+
+
+The State Hook
+As stated earlier, hooks are functions. Officially, there are 10 of them. 10 new functions that exist to make writing and sharing functionalities in your components a lot more expressive.
+
+The first hook we’ll take a look at is called, useState.
+
+For a long time, you couldn’t use the local state in a functional component. Well, not until hooks.
+
+With useState, your functional component can have (and update) local state.
+
+How interesting.
+
+Consider the following counter application:
+
+
+With the Counter component shown below:
+
+
+
+import React, { Component } from 'react';
+ 
+class Counter extends Component {
+  constructor() {
+    super();
+    this.state = {
+      count: 1
+    };
+  }
+ 
+  handleClick = () => {
+    this.setState(prevState => ({count: prevState.count + 1}))
+  }
+ 
+  render() {
+    const { count } = this.state;
+    return (
+      <div>
+        <h3 className="center">
+            Welcome to the Counter of Life 
+        </h3>
+        <button className="center-block" onClick={this.handleClick}>
+            {count}
+        </button>
+      </div>
+    );
+  }
+}
+
+
+Simple, huh?
+
+Let me ask you one simple question. Why exactly do we have this component as a Class component?
+
+Well, the answer is simply because we need to keep track of some local state within the component.
+
+Now, here’s the same component refactored to a functional component with access to state via the useState hooks.
+
+Class to Hooks — wait for the animation.
+function CounterHooks() {
+  const [count, setCount] = useState(0);
+ 
+  const handleClick = () => {
+    setCount(count + 1);
+  }
+ 
+  return (
+      <div>
+        <h3 className="center">
+          Welcome to the Counter of Life 
+        </h3>
+        <button 
+           className="center-block" 
+           onClick={handleClick}>
+         {count}
+        </button>
+      </div>
+    ); 
+}
+
+
+What’s different?
+
+I’ll walk you through it step by step.
+
+A functional component doesn’t have all the Class extend ... syntax.
+
+function CounterHooks() {
+  
+}
+
+
+It also doesn’t require a render method.
+
+function CounterHooks() {
+  
+  return (
+      <div>
+        <h3 className="center">Welcome to the Counter of Life </h3>
+        <button 
+          className="center-block" 
+          onClick={this.handleClick}> {count} </button>
+      </div>
+    ); 
+}
+
+
+There are two concerns with the code above.
+
+You’re not supposed to use the this keyword in function components.
+
+The count state variable hasn’t been defined.
+
+
+
+Extract handleClick to a separate function within the functional component:
+
+function CounterHooks() {
+  const handleClick = () => {
+    
+  }
+  return (
+      <div>
+        <h3 className="center">Welcome to the Counter of Life </h3>
+        <button 
+          className="center-block" 
+          onClick={handleClick}> {count} </button>
+      </div>
+    ); 
+}
+
+
+Before the refactor, the count variable came from the class component’s state object.
+
+In functional components, and with hooks, that comes from invoking the useState function or hook.
+
+useState is called with one argument, the initial state value e.g. useState(0) where 0 represents the initial state value to be kept track of.
+
+
+
+Invoking this function returns an array with two values.
+
+//🦄 returns an array with 2 values. 
+useState(0)
+The first value being the current state value being tracked, and second, a function to update the state value.
+
+Think of this as some state and setState replica - however, they aren’t quite the same.
+
+With this new knowledge, here’s useState in action.
+
+function CounterHooks() {
+  // 🦄 
+  const [count, setCount] = useState(0);
+ 
+  const handleClick = () => {
+    setCount(count + 1)
+  }
+ 
+  return (
+      <div>
+        <h3 className="center">Welcome to the Counter of Life </h3>
+        <button 
+          className="center-block" 
+          onClick={handleClick}> {count} </button>
+      </div>
+    ); 
+}
+
+
+There are a few things to note here, apart from the obvious simplicity of the code!
+
+One, since invoking useState returns an array of values, the values could be easily destructed into separate values as shown below:
+
+const [count, setCount] = useState(0);
+
+
+Also, note how the handleClick function in the refactored code doesn’t need any reference to prevState or anything like that.
+
+It just calls setCount with the new value count + 1.
+
+ 
+ const handleClick = () => {
+    setCount(count + 1)
+ }
+This is because of the correct value of the count state variable will always be kept across re-renders.
+
+So, need to update count state variable, just call setCount with the new value e.g. setCount(count + 1)
+
+Simple as it sounds, you’ve built your very first component using hooks. I know it’s a contrived example, but that’s a good start!
+
+
+
+Nb: it’s also possible to pass a function to the state updater function. This is usually recommended as with class’ setState when a state update depends on a previous value of state e.g. setCount(prevCount => prevCount + 1)
+
+
+
+Multiple useState calls
+With class components, we all got used to set state values in an object whether they contained a single property or more.
+
+// single property 
+state = {
+  count: 0
+}
+ 
+// multiple properties 
+state = {
+ count: 0,
+ time: '07:00'
+}
+With useState you may have noticed a subtle difference.
+
+In the example above, we only called useState with the actual initial value. Not an object to hold the value.
+
+useState(0)
+So, what if we wanted to another state value?
+
+Can multiple useState calls be used?
+
+Consider the component below. Same as before but this time it tracks the time of click.
+
+
+function CounterHooks() {
+  const [count, setCount] = useState(0);
+  const [time, setTime] = useState(new Date())
+ 
+  const handleClick = () => {
+    setCount(count + 1);
+    setTime(new Date())
+  }
+ 
+  return (
+      <div>
+        <h3 className="center">Welcome to the Counter of Life </h3>
+        <button 
+          className="center-block" 
+          onClick={handleClick}>{count}</button>
+        <p className="center"> 
+          at: {`${time.getHours()} : ${time.getMinutes()} : ${time.getSeconds()}`}</p>
+      </div>
+    ); 
+}
+
+
+As you can see, the hooks usage is quite the same, except for having a new useState call.
+
+const [time, setTime] = useState(new Date())
+
+
+Now time is used in the rendered JSX to retrieve the hour, minute and second of the click.
+
+<p className="center"> 
+   at: { `${time.getHours()} : ${time.getMinutes()} : ${time.getSeconds()}`}
+</p>
+
+
+Great!
+
+However, is it possible to use an object with useState as opposed to multiple useState calls?
+
+Absolutely!
+
+If you choose to do this, you should note that unlike setState calls, the values passed into useState replaces the state value. setState merges object properties but useState replaces the entire value.
+
+
+
+// 🐢 merge (setState) vs replace (useState)
+// assume initial state is {name: "Ohans"}
+ 
+setState({age: "unknown"})
+// new state object will be 
+// {name: "Ohans", age: "unknown"}
+ 
+useState({age: "unknown"})
+// new state object will be 
+// {age: "unknown"} - initial object is replaced
+
+
+The Effect Hook
+With class components you’ve likely performed side effects such as logging, fetching data or managing subscriptions.
+
+These side effects may be called “effects” for short, and the effect hook, useEffect was created for this purpose.
+
+How’s it used?
+
+Well, the useEffect hook is called by passing it a function within which you can perform your side effects.
+
+
+
+Here’s a quick example.
+
+useEffect(() => {
+  // 🐢 you can perform side effects here
+  console.log("useEffect first timer here.")
+})
+
+
+To useEffect I’ve passed an anonymous function with some side effect called within it.
+
+The next logical question is, when is the useEffect function called?
+
+Well, remember that in class components you had lifecycle methods such as componentDidMount and componentDidUpdate.
+
+Since functional components don’t have these lifecycle methods, useEffect kinda takes their place.
+
+Thus, in the example above, the function within useEffect also known as the effect function, will be invoked when the functional component mounts (componentDidMount) and when the component updates componentDidUpdate).
+
+Here’s that in action.
+
+By adding the useEffect call above to the counter app, here’s the behaviour we get.
+
+
+
+
+function CounterHooks() {
+  const [count, setCount] = useState(0);
+  const [time, setTime] = useState(new Date())
+  
+  // 🐢 look here.
+  useEffect(() => {
+    console.log("useEffect first timer here.")
+  }, [count])
+ 
+ 
+  const handleClick = () => {
+    setCount(count + 1);
+    setTime(new Date())
+  }
+ 
+  return (
+      <div>
+        <h3 className="center">Welcome to the Counter of Life </h3>
+        <button className="center-block" 
+          onClick={handleClick}>{count}</button>
+        <p className="center"> at: {`${time.getHours()} : ${time.getMinutes()} : ${time.getSeconds()}`}</p>
+      </div>
+    ); 
+}
+
+
+NB: The useEffect hook isn’t entirely the same as componentDidMount + componentDidUpdate. It can be viewed as such, but the implementation differs with some subtle differences.
+
+It’s interesting that the effect function was invoked every time there was an update. That’s great, but it’s not always the desired functionality.
+
+What if you only want to run the effect function only when the component mounts?
+
+That’s a common use case and useEffect takes a second parameter, an array of dependencies to handle this.
+
+If you pass in an empty array, the effect function is run only on mount — subsequent re-renders don’t trigger the effect function.
+
+useEffect(() => {
+    console.log("useEffect first timer here.")
+}, []) 
+
+If you pass any values into this array, then the effect function will be run on mount, and anytime the values passed are updated. i.e if any of the values are changed, the effected call will re-run.
+
+useEffect(() => {
+    console.log("useEffect first timer here.")
+}, [count]) 
+The effect function will be run on mount, and whenever the count function changes.
+
+count changes when the button is clicked, so the effect function re-runs
+
+
+What about subscriptions?
+
+It’s common to subscribe and unsubscribe from certain effects in certain apps.
+
+
+
+Consider the following:
+
+useEffect(() => {
+  const clicked = () => console.log('window clicked');
+  window.addEventListener('click', clicked);
+}, [])
+In the effect above, upon mounting, a click event listener is attached to the window.
+
+How do we unsubscribe from this listener when the component is unmounted?
+
+
+
+Well, useEffect allows for this.
+
+If you return a function within your effect function, it will be invoked when the component unmounts. This is the perfect place to cancel subscriptions as shown below:
+
+useEffect(() => {
+    const clicked = () => console.log('window clicked');
+    window.addEventListener('click', clicked);
+ 
+    return () => {
+      window.removeEventListener('click', clicked)
+    }
+ }, [])
+
+
+There’s a lot more you can do with the useEffect hook such as making API calls.
+
+
+
+Build Your own Hooks
+From the start of this article we’ve taken (and used) candies from the candy box React provides.
+
+However, React also provides a way for you to make your own unique candies — called custom hooks.
+
+So, how does that work?
+
+A custom hook is just a regular function. However, its name must begin with the word, use and if needed, it may call any of the React hooks within itself.
