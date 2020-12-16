@@ -88,3 +88,10 @@ ans-10                                                                          
 EXPLANATION:With the var keyword,you can declare multiple variables              |
  with the same name .The variable will then hold the latest value.               |
 You cannot do this with let or const since they're block-scoped.                 |
+
+
+whats the output?
+for (let i = 0; i < 3; i++) 
+{
+  setTimeout(() => console.log(i), 0); 
+}                                            
