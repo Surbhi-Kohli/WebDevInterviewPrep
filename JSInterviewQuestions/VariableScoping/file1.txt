@@ -95,3 +95,17 @@ for (let i = 0; i < 3; i++)
 {
   setTimeout(() => console.log(i), 0); 
 }                                            
+
+var obj={
+  car:{
+    type:'sedan'
+  },
+  print:function(){
+    var that=this;
+    (function(){
+      console.log("this ",this.car.type);
+       console.log("that ",that.car.type)
+    }());
+  }
+};
+//error: Uncaught TypeError: Cannot read property 'type' of undefined
