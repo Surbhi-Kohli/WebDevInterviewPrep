@@ -109,3 +109,12 @@ var obj={
   }
 };
 //error: Uncaught TypeError: Cannot read property 'type' of undefined
+
+var salary="1000$";
+(function(){
+  console.log("orig sal is "+salary);
+  var salary="500$";
+  console.log("new sal is "+salary);
+})()
+output:orig sal is undefined
+new sal is 500$
