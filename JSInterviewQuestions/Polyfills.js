@@ -60,3 +60,41 @@ function callMe(city) {
 }
 let callBinded = callMe.myBind(basic, 'ASR');
 callBinded('Punjab')//Hi!i m Surbhi, my age is 24 and my city is ASR and state is Punjab
+
+/*********************************  Reduce Polyfill  ************************************************************/
+
+Array.prototype.myReduce = function(fn, initial) {
+    let values = this;
+
+    values.forEach(item => {
+        initial = initial !== undefined ? fn(initial, item) : item
+    })
+
+    return initial;
+}
+var values = [2, 5, 5]
+values.reduce((a, b) => a * b)  // 50
+values.myReduce((a, b) => a * b)  // 50
+
+/*******************  Object Deep clone *********************************************************************/
+
+function deepClone(object) {
+  var newObject = {};
+  for (var key in object) {
+    if (typeof object[key] === "object" && object[key] !== null) {
+      newObject[key] = deepClone(object[key]);
+    } else {
+      newObject[key] = object[key];
+    }
+  }
+  return newObject;
+}
+
+/************************for each ********************************/
+Array.prototype.eachAlbum = function(callback) {
+  // callback here is the callback function
+  // which actual .forEach() function accepts
+  for (var i = 0; i < this.length; i++) {
+    callback(this[i], i, this) // currentValue, index, array
+  }
+}
