@@ -1,0 +1,7 @@
+Why would you chose “let” over “var”?
+While programming in Javascript it is a good practice not to define variables as global variables. 
+This is because it is possible to inadvertently modify the global variable from anywhere within the Javascript code.
+To prevent this one needs to ensure that the scope of the variables are limited to the code block within which they need to be executed.
+In the past before keyword let was introduced as part of ES6, to circumvent the issue of variable scoping using var, programmers used the
+IIFE pattern to prevent the pollution of the global name space. However since the introduction of let, the IIFE pattern is no longer required,
+and the scope of the variable defined using let is limited to the code block within which it is defined.
