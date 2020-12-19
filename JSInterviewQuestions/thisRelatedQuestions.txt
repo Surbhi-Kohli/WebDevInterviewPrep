@@ -119,3 +119,24 @@ b.addEventListener('click',clickFunction);                                      
 </script>                                                                           |
 </body>                                                                             |
 ans-<button></button>                                                               |
+
+_____________________________________________________________________________________________________________________________________________________________________________
+13.Predict the output:                                                           |
+var b=7;                                                                         |  let b=7;
+                                                                                 |  let obj={
+var obj={                                                                        |    b:8,
+  b:8,                                                                           |   func:function(){
+  func:function(){                                                               |     console.log(this.b);
+    console.log(this.b);                                                         |     function abc(){
+   function abc(){                                                               |     let b=9;
+     var b=9;                                                                    |     console.log(this.b);
+     console.log(this.b);                                                        |     }
+    }                                                                            |      abc();
+    abc();                                                                       |    }
+  }                                                                              |   }
+                                                                                 | 
+}                                                                                |  obj.func();
+obj.func();                                                                      | Output: 8 undefined
+output:
+8
+7
