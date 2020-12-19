@@ -1,4 +1,5 @@
-/*********************************   Filter polyfill *****************************************************************/
+/*********************************  Filter polyfill *****************************************************************/
+
 Array.prototype.myFilter=function(callback,context)
 {
   let arr=[];
@@ -38,7 +39,7 @@ let ans=arr2.myMap((num,i)=>{
 })
 console.log(ans);//[1,0,0,1,0,1,0]
 
-/***********************************bind polyfill**********************************************************/
+/***********************************   bind polyfill   **********************************************************/
 Function.prototype.myBind=
 function(){
   let arg=Array.prototype.slice.call(arguments);
@@ -90,11 +91,43 @@ function deepClone(object) {
   return newObject;
 }
 
-/************************for each ********************************/
+/************************    for each        *******************************************************/
 Array.prototype.eachAlbum = function(callback) {
   // callback here is the callback function
   // which actual .forEach() function accepts
   for (var i = 0; i < this.length; i++) {
     callback(this[i], i, this) // currentValue, index, array
+  }
+}
+/************************* debounce polyfill  ******************************************************/
+
+const debounce = function (fn, d) {
+  let timer;
+  return function () {
+    let context = this,
+      args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      fn.apply(context, args);
+    }, d);
+  };
+};
+button.addEventListener('click', debounce(function() { 
+		alert("No matter how many times you" + 
+			"click the debounce button, I get " + 
+			"executed only after 3 seconds of clicking n then stopping") 
+						}, 3000));
+
+/************************     throttle polyfill  *******************************************************/
+const throttle = (func, limit) => {
+  let inThrottle
+  return function() {
+    const args = arguments
+    const context = this
+    if (!inThrottle) {
+      func.apply(context, args)
+      inThrottle = true
+      setTimeout(() => inThrottle = false, limit)
+    }
   }
 }
