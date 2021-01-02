@@ -118,3 +118,11 @@ var salary="1000$";
 })()
 output:orig sal is undefined
 new sal is 500$
+
+Q-Predict the output
+function a(){
+  console.log(b);
+}
+var b=10;
+a(); 
+ans-10
