@@ -1,0 +1,6 @@
+Lifecycle methods- ngOnChanges() -> ngOnInit() -> ngDoCheck() -> ngAfterContentInit() -> ngAfterContentChecked() -> ngAfterViewInit() -> ngAfterViewChecked() ->ngOnDestroy()
+
+
+
+Generating custom directive
+ng generate directive highlight
