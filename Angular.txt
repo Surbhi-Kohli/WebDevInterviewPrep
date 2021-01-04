@@ -12,7 +12,8 @@ responsible for telling the build system which files to change when you run ng b
 main.ts — The main.ts is the main entry point of an Angular application. It uses the JIT compiler to compile
 the application and bootstraps the application’s root module (AppModule) to run in the browser.
 
-main.ts — The main.ts is the main entry point of an Angular application. It uses the JIT compiler to compile the application and bootstraps the application’s root module (AppModule) to run in the browser.
+main.ts — The main.ts is the main entry point of an Angular application. It uses the JIT compiler to compile the application and bootstraps the application’s 
+root module (AppModule) to run in the browser.
  
  Angular apps are known for being modular. You can easily identify it by the class NgModules (or the decorator @NgModule). 
  It helps to organize complex relationships between views (classes that can contain view: components, directives and pipes) to data providers.
@@ -21,8 +22,9 @@ main.ts — The main.ts is the main entry point of an Angular application. I
  To modify JavaScript classes you have to use decorators. They are responsible for attaching metadata objects to classes so the classes know how they should work.
  In simple words, NgModule is a function that takes metadata objects and the properties to describe the module and organize the relationship.
 
--- declarations: The classes that are related to views and will be privately available to this module. Think about this as public and private functions in OOP,
-components are private by default but can become public if you add to exports. If you want them to be publicly available, you’ll have to add to the exports section.
+-- declarations: The classes that are related to views and will be privately available to this module. Think about this as public and private
+functions in OOP,components are private by default but can become public if you add to exports. If you want them to be publicly available,
+you’ll have to add to the exports section.
 
 -- exports: The classes that should be accessible to the components from other modules.
 
@@ -38,7 +40,10 @@ module as well as any module that imports it.
 
  As the app grows, the module will become bigger and harder to maintain at some point. Our job is to refactor components
  and services to their modules, except AppComponent which we bootstrap from the root module. We bootstrap the AppComponent
- Module in a main.ts file. The main.ts file automatically specifies the bootstrap module. Finally, the bootstrap component is inside the bootstrap module
+ Module in a main.ts file. The main.ts file automatically specifies the bootstrap module. Finally, the bootstrap component is inside the bootstrap module.
+ 
+ A component must belong to an NgModule in order for it to be usable by another component or application. 
+To specify that a component is a member of an NgModule, you should list it in the declarations property of that NgModule.
  
  Components
 The logic of the application must be written inside of the component. The results displayed in the view are generated through a 
@@ -49,6 +54,8 @@ class that interacts with an API of properties and methods.
 The view of a component will always be associated with an HTML file, also known as a template. The HTML tags will tell Angular how to render the component.
 For those familiar with embedded templating, Angular’s HTML file looks like a regular HTML but can add embedded templating to perform functions to display data, 
 for example for loops followed by curly braces to display the data as the loop goes through.
+
+
 
 Data Binding
 
