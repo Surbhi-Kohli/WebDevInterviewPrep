@@ -1,6 +1,60 @@
 Lifecycle methods- ngOnChanges() -> ngOnInit() -> ngDoCheck() -> ngAfterContentInit() -> ngAfterContentChecked() -> ngAfterViewInit() -> ngAfterViewChecked() ->ngOnDestroy()
 
 
+App.module.ts
+Defines the root module (AppModule) that tells Angular how to assemble the application. It declares AppComponent by default
+but can declare more components as you add them to the project.
+
+environments/
+Contains build configuration (JSON configuration information) options for particular target environments. It is 
+responsible for telling the build system which files to change when you run ng build or ng serve.
+
+main.ts — The main.ts is the main entry point of an Angular application. It uses the JIT compiler to compile
+the application and bootstraps the application’s root module (AppModule) to run in the browser.
+
+main.ts — The main.ts is the main entry point of an Angular application. It uses the JIT compiler to compile the application and bootstraps the application’s root module (AppModule) to run in the browser.
+ 
+ Angular apps are known for being modular. You can easily identify it by the class NgModules (or the decorator @NgModule). 
+ It helps to organize complex relationships between views (classes that can contain view: components, directives and pipes) to data providers.
+ It allows defining all relationships in a single file. Every application must have at least one module or, depending on the size of the application, multiple ones.
+ 
+ To modify JavaScript classes you have to use decorators. They are responsible for attaching metadata objects to classes so the classes know how they should work.
+ In simple words, NgModule is a function that takes metadata objects and the properties to describe the module and organize the relationship.
+
+-- declarations: The classes that are related to views and will be privately available to this module. Think about this as public and private functions in OOP,
+components are private by default but can become public if you add to exports. If you want them to be publicly available, you’ll have to add to the exports section.
+
+-- exports: The classes that should be accessible to the components from other modules.
+
+-- imports: Other modules have access to exported modules by importing the module to their metadata.
+
+Declaration, exports and imports define the relationship between components and how they are shared between NgModules.
+
+-- providers: Where you register data providers such as services and guards (i.e. ContactService, CanActive, AuthService)
+that can be injected in the components within this module. The injectable class will be available to any component in this 
+module as well as any module that imports it.
+
+-- bootstrap: Defines a component initially responsible by loading the application (AppComponent by default).
+
+ As the app grows, the module will become bigger and harder to maintain at some point. Our job is to refactor components
+ and services to their modules, except AppComponent which we bootstrap from the root module. We bootstrap the AppComponent
+ Module in a main.ts file. The main.ts file automatically specifies the bootstrap module. Finally, the bootstrap component is inside the bootstrap module
+ 
+ Components
+The logic of the application must be written inside of the component. The results displayed in the view are generated through a 
+class that interacts with an API of properties and methods.
+ 
+ Templates
+
+The view of a component will always be associated with an HTML file, also known as a template. The HTML tags will tell Angular how to render the component.
+For those familiar with embedded templating, Angular’s HTML file looks like a regular HTML but can add embedded templating to perform functions to display data, 
+for example for loops followed by curly braces to display the data as the loop goes through.
+
+Data Binding
+
+Two-way data binding combines property and event binding in a single notation, using the ngModel directive. It immediately propagates to the “View” any data changes that can affect the “Model”, and changes made by users in “Views” immediately reflect the “Model”. In simple words, every time the data changes, the UI changes and vice versa. Angular processes all data bindings once per the JavaScript event cycle, from the root of the application component tree through all child components. It plays an important role in communication between a template and its component, parent and child components.
 
 Generating custom directive
 ng generate directive highlight
+
+
