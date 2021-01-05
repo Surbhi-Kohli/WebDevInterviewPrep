@@ -1,0 +1,19 @@
+A single-page application (SPA) is a website design approach where each new page's content is served not from loading new HTML pages but 
+generated dynamically through JavaScript's ability to manipulate the DOM elements on the existing page itself.
+
+
+
+In a more traditional web page architecture, an index.html page might link to other HTML pages on the server that the browser will download and display from scratch.
+
+An SPA approach allows the user to continue consuming and interacting with the page while new elements are being updated or fetched, and can result
+in much faster interactions and content reloading.
+
+In addition, the HTML5 History API allows us to alter the page's URL without reloading the page, allowing us to create separate URLs for different views.
+Once inside of the SPA, the application is able to dynamically fetch content from the server through AJAX requests or websockets.
+This allows the browser to keep the current page open while making requests to the server in the background to fetch additional content or new "pages" altogether.
+
+SPAs are all about serving an outstanding UX by trying to imitate a “natural” environment in the browser — no page reloads, no extra wait time.
+It is just one web page that you visit which then loads all other content using JavaScript — which they heavily depend on.
+SPA requests the markup and data independently and renders pages straight in the browser. We can do this thanks to the advanced 
+JavaScript frameworks like AngularJS, Ember.js, Meteor.js, Knockout.js .
+Single-page sites help keep the user in one, comfortable web space where content is presented to the user in a simple, easy and workable fashion.
