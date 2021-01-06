@@ -126,3 +126,13 @@ function a(){
 var b=10;
 a(); 
 ans-10
+
+var x=21;
+
+var girl=function ()
+{
+ console.log(x);
+ var x=20;
+
+}
+girl();//undefined
