@@ -223,6 +223,42 @@ e) for (var i = 0; i < 3; i++) {
 
 ans - b,d,e
 /***************************************************************************************************************/
+12. Predict the output
+var bar=true;
+console.log(bar+0);  //1
+console.log(bar+"xyz");  //truexyz
+console.log(bar+true);    //2
+console.log(bar+false);    //1
+
+/*****************************************************************************************************************/
+13.var x={foo:1};
+
+   var output=(function(){
+     delete x.foo;
+    return x.foo;
+   })();
+
+console.log(output);//undefined
+
+The JavaScript delete operator removes a property from an object; 
+On successful deletion, it will return true, else false will be returned.
+
+
+const Employee = {
+  firstname: 'John',
+  lastname: 'Doe'
+};
+
+console.log(Employee.firstname);
+// expected output: "John"
+
+delete Employee.firstname;
+
+console.log(Employee.firstname);
+// expected output: undefined
+
+
+/*****************************************************************************************************************/
 Programming Question -(To be coded in js)
 
 1.You are given two strings ‘X’ and ‘Y’, each containing at most 1,000 characters. 
