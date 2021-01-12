@@ -1,0 +1,119 @@
+ ***cloneNode()
+When you have to create a new element that needs to be the same as an already existing element on the web page, you can simply create a copy of the already 
+existing element using the cloneNode() method.
+The newClone has no parent and is not part of the document, until it is added to another node that is part of the document (using Node.appendChild() or a similar method). 
+
+Syntax
+var dupeEle = ele.cloneNode([deep])
+
+dupeEle – Copy of the ele element.
+ele – The HTML element to be copied.
+deep – (optional) A boolean value. If it’s set to true, dupeEle will have all the child elements ele has, 
+if it’s set to false it will be cloned without its children.
+
+Code Example
+<div>
+  <strong>hello</strong>
+</div>
+JavaScript
+
+var strong = document.querySelector('strong');
+var copy = strong.cloneNode(true);
+var div = document.querySelector('div');
+div.appendChild(copy);
+/*************************************************************************************************************************/
+** createElement()
+The createElement() method creates a new HTML element using the name of the HTML tag to be created, such as 'p' or 'div'.
+
+You can later add this element to the web page by using different methods for DOM insertion, such as AppendChild() (see later in this post).
+
+Syntax
+1
+document.createElement(tagName);
+tagName – The name of the HTML tag you want to create
+
+var pEle = document.createElement('p')
+
+/***************************************************************************************************************************/
+**appendChild()
+The appendChild() method adds an element as "the last child" to the HTML element that invokes this method.
+
+The child to be inserted can be either a newly created element, or an already existing one. In the latter case, it will be moved 
+from its previous position to the position of the last child.
+
+/*************************************************************************************************************/
+The ParentNode.append() method inserts a set of Node objects or DOMString objects after the last child of the ParentNode. 
+DOMString objects are inserted as equivalent Text nodes.
+
+Differences from Node.appendChild():
+
+ParentNode.append() allows you to also append DOMString objects, whereas Node.appendChild() only accepts Node objects.
+ParentNode.append() has no return value, whereas Node.appendChild() returns the appended Node object.
+ParentNode.append() can append several nodes and strings, whereas Node.appendChild() can only append one node.
+
+let parent = document.createElement("div")
+parent.append("Some text") //not possiblle in appendChild()
+
+console.log(parent.textContent) // "Some text"
+
+/***Append an element and a text****/
+
+let parent = document.createElement("div")
+let p = document.createElement("p")
+parent.append("Some text", p)//appending muliple children is Not possible with appendChild()
+
+console.log(parent.childNodes) // NodeList [ #text "Some text", <p> ]
+/**************************************/
+**appendChild()
+
+The Node.appendChild() method adds a node to the end of the list of children of a specified parent node. If the given child is a 
+reference to an existing node in the document, appendChild() moves it from its current position to the new position 
+(there is no requirement to remove the node from its parent node before appending it to some other node).
+
+This means that a node can't be in two points of the document simultaneously. So if the node already has a parent, the node
+is first removed, then appended at the new position. The Node.cloneNode() method can be used to make a copy of the node before appending
+it under the new parent. Note that the copies made with cloneNode will not be automatically kept in sync.
+
+/*****************************Removing node *******************************************************************/
+** removeChild()
+The Node.removeChild() method removes a child node from the DOM and returns the removed node.
+
+Syntax
+var oldChild = node.removeChild(child);
+Or just:
+
+node.removeChild(child);
+
+child is the child node to be removed from the DOM.
+node is the parent node of child.
+oldChild holds a reference to the removed child node, i.e., oldChild === child
+
+****remove()
+The ChildNode.remove() method removes the object from the tree it belongs to.
+When you want to remove a node based only on a reference to itself, which is fairly common, you can use ChildNode.remove():
+Syntax
+node.remove();
+<div id="div-01">Here is div-01</div>
+<div id="div-02">Here is div-02</div>
+<div id="div-03">Here is div-03</div>
+var el = document.getElementById('div-02');
+el.remove(); // Removes the div with the 'div-02' id
+
+
+/*********************************** Manipulating styles ********************************************/
+Element.setAttribute() — this takes two arguments, the attribute you want to set on the element, and the value you want to set it to. 
+In this case we will set a class name of highlight on our paragraph:
+para.setAttribute('class', 'highlight');
+
+/************************************************************/
+The Window object has an event available on it called resize, which is fired every time the window is resized — let's
+access that via the Window.onresize event handler and rerun our sizing code each time it changes. 
+ the width and height of the viewport (the inner window, where your document is displayed) — these two 
+ values are handily contained in the Window.innerWidth and Window.innerHeight properties
+const div = document.querySelector('div');
+window.onresize = function() {
+  winWidth = window.innerWidth;
+  winHeight = window.innerHeight;
+  div.style.width = winWidth + 'px';
+  div.style.height = winHeight + 'px';
+}
