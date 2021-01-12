@@ -117,3 +117,30 @@ window.onresize = function() {
   div.style.width = winWidth + 'px';
   div.style.height = winHeight + 'px';
 }
+/****************************************************************************************************/
+replaceChild()
+The replaceChild() method replaces a child element with another one belonging to the parent element that calls this method.
+
+Syntax
+1
+ele.replaceChild(newChildEle, oldChileEle)
+ele – Parent element of which children are to be replaced.
+newChildEle – Child element of ele that will replace oldChildEle.
+oldChildEle – Child element of ele, that will be replaced by newChildEle.
+Code Example
+In this example the child element <strong> belonging to the <div> parent element is replaced with a newly created <em> tag.
+
+HTML
+1
+2
+3
+<div>
+  <strong>hello</strong>
+</div>
+JavaScript
+
+var em = document.createElement('em');
+var strong = document.querySelector('strong');
+var div = document.querySelector('div');
+em.textContent = 'hi';
+div.replaceChild(em, strong);
