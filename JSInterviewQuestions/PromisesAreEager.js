@@ -62,4 +62,5 @@ greetingPoster()
 /*If the intent is to create a Promise that allows control of when it starts executing,i.e ,make a promise as lazy, there are no native options. 
 If you want the function passed to the Promise to run multiple times, Promises don't natively allow that either.
 
-***To change the default behavior then Promise creation has to be wrapped in another function which can be invoked as many times as needed:****/
+***To change the default behavior then Promise creation has to be wrapped in another function which can be invoked as many times as needed.
+ This works because the javascript Interpreter does not go through a function declaration unless that function is called.****/
