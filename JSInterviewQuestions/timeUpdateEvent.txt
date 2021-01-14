@@ -1,0 +1,8 @@
+The timeupdate event is fired when the time indicated by the currentTime attribute has been updated.
+Can be used on videos  as below
+
+function handleProgress(){
+    const percent=(video.currentTime/video.duration)*100;
+    progressBar.style.flexBasis=`${percent}%`;
+}
+video.addEventListener('timeupdate',handleProgress);
