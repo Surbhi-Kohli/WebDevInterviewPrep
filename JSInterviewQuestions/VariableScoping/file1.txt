@@ -136,3 +136,20 @@ var girl=function ()
 
 }
 girl();//undefined
+
+Q.function compute() {
+    const condition = true;
+    if (condition) {
+        let a = false;
+        let b = false;
+    }
+    return {
+        a: a || null,
+        b: b || null
+    }
+}
+var r = compute();
+console.log(r); // What do you think would be the output?
+ans-Uncaught ReferenceError: a is not defined"
+
+
