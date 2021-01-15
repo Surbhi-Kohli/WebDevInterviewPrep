@@ -38,3 +38,34 @@ function init() {
 init();
 //2
 //EXPLANATION: resolve or reject only execute once in the order they are called. No matter if there is a reject after resolve or vice versa it won't be executed.
+
+/*Question 3*/
+function init() {
+	throw new Error("I am an error");
+	return Promise.resolve(1);
+}
+
+init().then((v) => console.log(v + 1))
+      .catch((err) => console.log("Error caught -- ", err));
+/*What would be the output:
+a.2 b.Error caught --  I am an error c.Uncaught Error: I am an error 
+d.2 Error caught --  I am an error
+
+ans-c 
+EXPLANATION: errors are caught by the catch block only when there are part of the promise chain. In the current code
+snippet, error thrown at line no. 2 is outside the promise chain as the chain is initiated at line no 3. If it would have been like --
+
+function first() {
+    return Promise.resolve(1);
+}
+
+function init() {
+    return first()
+        .then(v => {
+            throw new Error("I am an error");
+        })
+        .catch((err) => console.log("Error caught -- ", err));
+}
+
+init();
+Then output would be "Error caught -- I am an error" because we throwing an error from a function which is part of the promise chain.*/
