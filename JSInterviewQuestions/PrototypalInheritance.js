@@ -30,3 +30,20 @@ var myFather = new Person("John", "Doe", 50, "blue");
 var myMother = new Person("Sally", "Rally", 48, "green");
 Person.prototype.add=10
 console.log(myFather.add)
+
+/********************************************************************************/
+/*Question1**/
+function Person(name) {
+	this.name = name;
+}
+Person.prototype.getName = () => {
+	return this.name;
+};
+const yomesh = new Person('Yomesh');
+console.log(yomesh.getName());
+/*
+a.undefined b.Value of the property name on the global object c.Yomesh d.Empty String e.Error: getName is not a function f.Window
+
+ans-Value of the property name on the global object
+EXPLANATION:the snippet above is using an arrow function for getName. Arrow functions cannot create a context and therefore
+this will be the global object in non-strict mode.*/
