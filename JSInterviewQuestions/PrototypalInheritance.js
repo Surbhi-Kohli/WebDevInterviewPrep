@@ -74,3 +74,23 @@ console.log(yomesh);
 ans-e
 Explanation:Returning a primitive value explicitly is equivalent to returning the original this.Here variable assignment takes precedence over
 function declaration,so final value of person variable is {name:'Ajay'}*/
+/*Question 3 */
+function Person(name) {
+	this.name = name;
+}
+
+Person.prototype.sayName = function() {
+	console.log(this.name);
+}
+
+var yomesh = new Person('yomesh');
+
+console.log(yomesh.sayName());
+console.log(Person.prototype.sayName());
+console.log(Object.getPrototypeOf(yomesh).sayName());
+console.log(yomesh.__proto__.sayName());
+/*Output:yomesh
+undefined
+undefined
+undefined
+EXPLANATION:in the first case this === yomesh and in rest of the cases this === Person.prototype during invocation.*/
