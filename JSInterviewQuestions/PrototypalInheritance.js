@@ -47,3 +47,30 @@ a.undefined b.Value of the property name on the global object c.Yomesh d.Empty S
 ans-Value of the property name on the global object
 EXPLANATION:the snippet above is using an arrow function for getName. Arrow functions cannot create a context and therefore
 this will be the global object in non-strict mode.*/
+
+/***Question2 ****/
+function Person(name) {
+	this.name = name;
+
+	function person() {
+		return {
+			name: 'Prithvi'
+		};
+	}
+
+	var person = {
+		name: 'Ajay'
+	};
+
+	var person = false;
+
+	return person;
+}
+
+var yomesh = new Person('Yomesh');
+console.log(yomesh);
+/*a.false b.{"name":"Ajay"} c.{"name":"Prithvi"} d.undefined e.{"name":"Yomesh"}
+
+ans-e
+Explanation:Returning a primitive value explicitly is equivalent to returning the original this.Here variable assignment takes precedence over
+function declaration,so final value of person variable is {name:'Ajay'}*/
