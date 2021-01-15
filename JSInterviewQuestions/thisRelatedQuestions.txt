@@ -140,3 +140,13 @@ obj.func();                                                                     
 output:
 8
 7
+
+15.function sayName() {
+	setTimeout(() => {
+		console.log(this.name);
+	}, 1000);
+}
+sayName.call({ name: 'Yomesh' });
+/*Output:Yomesh
+EXPLANATION: we are passing an arrow function to the setTimeout. Arrow functions retains the scope of their definition. 
+Hence, when the arrow function will be called then context will be same as sayName function.*/
