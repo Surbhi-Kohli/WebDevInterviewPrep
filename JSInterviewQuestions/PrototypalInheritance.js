@@ -30,8 +30,68 @@ var myFather = new Person("John", "Doe", 50, "blue");
 var myMother = new Person("Sally", "Rally", 48, "green");
 Person.prototype.add=10
 console.log(myFather.add)
-
+/**************************************************************************************************************/
+var yomesh={name:'Yomesh',profession:'Software Engineer'};
+var Ajay={name:'Ajay',profession:'Software Engineer'};
+var Prithvi={name:'Pritvi',profession:'Software Engineer'};
+var thisRef;
+//in js,any function that defines a type is referred as a constructor function
+//2 unwritten rules:have 1st letter of constructor function as capital 
+//: When we call the constructor function,we need to use new keyword
+function Person(name,profession){
+	//1.Because of new operator, a new empty object is created and assigned to "this" in the function
+	//2.The function body executes and can modify "this"
+	 this.name=name;
+	this.profession=profession
+	thisRef=this;
+	//3.Implicit "this" value is returned,if no explicit non-primitive value is returned
+	//return this
+}
+var saloni=new Person('Saloni','SE');
+console.log(saloni);
+console.log("Are u 2 same",saloni===thiRef);
 /********************************************************************************/
+/*Explicit non -primitive return */
+/*Non -primitive-array,object,function */
+function Person(name,profession){
+	this.name=name;
+	this.profession=profession;
+	return{name:"Ajay"}
+		
+}
+var p=new Person("Yomesh","SE");
+console.log(p.name)//Ajay
+/**Returning an array**/
+function Person(name,profession){
+	this.name=name;
+	this.profession=profession;
+	return [1,2,3]
+		
+}
+var p=new Person("Yomesh","SE");
+console.log(p.name)//undefined;
+console.log(Array.isArray(p))//true
+/***********************returning a function ***************************/
+var thisRef;
+function Person(name,profession){
+	this.name=name;
+	this.profession=profession;
+	thisRef=this;
+	return function(){
+		console.log('I am amazing');
+	}	
+}
+var p=new Person("Yomesh","SE");
+console.log(thisRef===p)//false
+/*************************************************************************************************************************************/	
+/***************************Returning a primitive value  from constructor function *****************/
+function Person(name,profession){
+	this.name=name;
+	this.profession=profession;
+	thisRef=this;
+	return 2;//Primitive value return :Implicit this
+}
+/***********************************************************************************/
 /*Question1**/
 function Person(name) {
 	this.name = name;
