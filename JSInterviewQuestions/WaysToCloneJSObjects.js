@@ -59,4 +59,6 @@ console.log( x.a, y.a ); // prints 10 20
 y.b.c = 200;
 console.log( x.b.c, y.b.c ) // prints 200 200  as c is stored as a reference ,so updating by y,results in udating value of c in x.b as well
 /***************************************************************************************************************/
+const clone = {...original} to shallow clone
 
+const newobj = {...original, prop: newOne} to immutably add another prop to the original and store as a new object.
