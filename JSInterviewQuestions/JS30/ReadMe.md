@@ -1,7 +1,7 @@
 /***************************Day 13*******************************************************************/
-Learning:
+  ##Learning:
 Code in consideration:1
- sliderImages.forEach((sliderImage,i)=>{
+    sliderImages.forEach((sliderImage,i)=>{
      //half way through the image
     
      const slideInAt=(window.scrollY+window.innerHeight)-sliderImage.height/2;//check this logic  
