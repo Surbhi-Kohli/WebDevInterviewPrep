@@ -1,5 +1,6 @@
 /***************************Day 13*******************************************************************/
-  ##Learning:
+ 
+     ##Learning:
 Code in consideration:1
     sliderImages.forEach((sliderImage,i)=>{
      //half way through the image
@@ -21,6 +22,7 @@ Code in consideration:1
     else{
       sliderImage.classList.remove('active');
     })
+    
 **window.scrollY:The read-only scrollY property of the Window interface returns the number of pixels that the document is currently scrolled vertically. 
 **window.innerHeight:The read-only innerHeight property of the Window interface returns the interior height of the window in pixels, including the height 
                     of the horizontal scroll bar, if present.
@@ -29,6 +31,7 @@ Code in consideration:1
                       
    Code in consideration:2
    window.addEventListener('scroll',throttle(checkSlide));//way to call eventListener with a throttle
+   
 /********************************************day14 ***********************************/
 
 
@@ -40,7 +43,8 @@ These are read-only attributes representing the current visual layout, and all o
 
 Let's go through them in detail:
 
-##offsetWidth, offsetHeight: The size of the visual box incuding all borders. 
+    
+    ##offsetWidth, offsetHeight: The size of the visual box incuding all borders. 
 Can be calculated by adding width/height and paddings and borders, if the element has display: block.Typically, offsetWidth is a measurement in pixels of the element's
 CSS width, including any borders, padding, and vertical scrollbars (if rendered).
 It does not include the width of pseudo-elements such as ::before or ::after.
