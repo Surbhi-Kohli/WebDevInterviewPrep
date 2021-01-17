@@ -1,16 +1,14 @@
-/***************************Day 13*******************************************************************/
+/***************************Day 13*********************************/
  
      ##Learning:
 Code in consideration:1
     sliderImages.forEach((sliderImage,i)=>{
      //half way through the image
-    
      const slideInAt=(window.scrollY+window.innerHeight)-sliderImage.height/2;//check this logic  
-     
   //offsetTop tells about the pixels from top of window to top of image
    const imageBottom=sliderImage.offsetTop+sliderImage.height;
    
-   //image will be half show when our slideIn value is > Offset of image from top
+   //image will be half shown when our slideIn value is > Offset of image from top
     const isHalfShown=slideInAt>sliderImage.offsetTop;
     
     const isNotScrolledPast=window.scrollY<imageBottom;
@@ -32,7 +30,7 @@ Code in consideration:1
    Code in consideration:2
    window.addEventListener('scroll',throttle(checkSlide));//way to call eventListener with a throttle
    
-/********************************************day14 ***********************************/
+/********************************************day16 ***********************************/
 
 
 The CSS box model is rather complicated, particularly when it comes to scrolling content. While the browser uses the values from your CSS to draw boxes,
@@ -44,7 +42,8 @@ These are read-only attributes representing the current visual layout, and all o
 Let's go through them in detail:
 
     
-    ##offsetWidth, offsetHeight: The size of the visual box incuding all borders. 
+    ##offsetWidth, offsetHeight: 
+The size of the visual box incuding all borders. 
 Can be calculated by adding width/height and paddings and borders, if the element has display: block.Typically, offsetWidth is a measurement in pixels of the element's
 CSS width, including any borders, padding, and vertical scrollbars (if rendered).
 It does not include the width of pseudo-elements such as ::before or ::after.
@@ -61,4 +60,43 @@ https://stackoverflow.com/questions/21064101/understanding-offsetwidth-clientwid
 The offsetX read-only property of the MouseEvent interface provides the offset in the X coordinate of the mouse pointer between that event and
 the padding edge of the target node. 
 
-Syntax   
+In case of nested elements,the OffsetX might be relative to an inner parent of a nested element.To calculate offset from outermost parent ie Window,we 
+will have to add offsetLeft or OffsetTop respectively to get OffsetX and OffsetY
+ Consider the following html in body tag
+  <div class="hero">
+    <h1 contenteditable>🔥WOAH!</h1>
+  </div>
+  
+  const hero=document.querySelector('.hero');
+  const text=hero.querySelector('h1');
+  const walk=500;
+  function shadow(e)
+  {
+   
+   
+    const {offsetWidth:width,offsetHeight:height}=hero;//get width n height of hero
+     let {offsetX:x,offsetY:y}=e;
+     console.log(x,y);
+     console.log(e.target);
+    // console.log(e.target.offsetLeft);
+    // console.log(e.target.offsetTop);
+     //if we are hovering over the h1(e.target is h1) inside hero,offset values need to be corrected
+     //as offset in h1 will be relative to hero,but we dont want that,we want overall offset
+     //so we need to do some maths
+    if(this!==e.target) 
+    {
+      x=x+e.target.offsetLeft;
+      y=y+e.target.offsetTop;
+    }
+    //if 100 is our walk,our shadow should go to -50 or 50 
+    const xWalk=Math.round((x/width*walk)-(walk/2));
+    const yWalk=Math.round((y/height*walk)-(walk/2));
+    text.style.textShadow = `
+      ${xWalk}px ${yWalk}px 0 rgba(255,0,255,0.7),
+      ${xWalk * -1}px ${yWalk}px 0 rgba(0,255,255,0.7),
+      ${yWalk}px ${xWalk * -1}px 0 rgba(0,255,0,0.7),
+      ${yWalk * -1}px ${xWalk}px 0 rgba(0,0,255,0.7)
+    `;
+ //10px 10px blur(=0) color
+  }
+  hero.addEventListener('mousemove',shadow);
