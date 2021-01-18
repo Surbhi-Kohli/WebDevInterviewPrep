@@ -100,3 +100,22 @@ will have to add offsetLeft or OffsetTop respectively to get OffsetX and OffsetY
  //10px 10px blur(=0) color
   }
   hero.addEventListener('mousemove',shadow);
+
+/***********************Day24***************/
+when we apply position:fixed,that element stops taking space on dom and floats above other elements
+window.scrollY:distance we scrolled from top;
+element.offsetTop:distance of the current element from its parent's top border
+we cannot animate the width,so we need to use max-width to transition an element's width
+
+ if(window.scrollY>=topOfNav)
+   {   
+     document.body.style.paddingTop=nav.offsetHeight+'px';
+     document.body.classList.add('fixed-nav');
+     //when we apply position :fixed,that element stops taking space on dom and floats above
+   }
+   else{
+    document.body.style.paddingTop=0;
+     document.body.classList.remove('fixed-nav');
+   }
+  }
+  window.addEventListener('scroll',fixNav);
