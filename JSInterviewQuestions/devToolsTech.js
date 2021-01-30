@@ -38,3 +38,23 @@ Hence, overall time complexity would be O(n^2).
 P.S. This is not the best way to find intersection and approach can be improved so please do not use this code anywhere. 
 */Code is written in a certain way to test logic
 /********************************************************/
+
+//q-3What would be the output?
+
+const first = 6;
+const second = "6";
+const third = first + second;
+const fourth = first - second;
+const fifth = third + first * first;
+const sixth = fourth + second * second;
+
+console.log("Fifth is --", fifth, typeof fifth);
+console.log("Sixth is --", sixth, typeof sixth);
+/*
+Options:
+a.                                b.                                   c.                                       d.
+Fifth is -- 1236 string              Fifth is -- 6636 string              Fifth is -- 1266 string                  Fifth is -- 6666 string
+Sixth is -- 6666 string               Sixth is -- 36 number               Sixth is -- 66 number                     Sixth is -- 36 string
+
+ans-b
+*/
