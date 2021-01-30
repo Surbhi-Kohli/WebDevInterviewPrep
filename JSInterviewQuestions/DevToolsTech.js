@@ -58,3 +58,26 @@ Sixth is -- 6666 string               Sixth is -- 36 number               Sixth 
 
 ans-b
 */
+/****************************************/
+//q-4
+var x = 'global';
+var y = function(){
+  console.log(this.x);
+}
+
+y();
+y.bind(this);
+y();
+new y();
+//Output:global, global, undefined
+/******************************************/
+//q-5 What will be the width of the element?
+.container {
+  width: 100px;
+  height: 100px;
+  padding: 30px;
+  border: 30px solid lightblue;
+  margin: 30px;
+}
+//ans-220px
+//box-sizing:container-box  (applied by default unless specifies as border-box)
