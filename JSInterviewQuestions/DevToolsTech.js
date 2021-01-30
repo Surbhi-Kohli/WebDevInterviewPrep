@@ -81,3 +81,35 @@ new y();
 }
 //ans-220px
 //box-sizing:container-box  (applied by default unless specifies as border-box)
+/*************************************Important question*********************/
+//Output question based on the delete operator in JavaScript
+var person = "Yomesh";
+
+var deletePerson = () => {
+  delete person;
+  return person;
+};
+
+console.log(deletePerson());
+
+/*Options
+a.undefined b.uncaught error c.Yomesh d.No output
+ans- c.Yomesh
+Explanation:We can't delete a local variable that has been declared with var/let/const.
+
+We can only delete properties of objects. This also includes global variables which are implicit properties of the window object. As per the MDN --
+
+The JavaScript delete operator removes a property from an object
+
+If we change the code to the following then delete will work.
+
+window.person = "Yomesh";
+
+var deletePerson = () => {
+  delete window.person;
+  return window.person;
+};
+
+console.log(deletePerson()); // undefined
+To read more -- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete
+*/
