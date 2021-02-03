@@ -78,9 +78,31 @@ or
     }}
     >Go to Start</Link>
 React router makes it easy to extract the fragment. You can simply access props.location.hash .
+//using exact
+//Imagine that the user clicks a navlink which has a to="/foo",as per routes
+<Switch>
+ <Route path="/"  component={Posts}/>
+ <Route path="/new-post" component={NewPost}/>
+ <Route path="/:id" exact component={FullPost}/>
+ </Switch>
+//the first matching is the first route itself as both for /foo and /,starting is same
+//so we need to use exact for the first route or either change the order of routes
+//ie
+<Switch>
+ <Route path="/" exact component={Posts}/>
+ <Route path="/new-post" component={NewPost}/>
+ <Route path="/:id" exact component={FullPost}/>
+ </Switch>
+//or
 
+ <Switch>
+ <Route path="/new-post" component={NewPost}/>
+ <Route path="/" exact component={Posts}/>
+ <Route path="/:id" exact component={FullPost}/>
+ </Switch>
 
 //Using Switch
+
 <Switch>
  <Route path="/" exact component={Posts}/>
  <Route path="/new-post" component={NewPost}/>
@@ -110,5 +132,12 @@ React router makes it easy to extract the fragment. You can simply access props.
  <Route path="/:id" exact component={FullPost}/>
  <Redirect from="/" to="/posts"/>
  </Switch>
- Redirect doesnt hv from,wen used outside of switch
+ Redirect doesnt hv 'from',wen used outside of switch
+ </Switch>
+       //404 case
+  <Switch>
+ <Route path="/" exact component={Posts}/>
+ <Route path="/new-post" component={NewPost}/>
+ <Route path="/:id" exact component={FullPost}/>
+ <Route component={FourOhFour}/>
  </Switch>
