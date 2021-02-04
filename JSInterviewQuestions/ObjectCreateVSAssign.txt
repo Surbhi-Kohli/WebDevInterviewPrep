@@ -1,0 +1,114 @@
+The Object.create() method creates a new object, using an existing object as the prototype of the newly created object.
+const person = {
+  isHuman: false,
+  printIntroduction: function() {
+    console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+  }
+};
+
+const me = Object.create(person);
+
+me.name = 'Matthew'; // "name" is a property set on "me", but not on "person"
+me.isHuman = true; // inherited properties can be overwritten
+
+me.printIntroduction();
+// expected output: "My name is Matthew. Am I human? true"
+
+//IMPORTANT
+Q.What will be the output of the following code?
+var Employee = {
+  company: 'xyz'
+}
+var emp1 = Object.create(Employee);
+delete emp1.company
+console.log(emp1.company);
+The code above will output `xyz` as output. Here `emp1` object got company as **prototype** property. delete operator doesn't delete prototype property.
+emp1 object doesn't have company as its own property. you can test it console.log(emp1.hasOwnProperty('company')); //output : false However, we can delete
+company property directly from Employee object using delete Employee.company or we can also delete from emp1 object 
+using __proto__ property delete emp1.__proto__.company.
+
+The ECMAScript 5 Object.create() method is the easiest way for one object to inherit from another, without invoking a constructor function.
+var employee = {
+  name: 'Nishant',
+  displayName: function () {
+    console.log(this.name);
+  }
+};
+
+var emp1 = Object.create(employee);
+console.log(emp1.displayName());  // output "Nishant"
+In the example above, we create a new object emp1 that inherits from employee. In other words emp1's prototype is set to employee. 
+After this emp1 is able to access the same properties and method on employee until new properties or method with the same name are defined.
+
+For instance: Defining displayName() method on emp1 will not automatically override the employee displayName.
+
+emp1.displayName = function() {
+	console.log('xyz-Anonymous');
+};
+
+employee.displayName(); //Nishant
+emp1.displayName();//xyz-Anonymous
+In addition to this Object.create() method also allows to specify a second argument which is an object containing additional
+properties and methods to add to the new object.
+
+
+For example
+
+var emp1 = Object.create(employee, {
+	name: {
+		value: "John"
+	}
+});
+
+emp1.displayName(); // "John"
+employee.displayName(); // "Nishant"
+n the example above, emp1 is created with it's own value for name, so calling displayName() method will display "John" instead of "Nishant".
+
+Object created in this manner give you full control over newly created object. You are free to add, remove any properties and method you want.
+Object.create defines properties .When defining a property, you can specify those flags, but by default it's not configurable, nor writable and not enumerable.
+var target1 = {}, target2 = {};
+var obj1 = Object.create(target1, {myProp: {value: 1}});
+Object.getOwnPropertyDescriptor(obj1, 'myProp');
+  // { value: 1, writable: false, enumerable: false, configurable: false }
+  
+  The Object.assign() method copies all 'enumerable own properties' from one or more source objects to a target object. It returns the target object.
+ const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
+
+const returnedTarget = Object.assign(target, source);
+
+console.log(target);
+// expected output: Object { a: 1, b: 4, c: 5 }
+
+console.log(returnedTarget);
+// expected output: Object { a: 1, b: 4, c: 5 }
+The Object.assign() method only copies enumerable and own properties from a source object to a target object. 
+It uses [[Get]] on the source and [[Set]] on the target, so it will invoke getters and setters. Therefore it assigns properties, versus copying or defining new properties.
+This may make it unsuitable for merging new properties into a prototype if the merge sources contain getters.
+
+var target1 = {}, target2 = {};
+var obj1 = Object.create(target1, {myProp: {value: 1}});
+var obj2 = Object.assign(target2, {myProp: 1});
+Let's compare obj1 and obj2 in this code:
+
+var target1 = {}, target2 = {};
+var obj1 = Object.create(target1, {myProp: {value: 1}});
+var obj2 = Object.assign(target2, {myProp: 1});
+Prototypical chain
+
+Object.create creates a new object with the specified [[Prototype]], and Object.assign assigns the properties directly on the specified object:
+
+obj1 !== target1;
+obj2 === target2;
+The prototypical chains of obj1 and obj2 look like
+
+obj1 --> target1 -->  Object.prototype --> null
+obj2 -------------->  Object.prototype --> null
+
+you can also combine them Object.assign(Object.create(object)) for both shallow and deep copy, they are perfectly valid pattern in ES6.
+
+ An advantage of Object.assign(Object.create) over setPrototypeOf is that I can do more easiliy do "multiple inheritance" (for want of a better term) 
+ e.g Object.assign(Object.create(animal), duckObj, someOtherObj, anotherObj)?
+Object.assign(Object.create(animal), duckObj, someOtherObj, anotherObj) is more of a mixin mixed with prototypes.
+The resulting object would contain the own properties of duckObj,
+someOtherObj and anotherObj and would only have animal in the [[Prototype]] slot. 
