@@ -206,3 +206,72 @@ console.log(userInfo.pwd);
 console.log(userInfo.userName);
 //Output:"12345678"
 //undefined -as the returned object doesn't have the property userName
+/*************************Question 7***************************************************/
+//What would be the output of following code ?
+function getDataFromServer(apiUrl){
+    var name = "John";
+	return {
+		then : function(fn){
+			fn(name);
+		}
+	}
+}
+
+getDataFromServer('www.google.com').then(function(name){
+	console.log(name);
+});
+/*Options
+a.John
+b.undefined
+c.Reference Error
+d.fn is not defined
+ans-a>John
+*/
+/****************Question 8**************************************/
+function passWordMngr() {
+	var password = '12345678';
+	this.userName = 'John';
+	return {
+		pwd: password
+	};
+}
+// Block End
+var userInfo = passWordMngr();
+console.log(userInfo.pwd);
+console.log(userInfo.userName);
+/*
+a.12345678 Window
+b.12345678 John
+c.12345678 undefined
+d.undefined undefined
+ans-c.12345678 undefined
+
+/**********************Question 9**********************************/
+//What would be the output of following code ?
+var employeeId = 'aq123';
+function Employee() {
+  this.employeeId = 'bq1uy';
+}
+console.log(Employee.employeeId);
+
+/*Options
+a. Reference Error
+b. aq123
+c. bq1uy
+d. undefined
+Answer -undefined*/
+
+/*************************Question 10 ********************************/
+var employeeId = 'aq123';
+
+function Employee() {
+	this.employeeId = 'bq1uy';
+}
+console.log(new Employee().employeeId);//bq1uy
+Employee.prototype.employeeId = 'kj182';
+Employee.prototype.JobId = '1BJKSJ';
+console.log(new Employee().JobId);//1BJKSJ
+console.log(new Employee().employeeId); //bq1uy as when the object has that property,no need to check the value from prototype
+
+
+*/
