@@ -33,3 +33,18 @@ Object.getOwnPropertyDescriptor(window, 'nameOther');
 // var keyword, it is marked as "non-configurable"
 
 delete nameOther;   // return false
+/*****Question 1 ****/
+(function() {
+	var objA = {
+		foo: 'foo'
+	};
+	var objB = objA;
+	objB.foo = 'bar';
+
+	delete objA.foo;
+	console.log(objA.foo);
+	console.log(objB.foo);
+}());
+/*Options:a.foo bar b.undefined undefined c.foo foo d.undefined bar
+answer: b.undefined undefined 
+*/
