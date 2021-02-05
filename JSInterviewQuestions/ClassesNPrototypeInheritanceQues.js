@@ -125,3 +125,17 @@ function Company() {
 var company = new Company();
 console.log(company.name); // Output 6?
 /*Answer:Yomesh BMW true true true I am an rocket undefined undefined*/
+/*Question 5*/
+var employeeId = 'aq123';
+function Employee() {
+  this.employeeId = 'bq1uy';
+}
+console.log(Employee.employeeId);
+/*
+Options:
+a.Reference Error
+b.aq123
+c.bq1uy
+d.undefined
+ans-d
+*/
