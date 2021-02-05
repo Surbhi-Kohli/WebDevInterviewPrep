@@ -102,4 +102,18 @@ counter.incrementCounter(); //1
 counter.incrementCounter(); //2
 counter.decrementCounter(); //1
                                                                                    
-                                                                                     
+ /*******************************************************************/
+  //Q.what would be the output:
+ function getDataFromServer(apiUrl){
+    var name = "John";
+	return {
+		then : function(fn){
+			fn(name);
+		}
+	}
+}
+
+getDataFromServer('www.google.com').then(function(name){
+	console.log(name);
+});
+//John
