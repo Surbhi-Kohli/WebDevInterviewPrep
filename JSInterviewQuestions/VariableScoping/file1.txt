@@ -15,7 +15,7 @@ function outer(){                                                               
 outer();                                                                         |
 a:1 b.2 c.4 d.3                                                                  |
 ans-c.4                                                                          |
-_________________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________
                                                                                  
 3. What's the output?                                                            | 4.  What's the output?
 function sayHi() {                                                               |      console.log(homeTown) //--(i)
@@ -152,4 +152,27 @@ var r = compute();
 console.log(r); // What do you think would be the output?
 ans-Uncaught ReferenceError: a is not defined"
 
+Q.What would be the output of following code ?
+function getNumber(){
+	return;
+}
 
+var numb = getNumber();
+console.log(numb);
+
+a.null b.undefined c."" d.0
+ans-undefined
+
+q.1. What would be the output of following code ?
+(function(){
+	function sayHello(){
+		var name = "Hi John";
+		return 
+		{
+			fullName: name
+		}
+	}
+	console.log(sayHello().fullName);
+})();
+//Outut:Uncaught TypeError: Cannot read property 'fullName' of undefined
+//Reason->line break after return makes the function return undefined instead of the object
