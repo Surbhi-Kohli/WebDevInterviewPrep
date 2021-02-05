@@ -48,3 +48,22 @@ delete nameOther;   // return false
 /*Options:a.foo bar b.undefined undefined c.foo foo d.undefined bar
 answer: b.undefined undefined 
 */
+/************Question 2 *******/
+(function() {
+	var objA = Object.create({
+		foo: 'foo'
+	});
+	var objB = objA;
+	objB.foo = 'bar';
+
+	delete objA.foo;
+	console.log(objA.foo);
+	console.log(objB.foo);
+}());
+/*Options:a.undefined undefined b.foo foo c.bar bar d.foo bar   */
+//output: foo foo
+//reason: as we created the objA with object.create, the passed object in Object.create is a prototype object
+//when we do objB.foo='bar', objB gets its own property foo whose value  is 'bar' and as both objA and objB ref to same memory location,
+//on deletion of their own property,the prototype still has foo property,so that gets logged
+
+//even A gets that property
