@@ -192,3 +192,17 @@ let personObj = {
 personObj.print();//Tony
 personObj.getName2();// Tonyhiiii
 //now Object.prototype.getName2 gets a regular function whose this depends on the calling object which is personObj here,so this.name=Tony
+/***************************Question 6**************************************************/
+function passWordMngr() {
+	var password = '12345678';
+	this.userName = 'John';
+	return {
+		pwd: password
+	};
+}
+// Block End
+var userInfo = passWordMngr();
+console.log(userInfo.pwd);
+console.log(userInfo.userName);
+//Output:"12345678"
+//undefined -as the returned object doesn't have the property userName
