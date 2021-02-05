@@ -123,7 +123,7 @@ function Person(name) {
 	};
 
 	var person = false;
-
+//when we are trying to return ,this is bound to non-primitive value ie var person={name:'Ajay'} and we wont return false
 	return person;
 }
 
@@ -154,3 +154,41 @@ undefined
 undefined
 undefined
 EXPLANATION:in the first case this === yomesh and in rest of the cases this === Person.prototype during invocation.*/
+/****Question4 ********************/
+function getName1(){
+	console.log(this.name);
+}
+
+Object.prototype.getName2 = () =>{
+	console.log(this.name)
+}
+
+let personObj = {
+	name:"Tony",
+	print:getName1
+}
+
+personObj.print();
+personObj.getName2();
+//output:
+//Tony
+//""  (empty string)
+//when we do personObj.getName2(),getName2 stores an arrow function,so this inside arrow function is Window Object,which has a name property with value=""
+
+/**************Question5*********/
+function getName1(){
+	console.log(this.name);
+}
+
+Object.prototype.getName2 = function(){
+	console.log(this.name+"hiiii")
+}
+
+let personObj = {
+	name:"Tony",
+	print:getName1
+}
+
+personObj.print();//Tony
+personObj.getName2();// Tonyhiiii
+//now Object.prototype.getName2 gets a regular function whose this depends on the calling object which is personObj here,so this.name=Tony
