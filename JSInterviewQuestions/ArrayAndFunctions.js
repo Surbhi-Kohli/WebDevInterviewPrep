@@ -62,3 +62,17 @@ For both integer and float numbers,
 
 str.filter(Number.isFinite)
 */
+ /**********************Question4**************/
+ ///What would be the output of following code ?
+(function() {
+	var greet = 'Hello World';
+	var toGreet = [].filter.call(greet, function(element, index) {
+		return index > 5;
+	});
+	console.log(toGreet);
+}());
+ /*
+ Options:
+a.Hello World b.undefined c.World d.[ 'W', 'o', 'r', 'l', 'd' ]
+ans=d
+*/
