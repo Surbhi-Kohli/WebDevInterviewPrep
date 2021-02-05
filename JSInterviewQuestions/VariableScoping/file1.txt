@@ -174,7 +174,7 @@ q.1. What would be the output of following code ?
 	}
 	console.log(sayHello().fullName);
 })();
-//Outut:Uncaught TypeError: Cannot read property 'fullName' of undefined
+//Output:Uncaught TypeError: Cannot read property 'fullName' of undefined
 //Reason->line break after return makes the function return undefined instead of the object
 
 Q.2. What would be the output of following code ?
@@ -186,3 +186,23 @@ var numb = getNumber();
 console.log(numb);
 //Options: a.5 b.undefined c.2 d.(2,4,5)
 //ans-5
+
+question:Predic output:
+function passWordMngr() {
+	var password = '12345678';
+	this.userName = 'John';
+	return {
+		pwd: password
+	};
+}
+// Block End
+var userInfo = passWordMngr();
+console.log(userInfo.pwd);
+console.log(userInfo.userName);
+/*
+a.12345678 Window
+b.12345678 John
+c.12345678 undefined
+d.undefined undefined
+ans-c.12345678 undefined
+*/
