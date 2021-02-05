@@ -170,3 +170,99 @@ function merge(toObj, fromObj) {
 }());
 //Options:a.foo bar b.bar bar c.foo foo d.bar foo
 //answer: b.bar bar
+
+/*Question 3*/
+(function() {
+	'use strict';
+
+	var person = {
+		name: 'John'
+	};
+	person.salary = '10000$';
+	person['country'] = 'USA';
+
+	Object.defineProperty(person, 'phoneNo', {
+		value: '8888888888',
+		enumerable: true
+	})
+
+	console.log(Object.keys(person)); 
+})();
+/** Options:
+Type Error
+undefined
+["name", "salary", "country", "phoneNo"]
+["name", "salary", "country"]
+answer:["name", "salary", "country", "phoneNo"]
+**/
+/**Question 4 ****/
+//What would be the output of following code ?
+(function() {
+	'use strict';
+
+	var person = {
+		name: 'John'
+	};
+	person.salary = '10000$';
+	person['country'] = 'USA';
+
+	Object.defineProperty(person, 'phoneNo', {
+		value: '8888888888',
+		enumerable: false
+	})
+
+	console.log(Object.keys(person)); 
+})();
+
+/*Options:a.Type Error b.undefined c.["name", "salary", "country", "phoneNo"] d.["name", "salary", "country"]
+answer:d.["name", "salary", "country"]
+*/
+
+/**Question 5 *****/
+//What would be the output of following code ?
+(function() {
+	var objA = Object.create({
+		foo: 'foo'
+	});
+	var objB = Object.create(objA);
+	console.log(objA.toString() == objB.toString());
+	console.log(objA.toString() === objB.toString());
+}());
+//options: a.false true b.false false c.true false d.true true
+//answer true true
+
+/***Question 6****/
+(function() {
+	var objA = Object.create({
+		foo: 'foo'
+	});
+	var objB = objA;
+	console.log(objA == objB);
+	console.log(objA === objB);
+	console.log(objA.toString() == objB.toString());
+	console.log(objA.toString() === objB.toString());
+}());
+/*options-
+a.true true true false b.true false true true c.true true true true d.true true false false
+
+ans-true true true true*/
+/*******Question 7****/
+(function() {
+	var objA = new Object({foo: "foo"});
+	var objB = new Object({foo: "foo"});
+	console.log(objA == objB);
+	console.log(objA === objB);
+}());//output:false false
+
+/*****Question 8********/
+(function() {
+	var objA = Object.create({
+		foo: 'foo'
+	});
+	var objB = Object.create({
+		foo: 'foo'
+	});
+	console.log(objA == objB);
+	console.log(objA === objB);
+}());
+//false false
