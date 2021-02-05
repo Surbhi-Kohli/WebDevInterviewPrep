@@ -206,3 +206,22 @@ c.12345678 undefined
 d.undefined undefined
 ans-c.12345678 undefined
 */
+
+/***********Question
+var employeeId = 'aq123';
+(function Employee() {
+	try {
+		throw 'foo123';
+	} catch (employeeId) {
+		console.log(employeeId);
+	}
+	console.log(employeeId);
+}());
+
+/*options:
+a.foo123 aq123
+b.foo123 foo123
+c.aq123 aq123
+d.foo123 undefined
+answer=foo123 aq123
+*/
