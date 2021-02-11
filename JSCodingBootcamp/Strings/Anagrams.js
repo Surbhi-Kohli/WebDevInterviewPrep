@@ -1,3 +1,4 @@
+anagrams('RAIL! SAFETY!','FAIRY TALES')//true
 function  anagram(str1,str2)
 {
 let obj={};
