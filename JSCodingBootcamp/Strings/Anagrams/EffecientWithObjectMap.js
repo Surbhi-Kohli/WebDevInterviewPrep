@@ -1,7 +1,9 @@
-anagrams('RAIL! SAFETY!','FAIRY TALES')//true
+//str=str.replace(/[^\w]/g,'').toLowerCase();//Important step
 function  anagram(str1,str2)
 {
-let obj={};
+ let obj={}; 
+ str1=str1.replace(/[^\w]/g,'').toLowerCase();
+ str2=str2.replace(/[^\w]/g,'').toLowerCase();
 if(str1.length!=str2.length)
  return false;
 
@@ -25,8 +27,9 @@ for(let o in obj)
 }
 return true;
 }
-let stt='abc';
-let str2='bac';
+let stt='RAIL! Safety';
+let str2='FAIRY Tales!!';
 console.log(anagram(stt,str2));//true
 let str1="aabac";
 console.log(anagram(str1,str2));//false
+
