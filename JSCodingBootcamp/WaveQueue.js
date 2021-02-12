@@ -21,32 +21,26 @@
 //    q.remove() // 'Hi'
 //    q.remove() // 2
 //    q.remove() // 'There'
+
 function weave(sourceOne, sourceTwo) {
     
     let newq=new Queue();
-  while(sourceOne.peek() && sourceTwo.peek())
+  while(sourceOne.peek() || sourceTwo.peek())
   {
-      newq.add(sourceOne.peek());
-      sourceOne.remove();
+     if(sourceOne.peek())
+     {
+       newq.add(sourceOne.peek());
+       sourceOne.remove();
+     }
+    
+    if(sourceTwo.peek())
+    {
       newq.add(sourceTwo.peek());
        sourceTwo.remove();
+    }
+     
   }
-  if(sourceOne.peek())
-  {
-      while(sourceOne.peek())
-      {
-          newq.add(sourceOne.peek());
-          sourceOne.remove();
-      }
-  }
-  if(sourceTwo.peek())
-  {
-      while(sourceTwo.peek())
-      {
-          newq.add(sourceTwo.peek());
-          sourceTwo.remove();
-      }
-  }
+  
     return newq;
 }
 class Queue {
@@ -62,16 +56,15 @@ class Queue {
  peek(){
   return this.arr[0];
  }
- 
 }
 let q=new Queue();
 q.add(1);
 q.add(2);
-q.add(3);
+
 console.log(q);
 /*
 {
-  arr: [1, 2, 3]
+  arr: [1, 2]
 }
 */
 let q2=new Queue();
@@ -87,6 +80,6 @@ console.log(q2);
 console.log(weave(q,q2));
 /*
 {
-  arr: [1, 10, 2, 20, 3, 30]
+  arr: [1, 10, 2, 20, 30]
 }
 */
