@@ -21,3 +21,27 @@
 //    q.remove() // 'Hi'
 //    q.remove() // 2
 //    q.remove() // 'There'
+function weave(sourceOne, sourceTwo) {
+    
+    let newq=new Queue();
+  while(sourceOne.peek() && sourceTwo.peek())
+  {
+      newq.add(sourceOne.peek());
+      newq.add(sourceTwo.peek());
+  }
+  if(sourceOne.peek())
+  {
+      while(sourceOne.peek())
+      {
+          newq.add(sourceOne.peek());
+      }
+  }
+  if(sourceTwo.peek())
+  {
+      while(sourceTwo.peek())
+      {
+          newq.add(sourceTwo.peek());
+      }
+  }
+    return newq;
+}
