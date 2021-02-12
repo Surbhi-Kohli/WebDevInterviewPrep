@@ -6,6 +6,9 @@ function Queue(){
  arr.remove=()=>{
      return  arr.shift();
  };
+     arr.peak=()=>{
+       return arr[0];    
+     };
  return arr;//returning non-primitive value-->>'this' will be a non primitive 
  //value we return here
 }
@@ -16,6 +19,7 @@ console.log(q); //[]
 q.add(1);
 q.add(2);
 q.add(3);
+console.log(q.peak());//1
 q.add(4);
 console.log(q); // [1, 2, 3, 4]
 q.remove();
