@@ -8,6 +8,9 @@ class Queue {
   remove(){
      return  this.arr.shift();
  }
+ peak(){
+  return this.arr[0];
+ }
  
 }
 
