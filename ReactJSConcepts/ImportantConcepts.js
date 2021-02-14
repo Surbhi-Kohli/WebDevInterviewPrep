@@ -21,3 +21,7 @@ I knew that calling setPokemon would not throw an error (React handles errors an
 so I decided to go with the second argument option.
 
 However, in this situation, it doesn’t really make much of a difference. If you want to go with the safe option, then opt for .catch.*/
+
+/*that we’re calling a bunch of state updaters in a row. This is normally not a problem, but each call to our state updater can result in a re-render of our component. 
+React normally batches these calls so you only get a single re-render,
+but it’s unable to do this in an asynchronous callback (like our promise success and error handlers).*/
