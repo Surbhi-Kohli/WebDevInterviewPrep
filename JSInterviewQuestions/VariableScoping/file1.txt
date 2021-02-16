@@ -225,3 +225,32 @@ c.aq123 aq123
 d.foo123 undefined
 answer=foo123 aq123
 */
+/************************Question ********************************************/
+//What would be the output:
+
+(function() {
+	console.log(typeof displayFunc);
+	var displayFunc = function(){
+		console.log("Hi I am inside displayFunc");
+	}
+}());
+
+//a.undefined b.function c.'Hi I am inside displayFunc' d.ReferenceError: displayFunc is not defined
+//answer:undefined
+
+/*****************************Question ******************************************/
+var employeeId = 'abc123';
+
+function foo() {
+	employeeId = '123bcd';//a warning shows here ***
+	return;
+
+	function employeeId() {}
+}
+foo();
+console.log(employeeId);
+/*Output: abc123
+Explanation:we get a warning that we cant assign a variable to a function definition,thats because the function employeeId gets hoisted within foo's scope
+ so we cant assign 123bcd to it.
+ So output:abc123->value of global scope variable
+ */
