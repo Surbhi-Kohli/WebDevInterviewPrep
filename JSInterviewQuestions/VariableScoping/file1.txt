@@ -254,3 +254,17 @@ Explanation:we get a warning that we cant assign a variable to a function defini
  so we cant assign 123bcd to it.
  So output:abc123->value of global scope variable
  */
+//What would be the output of following code?
+(function foo() {
+	bar();
+
+	function bar() {
+		abc();
+		console.log(typeof abc);
+	}
+
+	function abc() {
+		console.log(typeof bar);
+	}
+}());
+//output:function function
