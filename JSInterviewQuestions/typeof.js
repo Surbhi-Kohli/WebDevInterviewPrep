@@ -10,3 +10,16 @@ let nullVar=null;
 console.log(typeof nullVar);//Object
 let numberVar=11;
 console.log(typeof numberVar);//number
+
+/***********************************************/
+var employeeId = 'abc123';
+
+function foo() {
+	employeeId();
+	return;
+
+	function employeeId() {
+		console.log(typeof employeeId); //function
+	}
+}
+foo();
