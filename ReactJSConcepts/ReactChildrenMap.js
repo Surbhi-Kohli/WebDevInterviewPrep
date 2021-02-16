@@ -18,3 +18,20 @@ React only makes props.children an array if there are more than one child elemen
   <h2>props.children will now be an array</h2>
 </Parent>
 /*You want to favor React.Children.map because its implemention takes into account that props.children may be an array or an object.*/
+
+/*React.Children
+React.Children provides utilities for dealing with the this.props.children opaque data structure.
+React.Children.map: 
+*/
+React.Children.map(children, function[(thisArg)])
+/*
+Invokes a function on every immediate child contained within children with this set to thisArg. If children is an array it will be traversed and the function 
+will be called for each child in the array. 
+If children is null or undefined, this method will return null or undefined rather than an array.
+React.Children.forEach*/
+
+React.Children.forEach(children, function[(thisArg)])
+/*
+Like React.Children.map() but does not return an array.
+
+*/
