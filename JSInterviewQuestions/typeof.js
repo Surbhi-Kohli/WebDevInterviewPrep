@@ -23,3 +23,19 @@ function foo() {
 	}
 }
 foo();
+
+/*****************************************/
+//What would be the output of following code?
+(function foo() {
+	bar();
+
+	function bar() {
+		abc();
+		console.log(typeof abc);
+	}
+
+	function abc() {
+		console.log(typeof bar);
+	}
+}());
+//output:function function
