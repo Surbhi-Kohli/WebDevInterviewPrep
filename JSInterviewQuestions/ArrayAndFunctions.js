@@ -76,3 +76,34 @@ str.filter(Number.isFinite)
 a.Hello World b.undefined c.World d.[ 'W', 'o', 'r', 'l', 'd' ]
 ans=d
 */
+ /********************************************* Question 5 ********************************/
+ //2. What would be the output of following code?
+(function() {
+	var array1 = [];
+	var array2 = new Array(100);
+	var array3 = new Array(['1',2,'3',4,5.6]);
+	console.log(array1);//[]
+	console.log(array2); //[undefined, undefined, undefined, undefined, undefined]
+	console.log(array3);//[["1", 2, "3", 4, 5.6]]
+	console.log(array3.length); //1
+}());
+
+ /********************Question 6*******************************/
+ (function () {
+  var array = new Array('a', 'b', 'c', 'd', 'e');
+  array[10] = 'f';
+  delete array[10];
+  console.log(array);//["a", "b", "c", "d", "e", undefined, undefined, undefined, undefined, undefined, undefined]
+  console.log(array.length); //11
+}());
+ 
+ /********************* Question 7 ***************************/
+ (function(){
+	var array = [1,2,3,4,5];
+	console.log(array.indexOf(2)); //1
+	console.log([{name: 'John'},{name : 'John'}].indexOf({name:'John'}));//-1
+	console.log([[1],[2],[3],[4]].indexOf([3])); //-1
+	console.log("abcdefgh".indexOf('e')); //4
+})();
+
+/*Explanation: */
