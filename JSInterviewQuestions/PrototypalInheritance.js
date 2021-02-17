@@ -286,3 +286,91 @@ console.log(emp1.company);
 emp1 object doesn't have company as its own property. you can test it console.log(emp1.hasOwnProperty('company')); //output : false However, we can delete 
 company property directly from Employee object using 
 delete Employee.company or we can also delete from emp1 object using __proto__ property delete emp1.__proto__.company.*/
+/*****Question 12*****************************/
+//What would be the output of following code ?
+(function() {
+	var objA = {
+		foo: 'foo',
+		bar: 'bar'
+	};
+	var objB = {
+		foo: 'foo',
+		bar: 'bar'
+	};
+	console.log(objA == objB);
+	console.log(objA === objB);
+}());
+//answer:false false
+/*******************Question 13 ************************/
+What would be the output of following code ?
+(function() {
+	var objA = {
+		foo: 'foo',
+		bar: 'bar'
+	};
+	var objB = {
+		foo: 'foo',
+		bar: 'bar'
+	};
+	console.log(objA == objB);
+	console.log(objA === objB);
+}());//false false
+
+/******Question 14********************/
+
+(function() {
+	var objA = Object.create({
+		foo: 'foo'
+	});
+	var objB = Object.create(objA);
+	console.log(objA.toString() == objB.toString());//true
+	console.log(objA.toString() === objB.toString());//true
+}());
+
+/****************Question 15*******************/
+What would be the output of following code ?
+(function() {
+	var objA = Object.create({
+		foo: 'foo'
+	});
+	var objB = objA;
+	objB.foo = 'bar';
+	console.log(objA.foo);
+	console.log(objB.foo);
+}());
+/*
+ans-bar bar
+although we create objA with its __proto__ as the passed object,later objB also references the same memory location.But then objB creates
+its own property foo,thus even objA gets it as they have same memory location*/
+
+/*******************Question 16 ************************/
+//What would be the output of following code ?
+(function() {
+	var objA = Object.create({
+		foo: 'foo'
+	});
+	var objB = objA;
+	objB.foo = 'bar';
+
+	delete objA.foo;
+	console.log(objA.foo);
+	console.log(objB.foo);
+}());
+/*Options:a.foo bar b.bar bar c.foo foo d.bar foo
+ans-foo foo
+*/
+
+/**************Question 17 ******************/
+(function() {
+	var objA = {
+		foo: 'foo'
+	};
+	var objB = objA;
+	objB.foo = 'bar';
+
+	delete objA.foo;
+	console.log(objA.foo);
+	console.log(objB.foo);
+}());
+/*Options:a.foo bar b.undefined undefined c.foo foo d.undefined bar
+ans-undefined undefined*/
