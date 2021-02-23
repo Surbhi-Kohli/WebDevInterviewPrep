@@ -41,7 +41,8 @@ class App extends React.Component {
 No matter how many successive setState calls we make in a React event handler,
 it will only produce a single re-render at the end of the event and reflects the state accordingly.*/
 
-/**In case of  const [state,setState]=useState(''):
+/**SOurce:Epic react,react-hooks,exercise 6
+In case of  const [state,setState]=useState(''):
 when we call a bunch of state updaters in a row. This is normally not a problem, but each call to our state updater can 
 result in a re-render of our component. React normally batches these calls so you only get a single re-render, but it’s unable to do this in
 an asynchronous callback (like our promise success and error handlers).
@@ -76,3 +77,4 @@ storing our state as an object that has all the properties of state we’re mana
 See if you can figure out how to store all of your state in a single object with a single React.useState call so I can update my state like this:
 
 setState({status: 'resolved', pokemon})
+*/
