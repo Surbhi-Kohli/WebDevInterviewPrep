@@ -45,6 +45,7 @@ from its previous position to the position of the last child.
 The ParentNode.append() method inserts a set of Node objects or DOMString objects after the last child of the ParentNode. 
 DOMString objects are inserted as equivalent Text nodes.
 
+
 Differences from Node.appendChild():
 
 ParentNode.append() allows you to also append DOMString objects, whereas Node.appendChild() only accepts Node objects.
@@ -74,6 +75,8 @@ This means that a node can't be in two points of the document simultaneously. So
 is first removed, then appended at the new position. The Node.cloneNode() method can be used to make a copy of the node before appending
 it under the new parent. Note that the copies made with cloneNode will not be automatically kept in sync.
 
+DIFFERENCE BETWEEN append() and appendChild()->append() allows u to append even strrings,also u can append multiple comma separated
+elements in a go like myDiv.append(h1,h2).But appendChild doesnt let u to append string or multiple children
 /*****************************Removing node *******************************************************************/
 ** removeChild()
 The Node.removeChild() method removes a child node from the DOM and returns the removed node.
