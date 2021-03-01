@@ -33,8 +33,14 @@ document.createElement(tagName);
 tagName – The name of the HTML tag you want to create
 
 var pEle = document.createElement('p')
-
+/******************************************/
+Inserting text:innerText vs textContent
+myDiv.innerText="Hello World"
+myDiv2.textContent="Hello world 2"
+when we do console.log(myDiv2.textContent) ->prints exact text along with spacing n indentation,,even if we set the display property as none
+while console.log(myDiv.innerText) -->prints only the text
 /***************************************************************************************************************************/
+append() and appendChild() is better than innerHTML as innerHTML creaates some security issues.
 **appendChild()
 The appendChild() method adds an element as "the last child" to the HTML element that invokes this method.
 
