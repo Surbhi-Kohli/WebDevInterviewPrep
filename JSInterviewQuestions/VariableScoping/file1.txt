@@ -268,3 +268,19 @@ Explanation:we get a warning that we cant assign a variable to a function defini
 	}
 }());
 //output:function function
+/*********************/
+function foo(){
+ function bar()
+ {
+    console.log(3);
+ }
+ 
+ bar();
+ 
+ function bar(){
+ console.log(1);
+ }
+}
+foo();
+/***output:1**/
+the hoisted function overrides the previous bar
