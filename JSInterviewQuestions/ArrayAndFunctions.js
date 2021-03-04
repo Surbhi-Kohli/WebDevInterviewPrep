@@ -107,3 +107,33 @@ ans=d
 })();
 
 /*Explanation: */
+/*****************Question 8***************************************************/
+var arr1 = ['sue', 'kathy','tom'];
+function checkValue(){
+ if(!arr1.indexOf('tommy'))
+ {
+  console.log('Tommy not found');	
+ }
+ else 
+ {
+   console.log("tommy found");
+ }
+}
+console.log(checkValue());//tommy found;
+/*Explanation:! operator inverts the value of an expression,when we find indexOf('tommy') in arr1 , we get -1 as output,which is a truthy value
+But that gets inverted by !, so the whole expression is false,and hence we dont proceed with if block
+Rather,else block executes*/
+/******Question 9**********************************/
+var arr1 = ['sue', 'kathy','tom'];
+function checkValue(){
+ if(!!arr1.indexOf('tommy'))
+ {
+  console.log('Tommy not found');	
+ }
+ else 
+ {
+   console.log("tommy found");
+ }
+}
+console.log(checkValue());
+/**!! is used to convert the value to its boolean equivalence */
