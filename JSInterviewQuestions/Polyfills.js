@@ -43,7 +43,7 @@ console.log(ans);//[1,0,0,1,0,1,0]
 Function.prototype.myBind=
 function(){
   let arg=Array.prototype.slice.call(arguments);
-  let that=arg[0];
+  let context=arg[0];
   let params=arg.slice(1);
    let self=this;
    return function(){
