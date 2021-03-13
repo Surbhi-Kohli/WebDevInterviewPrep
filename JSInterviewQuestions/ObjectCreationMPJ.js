@@ -107,8 +107,8 @@ let cat={breed:'munchkin'}
 let myCat={name:'fluffykins'}
 Object.setPrototypeOf(myCat,cat);
 myCat.breed//munchkin
-When we do Object.setPrototypeOf,the 2nd arg will be __proto__ 
-to 1st
+/*When we do Object.setPrototypeOf,the 2nd arg will be __proto__ 
+to 1st*/
 cat.tailLength=15
 myCat.__proto__//cat{breed:'munchkin',tailLength:15};
 console.log(myCat.tailLength)//15
