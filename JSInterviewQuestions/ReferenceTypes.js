@@ -66,7 +66,17 @@ console.log(newTrees);
 //Output: ["redwood", "bay", "cedar", "oak", "maple"];
 /*Explanantion: at line ** ,we are asssigning a brand new array to trees,with new memory,so */
 
-/************************************Question 6***************************************************************************/
+
+/***************************Question 6************************************************/
+var fruits = ["mango", "apple", "banana", "grapes", "cherry"];
+var newFruits=fruits;
+fruits=["tomato","custard apple"]; //**
+console.log(newFruits);//["mango", "apple", "banana", "grapes", "cherry"];
+console.log(fruits);//["tomato","custard apple"];
+/*Explanantion: at line ** ,we are asssigning a brand new array to fruits,with new memory,so */
+
+
+/************************************Question 7***************************************************************************/
 let obj={"name":"Surbhi","age":10}
 let obj2=obj;
 obj={};
