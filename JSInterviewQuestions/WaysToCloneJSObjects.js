@@ -47,8 +47,8 @@ console.log(typeof clone.date);  // result of .toISOString()
 /*Object.assign() */
 
 
-Object.assign only does a shallow copy of the keys and values, meaning if one of the values in the object is another object or an array, 
-then it is the same reference as was on the original object.
+/*Object.assign only does a shallow copy of the keys and values, meaning if one of the values in the object is another object or an array, 
+then it is the same reference as was on the original object.*/
 
 var x = { a: 10, b: { c: 100 } };
 var y = Object.assign({}, x);
