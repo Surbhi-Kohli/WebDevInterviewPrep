@@ -8,7 +8,7 @@ myCat.__proto__ //Object {breed:'munchkin'}
 cat .tailLength=15;
   // IMPORTANT  IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT
   //  IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT IMPORTANT
-myCat.__proto__ //Object {breed:'munchkin',tailLength:15} //Reference to real object,not an instance...__proto__ holds refernce to a real object(IMPORTANT)
+myCat.__proto__ //Object {breed:'munchkin',tailLength:15} //Reference to real object,not an instance...__proto__ holds reference to a real object(IMPORTANT)
 //Delegation ---Objects delegating to other objects
 /*************************************************************************************/
 
