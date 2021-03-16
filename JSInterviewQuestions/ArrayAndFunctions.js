@@ -80,7 +80,7 @@ ans=d
  //2. What would be the output of following code?
 (function() {
 	var array1 = [];
-	var array2 = new Array(100);
+	var array2 = new Array(5);
 	var array3 = new Array(['1',2,'3',4,5.6]);
 	console.log(array1);//[]
 	console.log(array2); //[undefined, undefined, undefined, undefined, undefined]
