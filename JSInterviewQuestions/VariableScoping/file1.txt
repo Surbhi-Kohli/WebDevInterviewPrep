@@ -11,7 +11,7 @@ function outer(){                                                               
   }                                                                              |   Uncaught ReferenceError: Cannot access 'x' before initialization.
   inner();                                                                       |   All declarations (function, var, let, const and class) are hoisted in JavaScript,
   }                                                                              |   while the var declarations are initialized with undefined,
-                                                                                 |   but let and const declarations remain uninitialized.
+                                                                                 |   but let and const declarations remain in temporal dead zone.
 outer();                                                                         |
 a:1 b.2 c.4 d.3                                                                  |
 ans-c.4                                                                          |
