@@ -164,12 +164,13 @@ function allPromise(promises) {
 }
 /******************************************************************8*******/
 /* Write a log function which will add prefix (your message) to every message you log using console.log ?*/
-Function.prototype.myLog=function appLog() {
+function appLog() {
   var args = Array.prototype.slice.call(arguments);
   args.unshift('your app name');
   console.log.apply(console, args);
 }
-//myLog("hello");Uncaught ReferenceError: myLog is not defined
+appLog("hello");//"your app name", "hello"
+
 function abc()
 {
 console.log("check");
