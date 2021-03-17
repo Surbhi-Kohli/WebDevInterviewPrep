@@ -14,6 +14,8 @@ ans- d.None of these as the above program outputs 10                            
 Explanation:when we call human.grow(), the this.age++ executed                      |    a.Hey, undefined just called.
 inside an arrow function,which takes this of its surrounding and not                |    b.Hey, mom just called.
 of the calling object.Here this in arrow function-window object.                    |    c.Hey, caller just called.
+Here we have age (a let variable) in global scope,but that doesnt get attached      |
+to global this.Thus there is no age in this object.                                 |  
 So this.age++ didnt result in increment of age value.                               |    Ans-b
 _____________________________________________________________________________________________________________________________________________________________________
                                                                                     |
@@ -60,7 +62,7 @@ a.mom called, too!                                                              
 b.Hey, mom just called.                                                             |   we get joe as output.
 c.undefined called, too!                                                            |**Explanantion:lastname property doesnt exist on window object ,so output is
 ans-c.                                                                              |  undefined when we acces lastname on window
-Explanation:We are invoking newCall() function globally, which means the 'this'     | ##Explanantion:this is window object in non strict mode
+Explanation:We are invoking newCall() function globally, which means the 'this'     | ##Explanantion:this is window object in non strict mode AND let variables are not attached                                                                                     |  to window
 keyword is referring to the global object. It doesn't matter that we are assigning  | @@Explanation: lastname value is henry
 newCall to a function inside the call object. We are calling newCall globally, and  |
 globally is where 'this' is assigned.                                               |
@@ -106,41 +108,68 @@ Output:lilly                                                                    
                                                                                     | inside the nestedObj
                                                                                     
 __________________________________________________________________________________________________________________________________________________________________________
-11.Predict the output of the **ed line                                              |12. Predict the output
-<body>                                                                              |       clickFunction=()=>{
-<button id="button">click me</button>                                               |          console.log(this);
-<script>                                                                            |        }
-clickFunction=()=>{                                                                 |   const b=document.querySelector("button")
-  console.log(this);//**                                                            |   b.addEventListener('click',clickFunction);
-  console.log("clicked");                                                           |
-}                                                                                   | ans-Window object
-const b=document.querySelector("button")                                            |
-b.addEventListener('click',clickFunction);                                          |
-</script>                                                                           |
-</body>                                                                             |
-ans-<button></button>                                                               |
+11.Predict the output of the **ed line                                              
+<body>                                                                                    
+<button id="button">click me</button>                                                         
+<script>                                                                            
+clickFunction=function(){                                                              
+  console.log(this);//**                                                              
+  console.log("clicked");                                                           
+}                                                                                    
+const b=document.querySelector("button")                                            
+b.addEventListener('click',clickFunction);                                          
+</script>                                                                           
+</body>                                                                             
+ans-<button></button>                                                               
 
-_____________________________________________________________________________________________________________________________________________________________________________
-13.Predict the output:                                                           |
-var b=7;                                                                         |  let b=7;
-                                                                                 |  let obj={
-var obj={                                                                        |    b:8,
-  b:8,                                                                           |   func:function(){
-  func:function(){                                                               |     console.log(this.b);
-    console.log(this.b);                                                         |     function abc(){
-   function abc(){                                                               |     let b=9;
-     var b=9;                                                                    |     console.log(this.b);
-     console.log(this.b);                                                        |     }
-    }                                                                            |      abc();
-    abc();                                                                       |    }
-  }                                                                              |   }
-                                                                                 | 
-}                                                                                |  obj.func();
-obj.func();                                                                      | Output: 8 undefined
+/*________________________________________________________________________*/
+
+12. Predict the output
+ clickFunction=()=>{
+  console.log(this);
+  }
+  const b=document.querySelector("button")
+ b.addEventListener('click',clickFunction);
+ans-Window object
+
+/*******************************************************************************/
+13.Predict the output:                                                           
+var b=7;                                                                         
+                                                                                 
+var obj={                                                                        
+  b:8,                                                                          
+  func:function(){                                                              
+    console.log(this.b);                                                         
+   function abc(){                                                               
+     var b=9;                                                                    
+     console.log(this.b);                                                        
+    }                                                                            
+    abc();                                                                      
+  }                                                                             
+                                                                                
+}                                                                                
+obj.func();                                                                      
 output:
 8
 7
-
+/**************************************************************************************************************/
+14.
+let b=7;
+let obj={
+ b:8,
+ func:function(){
+  console.log(this.b);
+   function abc(){
+      let b=9;
+      console.log(this.b);
+    }  
+       abc();
+   }
+   }
+   obj.func();
+  Output: 8 undefined
+  
+  /********************************************************************************************************/
 15.function sayName() {
 	setTimeout(() => {
 		console.log(this.name);
