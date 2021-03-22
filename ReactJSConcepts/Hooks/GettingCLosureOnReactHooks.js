@@ -51,6 +51,7 @@ App.click();
 var App=React.render(Component);
 App.click();
 //The above implementation works well untill we have multiple states
+/*********************************************   Below code works even for multiple useState calls            **********************************/
 //Created a React Module
 const React= (function(){
 let hooks=[];
@@ -98,3 +99,79 @@ App.click();
 
 var App=React.render(Component);
 
+/******************************************    Implement Custom useEffect hook   ***************************************/
+
+const React= (function(){
+let hooks=[];
+let index=0;
+function useState(initVal){
+ const idx=index;
+let state=hooks[index]||initVal;
+ const setState=(newVal)=>{
+ hooks[idx]=newVal;
+ };
+   index++;
+   return [state,setState];
+}
+ function useEffect(cb,depArray){
+   const oldDeps=hooks[index];
+   let hasChanged=true;
+   if(oldDeps)
+   {
+    hasChanged=depArray.some((dep,i)=>!Object.is(dep,oldDeps[i]))
+   }
+
+    if(hasChanged)
+    {  
+     cb();
+    }
+    hooks[index]=depArray;
+    index++;
+ }
+ function render(Component){
+   index=0;
+   const c=Component();
+   c.render();
+   return c;
+ }
+ return {useState,render,useEffect};
+}
+)()
+
+function Component()
+{
+const [count,setCount]=React.useState(1);
+const [text,setText]=React.useState("apple")
+React.useEffect(()=>{
+console.log('js confff')
+},[])
+return {
+    render:()=>console.log({count,text}),
+    click:()=>setCount(count+1),
+    type:word=>setText(word)
+};
+}
+var App=React.render(Component);
+App.type("pear");
+
+var App=React.render(Component);
+App.click();
+
+var App=React.render(Component);
+
+/*
+Output:
+"js confff"
+{
+  count: 1,
+  text: "apple"
+}
+{
+  count: 1,
+  text: "pear"
+}
+{
+  count: 2,
+  text: "pear"
+}
+*/
