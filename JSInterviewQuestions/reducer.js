@@ -125,3 +125,5 @@ let ans=numbers.reduce((acc,val)=>{
    return acc;
 },[])
 console.log(ans);//[8, 10, 4, 2, 1, 3, 13]
+
+
