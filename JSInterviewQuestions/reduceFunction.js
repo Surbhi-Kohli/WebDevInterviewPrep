@@ -126,4 +126,23 @@ let ans=numbers.reduce((acc,val)=>{
 },[])
 console.log(ans);//[8, 10, 4, 2, 1, 3, 13]
 
+/*Program to print array elements such that all 0s come at the last of the array without changing the relative order of the rest of the numbers */
 
+//If maintaining the relative order of non-zero elements was not a requirement
+let numbers=[1,0,5,3,0,7,4,0,8];
+let ans=numbers.reduce((acc,val)=>{
+  val==0?acc.push(val):acc.unshift(val);
+   return acc;
+},[])
+//Output:[8,4,7,3,5,1,0,0,0]
+
+//Solution that maintains the relative order of non-zero elements
+let numbers=[1,0,5,3,0,7,4,0,8];
+let ans=numbers.reduce((acc,val)=>{
+  val==0?acc.push(val):acc.unshift(val);
+   return acc;
+},[])
+let ans2=ans.splice(ans.indexOf(0));
+
+ans=ans.reverse().concat(ans2);
+console.log(ans);//[1, 5, 3, 7, 4, 8, 0, 0, 0]
