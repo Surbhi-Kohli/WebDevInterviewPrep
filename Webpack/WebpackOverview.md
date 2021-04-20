@@ -63,14 +63,15 @@ The way a loader gets matched against a resolved file can be configured in multi
 Webpack’s flexibility even allows you to apply a specific transformation to a file based on where it was imported into the project.
 Apart from creating a dependency graph, and bundling the modules, webpack can perform a number of tasks.
 Webpack gives you control over how to treat different assets it encounters. For example, you can decide to inline assets to 
-your JavaScript bundles to avoid requests. Webpack also allows you to use techniques like CSS Modules to couple styling with components, 
+your JavaScript bundles to avoid requests. 
+
+Webpack also allows you to use techniques like CSS Modules to couple styling with components, 
 and to avoid issues of standard CSS styling. This flexibility is what makes webpack so valuable.
 Apart from all the functionalities provided out of the box by loaders, we can perform a lot of advanced tasks through Plugins.
 Plugins can intercept runtime events supplied by webpack. Webpack provides hooks for all the runtime events. And we can tap into these hooks to do a lot of things
+
 A good example would be bundle extraction performed by the ExtractTextPlugin which, when used with a loader, extracts CSS files 
-out of the bundle and into a separate file. Without this step, CSS would be inlined inPlugins can intercept runtime events supplied by webpack. 
-A good example is bundle extraction performed by the ExtractTextPlugin which, when used with a loader, extracts CSS files out of the bundle and into a 
-separate file. Without this step, CSS would be inlined in the resulting JavaScript, as webpack treats all code as JavaScript by default.
+out of the bundle and into a separate file.  Without this step, CSS would be inlined in the resulting JavaScript, as webpack treats all code as JavaScript by default.
 At its core, webpack relies on configuration. Here is a sample configuration that covers to main point
 
 ```const webpack = require("webpack");
