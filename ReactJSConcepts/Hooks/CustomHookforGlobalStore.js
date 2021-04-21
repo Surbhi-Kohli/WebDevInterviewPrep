@@ -54,7 +54,7 @@ const context=React.createContext();
 
 export const storeProvider=({children,reducer,initialState={}})=>{
   
-  const [store,setStore]=React.Reducer(reducer,initialState);
+  const [store,setStore]=React.useReducer(reducer,initialState);
   const contextValue=React.useMemo(()=>[store,dispatch],[store,dispatch]);
   
   return <context.Provider value={contextValue}>
@@ -136,4 +136,66 @@ function App(){
   
 }
   //Unnecessary Re-rendersss?? 
-  //Even if we are dispatching,we are re-rendering every single component in my app-->multiple context to the rescue (concept by KCD) `\(*~*)/`
+  //Even if we are dispatching from a component,we are re-rendering that  component in app-->multiple context to the rescue (concept by KCD) `\(*~*)/`
+  
+  
+//useStore.js
+const storeContext=React.createContext();
+const dispatchContext=React.createContext();
+  
+export const storeProvider=({children,reducer,initialState={}})=>{
+  
+  const [store,setStore]=React.Reducer(reducer,initialState);
+  const contextValue=React.useMemo(()=>[store,dispatch],[store,dispatch]);
+  
+  return(
+    <dispatchContext.Provider value={dispatch}>
+     <storeContext.Provider value={store}>
+    {children}
+    </context.Provider>
+    </storeContext.Provider>
+     </dispatchContext>
+   )  
+}
+export  function useStore(){
+  return React.useContext(storeContext);
+}
+  export function useDispatch(){
+    return React.useContext(dispatchContext); 
+  }
+  
+  //todos.js  -->Only needs the store value
+  import {useStore} from "./useStore";
+  import {Todo} from "./todo"; 
+function Todos(){
+ const {todos}=useStore();
+  
+  return(
+  <div>
+    {todos.map(todo=>{
+     return <Todo key={todo.id} todo={todo}/>
+    }
+  )}
+    </div>
+    
+  )
+}
+//todo.js
+import {useDispatch} from './useStore';
+
+fucntion Todo({todo}){
+  const dispatch=useDispatch();
+  
+  const handleClick=()=>{
+
+    dispatch({
+    type:'toggleTodo',
+      todoId:todo.id
+    })
+  }
+  return(<div onClick={handleClick}>{todo.name}</div>)
+}
+
+
+//With the above multiple context,the components that are only using dispatch wont get updated in situations when ur store changes
+  /****************************************************/
