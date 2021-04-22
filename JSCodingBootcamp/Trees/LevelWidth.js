@@ -15,7 +15,15 @@ function levelWidth(root)
   while(arr.length>1) //something other than just 's'
   {
    const node=arr.shift();
-   
+     if(node==='s'){
+        counters.push(0);
+        arr.push('s');
+     }
+     else{
+      arr.push(...node.children);
+        counters[counters.length-1]++;
+     }
   }
+   return counters;
 
 }
