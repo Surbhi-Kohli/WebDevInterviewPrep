@@ -1,1 +1,5 @@
 
+function validate(node)
+{
+  
+}
