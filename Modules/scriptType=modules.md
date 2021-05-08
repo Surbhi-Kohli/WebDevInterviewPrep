@@ -47,7 +47,7 @@ In the below example the module that is created in the above snippet is imported
     console.log(someVar + someFunc());
 </script>
 ```
-###Module Scripts are Deferred By the Browser
+### Module Scripts are Deferred By the Browser
 A script tag of type="module", whether inline or external is always deferred by the browser (regardless of the fact whether defer attribute is used or not).
 
 It is loaded in parallel by the browser, not impacting the webpage load time. Once loaded,
