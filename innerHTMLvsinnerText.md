@@ -1,5 +1,6 @@
-
-|innerText | innerHTML |
+_______________________
+|innerText | innerHTML|
+_______________________ 
 Retrieves and sets the content in plain text.|	Retrieves and sets the content in HTML format.
 We can not insert the HTML tags.|	We can insert the HTML tags.
 It ignores the spaces.|	It considers the spaces.
