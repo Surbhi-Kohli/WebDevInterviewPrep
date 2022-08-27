@@ -51,17 +51,30 @@ match:{
  //props.match.path
  //props.match.params
  //props.match.url
- 
+ /****
+ withRouter HOC
+ What if we want the routing related props inside a component that is not rendered through a route,but in a component that is lets say a child of a component rendered
+ by the route.There wont be any routing related props
+ Routing related props are not passed down the component tree.
+ 1st way: pass onto children explicitly
+ 2nd way:use a higher order componet
+ import{withRouter } from "react-router-dom";
+ Now wrap your export default with withRouter
+  ****/
  /*  Absolute path is always directly appended to ur domain
- wen u specify to="/post"
+ wen u specify <Link to="/post">
  it will go u localhost:9000/post
  even if u were on localhost:9000/newpost;
- u wont navigate to localhost:9000/newpost/post ;But what if u want to have a relative path
+ u wont navigate to localhost:9000/newpost/post since it is always treated as absolute path in case of to attribute ;
+ But what if u want to have a relative path
  u can do*/
  <Link to={{pathname:this.props.match.url+'/new-post'}}>CLick</Link>
- 
+ /*************************
+   Adding style to active class-use NavLink as it can help u add some styles to active link
  <NavLink to="/" exact activeClassName="my-active" activeStyle={{color:"#fa923f"}}>NavClick</NavLink>
- 
+Add exact so that full path can be matched and active class can be applied to exact link.U can use a attribute of activeClassName and specify ur own class.
+Also u can use activeStyle attribute
+ **************************
  <Route path="/" exact component={Posts}/>
  <Route path="/new-post" component={NewPost}/>
  <Route path="/:id" exact component={Posts}/>//  :id signifies something dynamic is gonna be added
