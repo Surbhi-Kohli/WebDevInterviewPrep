@@ -1,8 +1,49 @@
+//BrowserRouter->Wrapp ur app inside this component so as to make use of routing.Now any component ,which is child of msil app case use routing functionalities
+
+/*Setting up and rendering routes:
+<Route path="/" exact render={()=><h2>Home</h2>} />  if u dont use exact,all routes that start with "/" will render the h2
+//************************************************************
+<Route path="/" exact render={()=><h2>Home</h2>} />
+<Route path="/"  render={()=><h3>Home 2</h3>} />//this will always be rendered since every path starts with "/"
+
+Another way to use route
+<Route path="/"  exact component={Posts}/>
+**********************
+Using Links to switch pages
+import {Link} from 'react-router-dom"
+<Link to="/">Home</Link>//prevents default behaviour of refresh where a page is tried to fetch from server
+
+<Link to={{
+  pathname:"/new-post",
+  hash:"#submit" //to jump to the part of the page which has the submit id,
+  search:"?quick-submit=true"
+}}>Home</Link>
+*******************************
+*/
+/**************************************************/
 <Link to:{{ pathname:'/new-post'}}
       hash:'#submit',
       search:?quick-submit=true'
       }}>Click</Link>
+      **************************************
+            Using routing relted props:
+if u log the props of a component rendered by routing:
+u will see the following:
+history:{}//has some methods
+location:{
+ hash:"", 
+ key:"",      
+ pathname:"/",
+ search:"",
+  state:{}     
       
+}
+match:{
+      isExact:true,
+       params:{},
+       path:"/",
+       url:"/"
+}
  /************* routing-props*********/
  //only available in direct components rendered by route specified and not in nested components
  ///props.history.push()
