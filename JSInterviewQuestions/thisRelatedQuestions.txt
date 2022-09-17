@@ -234,3 +234,14 @@ If a function is invoked as a free function invocation, meaning it was invoked w
 it is the window object. If in strict mode ('use strict'), this will be undefined instead of the global object.
 If multiple of the above rules apply, the rule that is higher wins and will set the this value.
 If the function is an ES2015 arrow function, it ignores all the rules above and receives the this value of its surrounding scope at the time it is created.
+/***************************/
+q 16
+function foo(){
+"use strict";
+console.log(this.a);
+}
+var a=2;
+foo();//TypeError: Cannot read properties of undefined (reading 'a')
+
+Explanation: If strict mode is in effect ,the global object is not eligible fot the default binding.So the 'this' is set to undefined
+/*********************************************/
