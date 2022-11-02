@@ -117,3 +117,162 @@ getDataFromServer('www.google.com').then(function(name){
 	console.log(name);
 });
 //John
+											  
+/*Javascript hardparts closures excercise*/
+/*Challenge 1
+Create a function createFunction that creates and returns a function. When that created function is called, it should print "hello". */
+function createFunction() {
+ const innerFunction=()=>{
+   console.log("hello");
+ }
+ return innerFunction;
+}
+const function1 = createFunction();
+ function1(); // => should console.log('hello');
+		
+	
+/*Challenge 2
+Create a function createFunctionPrinter that accepts one input and returns a function. When that created function is called, it should print out the input that was used when the function was created.
+*/							
+function createFunctionPrinter(input) {
+  return function inner(){
+    console.log(input);
+  }
+
+}										  
+const printSample = createFunctionPrinter('sample');
+printSample(); // => should console.log('sample');
+const printHello = createFunctionPrinter('hello');
+printHello(); // => should console.log('hello');
+											  
+											  
+/*Challenge 3
+Create a function cycleIterator that accepts an array, and returns a function. The returned function will accept zero arguments.
+When first invoked, the returned function will return the first element of the array. When invoked a second time, the returned function will return the second element of the array, and so forth. After returning the last element of the array, the next invocation will return the first element of the array again, and continue on with the second after that, and so forth.*/		
+function cycleIterator(array) {
+  let count=0;
+return function inner(){
+    
+  let ans;
+     if(count<array.length)
+          ans=array[count];  
+    else
+      ans= array[count-array.length];
+	
+ count++;
+  return ans;
+}
+}	
+const threeDayWeekend = ['Fri', 'Sat', 'Sun'];
+const getDay = cycleIterator(threeDayWeekend);
+console.log(getDay()); // => should log 'Fri'
+console.log(getDay()); // => should log 'Sat'
+console.log(getDay()); // => should log 'Sun'
+console.log(getDay()); // => should log 'Fri'											  
+	
+											  
+/*Challenge 4
+Create a function defineFirstArg that accepts a function and an argument. Also, the function being passed in will accept at least one argument. defineFirstArg will return a new function that invokes the passed-in function with the passed-in argument as the passed-in function's first argument. Additional arguments needed by the passed-in function will need to be passed into the returned function.*/											  
+function defineFirstArg(func, arg) {
+const inner=(...args)=>{
+  return func(arg,...args)
+}
+return inner;
+}
+
+/*** Uncomment these to check your work! ***/
+const subtract = function(big, small) { return big-small; };
+
+const subFrom20 = defineFirstArg(subtract, 20);
+console.log(subFrom20(5)); // => should log 15
+	
+											  
+/*Challenge 5
+Write a function after that takes the number of times the callback needs to be called before being executed as 
+the first parameter and the callback as the second parameter.*/		
+function after(count, func) {
+let callCounter=1;
+  const inner=()=>{
+    if(callCounter<count)
+      { callCounter++;
+      return;
+      }
+    else{
+     func()
+    }
+  }
+  return inner
+}
+
+const called = function() { console.log('hello') };
+const afterCalled = after(3, called);
+afterCalled(); // => nothing is printed
+afterCalled(); // => nothing is printed
+afterCalled(); // => 'hello' is printed											  
+											  
+
+											  
+/* Challenge 6
+Write a function delay that accepts a callback as the first parameter and the wait in milliseconds before allowing the callback to be invoked as the second parameter. Any additional arguments after wait are provided to func when it is invoked. HINT: research setTimeout();	
+*/
+function delay(func, wait) {
+  return setTimeout((...args)=>{//setTimeOut here is closed in the delay func
+    
+    return func(...args)
+  },wait)
+}
+}
+/*Challenge 7
+Write a function rollCall that accepts an array of names and returns a function. The first time the returned function is invoked, it should log the first name to the console. The second time it is invoked, it should log the second name to the console, and so on, until all names have been called. Once all names have been called, it should log 'Everyone accounted for'.
+*/		
+function rollCall(names) {
+  let counter=0;
+return function inner(){
+ 
+  if(counter<names.length)
+    {
+     console.log(names[counter]);
+    }
+  else
+    console.log("Everyone accounted for");
+  
+  counter++;
+ 
+}
+}
+
+// /*** Uncomment these to check your work! ***/
+const rollCaller = rollCall(['Victoria', 'Juan', 'Ruth'])
+rollCaller() // => should log 'Victoria'
+rollCaller() // => should log 'Juan'
+rollCaller() // => should log 'Ruth'
+rollCaller() // => should log 'Everyone accounted for'
+											   
+											   
+/*Challenge 8
+Write a function once that accepts a callback as input and returns a function. When the returned function is called the first time,
+it should call the callback and return that output. If it is called any additional times, instead of calling the callback again it 
+will simply return the output value from the first time it was called.*/											  
+function once(func) {
+  let counter=0;
+  let firstCallRes;
+  return function inner(input){
+  
+  if(counter==0)
+    {
+      firstCallRes=func(input);
+      counter++;
+      return firstCallRes;
+    }
+  else
+    return firstCallRes;
+}
+}
+console.log("***********");
+/*** Uncomment these to check your work! ***/
+const onceFunc = once((n)=>n+2);
+console.log(onceFunc(4));  // => should log 6
+console.log(onceFunc(10));  // => should log 6
+console.log(onceFunc(9001));  // => should log 6											  
+											  
+											  
