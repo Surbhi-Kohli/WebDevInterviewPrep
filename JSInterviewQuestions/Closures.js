@@ -303,3 +303,32 @@ today = mm + '/' + dd + '/' + yyyy;
 const stampedMultBy2 = dateStamp(n => n * 2);
 console.log(stampedMultBy2(4)); // => should log { date: (today's date), output: 8 }
 console.log(stampedMultBy2(6)); // => should log { date: (today's date), output: 12 }
+											   
+											   
+											   
+/*Challenge 15
+Create a function roulette that accepts a number (let us call it n), and returns a function. The returned function will take no arguments, 
+and will return the string 'spin' the first n - 1 number of times it is invoked. On the very next invocation (the nth invocation), 
+the returned function will return the string 'win'. On every invocation after that, the returned function returns the string 
+'pick a number to play again'.*/
+											   
+function roulette(num) {
+  let counter=1;
+return function inner(){
+  let ans;
+  if(counter<num)
+    {
+      ans="spin";
+   
+    }
+  else if(counter==num){
+    ans="win";
+    
+  }
+  else{
+    ans="pick a number to play again"
+  }
+     counter++;
+  return ans;
+}
+}											   
