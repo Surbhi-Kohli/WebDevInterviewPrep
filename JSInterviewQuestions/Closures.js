@@ -306,7 +306,7 @@ console.log(stampedMultBy2(6)); // => should log { date: (today's date), output:
 											   
 											   
 											   
-/*Challenge 15
+/*Challenge 10
 Create a function roulette that accepts a number (let us call it n), and returns a function. The returned function will take no arguments, 
 and will return the string 'spin' the first n - 1 number of times it is invoked. On the very next invocation (the nth invocation), 
 the returned function will return the string 'win'. On every invocation after that, the returned function returns the string 
@@ -331,4 +331,46 @@ return function inner(){
      counter++;
   return ans;
 }
-}											   
+}
+											   
+/*Challenge 11
+Write a function, callTimes, that returns a new function. The new function should return the number of times it’s been called.*/
+function callTimes() {
+let counter=1;
+  return function innerFunc(){
+    console.log(counter);
+    counter++;
+  }
+}
+
+// /*** Uncomment these to check your work! ***/
+let myNewFunc1 = callTimes();
+let myNewFunc2 = callTimes();
+myNewFunc1(); // => 1
+myNewFunc1(); // => 2
+myNewFunc2(); // => 1
+myNewFunc2(); // => 2
+							
+/*
+Challenge 12
+There's no such thing as private properties on a JavaScript object! But, maybe there are? Implement a function createSecretHolder(secret) 
+which accepts any value as secret and returns an object with ONLY two methods.
+getSecret() which returns the secret setSecret() which sets the secret
+*/						
+function createSecretHolder(secret) {
+let localSecret=secret;
+  return{
+    getSecret:function(){
+      return localSecret;
+    },
+    setSecret:function(input){
+      localSecret=input;
+    }
+  }
+}
+
+// /*** Uncomment these to check your work! ***/
+let obj = createSecretHolder(5)
+console.log(obj.getSecret()); // => returns 5
+obj.setSecret(2)
+console.log(obj.getSecret()) // => returns 2											   
