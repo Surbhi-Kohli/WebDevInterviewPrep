@@ -373,4 +373,116 @@ let localSecret=secret;
 let obj = createSecretHolder(5)
 console.log(obj.getSecret()); // => returns 5
 obj.setSecret(2)
-console.log(obj.getSecret()) // => returns 2											   
+console.log(obj.getSecret()) // => returns 2
+											  
+								
+/*Challenge 13 a
+Examine the code for the outer function. Notice that we are returning a function and that function is using variables that are outside of its scope.
+Uncomment those lines of code. Try to deduce the output before executing.*/		
+											   
+function outer() {
+  let counter = 0; // this variable is outside incrementCounter's scope
+  function incrementCounter () {
+    counter ++;
+    console.log('counter', counter);
+  }
+  return incrementCounter;
+}
+
+const willCounter = outer();
+const jasCounter = outer();
+
+// Uncomment each of these lines one by one.
+// Before your do, guess what will be logged from each function call.
+
+// /*** Uncomment these to check your work! ***/
+willCounter();
+willCounter();
+willCounter();
+
+jasCounter();
+willCounter();
+											   
+/*Challenge 13 b
+Create a function addByX that returns a function that will add an input by x.
+*/			
+											   
+function addByX(x) {
+return function innerAdd(input)
+  {
+    input+=x;
+   console.log(input);
+  }
+}
+
+/*** Uncomment these to check your work! ***/
+const addByTwo = addByX(2);
+addByTwo(1); // => should return 3
+addByTwo(2); // => should return 4
+addByTwo(3); // => should return 5
+
+const addByThree = addByX(3);
+addByThree(1); // => should return 4
+addByThree(2); // => should return 5
+
+const addByFour = addByX(4);
+addByFour(4); // => should return 8
+addByFour(5); // => should return 9
+											   
+/* Challenge 14
+Create a function average that accepts no arguments, and returns a function (that will accept either a number as its lone argument,
+or no arguments at all). When the returned function is invoked with a number, the output should be average of all the numbers have ever
+been passed into that function (duplicate numbers count just like any other number). When the returned function is invoked with no arguments,
+the current average is outputted. 
+If the returned function is invoked with no arguments before any numbers are passed in, then it should return 0.*/	
+function average() {
+let arr=[];
+  let currentAvg=0;
+  const innerAvg=(...args)=>{
+    if(args.length>0)
+      {
+          arr.push(args[0]);
+          let sum=arr.reduce((acc,el)=>el+acc,0);
+         currentAvg= sum/arr.length;
+        
+      }
+      return currentAvg
+  }
+  return innerAvg
+}
+
+// /*** Uncomment these to check your work! ***/
+const avgSoFar = average();
+console.log(avgSoFar()); // => should log 0
+console.log(avgSoFar(4)); // => should log 4
+console.log(avgSoFar(8)); // => should log 6
+console.log(avgSoFar()); // => should log 6
+console.log(avgSoFar(12)); // => should log 8
+console.log(avgSoFar()); // => should log 8	
+											   
+/*
+Challenge 15
+Create a function makeFuncTester that accepts an array (of two-element sub-arrays), and returns a function (that will accept a callback). 
+The returned function should return true if the first elements (of each sub-array) being passed into the callback all yield 
+the corresponding second elements (of the same sub-array). Otherwise, the returned function should return false.
+*/					
+function makeFuncTester(arrOfTests) {
+  return function innerTester(cb){
+     for(let i=0;i<arrOfTests.length;i++)
+     {
+       if(cb(arrOfTests[i][0])!=arrOfTests[i][1])
+        return false;
+     }
+    return true;
+  }
+  
+}
+const capLastTestCases = [];
+capLastTestCases.push(['hello', 'hellO']);
+capLastTestCases.push(['goodbye', 'goodbyE']);
+capLastTestCases.push(['howdy', 'howdY']);
+const shouldCapitalizeLast = makeFuncTester(capLastTestCases);
+const capLastAttempt1 = str => str.toUpperCase();
+const capLastAttempt2 = str => str.slice(0, -1) + str.slice(-1).toUpperCase();
+console.log(shouldCapitalizeLast(capLastAttempt1)); // => should log false
+console.log(shouldCapitalizeLast(capLastAttempt2)); // => should log true
