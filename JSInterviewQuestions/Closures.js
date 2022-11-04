@@ -117,7 +117,45 @@ getDataFromServer('www.google.com').then(function(name){
 	console.log(name);
 });
 //John
+/*************************************************************************************/											  
+/*Example thst demonstrates that the returned backpack is a live data & not a copy */
+function outer(){
+let counter=0;
+	function incrementCounter(){
+	console.log("Live initisl value of counter in incrementCounter is :",counter);
+		counter++;
+	}
+	function incrementCounterByTwo(){
+	console.log("Live initial value of counter in incrementCounterByTwo is :",counter);
+		counter+=2;
+		
+	}
+	function incrementCounterByThree(){
+	  console.log("Live initial value of counter in incrementByThree is :",counter);	
+	  counter+=3;
+	}
+	return {incrementCounter,incrementCounterByTwo,incrementCounterByThree};
+}
+const myNewObj=outer();
+myNewObj.incrementCounterByThree();
+myNewObj.incrementCounter();
+myNewObj.incrementCounterByTwo();
+/****************************************************************************************************************************/
+/*Multiple closure instances:What happens when another instance of original closure is instantiated and called*/											  
+function outer(){
+let counter=0;
+	function incrementCounter(){
+	 counter++;	
+	}
+	return incrementCounter;
+}
+const myNewFunction=outer();
+myNewFunction();
+myNewFunction();											  
 											  
+const anotherFunction=outer();
+anotherFunction();
+anotherFunction();											  
 /*Javascript hardparts closures excercise*/
 /*Challenge 1
 Create a function createFunction that creates and returns a function. When that created function is called, it should print "hello". */
