@@ -1,0 +1,58 @@
+1.Basic method
+
+Objects store data and functions(encapsulation)
+
+const user1={
+    name:"Will",
+    score:3,
+    increment:function(){
+    user1.score++;
+    }
+  }
+user1.increment//makes the score as 4
+
+2.Using Object dot notation
+
+const user2={}//empty object
+user2.name="Tim",
+user2.score=6;
+user2.increment=function(){
+user2.score++;
+}
+The above methods are not scalable and efficient.
+
+3.Using Object.create + dot notation
+Object.create gives us an empty object with prototype set to the passed argument
+
+const user3=Object.create(null)//no prototype object passed here
+user3.name="Eva",
+user3.score=9;
+user3.increment=function(){
+user3.score++;
+}
+With the above ways, our code is getting repetitive,we are breaking the DRY principle.And suppose we have millions of users,this process would be
+inefficient.
+
+4.Use factory functions: 
+Solution1:To prevent repitition:generate objects using functions
+function userCreator(name,score){
+const newUser={};
+newUser.name=name;
+newUser.score=score;
+newUser.increment=function(){newUser.score++}
+ return newUser;
+}
+const user1=userCreator("will",3);
+const user2=userCreator("Tim",5);
+
+user1.increment()//increments will's score to 4
+/*Closure:The increment function has info of the surrounding memoryie info of label newUser*/
+The previous approach of using factory functions has few problems.
+1.The code of increment function for all users is same, but the code
+is being stored in each object separately.Each time we create newUser object, we make space in our system's memory for all our data and functions.
+But our functions are just copies of same code(memory wastage)
+
+2.If you want to add new functionality to the objects, you will have to manually add to all functions
+
+
+
