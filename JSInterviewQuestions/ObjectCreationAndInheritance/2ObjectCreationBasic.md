@@ -25,7 +25,7 @@ user2.score++;
 }
 ```
 The above methods are not scalable and efficient.
-
+/******************************************************************/
 
 3.Using Object.create + dot notation
 Object.create gives us an empty object with prototype set to the passed argument
@@ -41,7 +41,7 @@ user3.score++;
 With the above ways, our code is getting repetitive,we are breaking the DRY principle.And suppose we have millions of users,this process would be
 inefficient.
 
-
+/******************************************************************/
 
 4.Use factory functions: 
 Solution1:To prevent repitition:generate objects using functions
@@ -58,12 +58,12 @@ const user2=userCreator("Tim",5);
 
 user1.increment()//increments will's score to 4
 ```
-/* Closure:The increment function has info of the surrounding memoryie info of label newUser */
+/*Closure:The increment function has info of the surrounding memoryie info of label newUser*/
 The previous approach of using factory functions has few problems.
+   
     a.The code of increment function for all users is same, but the code
       is being stored in each object separately.Each time we create newUser object, we make space in our system's memory for all our data and functions.
       But our functions are just copies of same code(memory wastage)
-
     b.If you want to add new functionality to the objects, you will have to manually add to all functions
 
 
@@ -86,7 +86,7 @@ const userFunctionStore={
 const user1=userCreater("Will",3);
 const user2=userCreater("tim",5);
 user1.increment()
-console.log(user1.hasOwnProperty("score"));//true (Inorder to check if a property exists on an object or on its prototype, use hasOwnProperty)
+console.log(user1.hasOwnProperty("score"));//true(Inorder to check if a property exists on an object or on its prototype,use hasOwnProperty)
 console.log(user1.hasOwnProperty("increment"));//false
 ```
 When user1.increment is called, interpreter searches for increment function in local memoryof user1.It is not there 
@@ -97,9 +97,40 @@ Also note that an implicit argument("this") is passed to the increment function 
 
 <img width="408" alt="Screenshot 2022-12-17 at 1 48 22 PM" src="https://user-images.githubusercontent.com/32058209/208232832-d10fbffd-9c8c-408d-a598-13db645659f5.png">
 
-   Prototype chain
-   Each object in javascript has big headline object which is the Prototype Object,which can be accessed via Object.prototype
-   Notice that user1 does not have any "hasOwnProperty" function defined on it.Neither does its immediate prototype , which is userFunctionStore has that.
-  So we check in the [[Prototype]] of userFunctionStore which is   the main Prototype Object, which is common for all JS objects has that .The main Object.prototype has its own [[Prototype]] value which is set to null.
+     Prototype chain
   
-Using Object.setPrototype
+   Each Object in javascript has big headline object which is the Object.It acts as a common store of functions and properties which
+   can be accessed via Object.prototype .
+   Notice that user1 does not have any "hasOwnProperty" function defined on it.Neither does its immediate prototype , which is userFunctionStore has that.
+  So we check in the [[Prototype]] of userFunctionStore which is   the main Object.prototype, which is common for all JS objects has that .The main Object.prototype     has its own [[Prototype]] value which is set to null.
+  
+           Using Object.setPrototype
+
+```
+function talk(sound){
+console.log(sound)
+}
+talk('woof');
+function talk(){
+console.log(this.sound);
+}
+let animal={
+talk:talk
+}
+let cat={
+sound:'meow!'
+}
+let dog={
+ sound:'woof!'
+}
+Object.setPrototypeOf(cat,animal);
+Object.setPrototypeOf(dog,animal);
+cat.talk();//meow
+dog.talk();//woof
+```
+
+
+Object.setPrototypeOf vs Object.create
+
+The MDN  says in particular:
+If you care about performance you should avoid setting the [[Prototype]] of an object. Instead, create a new object with the desired [[Prototype]] using Object.create().In short it looks like using Object.create is much faster than Object.setPrototypeOf when used at extremely larger scale.
