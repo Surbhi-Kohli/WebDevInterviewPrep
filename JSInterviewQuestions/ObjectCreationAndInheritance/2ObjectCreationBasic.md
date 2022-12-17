@@ -206,8 +206,20 @@ becoz we are gonna run that function with the help of the "new" keyword which is
 as it alters the behaviour of the userCreater's execution context.
 "new" is gonna insert stuff in it automatically for us,when we run it.
 
-But we do need a shared store of functions for all objects creaed out of userCreater.We are gonna store the shared functions in the
-prototype propertyof our userCreater function.
+But we do need a shared store of functions for all objects created out of userCreater.We are gonna store the shared functions in the
+prototype property of our userCreater function.The [[Prototype]] or __proto__ of the new object gets linked to the prototype property
+of the userCreater function.
+Also if the constructor function returns non-primitive object then new will
+not return the newly created object.
+Benefits of this solution
+Faster to write.Often used in practice in professional code.
+
+Problems:
+95% of developers have no idea how it works.
+We have to uppercase the first letter of the function so we know it requires "new" to work.
+What if u run userCreater without the new keyword.Then the "this" would be the global window .By just looking at the code , we can't be sure that
+we need to use the function along with the "new" keword
+
 __proto__ vs prototype
 The objects that you create have a __proto__ property which is a getter/setter for
 the object's [[Prototype]] although it is not recommended
@@ -220,11 +232,28 @@ using that function.
 Consider the following code
 
 ```
+//__proto__
 let cat={breed:'munchkin'}
 let myCat={name:'fluffykins'}
 Object.setPrototypeOf(myCat,cat);
 cat.tailLength=15
 myCat.__proto__//cat{breed:'munchkin',tailLength:15};
 console.log(myCat.tailLength)//15
+
+//prototype
+//prototype only exists on functions just to cater to the case where ur function is a function constructor and u want to create objects 
+//using that  object.
+function Dog(){}
+Dog.prototype.breed="Bulldog"
+let MyDoggie=new Dog();
+MyDoggie.breed//Bulldog
+
+
+MyDoggie.__proto__//{breed:'Bulldog'}
+function Giraffe(){}
+console.log(Giraffe.prototype); //{} empty object
+let koala={}
+console.log(koala.prototype);//undefined
+console.log(koala.__proto__===Object.prototype) //true
 ```
 
