@@ -19,3 +19,12 @@ console.log("login")
 }
 const user1-new UserCreator("Eva",9);
 user1.increment();
+```
+Nothing is different in this code.It's just that we do the declaration and assignment in 1 construct ie within the class.
+We take the label of the function & make it a label of the class.
+
+When you declare a class,you get a function object combo
+Constructor=function bit of the combo
+Object bit=prototype object,which will take in the common functions
+
+<img width="280" alt="Screenshot 2022-12-17 at 11 49 39 PM" src="https://user-images.githubusercontent.com/32058209/208255907-78b445fe-6ffd-466f-a0d6-3baf0d9769ff.png">
