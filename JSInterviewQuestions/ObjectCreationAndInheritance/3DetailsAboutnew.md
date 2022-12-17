@@ -1,10 +1,11 @@
 Object creation via new keyword
-     ```
-     function Person(name,profession){
-     this.name=name;
-     this.profession=profession
-     }
-     ```
+
+```
+function Person(name,profession){
+this.name=name;
+this.profession=profession
+}
+```
  In JS , any function that defines a type is referred to as a constructor function.
  But there are 2 unsaid rules about constructor functions
        
