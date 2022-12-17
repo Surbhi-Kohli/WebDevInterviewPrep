@@ -3,36 +3,41 @@
 
      Objects store data and functions(encapsulation)
 
-      ```const user1={
+      ```
+      const user1={
           name:"Will",
           score:3,
           increment:function(){
           user1.score++;
           }
         }
-      user1.increment//makes the score as 4```
+      user1.increment//makes the score as 4
+      ```
 /******************************************************************/
 
 2.Using Object dot notation
-
+```
 const user2={}//empty object
 user2.name="Tim",
 user2.score=6;
 user2.increment=function(){
 user2.score++;
 }
+```
 The above methods are not scalable and efficient.
 /******************************************************************/
 
 3.Using Object.create + dot notation
 Object.create gives us an empty object with prototype set to the passed argument
 
+```
 const user3=Object.create(null)//no prototype object passed here
 user3.name="Eva",
 user3.score=9;
 user3.increment=function(){
 user3.score++;
 }
+```
 With the above ways, our code is getting repetitive,we are breaking the DRY principle.And suppose we have millions of users,this process would be
 inefficient.
 /******************************************************************/
