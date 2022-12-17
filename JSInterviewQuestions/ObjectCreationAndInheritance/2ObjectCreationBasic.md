@@ -158,13 +158,18 @@ there are 2 things we need to figure out:
 Example code showing how "new" automates a lot of manual work
 
 
-function userCreater(name,score){
- ~~const newUser=Object.create(functionStore)~~
- ~~newUser~~ this.name=name;
- ~~newUser~~ this.score=score;
- ~~return newUser~~
-}
+`function userCreater(name,score){
+`~~const newUser=Object.create(functionStore)~~`
+`~~newUser~~ this.name=name;`
+` ~~newUser~~ this.score=score;`
+`~~return newUser~~
+`}
 
+`//userCreater.prototype//{}
+`userCreater.prototype.increment=function(){ this.score++}
+
+`const user1=new userCreater("will",3)
+```
 
 
 Important Prelude
