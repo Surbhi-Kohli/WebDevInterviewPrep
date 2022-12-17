@@ -181,6 +181,7 @@ multiplyBy2.storeId=5
 multiplyBy2(3);//6
 multiplyBy2.storeId//5
 multiplyBy2.prototype//{}
+```
 We can use the fact that all functions have a default property 'prototype' on their object version-to replace our function store object.
 All functions in their object version have the "prototype" property which defaults to empty object.
 
