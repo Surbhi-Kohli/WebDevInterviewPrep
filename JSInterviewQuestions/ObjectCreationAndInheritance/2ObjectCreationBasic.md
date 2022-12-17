@@ -1,9 +1,9 @@
-      1.Basic method
+    1.Basic method
 
 
-     Objects store data and functions(encapsulation)
+    Objects store data and functions(encapsulation)
 
-      ```
+   ```
       const user1={
           name:"Will",
           score:3,
@@ -12,7 +12,7 @@
           }
         }
       user1.increment//makes the score as 4
-      ```
+  ```
 /******************************************************************/
 
 2.Using Object dot notation
@@ -83,6 +83,8 @@ const userFunctionStore={
 const user1=userCreater("Will",3);
 const user2=userCreater("tim",5);
 user1.increment()
+console.log(user1.hasOwnProperty("score"));//true (Inorder to check if a property exists on an object or on its prototype, use hasOwnProperty)
+console.log(user1.hasOwnProperty("increment"));//false
 When user1.increment is called, interpreter searches for increment function in local memoryof user1.It is not there 
 so it checks for [[Prototype]].
 _ _proto_ _ is the getter/setter function for the [[Prototype]], although it is not recommended to set prototype via _ _proto_ _
@@ -91,5 +93,8 @@ Also note that an implicit argument("this") is passed to the increment function 
 
 <img width="408" alt="Screenshot 2022-12-17 at 1 48 22 PM" src="https://user-images.githubusercontent.com/32058209/208232832-d10fbffd-9c8c-408d-a598-13db645659f5.png">
 
-
+   Prototype chain
+   Each Object in javascript has big headline object which is the Prototype Object,which can be accessed via Object.prototype
+   Notice that user1 does not have any "hasOwnProperty" function defined on it.Neither does its immediate prototype , which is userFunctionStore has that.
+   But the main Prototype Object, which is common for all JS objects has that 
 Using Object.setPrototype
