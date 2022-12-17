@@ -159,18 +159,15 @@ Example code showing how "new" automates a lot of manual work
 
 
 `function userCreater(name,score){
-`~~const newUser=Object.create(functionStore)~~`
-`~~newUser~~ this.name=name;`
-` ~~newUser~~ this.score=score;`
-`~~return newUser~~
+`~~const newUser=Object.create(functionStore)~~
+`~~newUser~~ this.name=name;
+` ~~newUser~~ this.score=score;
+ ~~return newUser~~
 `}
 
 `//userCreater.prototype//{}
 `userCreater.prototype.increment=function(){ this.score++}
-
 `const user1=new userCreater("will",3)
-```
-
 
 Important Prelude
 Functions are both objects and functions in JS
@@ -184,7 +181,33 @@ multiplyBy2.storeId=5
 multiplyBy2(3);//6
 multiplyBy2.storeId//5
 multiplyBy2.prototype//{}
-We can use the fact that all functions have a default property 'prototype' on their object version-to replace our function store object
+We can use the fact that all functions have a default property 'prototype' on their object version-to replace our function store object.
+All functions in their object version have the "prototype" property which defaults to empty object.
+
+So in the prototype property of the object version of userCreater , we will store the general functions that are to be associated to all objects that 
+come out of running userCreater with "new" keyword in front of them.
+
+
+Final code
+```
+function userCreater(name,score){
+this.name=name;
+this.score=score;
+}
+
+userCreater.prototype.increment=function(){this.score++}
+userCreater.prototype.login=function (){console.log("login")}
+
+const user1=new userCreater("Eva",9);
+user1.increment();
+```
+Here in our userCreater, there is no creating of an object inside it.No making of bond to some shared store or functions, no returning an object out,
+becoz we are gonna run that function with the help of the "new" keyword which is acting as a modifier
+as it alters the behaviour of the userCreater's execution context.
+"new" is gonna insert stuff in it automatically for us,when we run it.
+
+But we do need a shared store of functions for all objects creaed out of userCreater.We are gonna store the shared functions in the
+prototype propertyof our userCreater function.
 __proto__ vs prototype
 The objects that you create have a __proto__ property which is a getter/setter for
 the object's [[Prototype]] although it is not recommended
