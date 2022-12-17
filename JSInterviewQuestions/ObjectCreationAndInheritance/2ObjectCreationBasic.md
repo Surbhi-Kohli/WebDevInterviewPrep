@@ -221,10 +221,11 @@ We have to uppercase the first letter of the function so we know it requires "ne
 What if u run userCreater without the new keyword.Then the "this" would be the global window .By just looking at the code , we can't be sure that
 we need to use the function along with the "new" keword
 
-__proto__ vs prototype
-The objects that you create have a __proto__ property which is a getter/setter for
+ _ _ proto_ _ vs prototype 
+
+The objects that you create have a _ _proto_ _ property which is a getter/setter for
 the object's [[Prototype]] although it is not recommended
-to set prototype via __proto__.  (* people use __proto__ to refer [[Prototype]])
+to set prototype via _ _ proto_ _.  (* people use _ _ proto_ _ to refer [[Prototype]])
 
 Whereas _prototype_ is a property available on all functions as well as the global "Object".Thats because the global Object 
 is actually a function which has the _prototype_ property.
@@ -233,12 +234,12 @@ using that function.
 Consider the following code
 
 ```
-//__proto__
+//_ _proto_ _
 let cat={breed:'munchkin'}
 let myCat={name:'fluffykins'}
 Object.setPrototypeOf(myCat,cat);
 cat.tailLength=15
-myCat.__proto__//cat{breed:'munchkin',tailLength:15};
+myCat._ _proto_ _//cat{breed:'munchkin',tailLength:15};
 console.log(myCat.tailLength)//15
 
 //prototype
@@ -255,6 +256,6 @@ function Giraffe(){}
 console.log(Giraffe.prototype); //{} empty object
 let koala={}
 console.log(koala.prototype);//undefined
-console.log(koala.__proto__===Object.prototype) //true
+console.log(koala._ _proto_ _===Object.prototype) //true
 ```
 
