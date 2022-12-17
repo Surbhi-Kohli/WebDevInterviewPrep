@@ -61,6 +61,28 @@ b.If you want to add new functionality to the objects, you will have to manually
 5.Make use of prototype(delegation)
 We can store the common functions in an object([[Protoype]]) and have the interpreter ,check that [[Prototype]] instead of the main object 
 for the function.
+* Using Object.create()-make the link with Object.create
 
+function userCreater(name,score){
+const newUser=Object.create(userFunctionStore);//the userFunctionStore is set as the [[Prototype]] of the newly created object
+newUser.name=name;
+newUser.score=score;
+return newUser;
+}
 
+const userFunctionStore={
+  increment:function(){this.score++},
+  login:function(){console.log("logged in")}
+}
+const user1=userCreater("Will",3);
+const user2=userCreater("tim",5);
+user1.increment()
+When user1.increment is called, interpreter searches for increment function in local memoryof user1.It is not there 
+so it checks for [[Prototype]].
+_ _proto_ _ is the getter/setter function for the [[Prototype]], although it is not recommended to set prototype via _ _proto_ _
 
+Also note that an implicit argument("this") is passed to the increment function which actually points to the calling object
+
+<img width="282" alt="Screenshot 2022-12-17 at 1 44 44 PM" src="https://user-images.githubusercontent.com/32058209/208232732-ad4d40fd-6f2d-498b-843d-38bf0c3bab38.png">
+
+Using Object.setPrototype
