@@ -166,6 +166,7 @@ function userCreater(name,score){
 }
 
 
+
 Important Prelude
 Functions are both objects and functions in JS
 consider the following example:
