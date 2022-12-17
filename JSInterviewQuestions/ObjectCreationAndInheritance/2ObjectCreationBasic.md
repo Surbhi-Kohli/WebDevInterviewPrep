@@ -25,7 +25,7 @@ user2.score++;
 }
 ```
 The above methods are not scalable and efficient.
-/******************************************************************/
+
 
 3.Using Object.create + dot notation
 Object.create gives us an empty object with prototype set to the passed argument
@@ -41,7 +41,7 @@ user3.score++;
 With the above ways, our code is getting repetitive,we are breaking the DRY principle.And suppose we have millions of users,this process would be
 inefficient.
 
-/******************************************************************/
+
 
 4.Use factory functions: 
 Solution1:To prevent repitition:generate objects using functions
@@ -58,7 +58,7 @@ const user2=userCreator("Tim",5);
 
 user1.increment()//increments will's score to 4
 ```
-/*Closure:The increment function has info of the surrounding memoryie info of label newUser*/
+/* Closure:The increment function has info of the surrounding memoryie info of label newUser */
 The previous approach of using factory functions has few problems.
     a.The code of increment function for all users is same, but the code
       is being stored in each object separately.Each time we create newUser object, we make space in our system's memory for all our data and functions.
@@ -98,7 +98,7 @@ Also note that an implicit argument("this") is passed to the increment function 
 <img width="408" alt="Screenshot 2022-12-17 at 1 48 22 PM" src="https://user-images.githubusercontent.com/32058209/208232832-d10fbffd-9c8c-408d-a598-13db645659f5.png">
 
    Prototype chain
-   Each Object in javascript has big headline object which is the Prototype Object,which can be accessed via Object.prototype
+   Each object in javascript has big headline object which is the Prototype Object,which can be accessed via Object.prototype
    Notice that user1 does not have any "hasOwnProperty" function defined on it.Neither does its immediate prototype , which is userFunctionStore has that.
   So we check in the [[Prototype]] of userFunctionStore which is   the main Prototype Object, which is common for all JS objects has that .The main Object.prototype has its own [[Prototype]] value which is set to null.
   
