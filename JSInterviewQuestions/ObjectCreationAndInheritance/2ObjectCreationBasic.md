@@ -1,18 +1,16 @@
       1.Basic method
 
 
+     Objects store data and functions(encapsulation)
 
-
-Objects store data and functions(encapsulation)
-
-const user1={
-    name:"Will",
-    score:3,
-    increment:function(){
-    user1.score++;
-    }
-  }
-user1.increment//makes the score as 4
+      ```const user1={
+          name:"Will",
+          score:3,
+          increment:function(){
+          user1.score++;
+          }
+        }
+      user1.increment//makes the score as 4```
 /******************************************************************/
 
 2.Using Object dot notation
