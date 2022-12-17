@@ -157,7 +157,7 @@ there are 2 things we need to figure out:
 2.Where would be our single store for common functions(eg increment)
 Example code showing how "new" automates a lot of manual work
 
-```
+
 function userCreater(name,score){
  ~~const newUser=Object.create(functionStore)~~
  ~~newUser~~ this.name=name;
@@ -165,7 +165,7 @@ function userCreater(name,score){
  ~~return newUser~~
 }
 
-```
+
 Important Prelude
 Functions are both objects and functions in JS
 consider the following example:
