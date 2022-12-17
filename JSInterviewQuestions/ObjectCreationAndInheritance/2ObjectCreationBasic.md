@@ -1,4 +1,7 @@
-1.Basic method
+      1.Basic method
+
+
+
 
 Objects store data and functions(encapsulation)
 
@@ -83,6 +86,7 @@ _ _proto_ _ is the getter/setter function for the [[Prototype]], although it is 
 
 Also note that an implicit argument("this") is passed to the increment function which actually points to the calling object
 
-<img width="282" alt="Screenshot 2022-12-17 at 1 44 44 PM" src="https://user-images.githubusercontent.com/32058209/208232732-ad4d40fd-6f2d-498b-843d-38bf0c3bab38.png">
+<img width="408" alt="Screenshot 2022-12-17 at 1 48 22 PM" src="https://user-images.githubusercontent.com/32058209/208232832-d10fbffd-9c8c-408d-a598-13db645659f5.png">
+
 
 Using Object.setPrototype
