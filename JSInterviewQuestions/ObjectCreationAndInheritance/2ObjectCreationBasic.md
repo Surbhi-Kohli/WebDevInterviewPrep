@@ -1,7 +1,5 @@
-    1.Basic method
-
-
-    Objects store data and functions(encapsulation)
+ 1.Basic method
+ Objects store data and functions(encapsulation)
 
    ```
       const user1={
@@ -13,7 +11,7 @@
         }
       user1.increment//makes the score as 4
   ```
-/******************************************************************/
+
 
 2.Using Object dot notation
 ```
@@ -25,7 +23,7 @@ user2.score++;
 }
 ```
 The above methods are not scalable and efficient.
-/******************************************************************/
+
 
 3.Using Object.create + dot notation
 Object.create gives us an empty object with prototype set to the passed argument
@@ -127,10 +125,77 @@ Object.setPrototypeOf(cat,animal);
 Object.setPrototypeOf(dog,animal);
 cat.talk();//meow
 dog.talk();//woof
+
+let PrarieDog={
+ howl:function(){
+     console.log(this.sound.toUpperCase())
+ }
+}
+Object.setProtoTypeOf(prarieDog,dog);//Prototype chain
+prarieDog.howl()//Woof
 ```
 
 
 Object.setPrototypeOf vs Object.create
 
 The MDN  says in particular:
-If you care about performance you should avoid setting the [[Prototype]] of an object. Instead, create a new object with the desired [[Prototype]] using Object.create().In short it looks like using Object.create is much faster than Object.setPrototypeOf when used at extremely larger scale.
+If you care about performance you should avoid setting the [[Prototype]] of an object. Instead, create a new object with the desired [[Prototype]] using Object.create()Coz messing around with prototypes directly is a bad idea .In short it looks like using Object.create is much faster than Object.setPrototypeOf when used at extremely larger scale.
+
+6.Object creation via new keyword
+The new keyword is doing all the steps of object.create behind the scenes
+When we call a function with ew keyword ,2 things are automated.
+1Creates a new object
+2Returns a new object.
+
+```
+const user1=new userCreater("Eva",9);
+const user2=new userCreater("Tim",5);
+
+```
+there are 2 things we need to figure out:
+1.How should we refer to the auto-created object.-With new, the automatically created object is given the label "this"
+2.Where would be our single store for common functions(eg increment)
+Example code showing how "new" automates a lot of manual work
+
+```
+function userCreater(name,score){
+ ~~const newUser=Object.create(functionStore)~~
+ ~~newUser~~ this.name=name;
+ ~~newUser~~ this.score=score;
+ ~~return newUser~~
+}
+
+```
+Important Prelude
+Functions are both objects and functions in JS
+consider the following example:
+
+```
+function multiplyBy2(num){
+return num*2;
+}
+multiplyBy2.storeId=5
+multiplyBy2(3);//6
+multiplyBy2.storeId//5
+multiplyBy2.prototype//{}
+We can use the fact that all functions have a default property 'prototype' on their object version-to replace our function store object
+__proto__ vs prototype
+The objects that you create have a __proto__ property which is a getter/setter for
+the object's [[Prototype]] although it is not recommended
+to set prototype via __proto__.  (* people use __proto__ to refer [[Prototype]])
+
+Whereas _prototype_ is a property available on all functions as well as the global "Object".Thats because the global Object 
+is actually a function which has the _prototype_ property.
+_prototype_ only exists on functions just to cater to the case where ur function is a function constructor and u want to create objects 
+using that function.
+Consider the following code
+
+```
+let cat={breed:'munchkin'}
+let myCat={name:'fluffykins'}
+Object.setPrototypeOf(myCat,cat);
+cat.tailLength=15
+myCat.__proto__//cat{breed:'munchkin',tailLength:15};
+console.log(myCat.tailLength)//15
+```
+
