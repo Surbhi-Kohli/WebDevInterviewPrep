@@ -1,7 +1,12 @@
+/*What is reduce function?
+Reduce function is used where u want to take all elements of an array and come up with a single value out of them.The curr is the current element 
+of array over which we are iterating while acc is the accumulated final result that we build in reduce.
+*/
 /*How does the reduce method achieve it using these parameters?
 
 The value returned by the reducer function is assigned to the accumulator variable. In each iteration through the array items, 
-the accumulator’s value is updated to the returned result. At the end of the iteration, the final value of the accumulator is returned as the output of the reduce function.
+the accumulator’s value is updated to the returned result. At the end of the iteration, the final value of the accumulator is returned as
+the output of the reduce function.
 
 If an initialValue argument is passed, the first time the reducer function is executed, the accumulator will be equal
 to initialValue and the currentValue will be equal to the first element stored in the array. If an initialValue is not passed,
@@ -71,7 +76,42 @@ console.log(ans);
 Explanation:Inside the callback function, we create a new key for each continent that is not in the groupedCountries map and assign an 
 empty array as its value. Then we push each country object to the array stored by their respective continents.
 */
+/***************************************************************************************************************************************/
+//Finding count of occurence of based on a criteria:
+const users=[
+ {firstName:"Akshay",lastName:"Saini",age:26},
+ {firstName:"Donald",lastName:"Trump",age:50},
+ {firstName:"Nitin",lastName:"Gadkari",age:66},
+ {firstName:"Deepika",lastName:"Padukone",age:26},
+ {firstName:"Narendra",lastName:"Modi",age:66},
+ {firstName:"Rajnath",lastName:"Singh",age:66},
+ ]
+//expected output:{26:2,50:1,66:3}
+let output=users.reduce((acc,curr)=>{
+ if(!acc[curr.age])
+ {
+ acc[curr.age]=1;
+ }
+ else{
+ acc[curr.age]+=1;
+ }
+ return acc;
+},{});
+console.log(output)//{26:2,50:1,66:3}
+/**************************************************************************************************************************************/
+//Chaining map, filter and reduce:
+//What if you need to get firstName of all people whose age is less than 30
+//one way would be to filter and then map on that via chaining
 
+const output2=users.filter(x=>x.age<30).map(el=>el.firstName);
+console.log(output2);
+//doing the same with using just reduce:
+const output3=users.reduce((acc,curr)=>{
+   if(curr.age<30)
+   acc.push(curr.firstName);
+   return acc;
+},[])
+console.log(output3);
 /*************************************************************************************************************************************/
 //Specifying count of occurence of each element in the array
 let names=["surbhi","nagraj","harshu","harshu","surbhi","surbhi"];
