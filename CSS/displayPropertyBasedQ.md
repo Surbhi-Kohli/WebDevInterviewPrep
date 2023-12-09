@@ -7,5 +7,12 @@ ans-
 **display:inline**, take minimum amount of space possible.But we cant set width and height for them
 
 **display:inline-block** ,act like inline(i.e take min space possible),but we can give our height 
-n width
+n width.
+Here is a list of common inline-block elements
+
+<input>
+<button>
+<select>
+<textarea>
+Interestingly enough, you will notice that most of these elements are related with <form> elements.
 
