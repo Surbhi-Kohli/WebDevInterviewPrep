@@ -14,7 +14,7 @@ Pre read: https://www.freecodecamp.org/news/how-to-use-the-css-box-sizing-proper
 			margin: 30px;
 		}
 		//ans-220
-# The width of our elment using the standard box model will actually be 220px (100 + 30 + 30 + 30 + 30), as the padding and border are added to the width used for the content box.
+## The width of our elment using the standard box model will actually be 220px (100 + 30 + 30 + 30 + 30), as the padding and border are added to the width used for the content box.
 
 ## Total width of the element = Width + Padding + Border  in case of box-sizing:container-box(default value)
 
