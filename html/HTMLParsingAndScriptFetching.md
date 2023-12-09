@@ -1,5 +1,8 @@
 Pre read:
 https://blog.webdevsimplified.com/2019-12/javascript-loading-attributes-explained/
+
+Simple usage of script tag without any attribute is called **render blocking**, since the parser has to stop, fetch the script, execute it and then continue with html parsing.
+
 ![20231127_231719](https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/764c4cee-d72b-4a70-a90e-f1eb33e7abe6)  
  
 ![20231127_231757](https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/8c782956-57e7-4485-bcb7-8f85e31322ab)  
