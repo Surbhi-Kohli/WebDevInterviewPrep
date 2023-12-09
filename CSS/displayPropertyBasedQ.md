@@ -1,8 +1,11 @@
-What is the diff between display:inline,display:block and display:inline-block?
-ans-display:block, block elements take the entire width available for them,effectively they add a line break b4 and after them.
+## Pre read: https://dev.to/shimphillip/inline-vs-inline-block-vs-block-280h
 
-display:inline, take minimum amount of space possible.But we cant set width and height for them
+## What is the diff between display:inline,display:block and display:inline-block?
+ans-  
+**display:block**, block elements take the entire width available for them,effectively they add a line break b4 and after them.  
 
-display:inline-block ,act like inline(i.e take min space possible),but we can give our height 
+**display:inline**, take minimum amount of space possible.But we cant set width and height for them
+
+**display:inline-block** ,act like inline(i.e take min space possible),but we can give our height 
 n width
 
