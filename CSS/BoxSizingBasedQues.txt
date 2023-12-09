@@ -1,3 +1,5 @@
+Pre read: https://www.freecodecamp.org/news/how-to-use-the-css-box-sizing-property/
+
 /* Consider a div with class container and the following CSS styling. What will be the width of the element?  */
 
 .container {
