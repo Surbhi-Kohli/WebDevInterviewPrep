@@ -1,7 +1,9 @@
 How is the internet made available:
-Telephone signals would be converted to internet via modem in earlier days
-<img width="459" alt="Screenshot 2024-01-13 at 2 14 36 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/4c8bc917-e292-464d-9506-bee58d9a9e52">
-Now phone companies provide optical wires which dont need modem
+Telephone signals would be converted to internet via modem in earlier days.  
+
+<img width="459" alt="Screenshot 2024-01-13 at 2 14 36 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/4c8bc917-e292-464d-9506-bee58d9a9e52">  
+
+Now phone companies provide optical wires which dont need modem.
 
 What happens when you type a URL in the browser and press enter?
 https://medium.com/@maneesha.wijesinghe1/what-happens-when-you-type-an-url-in-the-browser-and-press-enter-bb0aa2449c1a
@@ -22,9 +24,10 @@ but imagine having to remember different sets of numbers for all the sites we re
 name of the website using a URL and let DNS do the work for us by mapping it to the correct IP.
 To find the DNS record, the browser checks four caches in the order: Browser Cache->Operating Systems Cache->Router Cache->ISP Cache.
 
-● First, it checks the browser cache. The browser maintains a repository of DNS records for a fixed duration for websites you have previously visited. So, it is the first place to run a DNS query.  
+● First, it checks the browser cache. The browser maintains a repository of DNS records for a fixed duration for websites you have previously visited. So, it is the first place to run a DNS query. It also checks in service worker.Service worker also has a cache.
+https://dev.to/pahanperera/service-worker-caching-strategies-1dib
 
-● Second, the browser checks the OS cache. If it is not in the browser cache, the browser will make a system call (i.e., gethostname on Windows) to your underlying computer OS to fetch the record since the OS also maintains a cache of DNS records.  
+● Second, the browser checks the OS cache. If it is not in the browser cache, the browser will make a system call (i.e., gethostname on Windows) to your underlying computer OS to fetch the record since the OS also maintains a cache of DNS records.  If u update the hostfile(which has mappings)
 
 ● Third, it checks the router cache. If it’s not on your computer, the browser will communicate with the router that maintains its’ own cache of DNS records.  
 
@@ -45,7 +48,11 @@ In this situation, we would call the **ISP’s DNS server a DNS recursor whose r
 IP address of the intended domain name by asking other DNS servers on the internet for an answer. 
 The other DNS servers are called name servers since they perform a DNS search based on the domain
 architecture of the website domain name.**
-<img width="474" alt="Screenshot 2024-01-13 at 2 17 15 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/0e3fb36d-4642-45ad-a3e1-25e409c1dabd">
+<img width="474" alt="Screenshot 2024-01-13 at 2 17 15 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/0e3fb36d-4642-45ad-a3e1-25e409c1dabd">  
+
+Domain name description:
+<img width="466" alt="Screenshot 2024-01-13 at 2 36 12 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/7f63f388-80b6-4a98-b057-ddc76b531f62">
+Each part of domain can help dig deeper in server, on where to go
 
 4. The browser initiates a TCP connection with the server.
 Once the browser receives the correct IP address, it will build a connection with the server that matches 
@@ -80,3 +87,19 @@ The browser displays the HTML content in phases. First, it will render the bare 
 GET requests for additional elements on the web page, such as images, CSS stylesheets, JavaScript files, etc. These static files are cached by the 
 browser, so it doesn’t have to fetch them again the next time you visit the page. In the end, you’ll see maps.google.com appearing on your browser.
 That’s it!
+
+
+
+Data Centers:Contain multipl servers
+
+ISP details:
+<img width="686" alt="Screenshot 2024-01-13 at 3 19 33 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/32e1fdea-188b-42cb-bb3a-0ab91fdd4f86">
+Local ISP: Local distributors.They connect neighborhoods.Ie in case request is for a nearby place
+Regional ISP: Like jio, airtel.They connect cities in a country
+If anything has to be blocked to a region, the regional ISPs can be governed by central authorities.
+
+Global ISP: Global organizations govern these ISP, which decide  how and what kind of info can be transmitted to other Global ISPs or the world.
+Fiber optics help to transmit data approximately at the speed of light.
+<img width="692" alt="Screenshot 2024-01-13 at 3 29 26 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/9e12213c-fe58-4d71-b94a-fd058466f1ad">
+When an app makes network request, a browser can handle only 6 to 8 parallel network requests.
+All requests beyond that are queued.
