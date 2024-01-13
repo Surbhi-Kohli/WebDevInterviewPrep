@@ -30,14 +30,14 @@ caches are essential for regulating network traffic and improving data transfer 
 3. If the requested URL is not in the cache, ISP’s DNS server initiates a DNS query to find the IP address of
 the server that hosts maps.google.com.As mentioned earlier, for my computer to connect with the server that hosts maps.google.com,
 I need the IP address of maps.google.com. The purpose of a DNS query is to search multiple DNS servers on the internet until
-it finds the correct IP address for the website. This type of search is called a recursive search since the search 
+it finds the correct IP address for the website. **This type of search is called a recursive search since the search 
 will repeatedly continue from a DNS server to a DNS server until it either finds the IP address we need or returns an error 
-response saying it was unable to find it.
+response saying it was unable to find it.**
 
-In this situation, we would call the ISP’s DNS server a DNS recursor whose responsibility is to find the proper
+In this situation, we would call the **ISP’s DNS server a DNS recursor whose responsibility is to find the proper
 IP address of the intended domain name by asking other DNS servers on the internet for an answer. 
 The other DNS servers are called name servers since they perform a DNS search based on the domain
-architecture of the website domain name.
+architecture of the website domain name.**
 
 4. The browser initiates a TCP connection with the server.
 Once the browser receives the correct IP address, it will build a connection with the server that matches 
