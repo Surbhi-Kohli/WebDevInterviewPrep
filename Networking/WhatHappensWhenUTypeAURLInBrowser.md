@@ -5,6 +5,8 @@ https://medium.com/@maneesha.wijesinghe1/what-happens-when-you-type-an-url-in-th
 2. The browser checks the cache for a DNS record to find the corresponding IP address of maps.google.com.
 
 DNS(Domain Name System) is a database that maintains the name of the website (URL) and the particular IP address it links to.
+<img width="533" alt="Screenshot 2024-01-13 at 2 06 49 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/9c477d93-d735-4d01-9da8-ea281ad3f536">
+
 Every single URL on the internet has a unique IP address assigned to it.
 The IP address belongs to the computer which hosts the server of the website we are requesting to access.
 For example, www.google.com has an IP address of 209.85.227.104. So if you’d like, you can reach www.google.com by typing http://209.85.227.104 on your browser. 
