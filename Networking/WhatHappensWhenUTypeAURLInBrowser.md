@@ -15,14 +15,13 @@ but imagine having to remember different sets of numbers for all the sites we re
 name of the website using a URL and let DNS do the work for us by mapping it to the correct IP.
 To find the DNS record, the browser checks four caches in the order: Browser Cache->Operating Systems Cache->Router Cache->ISP Cache.
 
-● First, it checks the browser cache. The browser maintains a repository of DNS records for a fixed duration for 
-websites you have previously visited. So, it is the first place to run a DNS query.
-● Second, the browser checks the OS cache. If it is not in the browser cache, the browser will make a system call 
-(i.e., gethostname on Windows) to your underlying computer OS to fetch the record since the OS also maintains a cache of DNS records.
-● Third, it checks the router cache. If it’s not on your computer, the browser will communicate with the router 
-that maintains its’ own cache of DNS records.
-● Fourth, it checks the ISP cache. If all steps fail, the browser will move on to the ISP. Your ISP maintains its’ own
-DNS server, which includes a cache of DNS records, which the browser would check with the last hope of finding your requested URL.
+● First, it checks the browser cache. The browser maintains a repository of DNS records for a fixed duration for websites you have previously visited. So, it is the first place to run a DNS query.  
+
+● Second, the browser checks the OS cache. If it is not in the browser cache, the browser will make a system call (i.e., gethostname on Windows) to your underlying computer OS to fetch the record since the OS also maintains a cache of DNS records.  
+
+● Third, it checks the router cache. If it’s not on your computer, the browser will communicate with the router that maintains its’ own cache of DNS records.  
+
+● Fourth, it checks the ISP cache. If all steps fail, the browser will move on to the ISP. Your ISP maintains its’ own DNS server, which includes a cache of DNS records, which the browser would check with the last hope of finding your requested URL.
 
 You may wonder why there are so many caches maintained at so many levels. 
 Although our information being cached somewhere doesn’t make us feel very comfortable when it comes to privacy, 
