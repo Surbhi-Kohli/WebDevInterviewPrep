@@ -1,3 +1,8 @@
+How is the internet made available:
+Telephone signals would be converted to internet via modem in earlier days
+<img width="459" alt="Screenshot 2024-01-13 at 2 14 36 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/4c8bc917-e292-464d-9506-bee58d9a9e52">
+Now phone companies provide optical wires which dont need modem
+
 What happens when you type a URL in the browser and press enter?
 https://medium.com/@maneesha.wijesinghe1/what-happens-when-you-type-an-url-in-the-browser-and-press-enter-bb0aa2449c1a
 
@@ -40,6 +45,7 @@ In this situation, we would call the **ISP’s DNS server a DNS recursor whose r
 IP address of the intended domain name by asking other DNS servers on the internet for an answer. 
 The other DNS servers are called name servers since they perform a DNS search based on the domain
 architecture of the website domain name.**
+<img width="474" alt="Screenshot 2024-01-13 at 2 17 15 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/0e3fb36d-4642-45ad-a3e1-25e409c1dabd">
 
 4. The browser initiates a TCP connection with the server.
 Once the browser receives the correct IP address, it will build a connection with the server that matches 
