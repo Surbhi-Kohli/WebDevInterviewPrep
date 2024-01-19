@@ -10,3 +10,4 @@ Simple usage of script tag without any attribute is called **render blocking**, 
 ![20231127_231824](https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/0ed41ba4-be8e-4a8e-8b33-448ee91ad1f6)  
 
 ![20231127_231808](https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/5e517b71-acc9-4e67-8732-74f16d8038eb)
+
