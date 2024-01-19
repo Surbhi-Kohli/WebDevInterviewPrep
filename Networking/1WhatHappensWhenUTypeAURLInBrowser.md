@@ -141,4 +141,4 @@ WHOIS: u can get detailed info about the company who owns the domain name.This a
 
 With the Linux whois command, you can perform lookups directly from the command line, which is useful for systems without a graphical user interface or for shell scripts. The command can be installed on Ubuntu, Fedora, and Manjaro using specific commands provided.
 
-
+https://github.com/Surbhi-Kohli/WebDevInterviewPrep/blob/main/html/Critical-rendering-path.md
