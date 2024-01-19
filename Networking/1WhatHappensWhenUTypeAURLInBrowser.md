@@ -101,5 +101,23 @@ If anything has to be blocked to a region, the regional ISPs can be governed by 
 Global ISP: Global organizations govern these ISP, which decide  how and what kind of info can be transmitted to other Global ISPs or the world.
 Fiber optics help to transmit data approximately at the speed of light.
 <img width="692" alt="Screenshot 2024-01-13 at 3 29 26 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/9e12213c-fe58-4d71-b94a-fd058466f1ad">
-When an app makes network request, a browser can handle only 6 to 8 parallel network requests.
-All requests beyond that are queued.
+
+** How does data flow:Data is transmitted in packets **
+
+## Advanced flow
+The browser and service wroker maintain a data cache.
+The service worker in the browser maintains a cached version of a website.when we reload a website, we might find a request with 304 status , meaning that nothing has changed and so the existing data that the service worker has , can be used.
+And hence all the subsequent requests are catered by service worker in very short span of time.
+<img width="631" alt="Screenshot 2024-01-19 at 6 04 50 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/412b389d-58e4-4d86-aca9-6d211cd92bc8">
+An app can make max 6 to 8 parallel network requests.Any request beyond that is queued.
+
+ISP Functionality :
+ISPs are not just internet providers and proxy to get u IP addresss and make request.Some functionalities of ISP
+1. Peering(To reduce the number of hops)
+   In case of inter-county communication, there are several  hops involved,which may result in loss of data packet or increased transfer time.
+<img width="854" alt="Screenshot 2024-01-19 at 6 25 54 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/0c147c31-2d08-4ac4-a96c-8751e6457d79">
+Companies like google maintain data-centers so that you dont have to make a cross-country or cross-region request.Now these data centers can bypass the regional isp and directly connect with local ISP and work as a proxy to reach to ur system.
+
+2.Netflix uses Regional ISPs as hosting platform where , it hosts data  and users can stream from there directly.Such optimizations are done by companies by storing data at local ISPs or regional ISPs
+
+Company named ICANN manages IPs and domains.
