@@ -64,33 +64,43 @@ To transfer data packets between your computer(client) and the server, it is imp
 This connection is established using a process called the TCP/IP three-way handshake. 
 This is a three-step process where the client and the server exchange SYN(synchronize) and ACK(acknowledge) messages to establish a connection.
 
+<img width="622" alt="Screenshot 2024-01-19 at 9 58 54 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/215ec0ee-2d7e-484a-afc9-85b7c431d6a5">
+
+
 1. The client machine sends a SYN packet to the server over the internet, asking if it is open for new connections.
 2. If the server has open ports that can accept and initiate new connections, it’ll respond with an ACKnowledgment of the SYN packet using a SYN/ACK packet.
 3. The client will receive the SYN/ACK packet from the server and will acknowledge it by sending an ACK packet.
 Then a TCP connection is established for data transmission!
 
-5. The browser sends an HTTP request to the webserver.
+4. The browser sends an HTTP request to the webserver.
 Once the TCP connection is established, it is time to start transferring data! The browser will send a GET request asking for maps.google.com web page.
 If you’re entering credentials or submitting a form, this could be a POST request. This request will also contain additional information such as browser
 identification (User-Agent header), types of requests that it will accept (Accept header), and connection headers asking it to keep the TCP connection
 alive for additional requests. It will also pass information taken from cookies the browser has in store for this domain
-6. The server handles the request and sends back a response.
+5. The server handles the request and sends back a response.
 The server contains a webserver (i.e., Apache, IIS) that receives the request from the browser and passes it to a request handler to read and 
 generate a response. The request handler is a program (written in ASP.NET, PHP, Ruby, etc.) that reads the request, its’ headers, and cookies 
 to check what is being requested and also update the information on the server if needed. Then it will assemble a response in a particular format (JSON, XML, HTML).
-7. The server sends out an HTTP response.
+6. The server sends out an HTTP response.
 The server response contains the web page you requested as well as the status code, compression type (Content-Encoding), how to cache the page 
 (Cache-Control), any cookies to set, privacy information, etc.
 
-8. The browser displays the HTML content (for HTML responses, which is the most common).
+7. The browser displays the HTML content (for HTML responses, which is the most common).
 The browser displays the HTML content in phases. First, it will render the bare bone HTML skeleton. Then it will check the HTML tags and send out 
 GET requests for additional elements on the web page, such as images, CSS stylesheets, JavaScript files, etc. These static files are cached by the 
 browser, so it doesn’t have to fetch them again the next time you visit the page. In the end, you’ll see maps.google.com appearing on your browser.
 That’s it!
 
+<img width="727" alt="Screenshot 2024-01-19 at 10 03 03 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/65fea09e-2586-4adc-941f-f8bac0e919d4">
+
+For https connections, there is an extra step of SSL handshake that occurs after TCP handshake for certificate handshake.
+Here notice in the image, we get data in chunks of 14kb, then 28kb and then  56kb.
+The first response should have smaller data , so that it renders quickly and percieved page performance is good.
+## SSL 
+<img width="667" alt="Screenshot 2024-01-19 at 10 09 36 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/02c3dda4-2b3b-4c73-afc5-8ddbe97d46a9">
 
 
-Data Centers:Contain multipl servers
+Data Centers:Contain multiple servers
 
 ISP details:
 <img width="686" alt="Screenshot 2024-01-13 at 3 19 33 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/32e1fdea-188b-42cb-bb3a-0ab91fdd4f86">
@@ -121,3 +131,14 @@ Companies like google maintain data-centers so that you dont have to make a cros
 2.Netflix uses Regional ISPs as hosting platform where , it hosts data  and users can stream from there directly.Such optimizations are done by companies by storing data at local ISPs or regional ISPs
 
 Company named ICANN manages IPs and domains.
+
+WHOIS: u can get detailed info about the company who owns the domain name.This also provides privacy wherein some info of domain owner can be saved from being in public
+
+
+
+ The whois system contains records that provide information about the ownership of domains and the owners themselves. The Internet Corporation for Assigned Names and Numbers (ICANN) regulates domain name registration and ownership, but the records are held by different companies known as registries.
+ A whois record includes contact information for the registrant (owner) and the registrar (organization that registered the domain name), as well as the registration date, last update, and expiration date.
+
+With the Linux whois command, you can perform lookups directly from the command line, which is useful for systems without a graphical user interface or for shell scripts. The command can be installed on Ubuntu, Fedora, and Manjaro using specific commands provided.
+
+
