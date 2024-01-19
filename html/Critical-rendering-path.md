@@ -4,7 +4,9 @@ https://developer.chrome.com/blog/inside-browser-part3#:~:text=Compositing%20is%
 
 
 
-<img width="775" alt="Screenshot 2024-01-19 at 10 32 03 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/3580174f-3576-444b-9455-96f2fc26bb1e">
+<img width="775" alt="Screenshot 2024-01-19 at 10 32 03 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/3580174f-3576-444b-9455-96f2fc26bb1e">  
+
+CSS is render blocking: Until u have fetched ur css and created cssom and render tree, nothing will be shown on screen.
 
 
 Q.
