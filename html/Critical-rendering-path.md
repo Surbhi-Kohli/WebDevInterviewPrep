@@ -8,6 +8,8 @@ https://developer.chrome.com/blog/inside-browser-part3#:~:text=Compositing%20is%
 
 CSS is render blocking: Until u have fetched ur css and created cssom and render tree, nothing will be shown on screen.
 
+JS execution
+<img width="909" alt="Screenshot 2024-01-19 at 11 10 20 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/427625f5-65e8-4f14-8be5-c8759fa7efb4">
 
 Q.
 Which of the following statements are true?
