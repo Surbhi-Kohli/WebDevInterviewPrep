@@ -1,4 +1,5 @@
-/*Given an array and a chunk size,divide the array into many subarrays where each subarray is of the provided size
+/*Given an array and a chunk size,divide the array into many subarrays where each subarray
+is of the provided size
 Examples: chunk([1,2,3,4],2)  --> [[1,2],[3,4]]  
 */
 function chunk(array,size){
