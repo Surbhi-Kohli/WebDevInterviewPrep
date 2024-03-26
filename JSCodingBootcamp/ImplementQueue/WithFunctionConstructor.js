@@ -4,7 +4,7 @@ function Queue(){
      arr.push(val);
     };  
  arr.remove=()=>{
-     return  arr.shift();
+     return  arr.shift();//shift() removes the first item of an array
  };
      arr.peak=()=>{
        return arr[0];    
