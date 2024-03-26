@@ -20,3 +20,6 @@ console.log(ans3); //["kathy", "kathy", "sue"]  Duplicates are not handled prope
 ans4=arr2.filter(el=>arr1.indexOf(el)!=-1)
 .filter((el,i,a)=>a.indexOf(el)==i);
 console.log(ans4); //["kathy", "sue"]  Duplicates handled
+
+
+https://www.freecodecamp.org/news/javascript-array-filter-tutorial-how-to-iterate-through-elements-in-an-array/
