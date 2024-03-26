@@ -17,7 +17,8 @@ function chunk(array,size){
 
 /*slice method in Javascript*/
 Using slice() to convert array-like objects to arrays
-The slice() method is often used with bind() and call() to create a utility method that converts an array-like object into an array.
+The slice() method is often used with bind() and call() to create a utility method that
+  converts an array-like object into an array.
 
 JS
 Copy to Clipboard
