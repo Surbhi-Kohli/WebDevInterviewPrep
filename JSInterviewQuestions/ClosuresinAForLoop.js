@@ -1,3 +1,5 @@
+https://www.freecodecamp.org/news/javascript-settimeout-how-to-set-a-timer-in-javascript-or-sleep-for-n-seconds/
+
 /*********************************************** AMBIGUOUS BEHAVIOUR OF CLOSURES IN A LOOP **********************************************************************/
 
 /*1.Predict the output:   */                                                           |    /*2.Predict the output:*/
