@@ -98,23 +98,39 @@ console.log('I say ',this.saying);
 }
 var crockford=new Person('SEMICOLONS !!!!!!');
 crockford.talk();
-//new creates a new empty objects
-//its going to check prototype of Person and gonna set new object's prototype as that prototype.
-//lets create our own new
+//1.new creates a new empty objects
+//2.its going to check prototype property of Person and gonna set new object's prototype as that prototype.
+//3.the Person constructor function will be called(executed) with 'this' set to the newly created object.
+//4.Returns the new object 
+
+//Rebuilding new
 function newOur(constructor){
 var obj={};
 Object.setPrototypeOf(obj,constructor.prototype);
-//es6-var argsArray=Array.from(arguments);
-var argsArray.Array.prototype.slice.apply(arguments)
-constructor.apply(obj,argsArray.slice(1));
-return constructor.apply(obj,argsArray.slic(1))||obj;
-//we would either return the new object or the non primitive value returned by  constructor
+//es6-> var argsArray=Array.from(arguments);
+ //arguments is not an array
+var argsArray = Array.prototype.slice.apply(arguments)
+constructor.apply(obj,argsArray.slice(1));//['Semicolons!!']
+return constructor.apply(obj,argsArray.slice(1))||obj;
+//we would either return the new object or the non primitive value returned by  constructor, in case the constructor returns it
+/*
+consider this implementation of Person:
+function Person(saying){
+this.saying=saying;
+return {dumbObject:true}
 }
-var crockford1=newOur(Persone,'Semicolons!!!');
-crockford1();
+
+*/
+}
+var crockford1=newOur(Person,'Semicolons!!!');
+crockford1.talk();
 //whenever a function constructor is called to create an object,it has a prototype property
 //If the constructor returns non-primitive object then new will
 //not return the newly created object
+
+
+
+
 /*********************************Episode5 __proto__ vs prototype*****************/
 let cat={breed:'munchkin'}
 let myCat={name:'fluffykins'}
