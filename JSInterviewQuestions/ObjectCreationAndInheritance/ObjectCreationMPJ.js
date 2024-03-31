@@ -47,7 +47,7 @@ sound:'My precious....'
 }
 gollum.jabber()//My precious....
 
-/**Episode 3*/
+/**Episode 3: Prototypes basics*/
 /*prototype=delegate for ur task*/
 function talk(sound){
 console.log(sound)
@@ -69,7 +69,7 @@ Object.setPrototypeOf(cat,animal);
 Object.setPrototypeOf(dog,animal);
 cat.talk();//meow
 dog.talk();//woof
-
+//Prototype chain
 let PrarieDog={
  howl:function(){
      console.log(this.sound.toUpperCase())
@@ -77,13 +77,18 @@ let PrarieDog={
 }
 Object.setProtoTypeOf(prarieDog,dog);//Prototype chain
 prarieDog.howl()//Woof
-//While classes create copy of their parent properties,prototypes delegate the property from their parent
-animal.talk=function(){
+//While classes create copy of their parent properties, prototypes delegate the property from their parent
+animal.talk=function(){// we updated the value of talk in animal,which is a prototype for dog, and now dog.talk changes
+ //*so this demonstrates that we did not create copy of parent property*
 console.log('I am a little teapot');
 }
 dog.talk()//I am a little teapot
+//setPrototypeOf is not used in real use case, we mostly use Object.create, to create an object and its prototype
 
-/*Episode4*/
+
+
+/*Episode4 : the "new" keyword*/
+/*We will discuss the usage of new keyword, when applied to functions*/ 
 function Person(saying)
 {
   this.saying==saying;
