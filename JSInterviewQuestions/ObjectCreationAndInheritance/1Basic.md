@@ -2,6 +2,7 @@
 Classes, Prototypes-Object Oriented JS
 -An enormously popular paradigm for structuring complex code
 -Prototype chain- Feature behind the scenes that enables emulation of OOP .
+<img width="564" alt="Screenshot 2024-03-31 at 6 05 06 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/dfa34f1a-c60e-4b9e-ad50-90179cc43e7a">
 
 
 Core of development
