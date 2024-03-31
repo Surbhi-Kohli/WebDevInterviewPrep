@@ -1,4 +1,6 @@
 /*No right way*/
+
+/* bind and this*/
 let dog={
 sound:'woof',
 talk:function(){
