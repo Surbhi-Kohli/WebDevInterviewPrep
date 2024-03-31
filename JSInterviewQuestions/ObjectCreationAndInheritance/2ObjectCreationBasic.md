@@ -72,9 +72,9 @@ b.If you want to add new functionality to the objects, you will have to manually
 
 5.Solution 2: Make use of prototype(delegation)  
 
-We can store the common functions in an object([[Protoype]]) and have the interpreter ,check that [[Prototype]] instead of the main object 
+We can store the common functions in an object( [[Protoype]] ) and have the interpreter ,check that [[Prototype]] instead of the main object 
 for the function.
-* Using Object.create()-make the link with Object.create
+* Using Object.create() : make the link with Object.create
 
 ```
 function userCreater(name,score){
