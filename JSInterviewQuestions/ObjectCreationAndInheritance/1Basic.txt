@@ -9,7 +9,8 @@ Core of development
 2.Run code(functions) using that data (eg increase user2's score)
 Then why is development hard??
 Reasons:
-In a quiz game, I need to save lots of users, but also admins, quiz questions, quiz outcomes,league tables- all have data and associated functionality
+In a quiz game, I need to save lots of users, but also admins, quiz questions, quiz outcomes,
+league tables- all have data and associated functionality
 
 In 1000,000 lines of code
 -Where is the specific fucntionality when I need it(eg , you want to update score of a user but where is the functionality)
