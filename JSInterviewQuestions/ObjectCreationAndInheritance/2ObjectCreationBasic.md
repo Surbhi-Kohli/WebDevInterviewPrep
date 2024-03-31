@@ -1,4 +1,5 @@
- 1.Basic method
+
+ ## 1.Basic method
  Objects store data and functions(encapsulation)
 
    ```
@@ -22,7 +23,7 @@ user2.increment=function(){
 user2.score++;
 }
 ```
-The above methods are not scalable and efficient.
+The above 2 methods are not scalable and efficient.
 
 
 3.Using Object.create + dot notation
@@ -41,8 +42,8 @@ inefficient.
 
 /******************************************************************/
 
-4.Use factory functions: 
-Solution1:To prevent repitition:generate objects using functions
+4. 
+Solution1(Use factory functions):To prevent repitition,generate objects using functions
 
 ```
 function userCreator(name,score){
@@ -57,7 +58,7 @@ const user2=userCreator("Tim",5);
 
 user1.increment()//increments will's score to 4
 ```
-*Closure:The increment function has info of the surrounding memoryie info of label newUser*
+*Closure:The increment function has info of the surrounding memory ie info of label newUser*
 
 The previous approach of using factory functions has few problems.
    
@@ -69,7 +70,7 @@ a.The code of increment function for all users is same, but the code
 b.If you want to add new functionality to the objects, you will have to manually add to all functions
 
 
-5.Make use of prototype(delegation)  
+5.Solution 2: Make use of prototype(delegation)  
 
 We can store the common functions in an object([[Protoype]]) and have the interpreter ,check that [[Prototype]] instead of the main object 
 for the function.
