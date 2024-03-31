@@ -167,8 +167,8 @@ Example code showing how "new" automates a lot of manual work
 
 `function userCreater(name,score){
 `~~const newUser=Object.create(functionStore)~~
-`~~newUser~~ this.name=name;
-` ~~newUser~~ this.score=score;
+ ~~newUser~~ this.name=name;
+~~newUser~~ this.score=score;
  ~~return newUser~~
 `}
 
