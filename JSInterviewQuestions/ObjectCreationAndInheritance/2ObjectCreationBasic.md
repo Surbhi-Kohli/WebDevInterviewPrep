@@ -43,6 +43,7 @@ inefficient.
 
 4.Use factory functions: 
 Solution1:To prevent repitition:generate objects using functions
+
 ```
 function userCreator(name,score){
 const newUser={};
@@ -56,13 +57,15 @@ const user2=userCreator("Tim",5);
 
 user1.increment()//increments will's score to 4
 ```
-/*Closure:The increment function has info of the surrounding memoryie info of label newUser*/
+/*Closure:The increment function has info of the surrounding memoryie info of label newUser*/  
+
 The previous approach of using factory functions has few problems.
    
-    a.The code of increment function for all users is same, but the code
-      is being stored in each object separately.Each time we create newUser object, we make space in our system's memory for all our data and functions.
-      But our functions are just copies of same code(memory wastage)
-    b.If you want to add new functionality to the objects, you will have to manually add to all functions
+a.The code of increment function for all users is same, but the code
+  is being stored in each object separately.Each time we create newUser object,
+  we make space in our system's memory for all our data and functions.
+  But our functions are just copies of same code(memory wastage)
+b.If you want to add new functionality to the objects, you will have to manually add to all functions
 
 
 5.Make use of prototype(delegation)
