@@ -108,7 +108,7 @@ function newOur(constructor){
 var obj={};
 Object.setPrototypeOf(obj,constructor.prototype);
 //es6-> var argsArray=Array.from(arguments);
- //arguments is not an array
+ //arguments is not an array, so we convert it to array and extract the part we want
 var argsArray = Array.prototype.slice.apply(arguments)
 constructor.apply(obj,argsArray.slice(1));//['Semicolons!!']
 return constructor.apply(obj,argsArray.slice(1))||obj;
