@@ -57,14 +57,15 @@ const user2=userCreator("Tim",5);
 
 user1.increment()//increments will's score to 4
 ```
-/*Closure:The increment function has info of the surrounding memoryie info of label newUser*/  
+*Closure:The increment function has info of the surrounding memoryie info of label newUser*
 
 The previous approach of using factory functions has few problems.
    
 a.The code of increment function for all users is same, but the code
   is being stored in each object separately.Each time we create newUser object,
   we make space in our system's memory for all our data and functions.
-  But our functions are just copies of same code(memory wastage)
+  But our functions are just copies of same code(memory wastage).  
+  
 b.If you want to add new functionality to the objects, you will have to manually add to all functions
 
 
@@ -72,9 +73,10 @@ b.If you want to add new functionality to the objects, you will have to manually
 We can store the common functions in an object([[Protoype]]) and have the interpreter ,check that [[Prototype]] instead of the main object 
 for the function.
 * Using Object.create()-make the link with Object.create
+* 
 ```
 function userCreater(name,score){
-const newUser=Object.create(userFunctionStore);//the userFunctionStore is set as the [[Prototype]] of the newly created object
+const newUser=Object.create(userFunctionStore);//the userFunctionStore is set as the [[Prototype]] //of the newly created object
 newUser.name=name;
 newUser.score=score;
 return newUser;
