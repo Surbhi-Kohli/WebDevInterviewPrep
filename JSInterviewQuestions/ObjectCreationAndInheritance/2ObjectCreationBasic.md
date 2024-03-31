@@ -145,9 +145,9 @@ prarieDog.howl()//Woof
 Object.setPrototypeOf vs Object.create
 
 The MDN  says in particular:
-If you care about performance you should avoid setting the [[Prototype]] of an object. Instead, create a new object with the desired [[Prototype]] using Object.create()Coz messing around with prototypes directly is a bad idea .In short it looks like using Object.create is much faster than Object.setPrototypeOf when used at extremely larger scale.
+If you care about performance you should avoid setting the [[Prototype]] of an object. Instead, create a new object with the desired [[Prototype]] using Object.create() Coz messing around with prototypes directly is a bad idea .In short it looks like using Object.create is much faster than Object.setPrototypeOf when used at extremely larger scale.
 
-6.Object creation via new keyword
+6.Object creation via new keyword  
 The new keyword is doing all the steps of object.create behind the scenes
 When we call a function with ew keyword ,2 things are automated.
 1Creates a new object
@@ -195,7 +195,8 @@ So in the prototype property of the object version of userCreater , we will stor
 come out of running userCreater with "new" keyword in front of them.
 
 
-Final code
+Final code: 
+
 ```
 function userCreater(name,score){
 this.name=name;
@@ -227,7 +228,7 @@ We have to uppercase the first letter of the function so we know it requires "ne
 What if u run userCreater without the new keyword.Then the "this" would be the global window .By just looking at the code , we can't be sure that
 we need to use the function along with the "new" keword
 
- _ _ proto_ _ vs prototype 
+## _ _ proto_ _ vs prototype 
 
 The objects that you create have a _ _ proto _ _ property which is a getter/setter for
 the object's [[Prototype]] although it is not recommended
