@@ -78,7 +78,7 @@ for the function.
 
 ```
 function userCreater(name,score){
-const newUser=Object.create(userFunctionStore);//the userFunctionStore is set as the [[Prototype]]   //of the newly created object
+const newUser=Object.create(userFunctionStore);//the userFunctionStore is set as the //[[Prototype]]   //of the newly created object
 newUser.name=name;
 newUser.score=score;
 return newUser;
@@ -147,7 +147,31 @@ Object.setPrototypeOf vs Object.create
 
 The MDN  says in particular:
 If you care about performance you should avoid setting the [[Prototype]] of an object. Instead, create a new object with the desired [[Prototype]] using Object.create() Coz messing around with prototypes directly is a bad idea .In short it looks like using Object.create is much faster than Object.setPrototypeOf when used at extremely larger scale.
+### Create and invoke a new function (add1) inside increment, to understand this keyword:
+```
+function userCreator(name,score){
+const newUser=Object.create(userFunctionStore);
+newUser.name=name;
+newUser.score=score;
+ return newUser;
+}
+const userFunctionStore={
+  increment:function(){
+   function add1(){
+   console.log(this.score);//undefined
+   this.score++;
+   console.log(this.score);//Nan (since we did ++ on NaN)
+  }
+  add1()
+}
+}
+const user1= userCreator("Will",2);
+const user2 = userCreator("Tim",5)
+user1.increment()
+//WHat does 'this' get auto assigned to?: the global Window object
+To fix this u can use call or apply 
 
+/*****************/
 6.Object creation via new keyword  
 The new keyword is doing all the steps of object.create behind the scenes
 When we call a function with ew keyword ,2 things are automated.
