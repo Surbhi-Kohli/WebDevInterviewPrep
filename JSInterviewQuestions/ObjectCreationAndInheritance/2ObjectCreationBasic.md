@@ -73,10 +73,10 @@ b.If you want to add new functionality to the objects, you will have to manually
 We can store the common functions in an object([[Protoype]]) and have the interpreter ,check that [[Prototype]] instead of the main object 
 for the function.
 * Using Object.create()-make the link with Object.create
-* 
+
 ```
 function userCreater(name,score){
-const newUser=Object.create(userFunctionStore);//the userFunctionStore is set as the [[Prototype]] //of the newly created object
+const newUser=Object.create(userFunctionStore);//the userFunctionStore is set as the [[Prototype]]   //of the newly created object
 newUser.name=name;
 newUser.score=score;
 return newUser;
