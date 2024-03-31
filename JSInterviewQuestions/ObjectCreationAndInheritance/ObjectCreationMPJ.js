@@ -8,10 +8,16 @@ console.log(this.sound);
 }
 }
 dog.talk();
-let talkFunction=dog.talk();
-talkFunction();//undefined
-let boundFunction=talkFunction.bind(dog);
+let talkFunction=dog.talk;
+talkFunction();//undefined, since the 'this' would be global and there is no sound variable attached to global window
+let boundFunction=talkFunction.bind(dog);//work around == tie the this of talkFunction to dog,
 boundFunction()//woof
+
+/************/
+let button =document.getElementById("myNiceBtn");
+button.addEventListener('click',dog.talk);//undefined , since this would be window object, instead of dog
+//solution:button.addEventListener('click',dog.talk.bind(dog))
+
 /*****/
 function talk(){
 console.log(this.sound);
