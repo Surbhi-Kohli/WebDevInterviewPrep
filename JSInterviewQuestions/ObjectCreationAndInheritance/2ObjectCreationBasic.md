@@ -100,14 +100,14 @@ Also note that an implicit argument("this") is passed to the increment function 
 
 <img width="408" alt="Screenshot 2022-12-17 at 1 48 22 PM" src="https://user-images.githubusercontent.com/32058209/208232832-d10fbffd-9c8c-408d-a598-13db645659f5.png">
 
-    ## Prototype chain
+  ## Prototype chain
   
    Each Object in javascript has big headline object which is the Object.It acts as a common store of functions and properties which
    can be accessed via Object.prototype .
    Notice that user1 does not have any "hasOwnProperty" function defined on it.Neither does its immediate prototype , which is userFunctionStore has that.
   So we check in the [[Prototype]] of userFunctionStore which is   the main Object.prototype, which is common for all JS objects has that .The main Object.prototype     has its own [[Prototype]] value which is set to null.
   
-    ## Using Object.setPrototype
+   ## Using Object.setPrototype
 
 ```
 function talk(sound){
