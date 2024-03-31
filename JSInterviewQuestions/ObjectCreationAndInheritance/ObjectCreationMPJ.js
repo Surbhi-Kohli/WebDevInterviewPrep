@@ -114,7 +114,7 @@ var crockford1=newOur(Persone,'Semicolons!!!');
 crockford1();
 //whenever a function constructor is called to create an object,it has a prototype property
 //If the constructor returns non-primitive object then new will
-not return the newly created object
+//not return the newly created object
 /*********************************Episode5 __proto__ vs prototype*****************/
 let cat={breed:'munchkin'}
 let myCat={name:'fluffykins'}
