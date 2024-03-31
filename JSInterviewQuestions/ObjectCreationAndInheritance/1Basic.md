@@ -22,7 +22,7 @@ images on league tables)
 For finding the right functionlaity and making sure it applies to right bits ,we need some organizing structure.
 
 Key feature I want in my code
-1.Easy ti reason about
+1.Easy to reason about
 2.Easy to add new features (new functions)
 3.Efficient and performant
 The OOP paradigm aims to let us achieve these goals
