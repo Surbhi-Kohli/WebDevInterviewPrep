@@ -69,7 +69,8 @@ a.The code of increment function for all users is same, but the code
 b.If you want to add new functionality to the objects, you will have to manually add to all functions
 
 
-5.Make use of prototype(delegation)
+5.Make use of prototype(delegation)  
+
 We can store the common functions in an object([[Protoype]]) and have the interpreter ,check that [[Prototype]] instead of the main object 
 for the function.
 * Using Object.create()-make the link with Object.create
@@ -94,7 +95,7 @@ console.log(user1.hasOwnProperty("increment"));//false
 ```
 When user1.increment is called, interpreter searches for increment function in local memoryof user1.It is not there 
 so it checks for [[Prototype]].
-_ _proto_ _ is the getter/setter function for the [[Prototype]], although it is not recommended to set prototype via _ _proto_ _
+_ _ proto _ _ is the getter/setter function for the [[Prototype]], although it is not recommended to set prototype via _ _ proto _ _
 
 Also note that an implicit argument("this") is passed to the increment function which actually points to the calling object(and that is how the calling object's)
 
@@ -228,9 +229,9 @@ we need to use the function along with the "new" keword
 
  _ _ proto_ _ vs prototype 
 
-The objects that you create have a _ _proto_ _ property which is a getter/setter for
+The objects that you create have a _ _ proto _ _ property which is a getter/setter for
 the object's [[Prototype]] although it is not recommended
-to set prototype via _ _ proto_ _.  (* people use _ _ proto_ _ to refer [[Prototype]])
+to set prototype via _ _ proto _ _.  (* people use _ _ proto_ _ to refer [[Prototype]])
 
 Whereas _prototype_ is a property available on all functions as well as the global "Object".Thats because the global Object 
 is actually a function which has the _prototype_ property.
