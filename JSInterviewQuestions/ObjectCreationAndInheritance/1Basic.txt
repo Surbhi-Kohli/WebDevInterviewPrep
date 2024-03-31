@@ -13,8 +13,10 @@ In a quiz game, I need to save lots of users, but also admins, quiz questions, q
 league tables- all have data and associated functionality
 
 In 1000,000 lines of code
--Where is the specific fucntionality when I need it(eg , you want to update score of a user but where is the functionality)
--How to ensure that the functionality is only used on. the right data(eg you dont want to use the functionality related to updating
+-Where is the specific functionality when I need it(eg , you want to update score of 
+a user but where is the functionality)
+-How to ensure that the functionality is only used on. the right
+data(eg you dont want to use the functionality related to updating
 images on league tables)
 
 For finding the right functionlaity and making sure it applies to right bits ,we need some organizing structure.
