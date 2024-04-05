@@ -91,7 +91,7 @@
           Object.setProtoTypeOf(prarieDog,dog);//Prototype chain
           prarieDog.howl()//Woof
 
-/* While classes create copy of their parent properties, prototypes delegate the property from their parent */
+/* While classes(in languages like java) create copy of their parent properties, prototypes delegate the property from their parent */
 animal.talk=function(){/* we updated the value of talk in animal,which is a prototype for dog, and now dog.talk changes.so this demonstrates that we did not create copy of parent property*/
 console.log('I am a little teapot');
 }
