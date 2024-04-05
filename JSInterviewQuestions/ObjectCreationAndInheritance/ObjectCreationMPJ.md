@@ -189,11 +189,12 @@ console.log(myCat.tailLength)//15
 __ proto __ is a historical getter/setter for [[Prototype]]
 It’s a common mistake of novice developers not to know the difference between these two.
 
-Please note that __ proto __ is not the same as the internal [[Prototype]] property. 
+Please note that __ proto __ is not the same as the internal [[Prototype]] property.   
+
 It’s a getter/setter for [[Prototype]].The __ proto __ property is a bit outdated.
 It exists for historical reasons, modern JavaScript suggests that we should 
 use Object.getPrototypeOf/Object.setPrototypeOf
-functions instead that get/set the prototype.*/
+functions instead that get/set the prototype.
 /*************************************************/
  ## talking about 'prototype' property
 ```
