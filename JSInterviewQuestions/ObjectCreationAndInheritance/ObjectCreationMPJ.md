@@ -1,23 +1,25 @@
 /*No right way*/
 
 /* bind and this*/
-let dog={
-sound:'woof',
-talk:function(){
-console.log(this.sound);
-}
-}
-dog.talk();
-let talkFunction=dog.talk;
-talkFunction();//undefined, since the 'this' would be global and there is no sound variable attached to global window
-let boundFunction=talkFunction.bind(dog);//work around == tie the this of talkFunction to dog,
-boundFunction()//woof
-
+```
+     let dog={
+     sound:'woof',
+     talk:function(){
+     console.log(this.sound);
+     }
+     }
+     dog.talk();
+     let talkFunction=dog.talk;
+     talkFunction();//undefined, since the 'this' would be global and there is no sound variable attached to global window
+     let boundFunction=talkFunction.bind(dog);//work around == tie the this of talkFunction to dog,
+     boundFunction()//woof
+```
 /************/
+```
 let button =document.getElementById("myNiceBtn");
 button.addEventListener('click',dog.talk);//undefined , since this would be window object, instead of dog
 //solution:button.addEventListener('click',dog.talk.bind(dog))
-
+```
 /*****/
 function talk(){
 console.log(this.sound);
@@ -112,7 +114,8 @@ Object.setPrototypeOf(obj,constructor.prototype);
 var argsArray = Array.prototype.slice.apply(arguments)
 constructor.apply(obj,argsArray.slice(1));//['Semicolons!!']
 return constructor.apply(obj,argsArray.slice(1))||obj;
-//we would either return the new object or the non primitive value returned by  constructor, in case the constructor returns it
+//we would either return the new object or the non primitive value returned by  constructor,
+ //in case the constructor returns it
 /*
 consider this implementation of Person:
 function Person(saying){
