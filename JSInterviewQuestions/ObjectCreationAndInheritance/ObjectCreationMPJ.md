@@ -179,20 +179,22 @@ __ proto __ is a historical getter/setter for [[Prototype]]
 It’s a common mistake of novice developers not to know the difference between these two.
 
 Please note that __ proto __ is not the same as the internal [[Prototype]] property. 
-It’s a getter/setter for [[Prototype]].The __proto__ property is a bit outdated.
+It’s a getter/setter for [[Prototype]].The __ proto __ property is a bit outdated.
 It exists for historical reasons, modern JavaScript suggests that we should 
 use Object.getPrototypeOf/Object.setPrototypeOf
 functions instead that get/set the prototype.*/
 /*************************************************/
-///talking about prototype property
+ ## talking about 'prototype' property
 ```
      function Dog(){}
      Dog.prototype.breed="Bulldog"
      let MyDoggie=new Dog();
      MyDoggie.breed//Bulldog
      
-     //prototypes only exists on functions just to cater to the case where ur function is a function constructor and u want to create objects 
-     //using that  object.
+     /*prototypes only exists on functions just to cater to the case where
+       ur function is a function constructor and u want to create objects 
+       using that  object.*/
+
      MyDoggie.__proto__//{breed:'Bulldog'}
      MyDoggie.prototype //undefined
      function Giraffe(){}
@@ -201,11 +203,12 @@ functions instead that get/set the prototype.*/
      console.log(koala.prototype);//undefined
      console.log(koala.__proto__===Object.prototype) //true
 ```
-//thats because the global Object is actually a function which has the prototype property
-//prototype property is going to be used as a prototype(delegate) if u are calling new
+Thats because the global Object is actually a function which has the 'prototype' property.
+prototype property is going to be used as a prototype(delegate) if u are calling new
 
 ## Episode 6 Using object.create()
-/*Object.create() creates a new object with its prototype set to the passed object*/
+Object.create() creates a new object with its prototype set to the passed object:
+
    ```
          const cat={
            makeSound:function(){
@@ -222,11 +225,13 @@ functions instead that get/set the prototype.*/
           
           console.log('Is mark a cat?',cat.isPrototypeOf(mark)) //true
 ```
-/*Why does the Object.create even exist---> Because Object.create is more natural to the prototype model than new.
+Why does the Object.create even exist?
+Because Object.create is more natural to the prototype model than new.
 Object.create () does creation of object and prototype setting in a single go. 
 In a real life application prefer using Object.create() over setPrototype.Coz messing around with prototypes directly is a bad idea and also setPrototypeOf is bad
-in terms of performance*/
-/*IMPLEMENT YOUR OWN Object.create()*/
+in terms of performance
+## IMPLEMENT YOUR OWN Object.create()
+
 function objectCreate(proto,props){
  const obj={};
  Object.setPrototypeOf(obj,proto);
@@ -244,5 +249,5 @@ const cat={
  console.log(this.sound);
  }
 }
-const tommy=Object.create(cat)//{__proto__{init,makeSound}}
+const tommy=Object.create(cat)//{__ proto __{init,makeSound}}
 const tom=Object.create(cat).init("woof").makeSound()//woof
