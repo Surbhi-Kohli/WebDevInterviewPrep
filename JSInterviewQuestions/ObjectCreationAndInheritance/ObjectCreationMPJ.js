@@ -138,15 +138,26 @@ Object.setPrototypeOf(myCat,cat);
 myCat.breed//munchkin
 /*Question -> When we try accessing breed of myCat,how does it know that it can access some property that it does not directly have ie,what makes the lookup
   myCat.breed possible ?
-  Ans-__proto__ -->there is a property on myCat that is __proto__ "WHICH HAS A REFERENCE TO THE SAME OBJECT cat-->IMPLIES NO INSTANCE IS CREATED ".SO
-  We can say that __proto__ is a refernce to the object we used while setting prototype.
+  Ans : [[Prototype]] -->there is a property on myCat that is [[Prototype]],
+ "WHICH HAS A REFERENCE TO THE SAME OBJECT cat-->IMPLIES NO INSTANCE IS CREATED ".So
+  We can say that [[Prototype]] is a reference to the object we used while setting prototype.
   THE ABOVE BEHAVIOUR IS CALLED DELEGATION*/
-/*When we do Object.setPrototypeOf,the 2nd arg will be __proto__ 
-to 1st*/
+
 cat.tailLength=15
 myCat.__proto__//cat{breed:'munchkin',tailLength:15};
+//The __proto__ accessor property of Object instances exposes the [[Prototype]] (either an object or null) of 
+//this object.
 console.log(myCat.tailLength)//15
+/*
+__proto__ is a historical getter/setter for [[Prototype]]
+It’s a common mistake of novice developers not to know the difference between these two.
 
+Please note that __proto__ is not the same as the internal [[Prototype]] property. 
+It’s a getter/setter for [[Prototype]].The __proto__ property is a bit outdated.
+It exists for historical reasons, modern JavaScript suggests that we should 
+use Object.getPrototypeOf/Object.setPrototypeOf
+functions instead that get/set the prototype.*/
+/*************************************************/
 ///talking about prototype property
 function Dog(){}
 Dog.prototype.breed="Bulldog"
