@@ -82,6 +82,14 @@
           Object.setPrototypeOf(dog,animal);
           cat.talk();//meow
           dog.talk();//woof
+          console.log(Object.getPrototypeOf(cat));
+         /*
+         The above logs the following object(which is the animal object):
+         {
+         talk:ƒ talk(),
+         [[Prototype]]:Object
+         }
+         */ 
           //Prototype chain
           let PrarieDog={
            howl:function(){
