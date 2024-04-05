@@ -1,6 +1,6 @@
-/*No right way*/
+## No right way of object creation
 
-/* bind and this*/
+/* 1 bind and this */
 ```
      let dog={
      sound:'woof',
@@ -10,31 +10,38 @@
      }
      dog.talk();
      let talkFunction=dog.talk;
-     talkFunction();//undefined, since the 'this' would be global and there is no sound variable attached to global window
-     let boundFunction=talkFunction.bind(dog);//work around == tie the this of talkFunction to dog,
+     talkFunction();//undefined, since the 'this' would be global and there is no sound variable 
+                    //attached to global window
+     let boundFunction=talkFunction.bind(dog);//work around == tie the this of talkFunction
+                                              // to dog,
      boundFunction()//woof
 ```
 /************/
 ```
-let button =document.getElementById("myNiceBtn");
-button.addEventListener('click',dog.talk);//undefined , since this would be window object, instead of dog
-//solution:button.addEventListener('click',dog.talk.bind(dog))
+     let button =document.getElementById("myNiceBtn");
+     button.addEventListener('click',dog.talk);//undefined , since this would be window object, 
+                                              //instead of dog
+     //solution:button.addEventListener('click',dog.talk.bind(dog))
 ```
 /*****/
-function talk(){
-console.log(this.sound);
-}
-let boromir={
-sound:'One doesn't simply walk into a mordor'
-}
-let talkBoundToBoromir=talk.bind(boromir);
-talkBoundToBoromir();//One doesn't simply walk into a mordor;
-talk;//undefined
+```
+               function talk(){
+               console.log(this.sound);
+               }
+               let boromir={
+               sound:'One doesn't simply walk into a mordor'
+               }
+               let talkBoundToBoromir=talk.bind(boromir);
+               talkBoundToBoromir();//One doesn't simply walk into a mordor;
+               talk;//undefined
+               
+               let boromir2={
+               speak:talk;
+               }
+               boromir.speak();//One doesn't simply walk into a mordor;
 
-let boromir2={
-speak:talk;
-}
-boromir.speak();//One doesn't simply walk into a mordor;
+```
+
 /**Example *
 function talk(){
 console.log(this.sound);
@@ -49,36 +56,38 @@ sound:'My precious....'
 }
 gollum.jabber()//My precious....
 
-/**Episode 3: Prototypes basics*/
-/*prototype=delegate for ur task*/
-function talk(sound){
-console.log(sound)
-}
-talk('woof');
-function talk(){
-console.log(this.sound);
-}
-let animal={
-talk:talk
-}
-let cat={
-sound:'meow!'
-}
-let dog={
- sound:'woof!'
-}
-Object.setPrototypeOf(cat,animal);
-Object.setPrototypeOf(dog,animal);
-cat.talk();//meow
-dog.talk();//woof
-//Prototype chain
-let PrarieDog={
- howl:function(){
-     console.log(this.sound.toUpperCase())
- }
-}
-Object.setProtoTypeOf(prarieDog,dog);//Prototype chain
-prarieDog.howl()//Woof
+## Episode 3: Prototypes basics
+/* prototype=delegate for ur task */
+```
+          function talk(sound){
+          console.log(sound)
+          }
+          talk('woof');
+          function talk(){
+          console.log(this.sound);
+          }
+          let animal={
+          talk:talk
+          }
+          let cat={
+          sound:'meow!'
+          }
+          let dog={
+           sound:'woof!'
+          }
+          Object.setPrototypeOf(cat,animal);
+          Object.setPrototypeOf(dog,animal);
+          cat.talk();//meow
+          dog.talk();//woof
+          //Prototype chain
+          let PrarieDog={
+           howl:function(){
+               console.log(this.sound.toUpperCase())
+           }
+          }
+          Object.setProtoTypeOf(prarieDog,dog);//Prototype chain
+          prarieDog.howl()//Woof
+ ```
 //While classes create copy of their parent properties, prototypes delegate the property from their parent
 animal.talk=function(){// we updated the value of talk in animal,which is a prototype for dog, and now dog.talk changes
  //*so this demonstrates that we did not create copy of parent property*
