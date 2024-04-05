@@ -157,16 +157,20 @@ dog.talk()//I am a little teapot
      let myCat={name:'fluffykins'}
      Object.setPrototypeOf(myCat,cat);
      myCat.breed//munchkin
+     cat.tailLength=15
+     myCat.__proto__//cat{breed:'munchkin',tailLength:15};
 ```
-/* Question -> When we try accessing breed of myCat,how does it know that it can access some property that it does not directly have ie,what makes the lookup */
+ Question -> When we try accessing breed of myCat,how does it know that it can access some property that it does not directly have ie,what makes the lookup 
   myCat.breed possible ?
   Ans : [[Prototype]] -->there is a property on myCat that is [[Prototype]],
  "WHICH HAS A REFERENCE TO THE SAME OBJECT cat-->IMPLIES NO INSTANCE IS CREATED ".So
   We can say that [[Prototype]] is a reference to the object we used while setting prototype.
-  THE ABOVE BEHAVIOUR IS CALLED DELEGATION*/
+  THE ABOVE BEHAVIOUR IS CALLED DELEGATION.
+  
+  <img width="458" alt="Screenshot 2024-04-05 at 10 34 38 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/a8aac28b-95a5-489a-b68a-862e8e499157">
 
-cat.tailLength=15
-myCat.__proto__//cat{breed:'munchkin',tailLength:15};
+
+
 //The __proto__ accessor property of Object instances exposes the [[Prototype]] (either an object or null) of 
 //this object.
 console.log(myCat.tailLength)//15
