@@ -184,8 +184,8 @@ dog.talk()//I am a little teapot
 
 //The __ proto __ accessor property of Object instances exposes the [[Prototype]] (either an object or null) of 
 //this object.
-console.log(myCat.tailLength)//15
-/*
+//console.log(myCat.tailLength)//15
+
 __ proto __ is a historical getter/setter for [[Prototype]]
 It’s a common mistake of novice developers not to know the difference between these two.
 
@@ -204,7 +204,7 @@ functions instead that get/set the prototype.
      
      /*prototypes only exists on functions just to cater to the case where
        ur function is a function constructor and u want to create objects 
-       using that  object.*/
+       using that  object. */
 
      MyDoggie.__proto__//{breed:'Bulldog'}
      MyDoggie.prototype //undefined
