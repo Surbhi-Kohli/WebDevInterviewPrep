@@ -231,23 +231,25 @@ Object.create () does creation of object and prototype setting in a single go.
 In a real life application prefer using Object.create() over setPrototype.Coz messing around with prototypes directly is a bad idea and also setPrototypeOf is bad
 in terms of performance
 ## IMPLEMENT YOUR OWN Object.create()
+```
 
-function objectCreate(proto,props){
- const obj={};
- Object.setPrototypeOf(obj,proto);
- return obj;
-}
-const mark2=objectCreate(cat);
-cat.isPrototypeOf(mark2) //true;
-//Analogy with classes
-const cat={
- init:function(sound){ //init is like a constructor
-  this.sound=sound;
-  return this;//when we return this,we can chain objects onto init calls
- },
- makeSound:function(){
- console.log(this.sound);
- }
-}
-const tommy=Object.create(cat)//{__ proto __{init,makeSound}}
-const tom=Object.create(cat).init("woof").makeSound()//woof
+     function objectCreate(proto,props){
+      const obj={};
+      Object.setPrototypeOf(obj,proto);
+      return obj;
+     }
+     const mark2=objectCreate(cat);
+     cat.isPrototypeOf(mark2) //true;
+     //Analogy with classes
+     const cat={
+      init:function(sound){ //init is like a constructor
+       this.sound=sound;
+       return this;//when we return this,we can chain objects onto init calls
+      },
+      makeSound:function(){
+      console.log(this.sound);
+      }
+     }
+     const tommy=Object.create(cat)//{__ proto __{init,makeSound}}
+     const tom=Object.create(cat).init("woof").makeSound()//woof
+```
