@@ -12,15 +12,16 @@
      let talkFunction=dog.talk;
      talkFunction();//undefined, since the 'this' would be global
                     //and there is no sound variable attached to global window
-     let boundFunction=talkFunction.bind(dog);//work around == tie the this of talkFunction
-                                              // to dog,
+     let boundFunction=talkFunction.bind(dog);
+                     //work around == tie the this of talkFunction to dog,
      boundFunction()//woof
 ```
  Another example:
+ 
 ```
      let button =document.getElementById("myNiceBtn");
-     button.addEventListener('click',dog.talk);//undefined , since this would be window object, 
-                                              //instead of dog
+     button.addEventListener('click',dog.talk);//undefined , since this
+                                              //would be window object, instead of dog
      //solution:button.addEventListener('click',dog.talk.bind(dog))
 ```
 /*****/
@@ -42,7 +43,7 @@
 
 ```
 
-/**Example */
+/**Important Example demonstrating value of 'this' */
 ```
      function talk(){
      console.log(this.sound);
@@ -90,18 +91,17 @@
           Object.setProtoTypeOf(prarieDog,dog);//Prototype chain
           prarieDog.howl()//Woof
 
-//While classes create copy of their parent properties, prototypes delegate the property from their parent
-animal.talk=function(){// we updated the value of talk in animal,which is a prototype for dog, and now dog.talk changes
- //*so this demonstrates that we did not create copy of parent property*
+/* While classes create copy of their parent properties, prototypes delegate the property from their parent */
+animal.talk=function(){/* we updated the value of talk in animal,which is a prototype for dog, and now dog.talk changes.so this demonstrates that we did not create copy of parent property*/
 console.log('I am a little teapot');
 }
 dog.talk()//I am a little teapot
 ```
-//setPrototypeOf is not used in real use case, we mostly use Object.create, to create an object and its prototype
+/* setPrototypeOf is not used in real use case, we mostly use Object.create, to create an object and its prototype */
 
 
 
-/*Episode4 : the "new" keyword*/
+## Episode4 : the "new" keyword
 /*We will discuss the usage of new keyword, when applied to functions*/ 
 function Person(saying)
 {
@@ -191,22 +191,24 @@ console.log(koala.__proto__===Object.prototype) //true
 //thats because the global Object is actually a function which has the prototype property
 //prototype property is going to be used as a prototype(delegate) if u are calling new
 
-/**Episode 6 Using object.create()****/
+## Episode 6 Using object.create()
 /*Object.create() creates a new object with its prototype set to the passed object*/
-const cat={
- makeSound:function(){
-  console.log(this.sound); 
- }
-}
-const mark=Object.create(cat);
-mark.sound='meuwwff';
-mark.makeSound();//meuwff
-
-const waffles=Object.create(cat);
-waffles.sound='wrrf';
-waffles.makeSound();
-
-console.log('Is mark a cat?',cat.isPrototypeOf(mark)) //true
+   ```
+         const cat={
+           makeSound:function(){
+            console.log(this.sound); 
+           }
+          }
+          const mark=Object.create(cat);
+          mark.sound='meuwwff';
+          mark.makeSound();//meuwff
+          
+          const waffles=Object.create(cat);
+          waffles.sound='wrrf';
+          waffles.makeSound();
+          
+          console.log('Is mark a cat?',cat.isPrototypeOf(mark)) //true
+```
 /*Why does the Object.create even exist---> Because Object.create is more natural to the prototype model than new.
 Object.create () does creation of object and prototype setting in a single go. 
 In a real life application prefer using Object.create() over setPrototype.Coz messing around with prototypes directly is a bad idea and also setPrototypeOf is bad
