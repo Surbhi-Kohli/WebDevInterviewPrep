@@ -192,8 +192,7 @@ It’s a common mistake of novice developers not to know the difference between 
 Please note that __ proto __ is not the same as the internal [[Prototype]] property.   
 
 It’s a getter/setter for [[Prototype]].The __ proto __ property is a bit outdated.
-It exists for historical reasons, modern JavaScript suggests that we should 
-use Object.getPrototypeOf/Object.setPrototypeOf
+It exists for historical reasons, modern JavaScript suggests that we should use Object.getPrototypeOf/Object.setPrototypeOf
 functions instead that get/set the prototype.
 /*************************************************/
  ## talking about 'prototype' property
