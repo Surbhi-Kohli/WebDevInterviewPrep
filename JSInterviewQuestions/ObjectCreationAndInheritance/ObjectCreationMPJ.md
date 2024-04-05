@@ -82,6 +82,9 @@
           Object.setPrototypeOf(dog,animal);
           cat.talk();//meow
           dog.talk();//woof
+           console.log(cat.prototype);//undefined
+          /** there is a difference between [[Prototype ]] 
+           property and  prototype--discussed later*/
           console.log(Object.getPrototypeOf(cat));
          /*
          The above logs the following object(which is the animal object):
