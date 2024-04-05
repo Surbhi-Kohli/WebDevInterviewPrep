@@ -156,6 +156,7 @@ MyDoggie.breed//Bulldog
 //prototypes only exists on functions just to cater to the case where ur function is a function constructor and u want to create objects 
 //using that  object.
 MyDoggie.__proto__//{breed:'Bulldog'}
+MyDoggie.prototype //undefined
 function Giraffe(){}
 console.log(Giraffe.prototype); //{} empty object
 let koala={}
