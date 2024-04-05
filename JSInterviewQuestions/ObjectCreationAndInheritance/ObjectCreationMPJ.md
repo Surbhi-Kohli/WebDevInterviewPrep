@@ -151,7 +151,7 @@ dog.talk()//I am a little teapot
 //not return the newly created object
 
 
-## Episode5 __proto__ vs prototype 
+## Episode5 __ proto __ vs prototype 
 ```
      let cat={breed:'munchkin'}
      let myCat={name:'fluffykins'}
@@ -171,34 +171,36 @@ dog.talk()//I am a little teapot
 
 
 
-//The __proto__ accessor property of Object instances exposes the [[Prototype]] (either an object or null) of 
+//The __ proto __ accessor property of Object instances exposes the [[Prototype]] (either an object or null) of 
 //this object.
 console.log(myCat.tailLength)//15
 /*
-__proto__ is a historical getter/setter for [[Prototype]]
+__ proto __ is a historical getter/setter for [[Prototype]]
 It’s a common mistake of novice developers not to know the difference between these two.
 
-Please note that __proto__ is not the same as the internal [[Prototype]] property. 
+Please note that __ proto __ is not the same as the internal [[Prototype]] property. 
 It’s a getter/setter for [[Prototype]].The __proto__ property is a bit outdated.
 It exists for historical reasons, modern JavaScript suggests that we should 
 use Object.getPrototypeOf/Object.setPrototypeOf
 functions instead that get/set the prototype.*/
 /*************************************************/
 ///talking about prototype property
-function Dog(){}
-Dog.prototype.breed="Bulldog"
-let MyDoggie=new Dog();
-MyDoggie.breed//Bulldog
-
-//prototypes only exists on functions just to cater to the case where ur function is a function constructor and u want to create objects 
-//using that  object.
-MyDoggie.__proto__//{breed:'Bulldog'}
-MyDoggie.prototype //undefined
-function Giraffe(){}
-console.log(Giraffe.prototype); //{} empty object
-let koala={}
-console.log(koala.prototype);//undefined
-console.log(koala.__proto__===Object.prototype) //true
+```
+     function Dog(){}
+     Dog.prototype.breed="Bulldog"
+     let MyDoggie=new Dog();
+     MyDoggie.breed//Bulldog
+     
+     //prototypes only exists on functions just to cater to the case where ur function is a function constructor and u want to create objects 
+     //using that  object.
+     MyDoggie.__proto__//{breed:'Bulldog'}
+     MyDoggie.prototype //undefined
+     function Giraffe(){}
+     console.log(Giraffe.prototype); //{} empty object
+     let koala={}
+     console.log(koala.prototype);//undefined
+     console.log(koala.__proto__===Object.prototype) //true
+```
 //thats because the global Object is actually a function which has the prototype property
 //prototype property is going to be used as a prototype(delegate) if u are calling new
 
