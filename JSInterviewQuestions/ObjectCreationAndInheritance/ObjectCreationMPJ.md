@@ -101,57 +101,64 @@ dog.talk()//I am a little teapot
 
 
 
-## Episode4 : the "new" keyword
-/*We will discuss the usage of new keyword, when applied to functions*/ 
-function Person(saying)
-{
-  this.saying==saying;
-}
-Person.prototype.talk=function(){
-console.log('I say ',this.saying);
-}
-var crockford=new Person('SEMICOLONS !!!!!!');
-crockford.talk();
-//1.new creates a new empty objects
-//2.its going to check prototype property of Person and gonna set new object's prototype as that prototype.
-//3.the Person constructor function will be called(executed) with 'this' set to the newly created object.
-//4.Returns the new object 
-
-//Rebuilding new
-function newOur(constructor){
-var obj={};
-Object.setPrototypeOf(obj,constructor.prototype);
-//es6-> var argsArray=Array.from(arguments);
- //arguments is not an array, so we convert it to array and extract the part we want
-var argsArray = Array.prototype.slice.apply(arguments)
-constructor.apply(obj,argsArray.slice(1));//['Semicolons!!']
-return constructor.apply(obj,argsArray.slice(1))||obj;
-//we would either return the new object or the non primitive value returned by  constructor,
- //in case the constructor returns it
+## Episode4 , first read episode 5: the "new" keyword
+/* We will discuss the usage of new keyword, when applied to functions */ 
+  ```
+     function Person(saying)
+     {
+       this.saying==saying;
+     }
+     Person.prototype.talk=function(){
+     console.log('I say ',this.saying);
+     }
+     var crockford=new Person('SEMICOLONS !!!!!!');
+     crockford.talk();
+   ```
 /*
-consider this implementation of Person:
-function Person(saying){
-this.saying=saying;
-return {dumbObject:true}
-}
+  1.new creates a new empty objects
+  2.its going to check prototype property of Person and gonna set new object's prototype as that prototype.
+  3.the Person constructor function will be called(executed) with 'this' set to the newly created object.
+  4.Returns the new object
+  */
 
-*/
-}
-var crockford1=newOur(Person,'Semicolons!!!');
-crockford1.talk();
+/* Rebuilding new */
+```
+     function newOur(constructor){
+     var obj={};
+     Object.setPrototypeOf(obj,constructor.prototype);
+     //es6-> var argsArray=Array.from(arguments);
+      //arguments is not an array, so we convert it to array and extract the part we want
+     var argsArray = Array.prototype.slice.apply(arguments)
+     constructor.apply(obj,argsArray.slice(1));//['Semicolons!!']
+     return constructor.apply(obj,argsArray.slice(1))||obj;
+```
+//we would either return the new object or the non primitive value returned by constructor,
+//in case the constructor returns it
+
+//consider this implementation of Person:
+```
+     function Person(saying){
+     this.saying=saying;
+     return {dumbObject:true}
+     }
+     
+     }
+     var crockford1=newOur(Person,'Semicolons!!!');
+     crockford1.talk();
+```
 //whenever a function constructor is called to create an object,it has a prototype property
 //If the constructor returns non-primitive object then new will
 //not return the newly created object
 
 
-
-
-/*********************************Episode5 __proto__ vs prototype*****************/
-let cat={breed:'munchkin'}
-let myCat={name:'fluffykins'}
-Object.setPrototypeOf(myCat,cat);
-myCat.breed//munchkin
-/*Question -> When we try accessing breed of myCat,how does it know that it can access some property that it does not directly have ie,what makes the lookup
+## Episode5 __proto__ vs prototype 
+```
+     let cat={breed:'munchkin'}
+     let myCat={name:'fluffykins'}
+     Object.setPrototypeOf(myCat,cat);
+     myCat.breed//munchkin
+```
+/* Question -> When we try accessing breed of myCat,how does it know that it can access some property that it does not directly have ie,what makes the lookup */
   myCat.breed possible ?
   Ans : [[Prototype]] -->there is a property on myCat that is [[Prototype]],
  "WHICH HAS A REFERENCE TO THE SAME OBJECT cat-->IMPLIES NO INSTANCE IS CREATED ".So
