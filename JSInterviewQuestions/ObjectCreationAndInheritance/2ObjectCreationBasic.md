@@ -177,7 +177,7 @@ const user1= userCreator("Will",2);
 const user2 = userCreator("Tim",5)
 user1.increment()
 ```
-//WHat does 'this' get auto assigned to? The global 'window' object, since inner function add1 is called by increment and not by user1.
+What does 'this' get auto assigned to? The global 'window' object, since inner function add1 is called by increment and not by user1.
 To fix this u can use call or apply 
 ```
 function userCreator(name,score){
@@ -201,9 +201,33 @@ const user2 = userCreator("Tim",5)
 user1.increment()
 
 ```
+Another way would be the use of arrow function.Here in the below example ,the inner add1 function gets its this set by 
+where it is lexically scoped
 
+```
+function userCreator(name,score){
+const newUser=Object.create(userFunctionStore);
+newUser.name=name;
+newUser.score=score;
+ return newUser;
+}
+const userFunctionStore={
+  increment:function(){
+   const add1=()=>{
+   console.log(this.score);// 2
+   this.score++;
+   console.log(this.score);// 3
+  }
+ add1()
+}
+}
+const user1= userCreator("Will",2);
+const user2 = userCreator("Tim",5)
+user1.increment()
 
-6.Object creation via new keyword  
+```
+
+6.Object creation via new keyword  (The most standardised way of object creation)
 The new keyword is doing all the steps of object.create behind the scenes
 When we call a function with new keyword ,2 things are automated.  
 
@@ -286,7 +310,7 @@ We have to uppercase the first letter of the function so we know it requires "ne
 What if u run userCreater without the new keyword.Then the "this" would be the global window .By just looking at the code , we can't be sure that
 we need to use the function along with the "new" keword
 
-## _ _ proto_ _ vs prototype 
+## _ _ proto_ _ v/s prototype 
 
 The objects that you create have a _ _ proto _ _ property which is a getter/setter for
 the object's [[Prototype]] although it is not recommended
