@@ -229,10 +229,11 @@ user1.increment()
 
 ## 5.Object creation via new keyword  (The most standardised way of object creation)
 The new keyword is doing all the steps of object.create behind the scenes.
-When we call a function with new keyword ,2 things are automated.  
+When we call a function with new keyword ,certain things are automated.  
 
 1. Creates a new object.
-2. Returns a new object. 
+2. Returns a new object.
+3. The [[Prototype]] is set automatically.
 
 ```
 const user1=new userCreater("Eva",9);
@@ -251,7 +252,7 @@ there are 2 things we need to figure out:
  `~~const newUser=Object.create(functionStore)~~
  ~~newUser~~ this.name=name;
  ~~newUser~~ this.score=score;
- ~~return newUser~~
+ ~~return newUser~~ //it is not required to return the object, it is automatically returned because of use of 'new'
 ```  }
    //userCreater.prototype//{}
    userCreater.prototype.increment=function(){ this.score++}
@@ -268,13 +269,17 @@ return num*2;
 }
 multiplyBy2.storeId=5
 multiplyBy2(3);//6
-multiplyBy2.storeId//5
+multiplyBy2.storeId//5 -- object version of function being used 
 multiplyBy2.prototype//{}
 ```
+
+<img width="223" alt="Screenshot 2024-04-06 at 2 15 34 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/6158db0d-b86a-4775-b101-34d9e595f5ce">
+
+If we use parenths with function name like multiplyBy2(), we are using function version, but if we use '.' with function name, we are using object version .
 We can use the fact that all functions have a default property 'prototype' on their object version-to replace our function store object.
 All functions in their object version have the "prototype" property which defaults to empty object.
 
-So in the prototype property of the object version of userCreater , we will store the general functions that are to be associated to all objects that 
+So in the prototype property of the object version of userCreater function, we will store the general functions that are to be associated to all objects that 
 come out of running userCreater with "new" keyword in front of them.
 
 
