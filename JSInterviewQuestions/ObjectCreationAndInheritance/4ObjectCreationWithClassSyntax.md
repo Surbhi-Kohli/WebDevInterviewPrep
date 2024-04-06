@@ -17,7 +17,7 @@ login(){
 console.log("login")
 }
 }
-const user1-new UserCreator("Eva",9);
+const user1=new UserCreator("Eva",9);
 user1.increment();
 ```
 Nothing is different in this code.It's just that we do the declaration and assignment in 1 construct ie within the class.
