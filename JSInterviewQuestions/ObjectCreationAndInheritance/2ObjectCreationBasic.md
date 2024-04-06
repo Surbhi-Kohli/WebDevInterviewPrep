@@ -350,7 +350,7 @@ console.log(myCat.tailLength)//15
 
 //prototype
 //prototype only exists on functions just to cater to the case where ur function is a function constructor and u want to create objects 
-//using that  object.
+//using that  object via new keyword.
 function Dog(){}
 Dog.prototype.breed="Bulldog"
 let MyDoggie=new Dog();
