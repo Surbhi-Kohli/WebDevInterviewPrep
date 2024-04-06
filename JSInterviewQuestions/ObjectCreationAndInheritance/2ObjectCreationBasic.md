@@ -252,8 +252,8 @@ there are 2 things we need to figure out:
  ~~newUser~~ this.name=name;
  ~~newUser~~ this.score=score;
  ~~return newUser~~
-`}
-```//userCreater.prototype//{}
+```  }
+   //userCreater.prototype//{}
    userCreater.prototype.increment=function(){ this.score++}
    const user1=new userCreater("will",3)
 ```
