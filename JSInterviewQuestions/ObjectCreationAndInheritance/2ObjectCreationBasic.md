@@ -78,7 +78,7 @@ for the function.
 
 ```
 function userCreater(name,score){
-const newUser=Object.create(userFunctionStore);//the userFunctionStore is set as the //[[Prototype]]   //of the newly created object
+const newUser=Object.create(userFunctionStore);//the userFunctionStore is set as the [[Prototype]] of the newly created object
 newUser.name=name;
 newUser.score=score;
 return newUser;
@@ -95,7 +95,8 @@ console.log(user1.hasOwnProperty("score"));//true(Inorder to check if a property
 console.log(user1.hasOwnProperty("increment"));//false
 ```
 When user1.increment is called, interpreter searches for increment function in local memoryof user1.It is not there 
-so it checks for [[Prototype]].
+so it checks for [[Prototype]].  
+
 _ _ proto _ _ is the getter/setter function for the [[Prototype]], although it is not recommended to set prototype via _ _ proto _ _
 
 Also note that an implicit argument("this") is passed to the increment function which actually points to the calling object(and that is how the calling object's)
