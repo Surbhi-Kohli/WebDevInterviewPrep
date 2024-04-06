@@ -28,4 +28,6 @@ When you declare a class,internally you get a function object combo;
 Constructor=function bit of the combo  
 Object bit=prototype object,which will take in the common functions.
 
-<img width="280" alt="Screenshot 2022-12-17 at 11 49 39 PM" src="https://user-images.githubusercontent.com/32058209/208255907-78b445fe-6ffd-466f-a0d6-3baf0d9769ff.png">
+<img width="280" alt="Screenshot 2022-12-17 at 11 49 39 PM" src="https://user-images.githubusercontent.com/32058209/208255907-78b445fe-6ffd-466f-a0d6-3baf0d9769ff.png">  
+
+<img width="527" alt="Screenshot 2024-04-06 at 4 45 00 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/6dca0fc2-7749-4288-a297-78ac464a67ed">
