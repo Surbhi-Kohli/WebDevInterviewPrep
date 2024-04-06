@@ -176,13 +176,14 @@ const userFunctionStore={
 const user1= userCreator("Will",2);
 const user2 = userCreator("Tim",5)
 user1.increment()
+```
 //WHat does 'this' get auto assigned to?: the global Window object
 To fix this u can use call or apply 
 
 /*****************/
 6.Object creation via new keyword  
 The new keyword is doing all the steps of object.create behind the scenes
-When we call a function with ew keyword ,2 things are automated.
+When we call a function with new keyword ,2 things are automated.
 1Creates a new object
 2Returns a new object.
 
