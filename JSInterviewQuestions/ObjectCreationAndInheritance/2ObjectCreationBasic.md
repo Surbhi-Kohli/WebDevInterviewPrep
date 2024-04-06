@@ -228,7 +228,7 @@ user1.increment()
 ```
 
 ## 5.Object creation via new keyword  (The most standardised way of object creation)
-The new keyword is doing all the steps of object.create behind the scenes
+The new keyword is doing all the steps of object.create behind the scenes.
 When we call a function with new keyword ,2 things are automated.  
 
 1. Creates a new object.
@@ -241,10 +241,11 @@ const user2=new userCreater("Tim",5);
 ```
 
 there are 2 things we need to figure out:
-1. How should we refer to the auto-created object.-With new, the automatically created object is given the label "this"
-2. Where would be our single store for common functions(eg increment)
-Example code showing how "new" automates a lot of manual work
+1. How should we refer to the auto-created object.-> With new, the automatically created object is given the label "this"
+2. Where would be our single store for common functions(eg increment).
 
+   
+### Example code showing how "new" automates a lot of manual work
 
  `function userCreater(name,score){  
  `~~const newUser=Object.create(functionStore)~~
@@ -253,8 +254,8 @@ Example code showing how "new" automates a lot of manual work
  ~~return newUser~~
 `}
 ```//userCreater.prototype//{}
-`userCreater.prototype.increment=function(){ this.score++}
-`const user1=new userCreater("will",3)
+   userCreater.prototype.increment=function(){ this.score++}
+   const user1=new userCreater("will",3)
 ```
 
 Important Prelude
