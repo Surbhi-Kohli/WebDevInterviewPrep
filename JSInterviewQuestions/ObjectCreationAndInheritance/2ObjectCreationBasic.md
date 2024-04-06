@@ -300,10 +300,15 @@ user1.increment();
 Here in our userCreater, there is no creating of an object inside it.No making of bond to some shared store or functions, no returning an object out,
 becoz we are gonna run that function with the help of the "new" keyword which is acting as a modifier
 as it alters the behaviour of the userCreater's execution context.
-"new" is gonna insert stuff in it automatically for us,when we run it.
+"new" is gonna insert stuff in it automatically for us,when we run it.  
+
+<img width="450" alt="Screenshot 2024-04-06 at 2 24 16 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/edc8f8f2-4b80-446d-a157-32f77ce55d9a">  
+
+<img width="435" alt="Screenshot 2024-04-06 at 2 17 58 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/f8ca48cc-40d0-4651-9524-002250de7527">
+
 
 But we do need a shared store of functions for all objects created out of userCreater.We are gonna store the shared functions in the
-prototype property of our userCreater function.The [[Prototype]] or __proto__ of the new object gets linked to the prototype property
+prototype property of our userCreater function.The [[Prototype]] or __ proto __ of the new object gets linked to the prototype property
 of the userCreater function.
 Also if the constructor function returns non-primitive object then new will
 not return the newly created object.
