@@ -55,7 +55,14 @@ newUser.increment=function(){newUser.score++}
 }
 const user1=userCreator("will",3);
 const user2=userCreator("Tim",5);
-
+console.log(Object.getPrototypeOf(user1)); //gives info of [[Prototype]]
+/*
+{
+  increment: function(){this.score++},
+  login: function(){console.log("logged in")}
+}
+*/
+console.log(user1.prototype);//undefined
 user1.increment()//increments will's score to 4
 ```
 *Closure:The increment function has info of the surrounding memory ie info of label newUser*
