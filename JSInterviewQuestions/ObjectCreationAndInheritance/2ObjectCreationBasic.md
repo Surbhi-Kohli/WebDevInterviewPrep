@@ -302,16 +302,19 @@ becoz we are gonna run that function with the help of the "new" keyword which is
 as it alters the behaviour of the userCreater's execution context.
 "new" is gonna insert stuff in it automatically for us,when we run it.  
 
- <img width="435" alt="Screenshot 2024-04-06 at 2 17 58 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/f8ca48cc-40d0-4651-9524-002250de7527">
+But we do need a shared store of functions for all objects created out of userCreater.We are gonna store the shared functions in the
+prototype property of our userCreater function.
 
+ <img width="435" alt="Screenshot 2024-04-06 at 2 17 58 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/f8ca48cc-40d0-4651-9524-002250de7527"> 
+ 
+The [[Prototype]] or __ proto __ of the new object gets linked to the prototype property
+of the userCreater function.
 
 <img width="450" alt="Screenshot 2024-04-06 at 2 24 16 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/edc8f8f2-4b80-446d-a157-32f77ce55d9a">  
+Even if we update the prototype after object creation, the object's [[Prototype]] holds reference to the 'prototype' property of function
 
+<img width="867" alt="Screenshot 2024-04-06 at 3 54 18 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/cd929407-244f-4532-83aa-ed01e1c1cd73">
 
-
-But we do need a shared store of functions for all objects created out of userCreater.We are gonna store the shared functions in the
-prototype property of our userCreater function.The [[Prototype]] or __ proto __ of the new object gets linked to the prototype property
-of the userCreater function.
 Also if the constructor function returns non-primitive object then new will
 not return the newly created object.
 Benefits of this solution
