@@ -180,21 +180,23 @@ user1.increment()
 //WHat does 'this' get auto assigned to?: the global Window object
 To fix this u can use call or apply 
 
-/*****************/
+
 6.Object creation via new keyword  
 The new keyword is doing all the steps of object.create behind the scenes
-When we call a function with new keyword ,2 things are automated.
-1Creates a new object
-2Returns a new object.
+When we call a function with new keyword ,2 things are automated.  
+
+1. Creates a new object.
+2. Returns a new object. 
 
 ```
 const user1=new userCreater("Eva",9);
 const user2=new userCreater("Tim",5);
 
 ```
+
 there are 2 things we need to figure out:
-1.How should we refer to the auto-created object.-With new, the automatically created object is given the label "this"
-2.Where would be our single store for common functions(eg increment)
+1. How should we refer to the auto-created object.-With new, the automatically created object is given the label "this"
+2. Where would be our single store for common functions(eg increment)
 Example code showing how "new" automates a lot of manual work
 
 
@@ -204,10 +206,10 @@ Example code showing how "new" automates a lot of manual work
  ~~newUser~~ this.score=score;
  ~~return newUser~~
 `}
-
-`//userCreater.prototype//{}
+```//userCreater.prototype//{}
 `userCreater.prototype.increment=function(){ this.score++}
 `const user1=new userCreater("will",3)
+```
 
 Important Prelude
 Functions are both objects and functions in JS
