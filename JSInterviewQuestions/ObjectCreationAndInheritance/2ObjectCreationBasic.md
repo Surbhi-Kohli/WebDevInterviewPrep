@@ -310,8 +310,9 @@ prototype property of our userCreater function.
 The [[Prototype]] or __ proto __ of the new object gets linked to the prototype property
 of the userCreater function.
 
-<img width="450" alt="Screenshot 2024-04-06 at 2 24 16 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/edc8f8f2-4b80-446d-a157-32f77ce55d9a">  
-Even if we update the prototype after object creation, the object's [[Prototype]] holds reference to the 'prototype' property of function
+<img width="450" alt="Screenshot 2024-04-06 at 2 24 16 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/edc8f8f2-4b80-446d-a157-32f77ce55d9a">    
+
+Even if we update the prototype after object creation, the object's [[Prototype]] holds reference to the 'prototype' property of function.  
 
 <img width="867" alt="Screenshot 2024-04-06 at 3 54 18 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/cd929407-244f-4532-83aa-ed01e1c1cd73">
 
