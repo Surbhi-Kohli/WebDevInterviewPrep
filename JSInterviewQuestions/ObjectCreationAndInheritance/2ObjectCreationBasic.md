@@ -177,8 +177,30 @@ const user1= userCreator("Will",2);
 const user2 = userCreator("Tim",5)
 user1.increment()
 ```
-//WHat does 'this' get auto assigned to?: the global Window object
+//WHat does 'this' get auto assigned to? The global 'window' object, since inner function add1 is called by increment and not by user1.
 To fix this u can use call or apply 
+```
+function userCreator(name,score){
+const newUser=Object.create(userFunctionStore);
+newUser.name=name;
+newUser.score=score;
+ return newUser;
+}
+const userFunctionStore={
+  increment:function(){
+   function add1(){
+   console.log(this.score);// 2
+   this.score++;
+   console.log(this.score);// 3
+  }
+ add1.call(this)
+}
+}
+const user1= userCreator("Will",2);
+const user2 = userCreator("Tim",5)
+user1.increment()
+
+```
 
 
 6.Object creation via new keyword  
