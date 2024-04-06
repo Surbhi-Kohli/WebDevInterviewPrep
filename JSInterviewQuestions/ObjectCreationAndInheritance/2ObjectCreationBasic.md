@@ -302,9 +302,11 @@ becoz we are gonna run that function with the help of the "new" keyword which is
 as it alters the behaviour of the userCreater's execution context.
 "new" is gonna insert stuff in it automatically for us,when we run it.  
 
+ <img width="435" alt="Screenshot 2024-04-06 at 2 17 58 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/f8ca48cc-40d0-4651-9524-002250de7527">
+
+
 <img width="450" alt="Screenshot 2024-04-06 at 2 24 16 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/edc8f8f2-4b80-446d-a157-32f77ce55d9a">  
 
-<img width="435" alt="Screenshot 2024-04-06 at 2 17 58 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/f8ca48cc-40d0-4651-9524-002250de7527">
 
 
 But we do need a shared store of functions for all objects created out of userCreater.We are gonna store the shared functions in the
