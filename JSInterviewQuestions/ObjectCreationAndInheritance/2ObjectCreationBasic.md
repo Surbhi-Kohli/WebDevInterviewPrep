@@ -316,8 +316,12 @@ Even if we update the prototype after object creation, the object's [[Prototype]
 
 <img width="867" alt="Screenshot 2024-04-06 at 3 54 18 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/cd929407-244f-4532-83aa-ed01e1c1cd73">
 
+
 Also if the constructor function returns non-primitive object then new will
-not return the newly created object.
+not return the newly created object.  
+  
+  <img width="643" alt="Screenshot 2024-04-06 at 4 13 17 PM" src="https://github.com/Surbhi-Kohli/WebDevInterviewPrep/assets/32058209/dea9a54a-a73a-45f7-aa0e-cbf535493f78">
+
 Benefits of this solution
 Faster to write.Often used in practice in professional code.
 
