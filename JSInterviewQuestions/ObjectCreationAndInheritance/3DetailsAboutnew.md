@@ -9,8 +9,9 @@ this.profession=profession
  In JS , any function that defines a type is referred to as a constructor function.
  But there are 2 unsaid rules about constructor functions
        
-       1.The name of the construcotr function should start with uppercase letter.
-       2.When we invoke a constructor function,we always do it using the "new" operator.
+   1.The name of the constructor function should start with uppercase letter.
+   2.When we invoke a constructor function,we always do it using the "new" operator.
+   
     ```
     var saloni=new Person("Saloni","SE");
     console.log(saloni)//Person {name:"Saloni",profession:"SE"}
