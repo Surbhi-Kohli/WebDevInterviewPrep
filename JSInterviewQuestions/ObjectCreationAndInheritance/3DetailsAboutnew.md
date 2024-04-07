@@ -12,10 +12,10 @@ this.profession=profession
    1.The name of the constructor function should start with uppercase letter.
    2.When we invoke a constructor function,we always do it using the "new" operator.
    
-    ```
+    
     var saloni=new Person("Saloni","SE");
     console.log(saloni)//Person {name:"Saloni",profession:"SE"}
-    ```
+    
     
   Basic usage of new operator:Helps us create instances of the constructor function.
 
