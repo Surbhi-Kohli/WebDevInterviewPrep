@@ -60,7 +60,7 @@ this.profession=profession
   Explicit non-primitive return
   (Non primitives in js:[],{},()=>{} ie arrays, objects and functions)
 
-    ```
+    
     function Person(name,profession)
     {
      this.name=name;
@@ -74,4 +74,24 @@ this.profession=profession
     var yomesh=new Person("Yomesh","SE");
     console.log(yomesh.name)//Ajay
     
-    ```
+
+
+  ## Comparing this and the returned non primitive:
+
+  ```
+    var thisReference;
+    function Person(name,profession)
+    {
+     this.name=name;
+     this.profession=profession;
+    thisReference = this;
+    //Here we have explicit non-primitive return, so the "this"object setting is ignored
+    return function(){
+      console.log("I am amazing");
+    }
+   }
+    var yomesh=new Person("Yomesh","SE");
+    console.log(thisReference === yomesh)//false
+    
+  
+  
