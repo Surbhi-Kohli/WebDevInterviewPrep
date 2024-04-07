@@ -332,14 +332,16 @@ We have to uppercase the first letter of the function so we know it requires "ne
 What if u run userCreater without the new keyword.Then the "this" would be the global window .By just looking at the code , we can't be sure that
 we need to use the function along with the "new" keword
 
-## _ _ proto_ _ v/s prototype 
+## _ _ proto_ _ v/s prototype v/s [[Prototype]]
 
 The objects that you create have a _ _ proto _ _ property which is a getter/setter for
 the object's [[Prototype]] although it is not recommended
-to set prototype via _ _ proto _ _.  (* people use _ _ proto_ _ to refer [[Prototype]])
+to set prototype via _ _ proto _ _.  (* people use _ _ proto_ _ to refer [[Prototype]]).
+
+The [[Prototype]] is the actual property that holds reference the parent object's properties and hence delegation works.
 
 Whereas _prototype_ is a property available on all functions as well as the global "Object".Thats because the global Object 
-is actually a function which has the _prototype_ property.
+is actually a function which has the _prototype_ property.The default value of prototype is empty object ie {}.This exists so as to add properties that would be needed in [[Prototype]] of objects created via the function constructor.
 _prototype_ only exists on functions just to cater to the case where ur function is a function constructor and u want to create objects 
 using that function.
 Consider the following code
@@ -350,7 +352,7 @@ let cat={breed:'munchkin'}
 let myCat={name:'fluffykins'}
 Object.setPrototypeOf(myCat,cat);
 cat.tailLength=15
-myCat._ _proto_ _//cat{breed:'munchkin',tailLength:15};
+myCat._ _proto_ _//cat{breed:'munchkin',tailLength:15}; Better code: Object.getProtoTypeOf(myCat)
 console.log(myCat.tailLength)//15
 
 //prototype
