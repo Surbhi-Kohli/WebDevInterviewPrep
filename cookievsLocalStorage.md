@@ -1,3 +1,4 @@
+//done
 Cookies are sent in headers to servers automatically on api call
 
 Cookies and local storage serve different purposes. Cookies are primarily for 
