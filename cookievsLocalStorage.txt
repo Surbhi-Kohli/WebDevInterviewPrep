@@ -16,6 +16,10 @@ You'll want to leave your session cookie as a cookie either way though.
 
 As per the technical difference, and also my understanding:
 
-Apart from being an old way of saving data, Cookies give you a limit of 4096 bytes (4095, actually) — it's per cookie. Local Storage is as big as 5MB per domain — SO Question also mentions it.
+Apart from being an old way of saving data, 
+Cookies give you a limit of 4096 bytes (4095, actually) — it's per cookie.
+Local Storage is as big as 5MB per domain — SO Question also mentions it.
 
-localStorage is an implementation of the Storage Interface. It stores data with no expiration date, and gets cleared only through JavaScript, or clearing the Browser Cache / Locally Stored Data — unlike cookie expiry.
+localStorage is an implementation of the Storage Interface.
+It stores data with no expiration date, and gets cleared only through JavaScript,
+or clearing the Browser Cache / Locally Stored Data — unlike cookie expiry.
