@@ -35,7 +35,8 @@ return second.reduce((acc, current) => {
 }, []);
 Hence, overall time complexity would be O(n^2).
 
-P.S. This is not the best way to find intersection and approach can be improved so please do not use this code anywhere. 
+P.S. This is not the best way to find intersection and approach can be improved so please
+do not use this code anywhere. 
 */Code is written in a certain way to test logic
 /********************************************************/
 
@@ -52,10 +53,18 @@ console.log("Fifth is --", fifth, typeof fifth);
 console.log("Sixth is --", sixth, typeof sixth);
 /*
 Options:
-a.                                b.                                   c.                                       d.
-Fifth is -- 1236 string              Fifth is -- 6636 string              Fifth is -- 1266 string                  Fifth is -- 6666 string
-Sixth is -- 6666 string               Sixth is -- 36 number               Sixth is -- 66 number                     Sixth is -- 36 string
+a.                                                                
+Fifth is -- 1236 string                                                                  
+Sixth is -- 6666 string                                              
+b.
+  Fifth is -- 6636 string
+  Sixth is -- 36 number
 
+c.  
+ Fifth is -- 1266 string
+   Sixth is -- 66 number 
+d.Fifth is -- 6666 string   
+  Sixth is -- 36 string
 ans-b
 */
 /****************************************/
@@ -97,7 +106,8 @@ a.undefined b.uncaught error c.Yomesh d.No output
 ans- c.Yomesh
 Explanation:We can't delete a local variable that has been declared with var/let/const.
 
-We can only delete properties of objects. This also includes global variables which are implicit properties of the window object. As per the MDN --
+We can only delete properties of objects. This also includes global variables which are
+implicit properties of the window object. As per the MDN --
 
 The JavaScript delete operator removes a property from an object
 
