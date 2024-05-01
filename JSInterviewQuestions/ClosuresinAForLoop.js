@@ -49,8 +49,10 @@ it has value  3 (var declaration), that is the reason it is printing 3 each time
  EXPLANATION :  ECMAScript 6 (ES6) introduces new let and const keywords */            |  console.log(arr.map(x => x())); // [3,3,3]
              /* that are scoped differently than var-based variables.                  | EXPLANATION : a var declaration leads to a single binding for the
                 For example, in a loop with a let-based index, each iteration          |         whole loop (a const declaration works the same):
-                through the loop will have a new variable i with loop scope, so your   |
-                code would work as you expect.                                         |
+                through the loop will have a new variable i with loop scope i.e ,      |
+                new lexical environment for each iteration  within the execution       |
+                context of the for loop.  |
+                                                                                       |
      ********   In loops, you get a fresh binding for each iteration if you            |
                 let-declare a variable. The loops that allow you to do so are: for,    |
                 for-in and for-of.*/                                                   |
