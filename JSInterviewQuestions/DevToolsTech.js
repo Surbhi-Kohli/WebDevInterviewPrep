@@ -11,7 +11,9 @@ console.log(compare([1]));
 console.log(compare([2]));
 console.log(compare([3]));
 //output:false true true true false true true true
-//Explanation:when we use == then it implicitly type cast operands.Therefore, [1] will become "1" and then 1. Similarly, for all arrays type casting will take place.
+//Explanation:when we use == then it implicitly type cast operands.Therefore, 
+//[1] will become "1" and then 1. 
+//Similarly, for all arrays type casting will take place.
 /**************************************************/
 //q-2-What is the time complexity?
 function findIntersection(first, second) {
