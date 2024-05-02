@@ -149,3 +149,37 @@ Also resets the time back to the beginning.
 Hint: look up setInterval and clearInterval.
 
 */
+
+class SecondClock {
+  constructor(callback) {
+    this.cb = callback;
+    this.seconds = 0;
+    this.intervalId = null;
+  }
+
+  start() {
+    this.intervalId = setInterval(() => {
+      this.seconds++;
+      if (this.seconds === 61) {
+        this.seconds = 1; // Reset to 1 after 60 seconds
+      }
+      this.cb(this.seconds);
+    }, 1000);
+  }
+
+  reset() {
+    clearInterval(this.intervalId);
+    this.seconds = 0;
+  }
+}
+
+// Example usage:
+const clock = new SecondClock((seconds) => {
+  console.log("Tick:", seconds);
+});
+
+clock.start(); // Start the clock
+// Wait for some time
+setTimeout(() => {
+  clock.reset(); // Reset the clock
+}, 5000); // Reset after 5 seconds
