@@ -72,7 +72,8 @@ limitedRepeat();
 Challenge 7
 Write a function delayCounter that accepts a number (called 'target') as the first argument and
 a number of milliseconds (called 'wait') as the second argument, and returns a function.
-When the returned function is invoked, it should log to the console all of the numbers between 1 and the target number, 
+When the returned function is invoked, it should log to the console all of the numbers 
+between 1 and the target number, 
 spaced apart by 'wait' milliseconds.
 */
 function delayCounter(target, wait) {
@@ -87,6 +88,20 @@ function delayCounter(target, wait) {
   }
   return funcInner;
 }
+/* Or */
+function delayCounter(target,wait){
+return function abc(){
+let count=1;
+  let interval= setInterval(()=>{
+  if(count==target)
+  clearInterval(interval);
+  console.log(count);
+  count++;
+  },wait)
+}
+}
+let out=delayCounter(7,2000);
+out();
 
 // UNCOMMENT THESE TO TEST YOUR WORK!
 const countLogger = delayCounter(3, 1000)
@@ -97,17 +112,29 @@ countLogger();
 
 /*
 Challenge 8
-Write a function, promised, that takes in a value. This function will return a promise that will resolve after 2 seconds.
+Write a function, promised, that takes in a value. This function will return a promise 
+that will resolve after 2 seconds.
 
 Hint: take a look at the Promise object docs on MDN.
 */
 
+function promised(value) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(value);
+    }, 2000);
+  });
+}
+
+
 /*
 Challenge 9
 Write a SecondClock class, with two methods: start and reset.​
-start: upon invocation, invokes a callback (this.cb, defined in the constructor) on an argument every second, with the argument to the callback being the current seconds "value".
+start: upon invocation, invokes a callback (this.cb, defined in the constructor) on
+an argument every second, with the argument to the callback being the current seconds "value".
 
-In other words, the callback gets invoked every second on the "seconds hand" of the clock. Always start with 1 and don't utilize the seconds value of the current computer clock time.
+In other words, the callback gets invoked every second on the "seconds hand" of the clock.
+Always start with 1 and don't utilize the seconds value of the current computer clock time.
 
 The first "tick" with value 1 occurs 1 second after the initial "secondClock" invocation.
 The second "tick" with value 2 occurs 2 seconds after the initial "secondClock" invocation.
