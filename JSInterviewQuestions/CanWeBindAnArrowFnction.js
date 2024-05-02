@@ -1,9 +1,11 @@
+//done
 /*Question 1*/
 var f = () => console.log(this);
 var o = {'a': 42};
 var fBound = f.bind(o);
 fBound();//Window object
-/*Explanation:You cannot rebind this in an arrow function. It will always be defined as the context in which it was defined. 
+/*Explanation:You cannot rebind this in an arrow function. It will always be defined 
+as the context in which it was defined. 
 If you require this to be meaningful you should use a normal function.*/
 
 /*Question 2*/
