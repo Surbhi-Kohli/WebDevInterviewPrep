@@ -14,13 +14,16 @@ return  function(y)
 console.log(mul(2)(3).result);//6
 console.log(mul(2)(3).sum(2));//8
 
-/*Currying is an advanced technique of working with functions. It’s used not only in JavaScript, but in other languages as well.
+/*Currying is an advanced technique of working with functions. 
+It’s used not only in JavaScript, but in other languages as well.
 
-Currying is a transformation of functions that translates a function from callable as f(a, b, c) into callable as f(a)(b)(c).
+Currying is a transformation of functions that translates a function from 
+callable as f(a, b, c) into callable as f(a)(b)(c).
 
 Currying doesn’t call a function. It just transforms it.
 
-Most implementations of currying in JavaScript are advanced, ie ,they also keep the function callable in the multi-argument variant.*/
+Most implementations of currying in JavaScript are advanced, ie ,they also
+keep the function callable in the multi-argument variant.*/
 
 /** Advanced curry implementation **/
 function curry(func) {
