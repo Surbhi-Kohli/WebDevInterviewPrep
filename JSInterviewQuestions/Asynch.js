@@ -57,9 +57,17 @@ Create a function limitedRepeat that console logs hi for now every second, but o
 Research how to use clearInterval if you are not sure how to do this.
 */
 function limitedRepeat() {
+ let counter = 0;
   // ADD CODE HERE
+  let interval = setInterval(()=>{ console.log("hi for now");
+    counter++;
+    if (counter >= 5) {
+      clearInterval(interval);
+    }
+    },1000);
+  console.log(interval);
 }
-
+limitedRepeat();
 /*
 Challenge 7
 Write a function delayCounter that accepts a number (called 'target') as the first argument and
