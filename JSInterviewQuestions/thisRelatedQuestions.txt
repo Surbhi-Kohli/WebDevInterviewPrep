@@ -68,7 +68,7 @@ newCall to a function inside the call object. We are calling newCall globally, a
 globally is where 'this' is assigned.                                               |
 __________________________________________________________________________________________________________________________________________________________________________
                                                                                     |8.Predict the output
-7.What will be the output for the following code snippet?                           |
+7.What will be the output for the following code snippet?                           |important
                                                                                     |   let lastname="henry";
 let lastname="henry";                                                               |   let obj={
 let obj={                                                                           |    lastname:"joe",
