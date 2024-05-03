@@ -113,7 +113,7 @@ console.log(trees.length); //5
 /*******************************************************************************
 ****************************/
 5.What would be the output of following code:
-
+```
 var obj = {
     car: {
       type: "sedan"
@@ -127,12 +127,13 @@ var obj = {
     }
 };
 obj.print();
+```
 //Output:Uncaught TypeError: cannot read property 'type' of undefined coz of ***ed line ,we get error and the execution stops there.
  The 'this' inside IIFE is Window object and there is no car key related to window object,so We cant read type on undefined
  
  /******************************************************************************************************/
  6.What would be the output of following code:
-
+```
 var obj = {
     car: {
       type: "sedan"
@@ -146,6 +147,7 @@ var obj = {
     }
 };
 obj.print();
+```
 //Output:
 that:sedan
 Uncaught TypeError: cannot read property 'type' of undefined
@@ -167,17 +169,17 @@ e.function handler(evt) { return null; }
 
 ans-a  .function handler(evt) { evt.preventDefault(); 
 
-/*******************************************************************************************************/
+
 
 9.In order to prevent user from typing in input box, which of the following events can be used ?
  a.keyup b.keydown c.keypress d.All of these
  
  ans- b,c
  
- /***********************************************************************************************************/
+
  
 10.The following code is run in web browser. Which of the following executions will print "mango":
-
+```
 var fruit = {
     name: "mango",
     printName: function() {
@@ -185,7 +187,7 @@ var fruit = {
     }
 }
 var func = fruit.printName;
-
+```
 a- fruit.printName()  b- func();  c- func.bind(fruit); func(); d- func.call(window.fruit); e- func.call(fruit);
 
 ans- a,d,e
@@ -230,16 +232,19 @@ e) for (var i = 0; i < 3; i++) {
 }
 
 ans - b,d,e
-/***************************************************************************************************************/
+
 12. Predict the output
+```
 var bar=true;
 console.log(bar+0);  //1
 console.log(bar+"xyz");  //truexyz
 console.log(bar+true);    //2
 console.log(bar+false);    //1
+```
 
-/*****************************************************************************************************************/
-13.var x={foo:1};
+13.
+```
+var x={foo:1};
 
    var output=(function(){
      delete x.foo;
@@ -247,7 +252,7 @@ console.log(bar+false);    //1
    })();
 
 console.log(output);//undefined
-
+```
 The JavaScript delete operator removes a property from an object; 
 On successful deletion, it will return true, else false will be returned.
 ```
@@ -344,7 +349,7 @@ function countPalindromes(input1,input2) {
    
 }
 console.log(countPalindromes("this is level 71",16));//1
-``
+```
 //Both the above programs pass all test cases that were provided
 
 
