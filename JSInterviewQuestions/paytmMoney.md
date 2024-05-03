@@ -84,7 +84,7 @@ var salary = "1000$";
 var trees = ["xyz","xxxx","test","ryan","apple"];
 delete trees[3];
 trees.push('mango');
-delete trees[5];
+delete trees[4];
 trees = trees.slice(1,7);
 console.log(trees.length);//5
 ```
@@ -93,13 +93,13 @@ EXPLANATION:
 
 var trees = ["xyz","xxxx","test","ryan","apple"];
 delete trees[3];
-console.log(trees);//["xyz","xxxx",undefined,"ryan","apple"];
+console.log(trees);//["xyz", "xxxx", "test", undefined, "apple"]
 
 trees.push('mango');
-console.log(trees);//["xyz","xxxx",undefined,"ryan","apple","mango"]
+console.log(trees);//["xyz","xxxx",undefined,"apple","mango"]
 
-delete trees[5];
-console.log(trees);//["xyz","xxxx",undefined,"ryan","apple",undefined]
+delete trees[4];
+console.log(trees);//["xyz","xxxx",undefined,"apple",undefined]
 
 
 trees = trees.slice(1,7);
