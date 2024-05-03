@@ -16,7 +16,7 @@ The reverse method transposes the elements of the calling array object in place,
 The join() method creates and returns a new string by concatenating all of the elements in an array (or an array-like object), 
 separated by commas or a specified separator string. 
 If the array has only one item, then that item will be returned without using the separator.
-
+```
 const elements = ['Fire', 'Air', 'Water'];
 
 console.log(elements.join());
@@ -31,12 +31,13 @@ console.log(elements.join('-'));
 
 
 (ii)"abc".split().reverse().join();  //abc
-
+```
 //EXPLANATION
 "abc".split()//["abc"]; as we didn't specify any spliting criteria ,
 so whole string is taken as 1 element of array
 
 Consider following exmamples
+```
 const str = 'Hello world gud day';
 
 const words = str.split(' ');
@@ -54,11 +55,9 @@ console.log(strCopy);
 
 "abc".split().reverse() ->["abc"];//reversing 1 element array remains same
 "abc".split().reverse().join() //abc
-
-/************************************************************************************
-**************************************************/
+```
 2.What will be the output of the following code?
-
+```
 console.log(myFunc());
 console.log(myVar);
 var myVar = 10;
@@ -66,7 +65,7 @@ function myFunc() {
   return "Hello"
 }
 //Output:Hello undefined
-/**********************************************************************************************/
+```
 3.What will be the output of the following code?
 ```
 var salary = "1000$";
