@@ -3,10 +3,12 @@
 
 EXPLANATION:
 "abc".split("")--> ["a","b","c"]
-The split() method divides a String into an ordered list of substrings, puts these substrings into an array, and returns the array. 
+The split() method divides a String into an ordered list of substrings, 
+puts these substrings into an array, and returns the array. 
 
 "abc".split("").reverse() --> ["c","b","a"]
-The reverse() method reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
+The reverse() method reverses an array in place. The first array element becomes
+the last, and the last array element becomes the first.
 The reverse method transposes the elements of the calling array object in place, mutating the array, and returning a reference to the array.
 
 "abc".split("").reverse().join(); --> "c,b,a"
@@ -31,7 +33,8 @@ console.log(elements.join('-'));
 (ii)"abc".split().reverse().join();  //abc
 
 //EXPLANATION
-"abc".split()//["abc"]; as we didn't specify any spliting criteria ,so whole string is taken as 1 element of array
+"abc".split()//["abc"]; as we didn't specify any spliting criteria ,
+so whole string is taken as 1 element of array
 
 Consider following exmamples
 const str = 'Hello world gud day';
@@ -52,7 +55,8 @@ console.log(strCopy);
 "abc".split().reverse() ->["abc"];//reversing 1 element array remains same
 "abc".split().reverse().join() //abc
 
-/**************************************************************************************************************************************/
+/************************************************************************************
+**************************************************/
 2.What will be the output of the following code?
 
 console.log(myFunc());
@@ -103,7 +107,8 @@ trees = trees.slice(1,7);
 console.log(trees); //["xxxx", "test", undefined, "apple", undefined]
 console.log(trees.length); //5
 
-/***********************************************************************************************************/
+/*******************************************************************************
+****************************/
 5.What would be the output of following code:
 
 var obj = {
