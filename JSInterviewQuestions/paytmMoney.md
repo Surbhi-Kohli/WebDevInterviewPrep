@@ -68,7 +68,7 @@ function myFunc() {
 //Output:Hello undefined
 /**********************************************************************************************/
 3.What will be the output of the following code?
-
+```
 var salary = "1000$";
 (function () {
   console.log("Original salary was " + salary);
@@ -77,16 +77,19 @@ var salary = "1000$";
 })();
 //Output: Original salary was undefined
 //My New Salary 5000$
+```
 
-/************************************************************************************************/
+
 4.What is the output of the following?
-
+```
 var trees = ["xyz","xxxx","test","ryan","apple"];
 delete trees[3];
 trees.push('mango');
 delete trees[5];
 trees = trees.slice(1,7);
 console.log(trees.length);//5
+```
+
 EXPLANATION:
 
 var trees = ["xyz","xxxx","test","ryan","apple"];
@@ -247,7 +250,7 @@ console.log(output);//undefined
 
 The JavaScript delete operator removes a property from an object; 
 On successful deletion, it will return true, else false will be returned.
-
+```
 
 const Employee = {
   firstname: 'John',
@@ -261,15 +264,16 @@ delete Employee.firstname;
 
 console.log(Employee.firstname);
 // expected output: undefined
+```
 
 
-/*****************************************************************************************************************/
 Programming Question -(To be coded in js)
 
 1.You are given two strings ‘X’ and ‘Y’, each containing at most 1,000 characters. 
 Write a program that can determine whether the characters in the first string ‘X’ can be rearranged to form the second string ‘Y’.
 The output should be "yes" if this is possible and "no" if not.
 // Read only region start
+```
 function isPermutation(input1,input2) {
     // Read only region end
     // Input parameters are :
@@ -286,7 +290,7 @@ function isPermutation(input1,input2) {
   return "no";
    // throw "UnsupportedException isPermutation(input1,input2)";
 }
-
+```
 2.Write a function to find all the words in a string which are palindrome.
 input1: this is level 71
          16 
@@ -294,9 +298,8 @@ Output: 1  (level is palindrome)
 
 Input 2:hello world 
         11
-        
-        
-        function checkPalindrome(str)
+```        
+function checkPalindrome(str)
 {
    let e=str.length-1;
    let s=0;
@@ -341,6 +344,7 @@ function countPalindromes(input1,input2) {
    
 }
 console.log(countPalindromes("this is level 71",16));//1
+``
 //Both the above programs pass all test cases that were provided
 
 
