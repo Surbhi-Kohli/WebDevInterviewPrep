@@ -57,7 +57,7 @@ function sum(first, ...middle, last) {
 
 console.log(sum(1, 2, 3, 4, 5));
 ```
-/*a.15 b.undefined c.NaN d.uncaught error
+a.15 b.undefined c.NaN d.uncaught error
 ans-d
 Explanation:Uncaught SyntaxError: Rest parameter must be last formal parameter i.e.
-Rest parameter should always be the last parameter in function definition as it combines all the remaining arguments into an array.*/
+Rest parameter should always be the last parameter in function definition as it combines all the remaining arguments into an array.
