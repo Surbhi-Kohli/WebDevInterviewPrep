@@ -20,7 +20,7 @@ Similarly, for all arrays type casting will take place.
 
 
  
-//q-2-What is the time complexity?
+##### q-2-What is the time complexity?
 ```
 function findIntersection(first, second) {
   const firstSet = new Set(first);
@@ -50,8 +50,8 @@ do not use this code anywhere.
 Code is written in a certain way to test logic
 
 
-//q-3What would be the output?
-
+##### q-3 What would be the output?
+```
 const first = 6;
 const second = "6";
 const third = first + second;
@@ -61,7 +61,7 @@ const sixth = fourth + second * second;
 
 console.log("Fifth is --", fifth, typeof fifth);
 console.log("Sixth is --", sixth, typeof sixth);
-/*
+```
 Options:
 a.                                                                
 Fifth is -- 1236 string                                                                  
@@ -76,9 +76,9 @@ c.
 d.Fifth is -- 6666 string   
   Sixth is -- 36 string
 ans-b
-*/
-/****************************************/
-//q-4
+
+##### q-4
+```
 var x = 'global';
 var y = function(){
   console.log(this.x);
@@ -89,8 +89,10 @@ y.bind(this);
 y();
 new y();
 //Output:global, global, undefined
-/******************************************/
-//q-5 What will be the width of the element?
+```
+
+##### q-5 What will be the width of the element?
+```
 .container {
   width: 100px;
   height: 100px;
@@ -100,8 +102,10 @@ new y();
 }
 //ans-220px
 //box-sizing:container-box  (applied by default unless specifies as border-box)
+```
 /*************************************Important question*********************/
-//Output question based on the delete operator in JavaScript
+##### Output question based on the delete operator in JavaScript
+```
 var person = "Yomesh";
 
 var deletePerson = () => {
@@ -110,7 +114,7 @@ var deletePerson = () => {
 };
 
 console.log(deletePerson());
-
+```
 /*Options
 a.undefined b.uncaught error c.Yomesh d.No output
 ans- c.Yomesh
@@ -122,14 +126,14 @@ implicit properties of the window object. As per the MDN --
 The JavaScript delete operator removes a property from an object
 
 If we change the code to the following then delete will work.
-
+```
 window.person = "Yomesh";
 
 var deletePerson = () => {
   delete window.person;
   return window.person;
 };
-
+```
 console.log(deletePerson()); // undefined
 To read more -- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete
 */
