@@ -349,7 +349,7 @@ function traverseObject(value, other) {
 
     }
   }
-  //return ans
+
 }
 function deepEqual(value, other) {
   'use strict';
