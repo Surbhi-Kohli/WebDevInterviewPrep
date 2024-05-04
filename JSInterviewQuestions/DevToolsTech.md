@@ -180,3 +180,98 @@ function pipe() {
   }
 }
 ```
+### How to implement a function to convert a string input into an object? | Razorpay Interview Question | JavaScript
+
+In this question, the candidate needs to implement a function that takes a string and final value as inputs. It returns a new object created based on it.
+
+
+#### Syntax
+stringToObject(input, finalValue);
+#### Arguments
+input (String): The object path from which we need to create an object.
+finalValue (any): The final leaf node value.
+Return
+a newly created object
+#### Example
+stringToObject('a.b.c', 1);
+// { a: { b: { c: 1 } } }
+
+stringToObject('', 1);
+// throw a TypeError
+
+stringToObject('a."b.c"."d.e"', 2);
+// consider "b.c" and "d.e" as individual keys
+// output => { a: { 'b.c': { 'd.e': 2 } } }
+
+stringToObject('users.0.name', 'devtools tech')
+// users would be an array that contains one single object with name property with final value
+// { users: [{ name: 'devtools tech' }] }
+
+```
+/**
+ * Read FAQs section on the left for more information on how to use the editor
+**/
+// DO NOT CHANGE THE FUNCTION NAME
+
+function stringToObject(input, finalValue) {
+  // write your code below
+  if(input.length==0)
+  throw new TypeError("Empty")
+  let pattern = [];
+  let i = 0;
+  let open = 0;
+  let key = '';
+  let obj={};
+  let res=obj;
+  while (i < input.length) {
+    if (input[i] == '"') {
+      if (!open) {
+        open = 1;
+      }
+      else {
+        //console.log(pattern)
+        pattern.push(key);
+        key = '';
+        open = 0;
+      }
+    }
+    else if (input[i] == '.') {
+      if (open) {
+        key = key + input[i];
+
+      }
+      else {
+
+        if (key)
+          pattern.push(key);
+
+        key = ''
+      }
+    }
+    else {
+
+      key = key + input[i];
+      if (i == input.length - 1)
+        pattern.push(key);
+
+    }
+    i++;
+  }
+  for(let i=0;i<pattern.length;i++){
+    if(i==pattern.length-1){
+     obj[pattern[i]]=finalValue;
+    }
+    else{
+      if(isNaN(Number(pattern[i+1]))){
+        obj[pattern[i]]={};
+        obj=obj[pattern[i]];
+      }
+      else{
+        obj[pattern[i]]=[];
+        obj= obj[pattern[i]];
+      }
+    }
+  }
+  return res;
+}
+```
