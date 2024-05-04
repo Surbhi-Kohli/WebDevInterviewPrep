@@ -275,3 +275,90 @@ function stringToObject(input, finalValue) {
   return res;
 }
 ```
+### How to check deep equality between JavaScript objects? | Zeta Frontend Interview Question
+
+In this question, the candidate needs write a function called deepEqual that checks deep equality between two JavaScript objects. It should perform a deep comparison between two objects to determine if they are equivalent.
+
+#### Syntax
+deepEqual(value, other);
+Arguments
+value (Object): The value to compare.
+other (Object): The other value to compare.
+Returns
+boolean: Returns true if the values are equivalent, else false.
+#### Examples
+let value = { a: 1 };
+let other = { a: 1 };
+
+deepEqual(value, other);
+// => true
+
+value = { a: { b: { c: { d: 2 } } } };
+other = window.structuredClone(value);
+
+deepEqual(value, other);
+// => true
+
+value = { a: 2 };
+other = { a: 3 };
+
+deepEqual(value, other);
+// => false  
+
+deepEqual();
+// => true
+
+value = { a: 1 };
+other = null;
+
+deepEqual(value, other);
+// => false
+
+value = { a: 1 };
+other = undefined
+
+deepEqual(value, other);
+// => false
+
+value = { a: 1 };
+
+deepEqual(value);
+// => false
+
+```
+/**
+ * Read FAQs section on the left for more information on how to use the editor
+**/
+// DO NOT CHANGE FUNCTION NAME
+
+
+function traverseObject(value, other) {
+
+  if (value && other && Object.keys(value).length > 0 && Object.keys(other).length > 0) {
+    let keyValues = Object.keys(value);
+    let keyOther = Object.keys(other);
+    for (let i = 0; i < Object.keys(value).length; i++) {
+      if (Object.keys(value[keyValues[i]]).length > 0)
+        return true && traverseObject(value[keyValues[i]], other[keyOther[i]]);
+      else {
+        if (value[keyValues[i]] == other[keyOther[i]])
+          return true;
+        else
+          return false;
+      }
+
+    }
+  }
+  //return ans
+}
+function deepEqual(value, other) {
+  'use strict';
+  // write your solution below
+  if(!value && !other)
+  return true
+  if (!value || !other || !Object.keys(other).length || !Object.keys(value).length || Object.keys(value).length != Object.keys(other).length)
+    return false;
+  return traverseObject(value, other);
+ 
+}
+```
