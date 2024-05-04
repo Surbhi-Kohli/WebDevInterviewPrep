@@ -422,3 +422,14 @@ function toggle(list) {
   };
 }
 ```
+
+### Question: what is the output of the following code?
+
+const name = { firstName: "devtools", lastName: "tech" };
+const nameCopy = name;
+
+nameCopy.firstName = "dev";
+
+// what would be the output of the following?
+console.log(name); // { firstname: 'dev', lastname: 'tech' }
+
