@@ -1,3 +1,4 @@
+```
 function compare(input) {
   return !!(input == 1 || input == 2 || input == 3);
 }
@@ -10,12 +11,14 @@ console.log(compare(4));
 console.log(compare([1]));
 console.log(compare([2]));
 console.log(compare([3]));
+```
 //output:false true true true false true true true
 //Explanation:when we use == then it implicitly type cast operands.Therefore, 
 //[1] will become "1" and then 1. 
 //Similarly, for all arrays type casting will take place.
 /**************************************************/
 //q-2-What is the time complexity?
+```
 function findIntersection(first, second) {
   const firstSet = new Set(first);
 
@@ -29,6 +32,7 @@ function init() {
   const second = [1, 2, 3, 4, 5];
   console.log(findIntersection(first, second));
 }
+```
 //ans-O(n^2)
 /*// loops n times i.e. O(n)
 return second.reduce((acc, current) => {
@@ -125,3 +129,46 @@ var deletePerson = () => {
 console.log(deletePerson()); // undefined
 To read more -- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete
 */
+
+
+### How to implement pipe utility? 
+
+In this question, the candidate needs to implement a utility called pipe that takes n 
+functions as input and returns a function that can be invoked to compute the final result
+by invoking each input  function and providing the previous functions' output as an argument.
+
+#### Syntax
+pipe(fn1, fn2, fn3, .... n)(input);
+#### Arguments
+A list of input functions to be executed
+#### Returns
+A function that can be invoked to compute the final value
+
+#### Example
+```
+const getName = (object) => object.name;
+const makeUpperCase = (string) => string.toUpperCase();
+const slice = (string) => string.slice(0, 3);
+
+const method = pipe(getName, makeUpperCase, slice);
+
+const value = method({ name: 'devtools' });
+
+console.log(value);
+```
+
+#### Code:
+```
+function pipe() {
+  // write your code below
+  let args= Array.from(arguments);
+
+  return function(input){
+    let inp=input;
+    for(let i=0;i<args.length;i++){
+        inp= args[i](inp);
+    }
+    return inp;
+  }
+}
+```
