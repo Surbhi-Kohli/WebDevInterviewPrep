@@ -1,4 +1,5 @@
-/***************************************************Promises are eager****************************************************/
+#### Promises are eager
+```
 //Predict the output:
 const greetingPoster = new Promise((resolve, reject) => {
   console.log('Inside Promise (proof of being eager)');
@@ -13,14 +14,14 @@ Output:
 /* "Inside Promise (proof of being eager)"
 "Before calling then on Promise"
 "Greeting from promise: Welcome! Nice to meet you." */
-
-/*  Promises are eager, meaning that a PROMISE WILL START DOING WHATEVER TASK YOU GIVE it as soon as
+```
+Promises are eager, meaning that a PROMISE WILL START DOING WHATEVER TASK YOU GIVE it as soon as
 the promise constructor is invoked. If you need lazy, check out observables or tasks. */
 
-/********************************************** Promises are asynchronous******************************************************************/
-/*     Observable can be synchronous
-Promise is always ASYNCHRONOUS. Even if it’s immediatelly resolved.                    */
-
+### Promises are asynchronous
+Observable can be synchronous
+Promise is always ASYNCHRONOUS. Even if it’s immediatelly resolved. 
+```
 const greetingPoster = new Promise((resolve, reject) => {
   resolve('Welcome! Nice to meet you.');
 });
@@ -34,12 +35,15 @@ console.log('After calling then on Promise (proof of being always async)');
 "Before calling then on Promise"
 "After calling then on Promise (proof of being always async)"
 "Greeting from promise: Welcome! Nice to meet you."
+```
+The message from within then method callback function
+will be the last one even though the Promise is resolved without a delay, 
+since the call is added to the microtasks queue which will be processed
+after the current macrotask’s completion.
 
-The message from within then method callback function will be the last one even though the Promise is resolved without a delay, 
-since the call is added to the microtasks queue which will be processed after the current macrotask’s completion.
-*/
-/******************how to make promises lazy****************************/
+### how to make promises lazy
 //Consider the above example
+```
  const greetingPoster = function(){
     return new Promise((resolve, reject) => {
   console.log('Inside Promise (Is it eager Now???)');
@@ -58,9 +62,13 @@ greetingPoster()
 })
 //Inside Promise (Is it eager Now???)
 //Welcome! Nice to meet you.
+```
+If the intent is to create a Promise that allows control of when it starts executing,i.e ,
+make a promise as lazy, there are no native options. 
+If you want the function passed to the Promise to run multiple times, 
+Promises don't natively allow that either.
 
-/*If the intent is to create a Promise that allows control of when it starts executing,i.e ,make a promise as lazy, there are no native options. 
-If you want the function passed to the Promise to run multiple times, Promises don't natively allow that either.
-
-***To change the default behavior then Promise creation has to be wrapped in another function which can be invoked as many times as needed.
- This works because the javascript Interpreter does not go through a function declaration unless that function is called.****/
+To change the default behavior then Promise creation has to be wrapped in another
+function which can be invoked as many times as needed.
+ This works because the javascript Interpreter does not go through a function declaration
+ unless that function is called.
