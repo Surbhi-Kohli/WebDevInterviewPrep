@@ -16,7 +16,10 @@ Output:
 "Greeting from promise: Welcome! Nice to meet you." */
 ```
 Promises are eager, meaning that a PROMISE WILL START DOING WHATEVER TASK YOU GIVE it as soon as
-the promise constructor is invoked. If you need lazy, check out observables or tasks. */
+the promise constructor is invoked. 
+In JavaScript, the code inside the Promise constructor is executed synchronously when the promise is created, not when it's resolved or rejected. So, as soon as you create the greetingPoster promise, the function inside its constructor is executed, logging the message to the console.
+
+If you need lazy, check out observables or tasks.
 
 ### Promises are asynchronous
 Observable can be synchronous
@@ -50,10 +53,11 @@ after the current macrotask’s completion.
   resolve('Welcome! Nice to meet you.');
 });
 }
- //now unless and untill we explicitly call the function that wraps the promise,the promise contents don't get printed
- //So only when we run the following code ,will we have the  logs
+ /*now unless and untill we explicitly call the function that wraps
+  the promise,the promise contents don't get printed
+ So only when we run the following code ,will we have the  logs
  greetingPoster();//Inside Promise (Is it eager Now???)
-//Inside Promise()
+ */
 
 //If we run
 greetingPoster()
