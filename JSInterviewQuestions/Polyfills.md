@@ -1,5 +1,5 @@
-/*********************************  Filter polyfill *****************************************************************/
-
+###  Filter polyfill 
+```
 Array.prototype.myFilter=function(callback,context)
 {
   let arr=[];
@@ -19,8 +19,9 @@ let ans=arr2.myFilter((num,i)=>{
     return true;
 })
 console.log(ans); //[2,4,6,9]
-
-/************************************** Map polyfill ************************************************************/
+```
+### Map polyfill 
+```
 Array.prototype.myMap=function(callback,context)
 {
   let arr=[];
@@ -38,8 +39,9 @@ let ans=arr2.myMap((num,i)=>{
     return num%2;
 })
 console.log(ans);//[1,0,0,1,0,1,0]
-
-/***********************************   bind polyfill   **********************************************************/
+```
+###  bind polyfill   
+```
 Function.prototype.myBind=
 function(){
   let arg=Array.prototype.slice.call(arguments);
@@ -61,9 +63,10 @@ function callMe(city) {
 }
 let callBinded = callMe.myBind(basic, 'ASR');
 callBinded('Punjab')//Hi!i m Surbhi, my age is 24 and my city is ASR and state is Punjab
+```
+###  Reduce Polyfill  
 
-/*********************************  Reduce Polyfill  ************************************************************/
-
+```
 Array.prototype.myReduce = function(fn, initial) {
     let values = this;
 
@@ -76,9 +79,9 @@ Array.prototype.myReduce = function(fn, initial) {
 var values = [2, 5, 5]
 values.reduce((a, b) => a * b)  // 50
 values.myReduce((a, b) => a * b)  // 50
-
-/*******************  Object Deep clone *********************************************************************/
-
+```
+###  Object Deep clone 
+```
 function deepClone(object) {
   var newObject = {};
   for (var key in object) {
@@ -90,8 +93,9 @@ function deepClone(object) {
   }
   return newObject;
 }
-
-/************************    for each        *******************************************************/
+```
+###  for each       
+```
 Array.prototype.eachAlbum = function(callback) {
   // callback here is the callback function
   // which actual .forEach() function accepts
@@ -99,8 +103,9 @@ Array.prototype.eachAlbum = function(callback) {
     callback(this[i], i, this) // currentValue, index, array
   }
 }
-/************************* debounce polyfill  ******************************************************/
-
+```
+### debounce polyfill  
+```
 const debounce = function (fn, d) {
   let timer;
   return function () {
@@ -117,8 +122,9 @@ button.addEventListener('click', debounce(function() {
 			"click the debounce button, I get " + 
 			"executed only after 3 seconds of clicking n then stopping") 
 						}, 3000));
-
-/************************     throttle polyfill  *******************************************************/
+```
+### throttle polyfill 
+```
 const throttle = (func, limit) => {
   let inThrottle
   return function() {
@@ -131,9 +137,10 @@ const throttle = (func, limit) => {
     }
   }
 }
+```
+### Promise.all  
 
-/**********************************    Promise.all  ********************************************************/
-
+```
 function allPromise(promises) {
   // return a new promise
   return new Promise((resolve, reject) => {
@@ -162,8 +169,11 @@ function allPromise(promises) {
     });
   });
 }
-/******************************************************************8*******/
-/* Write a log function which will add prefix (your message) to every message you log using console.log ?*/
+```
+
+### Write a log function which will add prefix (your message) 
+### to every message you log using console.log ?
+```
 function appLog() {
   var args = Array.prototype.slice.call(arguments);
   args.unshift('your app name');
@@ -187,3 +197,4 @@ function appLog() {
 appLog("Some error message"); 
 //output of above console: 'your app name Some error message'
 
+```
