@@ -47,10 +47,10 @@ function(){
   let arg=Array.prototype.slice.call(arguments);
   let context=arg[0];
   let params=arg.slice(1);
-   let self=this;
+   let funcToBeCalled=this;
    return function(){
      let params2=Array.prototype.slice.call(arguments);
-     return self.apply(that,params.concat(params2));
+     return funcToBeCalled.apply(context,params.concat(params2));
    }
 }
 let basic = {
