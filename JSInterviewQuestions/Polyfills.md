@@ -123,6 +123,30 @@ button.addEventListener('click', debounce(function() {
 			"executed only after 3 seconds of clicking n then stopping") 
 						}, 3000));
 ```
+#### Why do we clear existing timer before a new setTimeout?
+
+Clearing the existing timer before setting a new one is a crucial step in implementing a debounce function.
+Here's why we do it:
+
+#### Prevents Concurrent Execution: 
+If we don't clear the existing timer, subsequent calls to the debounced function will set up new timeouts without canceling the previous ones. This can lead to multiple executions of the debounced function, which defeats the purpose of debouncing. By clearing the existing timer, we ensure that only one timeout is active at any given time.
+
+#### Updates the Delay Time: 
+If the debounced function is called multiple times in quick succession, we want to reset the timer to ensure that the debounced function only executes after the last call and the specified delay has elapsed since that last call. Clearing the existing timer and setting a new one with the updated delay ensures that the function won't execute until the specified delay has passed since the last invocation.
+
+Here's how it works step by step:
+
+When the debounced function is called, the existing timer is cleared using clearTimeout(timer).
+A new timeout is set using setTimeout, which will execute the debounced function after the specified delay (d).
+If the debounced function is called again before the specified delay has elapsed, the existing timer is cleared, effectively resetting the delay.
+This process repeats until there's no further invocation of the debounced function within the delay period, at which point the debounced function executes.
+In summary, clearing the existing timer ensures that the debounced function will only execute once, after the specified delay, regardless of how many times it's invoked within that delay period.
+
+
+
+
+
+
 ### throttle polyfill 
 ```
 const throttle = (func, limit) => {
