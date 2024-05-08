@@ -15,7 +15,7 @@ false === false // true
 [] === [] // false  
 () => {} === () => {} // false
 const z = {}   
-z === z // true 
+z === z // true   
 
 When you define an object inside your React function component, it is not going to
 be referentially equal to the last time that 
@@ -28,6 +28,7 @@ through them one at a time.
 Let's review an example.
 
 Warning, you're about to see some seriously contrived code. Please don't nit-pick that and just focus on the concepts please, thank you.
+```
 function Foo({bar, baz}) {
   const options = {bar, baz}
   React.useEffect(() => {
@@ -38,7 +39,7 @@ function Foo({bar, baz}) {
 function Blub() {
   return <Foo bar="bar value" baz={3} />
 }
-
+```
 The reason this is problematic is because useEffect is going to do a referential equality
 check on options between every render, 
 and thanks to the way JavaScript works, options will be new every time so when
@@ -47,6 +48,7 @@ always evaluate to true, meaning the useEffect callback will be called after
 every render rather than only when bar and baz change.
 
 There are two things we can do to fix this:
+```
 // option 1
 function Foo({bar, baz}) {
   React.useEffect(() => {
@@ -55,18 +57,21 @@ function Foo({bar, baz}) {
   }, [bar, baz]) // we want this to re-run if bar or baz change
   return <div>foobar</div>
 }
+```
 That's a great option and if this were a real thing that's how I'd fix this.
 
 But there's one situation when this isn't a practical solution: 
 If bar or baz are (non-primitive) objects/arrays/functions/etc:
+```
 function Blub() {
   const bar = () => {}
   const baz = [1, 2, 3]
   return <Foo bar={bar} baz={baz} />
 }
+```
 This is precisely the reason why useCallback and useMemo exist. 
 So here's how you'd fix that (all together now):
-
+```
 function Foo({bar, baz}) {
   React.useEffect(() => {
     const options = {bar, baz}
@@ -79,6 +84,7 @@ function Blub() {
   const baz = React.useMemo(() => [1, 2, 3], [])
   return <Foo bar={bar} baz={baz} />
 }
+```
 Note that this same thing applies for the dependencies array passed to useEffect, 
 useLayoutEffect, useCallback, and useMemo.
 
