@@ -1,4 +1,4 @@
- when should I useMemo and useCallback?
+### when should I useMemo and useCallback?
 There are specific reasons both of these hooks are built-into React:
 
 1.Referential equality
@@ -16,10 +16,12 @@ false === false // true
 const z = {}
 z === z // true
 
-When you define an object inside your React function component, it is not going to be referentially equal to the last time that 
+When you define an object inside your React function component, it is not going to
+be referentially equal to the last time that 
 same object was defined (even if it has all the same properties with all the same values).
 
-There are two situations where referential equality matters in React, let's go through them one at a time.
+There are two situations where referential equality matters in React, let's go 
+through them one at a time.
 
 **Dependencies lists
 Let's review an example.
@@ -36,9 +38,12 @@ function Blub() {
   return <Foo bar="bar value" baz={3} />
 }
 
-The reason this is problematic is because useEffect is going to do a referential equality check on options between every render, 
-and thanks to the way JavaScript works, options will be new every time so when React tests whether options changed between renders it'll 
-always evaluate to true, meaning the useEffect callback will be called after every render rather than only when bar and baz change.
+The reason this is problematic is because useEffect is going to do a referential equality
+check on options between every render, 
+and thanks to the way JavaScript works, options will be new every time so when
+React tests whether options changed between renders it'll 
+always evaluate to true, meaning the useEffect callback will be called after
+every render rather than only when bar and baz change.
 
 There are two things we can do to fix this:
 // option 1
@@ -51,13 +56,15 @@ function Foo({bar, baz}) {
 }
 That's a great option and if this were a real thing that's how I'd fix this.
 
-But there's one situation when this isn't a practical solution: If bar or baz are (non-primitive) objects/arrays/functions/etc:
+But there's one situation when this isn't a practical solution: 
+If bar or baz are (non-primitive) objects/arrays/functions/etc:
 function Blub() {
   const bar = () => {}
   const baz = [1, 2, 3]
   return <Foo bar={bar} baz={baz} />
 }
-This is precisely the reason why useCallback and useMemo exist. So here's how you'd fix that (all together now):
+This is precisely the reason why useCallback and useMemo exist. 
+So here's how you'd fix that (all together now):
 
 function Foo({bar, baz}) {
   React.useEffect(() => {
@@ -71,7 +78,8 @@ function Blub() {
   const baz = React.useMemo(() => [1, 2, 3], [])
   return <Foo bar={bar} baz={baz} />
 }
-Note that this same thing applies for the dependencies array passed to useEffect, useLayoutEffect, useCallback, and useMemo.
+Note that this same thing applies for the dependencies array passed to useEffect, 
+useLayoutEffect, useCallback, and useMemo.
 
 React.memo 
 Warning, you're about to see some more contrived code. Please be advised to not nit-pick this either but focus on the concepts, thanks.
@@ -92,12 +100,15 @@ function DualCounter() {
     </>
   )
 }
-Every time you click on either of those buttons, the DualCounter's state changes and therefore re-renders which in turn will re-render both of the CountButtons. 
-However, the only one that actually needs to re-render is the one that was clicked right? So if you click the first one, the second one gets re-rendered, but nothing 
+Every time you click on either of those buttons, the DualCounter's state changes
+and therefore re-renders which in turn will re-render both of the CountButtons. 
+However, the only one that actually needs to re-render is the one that was clicked right? 
+So if you click the first one, the second one gets re-rendered, but nothing 
 changes. We call this an "unnecessary re-render."
 
 MOST OF THE TIME YOU SHOULD NOT BOTHER OPTIMIZING UNNECESSARY RERENDERS. React is VERY fast and there are so many things I can think of for you to do 
-with your time that would be better than optimizing things like this. In fact, the need to optimize stuff with what I'm about to show you is so rare that 
+with your time that would be better than optimizing things like this. 
+In fact, the need to optimize stuff with what I'm about to show you is so rare that 
 
 However, there are situations when rendering can take a substantial amount of time (think highly interactive Graphs/Charts/Animations/etc.).
 Thanks to the pragmatistic nature of React, there's an escape hatch:
@@ -131,7 +142,7 @@ I would like to re-iterate that I strongly advise against using React.memo (or i
 measuring because those optimizations come with a cost and you need to make sure you know what that cost will be as well as the associated benefit so you 
 can determine whether it will actually be helpful (and not harmful) in your case, and as we observe above it can be tricky to get right all the time so you 
 may not be reaping any benefits at all anyway.
----------------------------------------------------------------------------------------------------------------------------------------------------
+
 Computationally expensive calculations
 This is the other reason that useMemo is a built-in hook for React (note that this one does not apply to useCallback). The benefit to useMemo is that
 you can take a value like:
