@@ -14,8 +14,8 @@ false === false // true
 {} === {} // false  
 [] === [] // false  
 () => {} === () => {} // false
-const z = {}
-z === z // true
+const z = {}   
+z === z // true 
 
 When you define an object inside your React function component, it is not going to
 be referentially equal to the last time that 
