@@ -6,12 +6,13 @@ There are specific reasons both of these hooks are built-into React:
 
 Referential equality
 If you're new to JavaScript/programming, it wont take long before you learn why this is the case:
-true === true // true
-false === false // true
-1 === 1 // true
-'a' === 'a' // true
-{} === {} // false
-[] === [] // false
+
+true === true // true  
+false === false // true  
+1 === 1 // true  
+'a' === 'a' // true  
+{} === {} // false  
+[] === [] // false  
 () => {} === () => {} // false
 const z = {}
 z === z // true
