@@ -340,7 +340,7 @@ to set prototype via _ _ proto _ _.  (* people use _ _ proto_ _ to refer [[Proto
 
 The [[Prototype]] is the actual property that holds reference to the parent object's properties and hence delegation works.
 
-Whereas _prototype_ is a property available on all functions as well as the global "Object".Thats because the global Object 
+Whereas _prototype_ is a property available on all functions as well as the global "Object", which will hold all the properties which child objects will refer.The [[Prototype]] points to this __prototype__ of parent.Global "Object" has __prototype__ because the global Object 
 is actually a function which has the _prototype_ property.The default value of prototype is empty object ie {}.This exists so as to add properties that would be needed in [[Prototype]] of objects created via the function constructor.
 _prototype_ only exists on functions just to cater to the case where ur function is a function constructor and u want to create objects 
 using that function.
