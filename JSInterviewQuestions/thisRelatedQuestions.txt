@@ -32,6 +32,13 @@ a.Hey, undefined just called.                                                   
 b.Hey, mom just called.                                                             | a.Hey, undefined just called.
 c.Hey, caller just called.                                                          | b.Hey, mom just called.
                                                                                     | ans-a
+																					|	Explanation
+																					|   call.says is a method, so when called as call.says(), this refers to the call object → "mom".
+																					|	
+																					|	But you do:
+																					|	let newCall = call.says;
+																					|	newCall();        // simple function call
+																					
 ans-a                                                                               | Explanation:Here, we assign a new variable to the says function inside the call object.
 Explanation:Arrow functions, as part of ES6 syntax, do NOT have their               | And then we invoke the variable, which is a simple function call.Notice where we invoke
 own 'this' keyword.Instead, they will use the 'this' keyword of whatever 'this'     | the function. Is it inside the call object?No. We are invoking newCall() function globally
