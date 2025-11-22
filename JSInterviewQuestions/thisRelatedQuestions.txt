@@ -36,19 +36,32 @@ c.Hey, caller just called.                                                      
 																					|   call.says is a method, so when called as call.says(), this refers to the call object → "mom".
 																					|	
 																					|	But you do:
+																						```
 																					|	let newCall = call.says;
 																					|	newCall();        // simple function call
-																					
-ans-a                                                                               | Explanation:Here, we assign a new variable to the says function inside the call object.
+																					|	```
+																					|																						
+																					|	This means we are simply making a function call without any object. 
+																					|	Now newCall() is called without any object, so:
+																					|		
+																					|	In strict mode → this becomes undefined.
+																					|		
+																					|	In non-strict mode → this becomes the global object (e.g., window), 
+																					|	which does NOT have a caller property → undefined.
+																					|
+ans-a                                                                               | Explanation: Here, we assign a new variable to the says function inside the call object.
 Explanation:Arrow functions, as part of ES6 syntax, do NOT have their               | And then we invoke the variable, which is a simple function call.Notice where we invoke
 own 'this' keyword.Instead, they will use the 'this' keyword of whatever 'this'     | the function. Is it inside the call object?No. We are invoking newCall() function globally
 was outside the function when it was created.                                       | which in turn makes the 'this' keyword equal to the global object.
                                                                                     |
-In other words, 'this' inside the arrow function is not bound to our call object,   |
-but instead is already bound to where the call object is being created originally,  |
-which in this case is the global object. And because the global object does not know|
+In other words, 'this' inside the arrow function is not bound to our call object,   | If you want "mom" instead, you must bind it:
+																					|  ```
+but instead is already bound to where the call object is being created originally,  | let newCall = call.says.bind(call);
+																					| newCall();  // Hey, mom just called.
+which in this case is the global object. And because the global object does not know| ``` 
 anything about say() function, 'this' is undefined. And because the global object   |
 does not have a caller property, this.caller is undefined.                          |
+																										
 _________________________________________________________________________________________________________________________________________________________________________
 5.Predict the output:                                                               | 6.What will be the output:
                                                                                     |
