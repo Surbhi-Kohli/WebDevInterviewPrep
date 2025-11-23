@@ -150,7 +150,7 @@ ans-<button></button>
   }
   const b=document.querySelector("button")
  b.addEventListener('click',clickFunction);
-ans-Window object
+ans-Window object, since it is an arrow fucntion, which does not have 'this' of its own, so it takes the value of this from its lexical scope ie from global space, therefore, window object.
 
 /*******************************************************************************/
 13.Predict the output:                                                           
@@ -172,6 +172,10 @@ obj.func();
 output:
 8
 7
+
+Explanation:
+func is called as a method of obj, so inside func(), 'this' is the object itself ie obj. Hence this.b = obj.b = 8
+Inside abc(), abc is a regular function call, NOT a method call, So in non-strict mode, 'this' refers to the global window object, and window.b = 7, hence 7 is the second O/P.
 /**************************************************************************************************************/
 14.
 let b=7;
@@ -265,3 +269,52 @@ foo();//TypeError: Cannot read properties of undefined (reading 'a')
 
 Explanation: If strict mode is in effect ,the global object is not eligible fot the default binding.So the 'this' is set to undefined
 /*********************************************/
+1. Does the variable become a global property?
+| Declaration   | Global? (`window.b`) | Notes                                   |
+| ------------- | -------------------- | --------------------------------------- |
+| `var b = 7`   | ✅ Yes                | Creates a property on the global object |
+| `let b = 7`   | ❌ No                 | Stays in block scope only, NOT global   |
+| `const b = 7` | ❌ No                 | Same as `let`                           |
+
+2. What is this inside a function?
+| Mode            | `this` value             | Notes                             |
+| --------------- | ------------------------ | --------------------------------- |
+| Non-strict mode | `window` (global object) | Default binding (due to 'this' substitution) |
+| Strict mode     | `undefined`              | Prevents accidental global access |
+
+3. this inside methods:
+| Call                  | `this` resolves to |
+| --------------------- | ------------------ |
+| `obj.method()`        | `obj`              |
+| `nested.obj.method()` | `nested.obj`       |
+
+4. Arrow function vs normal function
+| Function Type       | Own `this`? | Inherits from                                  |
+| ------------------- | ----------- | ---------------------------------------------- |
+| **Arrow function**  | ❌ No        | Lexical parent **function** scope (NOT object) |
+| **Normal function** | ✅ Yes       | Calling object (`obj`, DOM element, etc.)      |
+
+
+6. Most important interview rules
+✔ Rule 1:
+
+Objects do not create lexical scope. Only functions do.
+
+✔ Rule 2:
+
+Arrow functions never bind their own this.
+
+✔ Rule 3:
+
+let and const never create global properties.
+
+✔ Rule 4:
+
+Regular function calls → this = window (non-strict) and undefined (strict).
+
+✔ Rule 5:
+
+Methods (obj.fn()) get this = obj.
+
+
+
