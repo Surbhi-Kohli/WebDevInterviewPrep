@@ -235,6 +235,14 @@ public class A {
 - In the Spring framework, a @Component is a class-level annotation for auto-detection of beans, while @Bean is a method-level annotation for explicit, manual bean creation and configuration.
 - All components are beans, but not all beans are components created via component scanning
 
+## PostConstruct annotation?
+- @PostConstruct is used to run initialization logic after Spring finishes dependency injection, ensuring all collaborators are ready.
+- Spring bean lifecycle (simplified):
+ - Bean is created
+ - Dependencies are injected
+ - @PostConstruct method is executed ✅
+ - Bean is ready for use
+
 ## SpringDataJPARepository vs CrudRepository
 
 ## Java 17 topics
