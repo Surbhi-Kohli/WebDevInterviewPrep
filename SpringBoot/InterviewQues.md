@@ -180,6 +180,7 @@ public class B {
 ### How to get rid:
 1. **spring.main.allow-circular-references=true** in properties file if that is required
 2. Use @Lazy annotation:
+- We add **@Lazy in both components** to ensure that neither bean forces eager initialization of the other, allowing Spring to inject proxies instead of real instances and successfully break the constructor-based circular dependency.
  ```
 @Component
 public class A {
@@ -199,6 +200,16 @@ public class B {
     }
 }
 ```
+#### What happens if @Lazy is added in just one bean?
+ Startup flow:
+- Spring tries to create A
+- Injects lazy proxy of B ✅
+- Spring tries to create B
+- Needs real A ❌
+- But A is still under creation
+💥 Circular dependency error!!! Hence, we make sure both are Lazy.
+
+
 #### Isn't @Autowired missing here in the above code snippet?
 - No, it is optional, since there is:
 -  ✔ Only one constructor
@@ -219,6 +230,10 @@ public class A {
 }
 ```
 - Also always use @Autowired during **Setter Injection.**
+
+## Diff between @Bean and @Component? [Refer](https://www.youtube.com/watch?v=Q6eNJXPJv1Q)
+- In the Spring framework, a @Component is a class-level annotation for auto-detection of beans, while @Bean is a method-level annotation for explicit, manual bean creation and configuration.
+- All components are beans, but not all beans are components created via component scanning
 - 
 ## SpringDataJPARepository vs CrudRepository
 
