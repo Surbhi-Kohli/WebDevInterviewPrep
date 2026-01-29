@@ -234,7 +234,7 @@ public class A {
 ## Diff between @Bean and @Component? [Refer](https://www.youtube.com/watch?v=Q6eNJXPJv1Q)
 - In the Spring framework, a @Component is a class-level annotation for auto-detection of beans, while @Bean is a method-level annotation for explicit, manual bean creation and configuration.
 - All components are beans, but not all beans are components created via component scanning
-- 
+
 ## SpringDataJPARepository vs CrudRepository
 
 ## Java 17 topics
@@ -247,7 +247,8 @@ public class A {
 - Kibana is for Visualisation
   
 ## Explain Spring profiles:
-
+- spring.profiles.active=dev or spring.profiles.active=prod can be set in the properties file
+- Or, **-Dspring.profiles.active=local** as command line vmargs
 - Spring Profiles allow us to **define different configurations for different environments** like development, testing, and production.
 - By using the **@Profile annotation** and profile-specific property files, we can control which beans and configurations are loaded at runtime.
 - This is important because it helps in clean separation of environment-specific settings (like database URLs, log levels, external API keys), makes applications flexible to deploy across environments, and avoids accidental use of dev/test configs in production.
