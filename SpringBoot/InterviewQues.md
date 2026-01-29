@@ -199,6 +199,12 @@ public class B {
     }
 }
 ```
+#### Isn't @Autowired missing here in the above code snippet?
+- No, it is optional, since there is:
+-  ✔ Only one constructor
+-  ✔ Spring auto-wires it implicitly
+-  So @Autowired is optional here.
+- Since **Spring 4.3**, if a **class has a single constructor, Spring automatically performs constructor injection, so @Autowired is not required**.”
 
 ## SpringDataJPARepository vs CrudRepository
 
