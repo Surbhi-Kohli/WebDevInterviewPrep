@@ -198,7 +198,10 @@ public class B {
 ```
 
 ## SpringDataJPARepository vs CrudRepository
-How do you integrate logging in your application?
+
+## Java 17 topics
+## Detailed analysis on Springboot annotations.
+## How do you integrate logging in your application?
   - logback is default
   - log4j is added in place of logging:
     - 
