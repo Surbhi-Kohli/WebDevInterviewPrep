@@ -206,6 +206,20 @@ public class B {
 -  So @Autowired is optional here.
 - Since **Spring 4.3**, if a **class has a single constructor, Spring automatically performs constructor injection, so @Autowired is not required**.”
 
+#### When DO you need @Autowired?
+- In case of Multiple constructors
+- ➡ Spring won’t know which one to use
+- ➡ You must add @Autowired
+
+```
+@Component
+public class A {
+   public A() {}
+   public A(B b) {}
+}
+```
+- Also always use @Autowired during **Setter Injection.**
+- 
 ## SpringDataJPARepository vs CrudRepository
 
 ## Java 17 topics
