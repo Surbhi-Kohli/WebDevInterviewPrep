@@ -1,6 +1,8 @@
 ## Soap vs Rest:
 [Refer from AWS](https://aws.amazon.com/compare/the-difference-between-soap-rest/)
 
+- SOAP and REST are two internet data exchange mechanisms.
+- SOAP and REST are two different approaches to API design.
 - In Spring Boot, REST and SOAP represent distinct approaches to building web services.
 REST:
 - REST is an architectural style that leverages HTTP methods and conventions, typically using JSON for data exchange, making it easier to implement and more lightweight compared to SOAP.
