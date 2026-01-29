@@ -34,12 +34,15 @@ Generally we use @Controller annotation with @RequestMapping annotation to map H
 2.  @RestController = @Controller + @ResponseBody
 3.  @RequestMapping Annotation
   - Maps HTTP requests to handler methods.
-    ``@RestController
+
+```
+@RestController
 public class Geeks{
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String welcome() {
         return "Welcome to Spring Boot!";
     }
+```
 4. @RequestBody Annotation: convert HTTP requests from request body from incoming JSON format to domain objects.
 5.  @ResponseBody Annotation: This annotation is used to convert the domain object into HTTP response in the form of JSON or any other text.
 
