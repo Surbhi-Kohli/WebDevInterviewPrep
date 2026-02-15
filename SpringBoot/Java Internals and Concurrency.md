@@ -1,3 +1,19 @@
+⏰ Block 1 — Java Internals (2 hrs)
+Study
+- HashMap internals 
+- ConcurrentHashMap internals
+- equals + hashCode contract
+- Generics + type erasure
+- JVM memory model
+
+Block 2 — Concurrency Core (2 hrs)
+Study
+- Thread lifecycle
+- ExecutorService
+- Future vs CompletableFuture
+- synchronized vs ReentrantLock
+- volatile keyword
+- Atomic classes
 
 ## Explain null key and null value insertion in HashMap.
 - HashMap allows one null key because keys must be unique, but allows multiple null values because values can be duplicated. 
@@ -103,3 +119,53 @@ It is:
 - Default Object.hashCode() may give different values
 - Equal objects go to different buckets
 - HashMap / HashSet behaves incorrectly
+- 
+## What were the issues without generics in Java?
+- Type safety
+- Manual Casting
+- No compile time checking
+```
+int[] arr = new int[5];
+ArrayList arr = new Arraylist();
+arr.put("hello");
+arr.put(1);
+String val = (String) arr.get(0); //this does not throw issues at compile time, but exception occurs at runtime, since we are casting incorrectly --> int is getting casted to string
+```
+
+This is why without generics, things are not type-safe, also, due to manual casting, it gives errors not at compile time, but at run time.
+
+
+#### Generics:
+- We restrict the type of data that can be stored in the ArrayList or any other data structure for that matter.
+- As a result, we make things "TYPE-SAFE". So we add **"Compile-time Type safety"**
+- No unexpected runtime exceptions, since we clearly mention what type of data can be stored in the data structure.
+```
+ArrayList<String> arr = new ArrayList<>();
+```
+
+- Now we add strings, and we expect strings out of this array very clearly...no confusion about what it can store. 
+- And if we try to store wrong data type, it shows errors at the Compile-time itself.
+
+**👉 Generics = Compile-time safety; 👉 Type Erasure = Runtime simplicity**
+
+**- Generics Behind the scenes:**
+- Whatever type we specify in using Generics is used only at compile-time for Type-safety. After compilation, in the byte code, there is nothing like Generics. Genrics get erased, and **simple type casting is visible in the byte code.**
+
+```
+ArrayList<String> arr = new ArrayList<>();
+```
+
+Becomes: ArrayList arr = new ArrayList();
+```
+Box <String> box = new Box<>();
+String value = box.getBox();
+```
+#### after compilation, in the byte code, this is how the type caste happens and the generics are all erased:
+```
+Box box = new Box();
+String value = (String) box.getBox(); 
+```
+## Volatile Vs Atomic in Java
+- volatile keyword ensures variable updates are visible across threads and prevents instruction reordering, but it does not provide atomic operations.
+- So, if one thread writes to a variable, and the other reads the same, it is very much possible due to caching that the thread t2 maintains its local copy of the variable...and never gets to know the updated value of the variable. Hence, we can make the variable "volatile" to make sure its value is always taken from the main memory rather than from the cached memory.
+- But the problem is that this does not ensure atomicity. So, when two threads write to this volatile variable, it does not ensure atomicity...since no locking is being maintained.
