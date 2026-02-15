@@ -96,3 +96,10 @@ It is:
 👉 Lock-free for reads
 👉 Partially lock-free for writes
 👉 Fine-grained locked for collisions
+
+## Why Must We Override Both equals() and hasCode()?
+
+- If you override only equals():
+- Default Object.hashCode() may give different values
+- Equal objects go to different buckets
+- HashMap / HashSet behaves incorrectly
