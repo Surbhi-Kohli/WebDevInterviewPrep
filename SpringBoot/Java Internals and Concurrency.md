@@ -169,3 +169,50 @@ String value = (String) box.getBox();
 - volatile keyword ensures variable updates are visible across threads and prevents instruction reordering, but it does not provide atomic operations.
 - So, if one thread writes to a variable, and the other reads the same, it is very much possible due to caching that the thread t2 maintains its local copy of the variable...and never gets to know the updated value of the variable. Hence, we can make the variable "volatile" to make sure its value is always taken from the main memory rather than from the cached memory.
 - But the problem is that this does not ensure atomicity. So, when two threads write to this volatile variable, it does not ensure atomicity...since no locking is being maintained.
+- Use Volatile for a flag variable, which depicts state change(example true to false). Don't use for more complex things, since volatile does not prevent parallel updations to the same variable by multiple threads.
+
+- AtomicInteger is used to make an integer variable thread-safe. Eg, a counter variable can be made thread-safe by making sure that only one thread writes on it at one time. SImilarly, AtomicBoolean, AtomicIntegerArray
+- **Atomic classes provides Lock-free thread safe operations using CAS (Compare And Swap)**.Examples:
+- AtomicInteger
+- AtomicLong
+- AtomicReference
+
+✅ Interview Explanation
+- Atomic classes use hardware level CAS operations to provide thread safety without blocking, improving performance under high contention.
+
+**When NOT to use atomic?**
+If:
+- Multiple variables must change together
+- Need transactional guarantee
+
+## Synchronized keyword
+- To avoid Race condition, which means multiple threads accessing and manipulating the same variable at the same time, we use Synchronized variable at the method level where the shared resource is being updated.
+- We identify such a method or block as Critical Section
+- Once race condition is avoided, we say we have achieved Mutual Exclusion.
+
+## Types of Locks
+- Intrinsic Lock - When using synchronised keyword, we are using Intrinsic Lock
+- Explicit Lock - These are more advanced locks, we can control them. We get more control over how and when to lock the shared resource.
+
+## Lambda Expression: 
+- a concise way to represent anonymous functions and enable functional programming in Java.
+- useful in case of functional interface meanning interface with just one abstract method
+- (eg: Runnable interface has just one abstract method - run(),
+- Useful in Java Streams API - filter, map, reduce
+- Helps with functions first implementation
+
+Before lambda: inner anonymous class was written that overrides the run() method
+```
+Runnable r1 = new Runnable(){
+@Override
+void run(){
+sysout("running");
+}
+}
+```
+Now, simply implement the method using lambda expression 
+```
+Runnable r2 = ()->{sysout("running");}
+
+r1.run();
+r2.run();
