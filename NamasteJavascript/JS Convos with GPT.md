@@ -46,3 +46,91 @@ console.log(window.x);
 Here JavaScript is doing something different.It is accessing a property on an object.**window is the global object in browsers.**
 
 So JS checks:Does window have property "x" ? If it doesn't exist, **JavaScript simply returns:undefined** because accessing a **missing object property returns undefined.**
+
+
+## Tricky Hoisting Questions that even experienced JavaScript developers often get wrong.
+
+1. **Function Declaration vs Function Expression**
+```
+foo();
+
+var foo = function () {
+  console.log("Hello");
+};
+```
+O/P: TypeError: foo is not a function
+
+2. **Variable vs Function Declaration**
+```
+var foo = 1;
+
+function foo() {
+  console.log(2);
+}
+
+console.log(foo);
+```
+O/P: 1
+
+3. **Hoisting Inside Functions (The Classic Trap)**
+```
+var x = 10;
+
+function test() {
+  console.log(x);
+  var x = 20;
+}
+
+test();
+```
+O/P: undefined
+
+4. **Bonus One (Very Famous Interview Question)**
+```
+var a = 1;
+
+function test() {
+  console.log(a);
+  var a = 2;
+  console.log(a);
+}
+
+test();
+```
+O/P: undefined
+2
+
+**Because the engine sees it as:**
+```
+function test() {
+  var a;
+  console.log(a);
+  a = 2;
+  console.log(a);
+}
+```
+
+## The Hoisting Rule (Remember This)
+
+During creation phase, there is a Priority order:
+
+1️⃣ Function declarations
+2️⃣ var declarations
+3️⃣ let / const (temporal dead zone)
+
+
+## One Question That Even Senior Engineers Fail
+
+What will this print?
+```
+var foo = 1;
+
+function foo() {
+  console.log(2);
+}
+
+foo();
+```
+
+- Most people say 1.
+- Actual answer is a **runtime error.**
