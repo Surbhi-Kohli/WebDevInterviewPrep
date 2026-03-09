@@ -134,3 +134,40 @@ foo();
 
 - Most people say 1.
 - Actual answer is a **runtime error.**
+
+
+##
+
+```
+for (var i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), i * 1000);
+}
+```
+
+O/P: 
+3
+3
+3
+
+Reason:
+- var is function scoped, not block scoped. So there is only one i variable shared across all iterations.
+- Closures capture variables by reference, not by value. And since var creates one shared variable, every callback reads the final value (3).
+
+### Important point: The function captures the variable i, not the value. So each callback remembers: i → reference to the same variable
+
+
+## Why let Changes Everything
+
+If we write:
+```
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => console.log(i), i * 1000);
+}
+```
+
+Output becomes the following because let creates a new i for every iteration:
+```
+0
+1
+2
+```
