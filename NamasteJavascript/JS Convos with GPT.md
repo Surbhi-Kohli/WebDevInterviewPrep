@@ -173,7 +173,54 @@ Output becomes the following because let creates a new i for every iteration:
 
 # REACT Questions:
 
-## 1. What will this print?
+## 1. What is Batching?
+
+- Batching means React groups multiple state updates into a single render.
+
+- **With batching: one single render. This improves performance significantly.**
+
+4️⃣ Example of Batching
+```
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+    setCount(count + 1);
+    setCount(count + 1);
+  }
+
+  return <button onClick={handleClick}>{count}</button>;
+}
+```
+```
+When clicked:
+Expected:
+3
+```
+```
+Actual: 1
+```
+
+**- Because React batches updates and each update uses the same stale value.**
+
+## 2. What are functional updates in React? 
+- Useful for sequential updation, overriding the asynchronous state updations in React.
+- Functional Update Fix
+- To avoid stale values, Now React processes them sequentially.
+- The functional state update form is used when the **new state depends on the previous state**.
+- Since **React batches updates asynchronously, using setState(prev => prev + 1) ensures that the update always uses the latest state value and avoids stale state issues.***
+  
+```
+setCount(prev => prev + 1);
+setCount(prev => prev + 1);
+setCount(prev => prev + 1);
+```
+```
+Result:
+3
+```
+## 3. What will this print?
 
 ```
 const [count, setCount] = useState(0);
@@ -193,7 +240,7 @@ useEffect(() => {
 3. Synchronous code continues. Since count has not yet been updated, it gives 0 as console.log.
 4. After the useeffect is finished, React processes the update queue. Now it re-renders the component and now te count = 1;
 
-## 2. What will happen now?
+## 4. What will happen now?
 ```
 const [count, setCount] = useState(0);
 useEffect(() => {
@@ -231,7 +278,7 @@ New state = 1
 Single re-render
 ```
 
-## 3. What happens here? When updations are in separate event loops?
+## 5. What happens here? When updations are in separate event loops?
 ```
 setCount(1);
 
