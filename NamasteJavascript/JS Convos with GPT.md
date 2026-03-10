@@ -164,10 +164,118 @@ for (let i = 0; i < 3; i++) {
   setTimeout(() => console.log(i), i * 1000);
 }
 ```
-
 Output becomes the following because let creates a new i for every iteration:
 ```
 0
 1
 2
+```
+
+# REACT Questions:
+
+## 1. What will this print?
+
+```
+const [count, setCount] = useState(0);
+
+useEffect(() => {
+  setCount(count + 1);
+  console.log(count);
+}, []);
+```
+
+**It will print 0 (not 1). Because React does not immediately updates the state, instead, it schedules the update.** 
+1. UI renders and commit phase is done.
+2. Then useeffect callback is triggered. It has state manipulation, which schedules the state updation by queuing it into the update queue.
+     - creates an update
+     - adds it to the update queue
+     - marks component for re-render
+3. Synchronous code continues. Since count has not yet been updated, it gives 0 as console.log.
+4. After the useeffect is finished, React processes the update queue. Now it re-renders the component and now te count = 1;
+
+## 2. What will happen now?
+```
+const [count, setCount] = useState(0);
+useEffect(() => {
+  setCount(count + 1);
+  setCount(count + 1);
+}, []);
+```
+1. Initially, UI is rendered.
+2. useEffect's callback is executed. The back to back state updations are **batched in React** ie. grouped together. So count in both case is 0 only.
+     - creates one update --> adds to queue
+     - creates another update --> adds it to queue. but both have count+1  = 0+1 = 1. Hence, second update still uses the stale state.
+```
+Update Queue
+-------------
+setCount(1)
+setCount(1)
+```
+3. After useEffect is finished, react processes the update queue. **It processes both the renders in the same render cycle.**
+  - **Processes the batch updates(first updates to 1, second also updates to 1, so no change for this second update) --> calculates the final state(count = 1) ---> only then does the re-render once**
+
+**VISUAL TIMELINE:**
+```
+Initial Render
+count = 0
+      ↓
+useEffect runs
+      ↓
+Queue updates
+[ setCount(1), setCount(1) ]
+      ↓
+React processes queue
+      ↓
+New state = 1
+      ↓
+Single re-render
+```
+
+## 3. What happens here? When updations are in separate event loops?
+```
+setCount(1);
+
+setTimeout(() => {
+  setCount(2);
+}, 0);
+```
+
+
+1. Step1: React Creates an update. Pushes it into the update queue. Schedules a re-render. (No immediate updation of the state).
+2. Step2: setTimeout is scheduled in the macrotask queue fo js event loop
+3. Step3: React processes the update. Updates the value of count to 1. Re-renders the component. (Now count = 1)
+4. Step4: Event loop executes the setTimeout after 0 ms delay. React creates another update(setCount(2)) --> pushes into update queue --> Schedules a re-render
+5. React now processes the second update and re-renders the component with count = 2 this time.
+VISUAL TIMELINE:
+```
+Initial render
+count = 0
+      ↓
+setCount(1)
+      ↓
+Render #1
+count = 1
+      ↓
+setTimeout executes
+      ↓
+setCount(2)
+      ↓
+Render #2
+count = 2
+```
+
+**Why This Is Different From Earlier Example**
+- Earlier, **Both updates happened in the same synchronous execution, so React batched them.**
+
+```
+setCount(count + 1);
+setCount(count + 1);
+```
+
+
+- But here,
+**They occur in different event loop cycles, so React processes them separately.**
+```
+setCount(1) → synchronous task
+setCount(2) → macrotask (later)
 ```
