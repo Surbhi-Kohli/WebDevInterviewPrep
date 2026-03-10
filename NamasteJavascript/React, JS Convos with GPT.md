@@ -319,10 +319,37 @@ setCount(count + 1);
 setCount(count + 1);
 ```
 
-
 - But here,
 **They occur in different event loop cycles, so React processes them separately.**
 ```
 setCount(1) → synchronous task
 setCount(2) → macrotask (later)
 ```
+
+# CSS questions:
+
+## What is Margin Collapse?
+
+- Margin collapse happens when vertical margins of two elements combine instead of adding up.
+
+```
+<div class="box1"></div>
+<div class="box2"></div>
+```
+```
+.box1 {
+  margin-bottom: 40px;
+}
+
+.box2 {
+  margin-top: 20px;
+}
+```
+
+- Expected spacing:
+40px + 20px = 60px
+
+- Actual spacing:
+40px
+
+**Because margins collapse into the larger one.**
