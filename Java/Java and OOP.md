@@ -116,7 +116,8 @@ List generate by flatMap-[1, 2, 3, 4, 5, 6, 7, 8]
 - Optional.empty(): Returns an empty Optional.
 - Optional.of(value): Returns an Optional containing the given non-null value.
 - Optional.ofNullable(value): Returns an Optional describing the value if non-null, otherwise empty
-  
+- **Optional is a Java 8 container that represents a value that may or may not exist.**
+- It forces the **developer to handle the ‘value may be absent’ case explicitly, reducing NullPointerExceptions and making APIs more expressive.**
 ```
 String[] words = new String[10];
 Optional<String> checkNull = Optional.ofNullable(words[5]);
