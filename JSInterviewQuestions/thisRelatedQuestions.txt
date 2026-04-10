@@ -32,16 +32,36 @@ a.Hey, undefined just called.                                                   
 b.Hey, mom just called.                                                             | a.Hey, undefined just called.
 c.Hey, caller just called.                                                          | b.Hey, mom just called.
                                                                                     | ans-a
-ans-a                                                                               | Explanation:Here, we assign a new variable to the says function inside the call object.
+																					|	Explanation
+																					|   call.says is a method, so when called as call.says(), this refers to the call object → "mom".
+																					|	
+																					|	But you do:
+																						```
+																					|	let newCall = call.says;
+																					|	newCall();        // simple function call
+																					|	```
+																					|																						
+																					|	This means we are simply making a function call without any object. 
+																					|	Now newCall() is called without any object, so:
+																					|		
+																					|	In strict mode → this becomes undefined.
+																					|		
+																					|	In non-strict mode → this becomes the global object (e.g., window), 
+																					|	which does NOT have a caller property → undefined.
+																					|
+ans-a                                                                               | Explanation: Here, we assign a new variable to the says function inside the call object.
 Explanation:Arrow functions, as part of ES6 syntax, do NOT have their               | And then we invoke the variable, which is a simple function call.Notice where we invoke
 own 'this' keyword.Instead, they will use the 'this' keyword of whatever 'this'     | the function. Is it inside the call object?No. We are invoking newCall() function globally
 was outside the function when it was created.                                       | which in turn makes the 'this' keyword equal to the global object.
                                                                                     |
-In other words, 'this' inside the arrow function is not bound to our call object,   |
-but instead is already bound to where the call object is being created originally,  |
-which in this case is the global object. And because the global object does not know|
+In other words, 'this' inside the arrow function is not bound to our call object,   | If you want "mom" instead, you must bind it:
+																					|  ```
+but instead is already bound to where the call object is being created originally,  | let newCall = call.says.bind(call);
+																					| newCall();  // Hey, mom just called.
+which in this case is the global object. And because the global object does not know| ``` 
 anything about say() function, 'this' is undefined. And because the global object   |
 does not have a caller property, this.caller is undefined.                          |
+																										
 _________________________________________________________________________________________________________________________________________________________________________
 5.Predict the output:                                                               | 6.What will be the output:
                                                                                     |
@@ -130,7 +150,7 @@ ans-<button></button>
   }
   const b=document.querySelector("button")
  b.addEventListener('click',clickFunction);
-ans-Window object
+ans-Window object, since it is an arrow fucntion, which does not have 'this' of its own, so it takes the value of this from its lexical scope ie from global space, therefore, window object.
 
 /*******************************************************************************/
 13.Predict the output:                                                           
@@ -152,6 +172,10 @@ obj.func();
 output:
 8
 7
+
+Explanation:
+func is called as a method of obj, so inside func(), 'this' is the object itself ie obj. Hence this.b = obj.b = 8
+Inside abc(), abc is a regular function call, NOT a method call, So in non-strict mode, 'this' refers to the global window object, and window.b = 7, hence 7 is the second O/P.
 /**************************************************************************************************************/
 14.
 let b=7;
@@ -245,3 +269,52 @@ foo();//TypeError: Cannot read properties of undefined (reading 'a')
 
 Explanation: If strict mode is in effect ,the global object is not eligible fot the default binding.So the 'this' is set to undefined
 /*********************************************/
+1. Does the variable become a global property?
+| Declaration   | Global? (`window.b`) | Notes                                   |
+| ------------- | -------------------- | --------------------------------------- |
+| `var b = 7`   | ✅ Yes                | Creates a property on the global object |
+| `let b = 7`   | ❌ No                 | Stays in block scope only, NOT global   |
+| `const b = 7` | ❌ No                 | Same as `let`                           |
+
+2. What is this inside a function?
+| Mode            | `this` value             | Notes                             |
+| --------------- | ------------------------ | --------------------------------- |
+| Non-strict mode | `window` (global object) | Default binding (due to 'this' substitution) |
+| Strict mode     | `undefined`              | Prevents accidental global access |
+
+3. this inside methods:
+| Call                  | `this` resolves to |
+| --------------------- | ------------------ |
+| `obj.method()`        | `obj`              |
+| `nested.obj.method()` | `nested.obj`       |
+
+4. Arrow function vs normal function
+| Function Type       | Own `this`? | Inherits from                                  |
+| ------------------- | ----------- | ---------------------------------------------- |
+| **Arrow function**  | ❌ No        | Lexical parent **function** scope (NOT object) |
+| **Normal function** | ✅ Yes       | Calling object (`obj`, DOM element, etc.)      |
+
+
+6. Most important interview rules
+✔ Rule 1:
+
+Objects do not create lexical scope. Only functions do.
+
+✔ Rule 2:
+
+Arrow functions never bind their own this.
+
+✔ Rule 3:
+
+let and const never create global properties.
+
+✔ Rule 4:
+
+Regular function calls → this = window (non-strict) and undefined (strict).
+
+✔ Rule 5:
+
+Methods (obj.fn()) get this = obj.
+
+
+
