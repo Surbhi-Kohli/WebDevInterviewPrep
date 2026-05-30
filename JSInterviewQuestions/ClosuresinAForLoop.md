@@ -891,7 +891,7 @@ Main takeaway:
 > `var` loops usually give all closures the same binding.
 > `let` in a `for` loop header gives each iteration a fresh binding.
 
-/*********************************************** AMBIGUOUS BEHAVIOUR OF CLOSURES IN A LOOP **********************************************************************/
+ ## AMBIGUOUS BEHAVIOUR OF CLOSURES IN A LOOP 
 ### Predict the output:
 ```
 /*1.Predict the output:   */ 
@@ -939,11 +939,12 @@ for (var j = 0; j < 3; j++) {
 |   My value: 3      My value: 2                          My value:undefined
                                                                                        
 |ans-b
-*/                                                                                        
+*/
+```                                                                                   
  EXPLANATION:We passed variable i as a parameter, instead of using it directly.As we know if we pass a parameter function makes its own local copy of the variable
      |(if it is not object type which pass by reference).So each time function has its own local copy of variable which is updated by loop iteration*/
                                                                                        
-/*______________________________________________________________________________________________________________________________________________________________________*/
+
 
 /*3.  Predict the output*/                                                             |  /*4.Predict the output */
                                                                                        |  let arr = [];
@@ -970,37 +971,70 @@ for (var j = 0; j < 3; j++) {
                                                                                        |
      ********   In loops, you get a fresh binding for each iteration if you            |
                 let-declare a variable. The loops that allow you to do so are: for,    |
-                for-in and for-of.*/                                                   |
-                  
-/*____________________________________________________________________________________________________________________________________________________________*/              
-                                                                                           
-/* 6.Predict the output */                                                             | /* 7. Predict the output */
-   var array = [1, 2, 3, 4, 5]                                                         |   var array = [1, 2, 3, 4, 5]
-   for(var i = 0; i < array.length; i++) {                                             |     for(let i = 0; i < array.length; i++) {
-    setTimeout(() => {                                                                 |          setTimeout(() => {
-    console.log(array[i])                                                              |              console.log(array[i])
-  }, 1000);                                                                            |             }, 1000);
-}                                                                                      |      }
-/* a.1 2 3 4 5  b.undefined undefined undefined undefined undefined                    |
-ans- b                                                                                 |  a. 1 2 3 4 5
-EXPLANATION: as the timer for setTimeout finishes,i is 5 and its value is available    |  b. undefined undefined undefined undefined undefined
-outside the loop as i is declared as a var.                                            |  c. error
-Now array[5] is undefined ,hence the output                                            | ans -a
-                                                                                       | EXPLANATION:In a loop with a let-based index,each iteration through the
-                                                                                       |             loop will have a new variable i with loop scope.Also
-                                                                                       |      as inner arrow function is enclosed in setTimeout
-                                                                                       |         ,it has access to i's even when
-                                                                                       |              called later
-                                                                                       |
-                                                                                       
- /*_______________________________________________________________________________________________*/              
+                for-in and for-of.*/                                                   
+
+
+
+                
+   
+```                                                                                           
+/* 6.Predict the output */                                                              
+   var array = [1, 2, 3, 4, 5]                                                            
+   for(var i = 0; i < array.length; i++) {                                                 
+    setTimeout(() => {                                                                         
+    console.log(array[i])                                                                            
+  }, 1000);                                                                                        
+}                                                                                           
+/* a.1 2 3 4 5  b.undefined undefined undefined undefined undefined                    
+ans- b
+                                                                             
+EXPLANATION: as the timer for setTimeout finishes,i is 5 and its value is available     
+outside the loop as i is declared as a var.                                            
+Now array[5] is undefined ,hence the output
+*/                                           
+```                                                         
+                                                                                      
+ 
+```
+/* 7. Predict the output */
+var array = [1, 2, 3, 4, 5]
+for(let i = 0; i < array.length; i++) {
+  setTimeout(() => {
+console.log(array[i])
+ }, 1000);
+}
+
+//a. 1 2 3 4 5
+//b. undefined undefined undefined undefined undefined
+//c. error
+//ans -a
+/*
+EXPLANATION:In a loop with a let-based index,each iteration through the
+loop will have a new variable i with loop scope.Also as inner arrow function is enclosed in setTimeout,it has access to i's even when called later
+*/
+```
+
+ 
+ 
+ ```          
                
-    /*8.Predict the output */                                                           |
-    var array = [1, 2, 3, 4, 5]                                                         |      var array = [1, 2, 3, 4, 5]   
-for(var i = 0; i < array.length; i++) {                                                 |     for(let i = 0; i < array.length; i++) {  
-  setTimeout(() => {                                                                    |          setTimeout(() => {                                                   
-    console.log(array[i])                                                               |           console.log(array[i])    
-  }, 0);                                                                                |          }, 0); 
-}                                                                                       |       }
-     //Output:undefined undefined undefined undefined undefined                         |  //Output: 1 2 3 4 5
-             
+    /*8.Predict the output */        
+    var array = [1, 2, 3, 4, 5]                                                       
+for(var i = 0; i < array.length; i++) {                                                    
+  setTimeout(() => {                                                                                                                              
+    console.log(array[i])                                                                            
+  }, 0);                                                                                      
+}                                                                                            
+     //Output:undefined undefined undefined undefined undefined                  
+```
+
+     ``` //9
+     
+             var array = [1, 2, 3, 4, 5] 
+             for(let i = 0; i < array.length; i++) {  
+                setTimeout(() => { 
+                console.log(array[i]) 
+                 }, 0); 
+                 }
+              //Output: 1 2 3 4 5
+              ```
