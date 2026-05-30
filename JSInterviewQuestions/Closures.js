@@ -124,22 +124,33 @@ let counter=0;
 	function incrementCounter(){
 	console.log("Live initisl value of counter in incrementCounter is :",counter);
 		counter++;
+	console.log("new value of counter is :",counter);
 	}
 	function incrementCounterByTwo(){
 	console.log("Live initial value of counter in incrementCounterByTwo is :",counter);
 		counter+=2;
-		
+	console.log("new value of counter is :",counter);	
 	}
 	function incrementCounterByThree(){
 	  console.log("Live initial value of counter in incrementByThree is :",counter);	
 	  counter+=3;
+	  console.log("new value of counter is :",counter);	
 	}
 	return {incrementCounter,incrementCounterByTwo,incrementCounterByThree};
 }
 const myNewObj=outer();
 myNewObj.incrementCounterByThree();
+ // Live initial value of counter in incrementByThree is : 0
+ // new value of counter is : 3
+
 myNewObj.incrementCounter();
+ // Live initial value of counter in incrementByThree is : 3
+ // new value of counter is : 4
+
 myNewObj.incrementCounterByTwo();
+ // Live initial value of counter in incrementByThree is : 4
+ // new value of counter is : 6
+
 /****************************************************************************************************************************/
 /*Multiple closure instances:What happens when another instance of original 
  closure is instantiated and called*/											  
