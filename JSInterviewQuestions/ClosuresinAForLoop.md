@@ -942,7 +942,7 @@ for (var j = 0; j < 3; j++) {
 */
 ```                                                                                   
  EXPLANATION:We passed variable i as a parameter, instead of using it directly.As we know if we pass a parameter function makes its own local copy of the variable
-     |(if it is not object type which pass by reference).So each time function has its own local copy of variable which is updated by loop iteration*/
+    |(if it is not object type which pass by reference).So each time function has its own local copy of variable which is updated by loop iteration Passing i as a parameter creates a new local parameter binding for each function call.
                                                                                        
 
 ```
