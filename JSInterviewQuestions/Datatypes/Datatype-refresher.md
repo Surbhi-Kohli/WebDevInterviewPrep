@@ -1177,7 +1177,7 @@ can both be true because they use **different rules**.
 
 ---
 
-# 18. Boolean Context Uses Truthy/Falsy
+## 17.1. Boolean Context Uses Truthy/Falsy
 
 Example:
 
@@ -1223,7 +1223,7 @@ Boolean({}); // true
 
 ---
 
-# 19. Loose Equality `==` Does Not Simply Use Truthy/Falsy
+## 17.2. Loose Equality `==` Does Not Simply Use Truthy/Falsy
 
 This:
 
@@ -1255,7 +1255,7 @@ Instead, `==` uses its own coercion rules.
 
 ---
 
-# 20. Why is `[] == false` true?
+## 17.3. Why is `[] == false` true?
 
 Step by step:
 
@@ -1323,7 +1323,7 @@ Both are correct because they use different rules.
 
 ---
 
-# 20. More Examples Showing the Difference
+## 17.4 More Examples Showing the Difference
 
 ```js
 console.log(Boolean([])); // true
@@ -1369,7 +1369,7 @@ x is falsy
 
 ---
 
-# 21. Do Not Use `== false` to Check Falsy Values
+## 17.5. Do Not Use `== false` to Check Falsy Values
 
 Bad:
 
@@ -1429,7 +1429,7 @@ if (Object.keys(obj).length === 0) {
 
 ---
 
-# 22. Equality Operators
+# 18. Equality Operators
 
 JavaScript has two main equality operators:
 
@@ -1440,7 +1440,7 @@ JavaScript has two main equality operators:
 
 ---
 
-## 22.1 Loose Equality `==`
+## 18.1 Loose Equality `==`
 
 `==` compares values after type coercion.
 
@@ -1478,7 +1478,7 @@ does **not** mean `[]` is falsy.
 
 ---
 
-## 22.2 Strict Equality `===`
+## 18.2 Strict Equality `===`
 
 `===` compares both value and type.
 
