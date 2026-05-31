@@ -466,6 +466,48 @@ Arrow function:
 ```js
 const multiply = (a, b) => a * b;
 ```
+## 3.4 Date
+
+Used to work with date and time.
+```js
+let today = new Date();
+
+console.log(today);
+console.log(typeof today); // "object"
+```
+## 3.5 Map
+
+A Map stores key-value pairs. Keys can be of any type.
+```js
+let map = new Map();
+
+map.set("name", "Amit");
+map.set(1, "one");
+map.set(true, "yes");
+
+console.log(map.get("name")); // Amit
+```
+## 3.6 Set
+
+A Set stores unique values.
+```js
+let set = new Set();
+
+set.add(10);
+set.add(20);
+set.add(10);
+
+console.log(set); // Set { 10, 20 }
+```
+Useful for removing duplicates:
+
+```js
+let arr = [1, 2, 2, 3, 3, 4];
+
+let unique = [...new Set(arr)];
+
+console.log(unique); // [1, 2, 3, 4]
+```
 
 ---
 
