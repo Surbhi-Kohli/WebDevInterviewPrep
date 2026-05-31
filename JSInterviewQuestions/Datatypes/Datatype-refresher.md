@@ -301,6 +301,22 @@ or:
 ```js
 Number(5n)
 ```
+Also,Converting BigInt to Number can cause data loss
+
+Small BigInt values are safe:
+```js
+let small = 10n;
+
+console.log(Number(small)); // 10
+```
+But large BigInt values may lose precision when converted to Number.
+```js
+let big = 900719925474099312345n;
+
+console.log(Number(big));
+// 900719925474099300000
+```
+The exact value is lost because JavaScript Number cannot safely represent very large integers.
 
 ---
 
