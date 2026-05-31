@@ -1,19 +1,19 @@
-# JavaScript Notes: Data Types and Type Coercion
+# JavaScript Notes: Data Types, Type Coercion, Truthy/Falsy, and `==`
 
-## 1. Data Types in JavaScript
+## 1. JavaScript Data Types
 
 JavaScript data types are divided into two main categories:
 
 ```js
-1. Primitive data types
-2. Non-primitive / Reference data types
+1. Primitive types
+2. Reference types / non-primitive types
 ```
 
 ---
 
 # 2. Primitive Data Types
 
-Primitive values are simple values. They are stored and copied by value.
+Primitive values are simple values. They are copied by value.
 
 JavaScript has **7 primitive data types**:
 
@@ -31,7 +31,7 @@ symbol
 
 ## 2.1 String
 
-A string is used to store text.
+Used for text.
 
 ```js
 let name = "Amit";
@@ -58,7 +58,7 @@ console.log(typeof username); // string
 
 ## 2.2 Number
 
-JavaScript has only one main number type for integers and decimals.
+Used for integers and decimals.
 
 ```js
 let age = 25;
@@ -69,8 +69,8 @@ let temperature = -10;
 Check type:
 
 ```js
-typeof 100;   // "number"
-typeof 10.5;  // "number"
+typeof 100;  // "number"
+typeof 10.5; // "number"
 ```
 
 Special number values:
@@ -89,7 +89,17 @@ console.log("abc" * 2);   // NaN
 console.log(typeof NaN);  // "number"
 ```
 
-`NaN` means **Not a Number**, but its type is still `"number"`.
+Important:
+
+```js
+NaN
+```
+
+means **Not a Number**, but its type is still:
+
+```js
+"number"
+```
 
 ---
 
@@ -134,14 +144,6 @@ console.log(x);        // undefined
 console.log(typeof x); // "undefined"
 ```
 
-Example:
-
-```js
-let username;
-
-console.log(username); // undefined
-```
-
 A function also returns `undefined` if it does not return anything.
 
 ```js
@@ -164,7 +166,7 @@ console.log(result); // undefined
 let user = null;
 ```
 
-It means the developer has intentionally assigned “no value”.
+It means the developer intentionally assigned “no value”.
 
 Example:
 
@@ -178,9 +180,9 @@ Important interview point:
 typeof null; // "object"
 ```
 
-This is a historical bug in JavaScript.
+This is a historical JavaScript bug.
 
-Difference:
+Difference between `undefined` and `null`:
 
 ```js
 let a;
@@ -226,7 +228,7 @@ You cannot directly mix `BigInt` and `Number`.
 let a = 10n;
 let b = 5;
 
-// console.log(a + b); // Error
+console.log(a + b); // TypeError
 ```
 
 Correct way:
@@ -235,9 +237,74 @@ Correct way:
 console.log(a + BigInt(b)); // 15n
 ```
 
+This is **explicit conversion**, not automatic coercion.
+
+You manually converted `b`:
+
+```js
+BigInt(b)
+```
+
+JavaScript does **not** automatically convert `Number` to `BigInt` during arithmetic.
+
 ---
 
-## 2.7 Symbol
+## 2.7 Why does JavaScript not automatically convert Number to BigInt?
+
+For small whole numbers, converting `Number` to `BigInt` is safe:
+
+```js
+BigInt(5); // 5n
+```
+
+But not every `Number` can safely become a `BigInt`.
+
+Example with decimal:
+
+```js
+BigInt(5.5); // RangeError
+```
+
+Because `BigInt` only supports whole integers.
+
+Example with unsafe number:
+
+```js
+let x = 9007199254740993;
+
+console.log(x); // 9007199254740992
+```
+
+The number is already imprecise before converting to `BigInt`.
+
+So this can be misleading:
+
+```js
+BigInt(9007199254740993); // 9007199254740992n
+```
+
+Also, `Number` division and `BigInt` division behave differently:
+
+```js
+console.log(5 / 2);   // 2.5
+console.log(5n / 2n); // 2n
+```
+
+So JavaScript asks you to choose explicitly:
+
+```js
+BigInt(5)
+```
+
+or:
+
+```js
+Number(5n)
+```
+
+---
+
+## 2.8 Symbol
 
 `Symbol` creates a unique value.
 
@@ -275,11 +342,11 @@ console.log(user[userId]); // 101
 
 ---
 
-# 3. Non-Primitive / Reference Data Types
+# 3. Reference Data Types
 
-Non-primitive values are objects. They are stored and copied by reference.
+Reference values are objects. They are copied by reference.
 
-Examples:
+Common reference types:
 
 ```js
 object
@@ -308,8 +375,8 @@ let user = {
 Access values:
 
 ```js
-console.log(user.name);     // Amit
-console.log(user["age"]);   // 25
+console.log(user.name);   // Amit
+console.log(user["age"]); // 25
 ```
 
 Update value:
@@ -362,7 +429,7 @@ typeof []; // "object"
 
 Arrays are special objects.
 
-Correct way to check array:
+Correct way to check an array:
 
 ```js
 Array.isArray([]); // true
@@ -402,61 +469,6 @@ const multiply = (a, b) => a * b;
 
 ---
 
-## 3.4 Date
-
-Used to work with date and time.
-
-```js
-let today = new Date();
-
-console.log(today);
-console.log(typeof today); // "object"
-```
-
----
-
-## 3.5 Map
-
-A `Map` stores key-value pairs. Keys can be of any type.
-
-```js
-let map = new Map();
-
-map.set("name", "Amit");
-map.set(1, "one");
-map.set(true, "yes");
-
-console.log(map.get("name")); // Amit
-```
-
----
-
-## 3.6 Set
-
-A `Set` stores unique values.
-
-```js
-let set = new Set();
-
-set.add(10);
-set.add(20);
-set.add(10);
-
-console.log(set); // Set { 10, 20 }
-```
-
-Useful for removing duplicates:
-
-```js
-let arr = [1, 2, 2, 3, 3, 4];
-
-let unique = [...new Set(arr)];
-
-console.log(unique); // [1, 2, 3, 4]
-```
-
----
-
 # 4. Primitive vs Reference Types
 
 ## Primitive values are copied by value
@@ -471,7 +483,7 @@ console.log(a); // 10
 console.log(b); // 20
 ```
 
-Here, `b` gets a copy of `a`.
+Here, `b` gets a separate copy of `a`.
 
 Changing `b` does not affect `a`.
 
@@ -544,7 +556,7 @@ typeof []; // "object"
 
 Arrays are objects.
 
-Correct array check:
+Use this for arrays:
 
 ```js
 Array.isArray([]); // true
@@ -554,9 +566,9 @@ Array.isArray([]); // true
 
 # 6. Dynamic Typing in JavaScript
 
-JavaScript is a dynamically typed language.
+JavaScript is dynamically typed.
 
-That means a variable can hold different types of values.
+That means a variable can hold different types of values at different times.
 
 ```js
 let value = 10;
@@ -579,15 +591,13 @@ let isStudent = true;
 
 ---
 
-# 7. Type Conversion
+# 7. Type Conversion vs Type Coercion
 
-Type conversion means changing one data type into another.
-
-There are two types:
+There are two types of conversion:
 
 ```js
 1. Explicit conversion
-2. Implicit conversion / Type coercion
+2. Implicit conversion / type coercion
 ```
 
 ---
@@ -609,7 +619,7 @@ console.log(num);        // 100
 console.log(typeof num); // "number"
 ```
 
-Other examples:
+More examples:
 
 ```js
 Number("10");      // 10
@@ -687,6 +697,36 @@ Boolean(null);      // false
 Boolean(undefined); // false
 Boolean(NaN);       // false
 ```
+
+---
+
+## 8.6 Number to BigInt
+
+```js
+let num = 5;
+
+let big = BigInt(num);
+
+console.log(big);        // 5n
+console.log(typeof big); // "bigint"
+```
+
+This is explicit conversion.
+
+```js
+let a = 10n;
+let b = 5;
+
+console.log(a + BigInt(b)); // 15n
+```
+
+But this is not allowed:
+
+```js
+console.log(a + b); // TypeError
+```
+
+Because JavaScript does not automatically mix `Number` and `BigInt`.
 
 ---
 
@@ -769,7 +809,7 @@ The `+` operator can do two things:
 2. String concatenation
 ```
 
-If one value is a string, JavaScript usually converts the other value into a string.
+If one side becomes a string, JavaScript performs string concatenation.
 
 ```js
 console.log("5" + 2); // "52"
@@ -779,12 +819,12 @@ console.log(5 + "2"); // "52"
 Examples:
 
 ```js
-console.log(10 + 20);       // 30
-console.log("10" + 20);     // "1020"
-console.log(10 + "20");     // "1020"
-console.log("10" + "20");   // "1020"
-console.log(true + "10");   // "true10"
-console.log(null + "10");   // "null10"
+console.log(10 + 20);     // 30
+console.log("10" + 20);   // "1020"
+console.log(10 + "20");   // "1020"
+console.log("10" + "20"); // "1020"
+console.log(true + "10"); // "true10"
+console.log(null + "10"); // "null10"
 ```
 
 Important:
@@ -796,8 +836,8 @@ console.log(1 + 2 + "3"); // "33"
 Step by step:
 
 ```js
-1 + 2      // 3
-3 + "3"    // "33"
+1 + 2   // 3
+3 + "3" // "33"
 ```
 
 Another example:
@@ -809,8 +849,8 @@ console.log("1" + 2 + 3); // "123"
 Step by step:
 
 ```js
-"1" + 2    // "12"
-"12" + 3   // "123"
+"1" + 2  // "12"
+"12" + 3 // "123"
 ```
 
 ---
@@ -848,56 +888,56 @@ Number("hello"); // NaN
 
 ---
 
-# 13. Boolean Coercion
+# 13. BigInt Coercion Rule
 
-Boolean coercion happens in places like:
+JavaScript does not automatically mix `BigInt` and `Number`.
 
 ```js
-if
-while
-for
-!
-&&
-||
+console.log(10n + 5); // TypeError
 ```
 
-Example:
+You must explicitly convert one side.
+
+Convert `Number` to `BigInt`:
 
 ```js
-if ("hello") {
-  console.log("Runs");
-}
+console.log(10n + BigInt(5)); // 15n
 ```
 
-Because:
+Or convert `BigInt` to `Number`:
 
 ```js
-Boolean("hello"); // true
+console.log(Number(10n) + 5); // 15
 ```
 
-Another example:
+But be careful when converting big `BigInt` values to `Number`, because precision may be lost.
 
 ```js
-if (0) {
-  console.log("Runs");
-} else {
-  console.log("Does not run");
-}
-```
+let big = 900719925474099312345n;
 
-Because:
-
-```js
-Boolean(0); // false
+console.log(Number(big)); // may lose precision
 ```
 
 ---
 
 # 14. Truthy and Falsy Values
 
-## Falsy Values
+Truthy/falsy logic is used only when JavaScript needs a boolean.
 
-These values behave like `false`:
+Examples:
+
+```js
+if (value) {}
+while (value) {}
+!value
+Boolean(value)
+```
+
+---
+
+## 14.1 Falsy Values
+
+These values behave like `false` in boolean context:
 
 ```js
 false
@@ -928,7 +968,7 @@ Falsy
 
 ---
 
-## Truthy Values
+## 14.2 Truthy Values
 
 Everything else is truthy.
 
@@ -945,7 +985,7 @@ Examples:
 function() {}
 ```
 
-Important examples:
+Important:
 
 ```js
 Boolean([]);       // true
@@ -954,11 +994,351 @@ Boolean("false");  // true
 Boolean("0");      // true
 ```
 
-Even empty arrays and empty objects are truthy.
+---
+
+# 15. How to Remember Empty Object and Empty Array Are Truthy
+
+Think of an empty object as an **empty box**.
+
+```js
+let obj = {};
+```
+
+The box has nothing inside, but the box itself exists.
+
+So:
+
+```js
+Boolean({}); // true
+```
+
+Same with an empty array:
+
+```js
+let arr = [];
+```
+
+The array has no items, but the array itself exists.
+
+So:
+
+```js
+Boolean([]); // true
+```
+
+Memory line:
+
+```js
+Empty container is still a container.
+```
+
+Or:
+
+```js
+Falsy means absence-like values.
+Empty objects and arrays are present, just empty.
+```
+
+Examples:
+
+```js
+Boolean("");   // false
+Boolean(0);    // false
+Boolean(null); // false
+
+Boolean({});   // true
+Boolean([]);   // true
+```
 
 ---
 
-# 15. Coercion with Equality Operators
+# 16. Important Correction: Truthy/Falsy Is Not the Same as `== false`
+
+This is very important.
+
+You may think:
+
+```js
+[] == false
+```
+
+means:
+
+```js
+Is [] falsy?
+```
+
+But that is wrong.
+
+This:
+
+```js
+Boolean([]); // true
+```
+
+and this:
+
+```js
+[] == false; // true
+```
+
+can both be true because they use **different rules**.
+
+---
+
+# 17. Boolean Context Uses Truthy/Falsy
+
+Example:
+
+```js
+if ([]) {
+  console.log("Runs");
+}
+```
+
+Output:
+
+```js
+Runs
+```
+
+Because:
+
+```js
+Boolean([]); // true
+```
+
+An empty array is an object, and objects are truthy.
+
+Another example:
+
+```js
+if ({}) {
+  console.log("Runs");
+}
+```
+
+Output:
+
+```js
+Runs
+```
+
+Because:
+
+```js
+Boolean({}); // true
+```
+
+---
+
+# 18. Loose Equality `==` Does Not Simply Use Truthy/Falsy
+
+This:
+
+```js
+[] == false
+```
+
+does **not** mean:
+
+```js
+Boolean([]) == false
+```
+
+If JavaScript did that, it would become:
+
+```js
+true == false
+```
+
+which would be:
+
+```js
+false
+```
+
+But JavaScript does not do that.
+
+Instead, `==` uses its own coercion rules.
+
+---
+
+# 19. Why is `[] == false` true?
+
+Step by step:
+
+```js
+[] == false
+```
+
+First, `false` becomes number:
+
+```js
+false -> 0
+```
+
+Now:
+
+```js
+[] == 0
+```
+
+The empty array becomes a primitive value.
+
+An empty array becomes an empty string:
+
+```js
+[] -> ""
+```
+
+Now:
+
+```js
+"" == 0
+```
+
+The empty string becomes number:
+
+```js
+"" -> 0
+```
+
+Now:
+
+```js
+0 == 0
+```
+
+Result:
+
+```js
+true
+```
+
+So:
+
+```js
+console.log([] == false); // true
+```
+
+But:
+
+```js
+console.log(Boolean([])); // true
+```
+
+Both are correct because they use different rules.
+
+---
+
+# 20. More Examples Showing the Difference
+
+```js
+console.log(Boolean([])); // true
+console.log([] == false); // true
+console.log(![]);         // false
+```
+
+Explanation:
+
+```js
+Boolean([]); // true because arrays are objects
+![];         // false because [] is truthy
+[] == false; // true because of loose equality coercion
+```
+
+Another example:
+
+```js
+console.log([] == true); // false
+```
+
+Step by step:
+
+```js
+[] == true
+[] == 1
+"" == 1
+0 == 1
+false
+```
+
+This proves:
+
+```js
+x == false
+```
+
+does not mean:
+
+```js
+x is falsy
+```
+
+---
+
+# 21. Do Not Use `== false` to Check Falsy Values
+
+Bad:
+
+```js
+if (value == false) {
+  console.log("Falsy");
+}
+```
+
+This can give confusing results.
+
+Better:
+
+```js
+if (!value) {
+  console.log("Falsy");
+}
+```
+
+But for arrays, even this will not check emptiness:
+
+```js
+let arr = [];
+
+if (!arr) {
+  console.log("Array is falsy");
+} else {
+  console.log("Array is truthy");
+}
+```
+
+Output:
+
+```js
+Array is truthy
+```
+
+To check empty array:
+
+```js
+let arr = [];
+
+if (arr.length === 0) {
+  console.log("Array is empty");
+}
+```
+
+To check empty object:
+
+```js
+let obj = {};
+
+if (Object.keys(obj).length === 0) {
+  console.log("Object is empty");
+}
+```
+
+---
+
+# 22. Equality Operators
 
 JavaScript has two main equality operators:
 
@@ -969,7 +1349,7 @@ JavaScript has two main equality operators:
 
 ---
 
-## 15.1 Loose Equality `==`
+## 22.1 Loose Equality `==`
 
 `==` compares values after type coercion.
 
@@ -988,15 +1368,26 @@ JavaScript converts `"5"` into number `5`.
 More examples:
 
 ```js
-console.log(0 == false);      // true
-console.log(1 == true);       // true
+console.log(0 == false);        // true
+console.log(1 == true);         // true
 console.log(null == undefined); // true
-console.log("" == false);     // true
+console.log("" == false);       // true
+console.log([] == false);       // true
 ```
+
+But remember:
+
+```js
+[] == false
+```
+
+does **not** mean `[]` is falsy.
+
+`[]` is truthy.
 
 ---
 
-## 15.2 Strict Equality `===`
+## 22.2 Strict Equality `===`
 
 `===` compares both value and type.
 
@@ -1009,8 +1400,8 @@ console.log(5 === "5"); // false
 Because:
 
 ```js
-5       // number
-"5"     // string
+5   // number
+"5" // string
 ```
 
 More examples:
@@ -1020,6 +1411,7 @@ console.log(0 === false);        // false
 console.log(1 === true);         // false
 console.log(null === undefined); // false
 console.log("" === false);       // false
+console.log([] === false);       // false
 ```
 
 Best practice:
@@ -1030,7 +1422,56 @@ Use === most of the time.
 
 ---
 
-# 16. Common Coercion Examples
+# 23. Object-to-Primitive Conversion
+
+When objects are used in certain operations, JavaScript may convert them to primitive values.
+
+Example:
+
+```js
+console.log([] + []); // ""
+```
+
+Why?
+
+```js
+[] becomes ""
+[] becomes ""
+"" + "" becomes ""
+```
+
+Example:
+
+```js
+console.log([] + {}); // "[object Object]"
+```
+
+Why?
+
+```js
+[] becomes ""
+{} becomes "[object Object]"
+"" + "[object Object]" becomes "[object Object]"
+```
+
+Array examples:
+
+```js
+String([]);        // ""
+String([1, 2, 3]); // "1,2,3"
+```
+
+Object example:
+
+```js
+String({}); // "[object Object]"
+```
+
+This is why some loose equality examples look strange.
+
+---
+
+# 24. Common Coercion Examples
 
 | Expression           |  Result | Explanation                    |
 | -------------------- | ------: | ------------------------------ |
@@ -1049,10 +1490,14 @@ Use === most of the time.
 | `0 === false`        | `false` | Different types                |
 | `null == undefined`  |  `true` | Special loose equality rule    |
 | `null === undefined` | `false` | Different types                |
+| `Boolean([])`        |  `true` | Array object exists            |
+| `[] == false`        |  `true` | Loose equality coercion        |
+| `![]`                | `false` | `[]` is truthy                 |
+| `Boolean({})`        |  `true` | Object exists                  |
 
 ---
 
-# 17. Important Conversion Rules
+# 25. Important Conversion Rules
 
 ## String conversion
 
@@ -1062,6 +1507,8 @@ String(true);      // "true"
 String(false);     // "false"
 String(null);      // "null"
 String(undefined); // "undefined"
+String([]);        // ""
+String({});        // "[object Object]"
 ```
 
 ---
@@ -1077,6 +1524,9 @@ Number(true);      // 1
 Number(false);     // 0
 Number(null);      // 0
 Number(undefined); // NaN
+Number([]);        // 0
+Number([5]);       // 5
+Number([1, 2]);    // NaN
 ```
 
 ---
@@ -1089,16 +1539,19 @@ Boolean("");        // false
 Boolean(null);      // false
 Boolean(undefined); // false
 Boolean(NaN);       // false
+Boolean(false);     // false
 
 Boolean(1);         // true
 Boolean("hello");   // true
+Boolean("false");   // true
+Boolean("0");       // true
 Boolean([]);        // true
 Boolean({});        // true
 ```
 
 ---
 
-# 18. Special Cases to Remember
+# 26. Special Cases to Remember
 
 ## Case 1
 
@@ -1106,7 +1559,7 @@ Boolean({});        // true
 console.log(typeof null); // "object"
 ```
 
-`null` is not actually an object. This is a historical JavaScript bug.
+`null` is not actually an object. This is a historical bug.
 
 ---
 
@@ -1129,21 +1582,59 @@ Array.isArray([]); // true
 ## Case 3
 
 ```js
+console.log(Boolean([])); // true
+```
+
+Empty array is truthy because it is an object.
+
+---
+
+## Case 4
+
+```js
 console.log([] == false); // true
 ```
 
-Why?
+This is because of loose equality coercion:
 
 ```js
-[] becomes ""
-"" becomes 0
-false becomes 0
+[] -> ""
+false -> 0
+"" -> 0
 0 == 0
 ```
 
 ---
 
-## Case 4
+## Case 5
+
+```js
+console.log(Boolean({})); // true
+```
+
+Empty object is truthy because it exists.
+
+---
+
+## Case 6
+
+```js
+console.log({} == false); // false
+```
+
+Object does not become `0` like an empty array does.
+
+Roughly:
+
+```js
+{} -> "[object Object]"
+Number("[object Object]") -> NaN
+NaN == 0 -> false
+```
+
+---
+
+## Case 7
 
 ```js
 console.log([] + []); // ""
@@ -1153,15 +1644,23 @@ Both arrays become empty strings.
 
 ---
 
-## Case 5
+## Case 8
 
 ```js
 console.log([] + {}); // "[object Object]"
 ```
 
-The empty array becomes `""`.
+The empty array becomes:
 
-The object becomes `"[object Object]"`.
+```js
+""
+```
+
+The object becomes:
+
+```js
+"[object Object]"
+```
 
 So:
 
@@ -1177,27 +1676,64 @@ Result:
 
 ---
 
-## Case 6
+# 27. Best Practices
+
+Use strict equality:
 
 ```js
-console.log({} + []);
+=== 
 ```
 
-This can behave differently depending on context because `{}` may be treated as a block in some cases.
-
-In normal expression form:
+instead of:
 
 ```js
-console.log({} + []); // "[object Object]"
+==
+```
+
+Use explicit conversion when needed:
+
+```js
+Number(value)
+String(value)
+Boolean(value)
+BigInt(value)
+```
+
+Do not check falsiness like this:
+
+```js
+value == false
+```
+
+Use this:
+
+```js
+!value
+```
+
+Check empty array like this:
+
+```js
+arr.length === 0
+```
+
+Check empty object like this:
+
+```js
+Object.keys(obj).length === 0
+```
+
+Check arrays like this:
+
+```js
+Array.isArray(value)
 ```
 
 ---
 
-# 19. Interview-Friendly Summary
+# 28. Interview-Friendly Summary
 
-JavaScript has two categories of data types: **primitive** and **reference**.
-
-Primitive types are:
+JavaScript has **7 primitive data types**:
 
 ```js
 string, number, boolean, undefined, null, bigint, symbol
@@ -1209,13 +1745,13 @@ Reference types include:
 object, array, function, date, map, set
 ```
 
-Primitive values are copied by value, while reference values are copied by reference.
+Primitive values are copied by value. Reference values are copied by reference.
 
-JavaScript is dynamically typed, so a variable can store different types at different times.
+JavaScript is dynamically typed, so the same variable can store different types at different times.
 
-Type coercion means JavaScript automatically converts one type into another based on the operator or context.
+Type coercion means JavaScript automatically converts types based on the operator or context.
 
-For example:
+Example:
 
 ```js
 "5" + 2 // "52"
@@ -1229,11 +1765,22 @@ Here, `+` performs string concatenation.
 
 Here, `-` performs numeric subtraction.
 
-Use `===` instead of `==` to avoid unexpected type coercion.
+Truthy/falsy logic applies only when JavaScript needs a boolean, such as in `if`, `while`, `!`, or `Boolean()`.
+
+Important difference:
+
+```js
+Boolean([]); // true
+[] == false; // true
+```
+
+`[]` is truthy, but `[] == false` is true because `==` uses special coercion rules, not simple truthy/falsy logic.
+
+Use `===` instead of `==` to avoid confusing coercion.
 
 ---
 
-# 20. Quick Revision Sheet
+# 29. Quick Revision Sheet
 
 ## Data Types
 
@@ -1272,32 +1819,70 @@ undefined
 NaN
 ```
 
+## Truthy Examples
+
+```js
+"hello"
+"0"
+"false"
+[]
+{}
+function() {}
+```
+
 ## Coercion Rules
 
 ```js
-"5" + 2     // "52"
-"5" - 2     // 3
-true + 1    // 2
-false + 1   // 1
-null + 1    // 1
-undefined + 1 // NaN
+"5" + 2        // "52"
+"5" - 2        // 3
+true + 1       // 2
+false + 1      // 1
+null + 1       // 1
+undefined + 1  // NaN
+```
+
+## BigInt
+
+```js
+10n + 5              // TypeError
+10n + BigInt(5)      // 15n
+Number(10n) + 5      // 15
+```
+
+## Truthy/Falsy vs `==`
+
+```js
+Boolean([])  // true
+![]          // false
+[] == false  // true
+```
+
+Reason:
+
+```js
+[] == false
+[] == 0
+"" == 0
+0 == 0
+true
 ```
 
 ## Equality
 
 ```js
-5 == "5"    // true
-5 === "5"   // false
+5 == "5"     // true
+5 === "5"    // false
 
-0 == false  // true
-0 === false // false
+0 == false   // true
+0 === false  // false
+
+[] == false  // true
+[] === false // false
 ```
 
-## Best Practice
+Best rule:
 
 ```js
-Use === instead of ==
-Use Array.isArray() to check arrays
-Remember typeof null returns "object"
-Remember objects and arrays are reference types
+Use === most of the time.
+Do not use value == false to check falsiness.
 ```
