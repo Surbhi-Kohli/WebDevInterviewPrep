@@ -650,7 +650,7 @@ let isStudent = true;
 ---
 
 # 7. Type Conversion vs Type Coercion
-
+Type conversion means changing one data type into another.
 There are two types of conversion:
 
 ```js
@@ -775,7 +775,7 @@ This is explicit conversion.
 let a = 10n;
 let b = 5;
 
-console.log(a + BigInt(b)); // 15n
+console.log(a + BigInt(b)); // 15n This was explicit
 ```
 
 But this is not allowed:
@@ -975,10 +975,43 @@ let big = 900719925474099312345n;
 
 console.log(Number(big)); // may lose precision
 ```
+example:
+```js
+if ("hello") {
+  console.log("Runs");
+}
+```
+because:
+```js
+Boolean("hello"); // true
+```
+Another example:
 
+```js
+if (0) {
+  console.log("Runs");
+} else {
+  console.log("Does not run");
+}
+```
+because:
+```js
+Boolean(0); // false
+```
 ---
+# 14. Boolean Coercion
 
-# 14. Truthy and Falsy Values
+Boolean coercion happens in places like:
+```js
+if
+while
+for
+!
+&&
+||
+```
+
+# 15. Truthy and Falsy Values
 
 Truthy/falsy logic is used only when JavaScript needs a boolean.
 
@@ -993,7 +1026,7 @@ Boolean(value)
 
 ---
 
-## 14.1 Falsy Values
+## 15.1 Falsy Values
 
 These values behave like `false` in boolean context:
 
@@ -1026,7 +1059,7 @@ Falsy
 
 ---
 
-## 14.2 Truthy Values
+## 15.2 Truthy Values
 
 Everything else is truthy.
 
@@ -1054,7 +1087,7 @@ Boolean("0");      // true
 
 ---
 
-# 15. How to Remember Empty Object and Empty Array Are Truthy
+# 16. How to Remember Empty Object and Empty Array Are Truthy
 
 Think of an empty object as an **empty box**.
 
@@ -1110,7 +1143,7 @@ Boolean([]);   // true
 
 ---
 
-# 16. Important Correction: Truthy/Falsy Is Not the Same as `== false`
+# 17. Important Correction: Truthy/Falsy Is Not the Same as `== false`
 
 This is very important.
 
@@ -1144,7 +1177,7 @@ can both be true because they use **different rules**.
 
 ---
 
-# 17. Boolean Context Uses Truthy/Falsy
+# 18. Boolean Context Uses Truthy/Falsy
 
 Example:
 
@@ -1190,7 +1223,7 @@ Boolean({}); // true
 
 ---
 
-# 18. Loose Equality `==` Does Not Simply Use Truthy/Falsy
+# 19. Loose Equality `==` Does Not Simply Use Truthy/Falsy
 
 This:
 
@@ -1222,7 +1255,7 @@ Instead, `==` uses its own coercion rules.
 
 ---
 
-# 19. Why is `[] == false` true?
+# 20. Why is `[] == false` true?
 
 Step by step:
 
