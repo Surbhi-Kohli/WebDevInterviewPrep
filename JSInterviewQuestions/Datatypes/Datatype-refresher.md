@@ -1573,7 +1573,7 @@ This is why some loose equality examples look strange.
 | `true + 1`           |     `2` | `true` becomes `1`             |
 | `false + 1`          |     `1` | `false` becomes `0`            |
 | `null + 1`           |     `1` | `null` becomes `0`             |
-| `undefined + 1`      |   `NaN` | `undefined` becomes `NaN`      |
+| `undefined + 1`      |   `NaN` | `undefined` becomes `NaN` on converting yo number      |
 | `"hello" - 1`        |   `NaN` | `"hello"` cannot become number |
 | `5 == "5"`           |  `true` | `"5"` becomes number           |
 | `5 === "5"`          | `false` | No coercion                    |
