@@ -121,7 +121,77 @@ Array.prototype.myReduce = function(callback, initialValue) {
 
   return accumulator;
 };
+
 ```
+Better way for non enumerable:
+```
+Object.defineProperty(Array.prototype, "myReduce", {
+value:function(callback, initialValue) {
+  let hasInitialValue = arguments.length > 1;
+
+  let accumulator = initialValue;
+
+  for (let i = 0; i < this.length; i++) {
+    if (!hasInitialValue) {
+      accumulator = this[i];
+      hasInitialValue = true;
+    } else {
+      accumulator = callback(accumulator, this[i], i, this);
+    }
+  }
+
+  return accumulator;
+},
+ writable: true,
+  enumerable: false,
+  configurable: true
+}
+
+```
+Better native-like version
+```
+Object.defineProperty(Array.prototype, "myReduce", {
+  value: function(callback, initialValue) {
+    "use strict";
+
+    if (this == null) {
+      throw new TypeError("Array.prototype.myReduce called on null or undefined");
+    }
+
+    if (typeof callback !== "function") {
+      throw new TypeError(callback + " is not a function");
+    }
+
+    let obj = Object(this); //to handle array like objects, check filter-and-polyfill.md for details
+    let length = obj.length >>> 0;
+
+    let hasInitialValue = arguments.length > 1;
+    let accumulator = initialValue;
+
+    for (let i = 0; i < length; i++) {
+      if (i in obj) {
+        if (!hasInitialValue) {
+          accumulator = obj[i];
+          hasInitialValue = true;
+        } else {
+          accumulator = callback(accumulator, obj[i], i, obj);
+        }
+      }
+    }
+
+    if (!hasInitialValue) {
+      throw new TypeError("Reduce of empty array with no initial value");
+    }
+
+    return accumulator;
+  },
+  writable: true,
+  enumerable: false,
+  configurable: true
+});
+
+```
+----
 ###  Object Deep clone 
 ```
 function deepClone(object) {
