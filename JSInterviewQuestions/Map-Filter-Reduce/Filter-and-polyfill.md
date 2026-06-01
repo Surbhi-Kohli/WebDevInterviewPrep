@@ -300,8 +300,9 @@ It does not need `thisArg`.
 
 # 5. Simple Polyfill Limitation
 
-Your simple version is good for basic understanding, but it is not fully native-like.
-
+Your simple version is good for basic understanding, but it is not fully native-like(A native method is a method already provided by JavaScript.).
+Since we are writing a polyfill, we want our method to behave as close as possible to a native method.
+Native array methods are non-enumerable.So our polyfill should also be non-enumerable.
 ```js
 Array.prototype.myFilter = function(callback, context) {
   let arr = [];
@@ -442,42 +443,7 @@ means hidden during enumeration.
 
 ---
 
-# 8. What is a Native Method?
-
-A native method is a method already provided by JavaScript.
-
-Examples:
-
-```js
-Array.prototype.filter
-Array.prototype.map
-Array.prototype.forEach
-Array.prototype.reduce
-Array.prototype.push
-String.prototype.toUpperCase
-Object.keys
-Promise.all
-```
-
-These are built into JavaScript.
-
-Your method:
-
-```js
-Array.prototype.myFilter
-```
-
-is custom/user-defined.
-
-Since we are writing a polyfill, we want our method to behave as close as possible to a native method.
-
-Native array methods are non-enumerable.
-
-So our polyfill should also be non-enumerable.
-
----
-
-# 9. Close-to-Native Polyfill
+# 8. Close-to-Native Polyfill
 
 A better version is:
 
@@ -518,7 +484,7 @@ Object.defineProperty(Array.prototype, "myFilter", {
 
 ---
 
-# 10. Why This Version Is Better
+# 9. Why This Version Is Better
 
 ## 1. It uses `Object.defineProperty`
 
