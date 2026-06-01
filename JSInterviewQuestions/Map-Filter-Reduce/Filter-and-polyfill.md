@@ -13,9 +13,9 @@ let result = arr.filter(function(num) {
 
 console.log(result); // [2, 4]
 ```
-Filter receiver 2 arguments:
+Syntax:
 ```
-array.filter(callback,context)
+array.filter(callback,ThisArg)
 ```
 Callback receives three arguments:
 
@@ -105,11 +105,11 @@ this === context
 
 ---
 
-# 4. Why Do We Need `context`?
+# 4. Why Do We Need `context`/`thisArg`?
 
-`context` is the optional second argument passed to filter, also called `thisArg`.
+`context` is the optional second argument passed to filter, also called `thisArg`(native name).
 
-It lets you use an object as `this` inside the callback and also access its properties in case needed.
+It lets you use an object as `this` inside the callback .
 
 Example:
 
@@ -481,10 +481,13 @@ Object.defineProperty(Array.prototype, "myFilter", {
   configurable: true
 });
 ```
+Small note:
+```obj.length >>> 0```
+is a common interview-friendly way to convert length to a non-negative integer. A perfect modern spec implementation uses a more accurate ToLength operation, but >>> 0 is usually acceptable for interviews.
 
 ---
 
-# 9. Why This Version Is Better
+# 7. Why This Version Is Better
 
 ## 1. It uses `Object.defineProperty`
 
@@ -721,7 +724,7 @@ Better because:
 
 ---
 
-# 7. Best Interview Explanation
+# 8. Best Interview Explanation
 
 A simple `filter` polyfill loops through the array, calls the callback for each element, and pushes the element into a result array if the callback returns a truthy value.
 
