@@ -1,3 +1,4 @@
+```js
 function employeeId() {
 		console.log(typeof employeeId);
 	}
@@ -10,8 +11,9 @@ let nullVar=null;
 console.log(typeof nullVar);//"Object"
 let numberVar=11;
 console.log(typeof numberVar);//"number"
-
-/***********************************************/
+```
+-------
+```js
 var employeeId = 'abc123';
 
 function foo() {
@@ -24,6 +26,9 @@ function foo() {
 }
 foo();
 
+```
+-----------
+```js
 /*****************************************/
 //What would be the output of following code?
 (function foo() {
@@ -39,3 +44,4 @@ foo();
 	}
 }());
 //output:function function
+```
