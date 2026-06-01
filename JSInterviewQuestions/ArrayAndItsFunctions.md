@@ -26,8 +26,18 @@ let result = arr.slice(1, 4);
 console.log(result); // [20, 30, 40]
 console.log(arr);    // [10, 20, 30, 40, 50]
 ```
+### Negative Numbers in slice(start, end)
+If either argument is negative, JavaScript internally adds it to the array's total length to find the actual index.
+```
+const items = ['A', 'B', 'C', 'D', 'E'];
+//               0    1    2    3    4    (Positive indexing)
+//              -5   -4   -3   -2   -1    (Negative indexing)
 
+// Slice from index -4 ('B') up to index -1 ('E', exclusive)
+const result = items.slice(-4, -1); 
+console.log(result); // ['B', 'C', 'D']
 
+```
 ---
 
 ## `splice()`
@@ -114,6 +124,18 @@ means:
 Start at index 1
 Remove 2 elements: 20, 30
 Insert 99, 100
+```
+### Negative Numbers in splice(start, deleteCount)
+Only the first argument (start) can be negative MDN splice() documentation. The second argument (deleteCount) must always be a positive number because you cannot delete a negative amount of items.
+```js
+const items = ['A', 'B', 'C', 'D', 'E'];
+
+// Go to index -2 ('D') and delete a count of 2 items ('D' and 'E')
+const removed = items.splice(-2, 2);
+
+console.log(removed); // ['D', 'E']
+console.log(items);   // ['A', 'B', 'C']
+
 ```
 ### Memory Aid: 
 
