@@ -460,7 +460,7 @@ Object.defineProperty(Array.prototype, "myFilter", {
       throw new TypeError(callback + " is not a function");
     }
 
-    let obj = Object(this);
+    let obj = Object(this);// native array methods are generic. They can work on array-like values too.
     let length = obj.length >>> 0;
     let result = [];
 
@@ -485,6 +485,26 @@ Small note:
 ```obj.length >>> 0```
 is a common interview-friendly way to convert length to a non-negative integer. A perfect modern spec implementation uses a more accurate ToLength operation, but >>> 0 is usually acceptable for interviews.
 
+Example for filter being clled with array like value
+```
+let obj = {
+  0: "a",
+  1: "b",
+  2: "c",
+  length: 3
+};
+
+Array.prototype.myFilter.call(obj, function(value) {
+  return value !== "b";
+});
+```
+Our filter will convert it using ``` let obj = Object(this);```
+Then we safely use:
+```
+obj.length
+obj[i]
+i in obj
+```
 ---
 
 # 7. Why This Version Is Better
