@@ -1,3 +1,625 @@
+# JavaScript Array Methods: `slice` vs `splice`, `join` vs `concat` vs `push` vs `unshift`
+
+The easiest way to remember these methods is to ask two questions:
+
+```js
+1. Does it change the original array?
+2. What does it return?
+```
+
+---
+
+# 1. `slice()` vs `splice()`
+
+## `slice()`
+
+`slice()` copies a portion of an array and returns a **new array**.It does **not** change the original array.
+
+```js
+let arr = [10, 20, 30, 40, 50];
+
+let result = arr.slice(1, 4);
+
+console.log(result); // [20, 30, 40]
+console.log(arr);    // [10, 20, 30, 40, 50]
+```
+
+Syntax:
+
+```js
+arr.slice(startIndex, endIndex);
+```
+
+Important:
+
+```js
+endIndex is not included
+```
+
+Example:
+
+```js
+arr.slice(1, 4);
+```
+
+means:
+
+```js
+Start from index 1
+Stop before index 4
+```
+
+So it takes:
+
+```js
+20, 30, 40
+```
+
+---
+
+## `splice()`
+
+`splice()` changes the original array.
+
+It can:
+
+```js
+remove elements
+add elements
+replace elements
+```
+
+It returns the **removed elements**.
+
+```js
+let arr = [10, 20, 30, 40, 50];
+
+let removed = arr.splice(1, 2);
+
+console.log(removed); // [20, 30]
+console.log(arr);     // [10, 40, 50]
+```
+
+Syntax:
+
+```js
+arr.splice(startIndex, deleteCount, item1, item2, ...)
+```
+
+Example:
+
+```js
+arr.splice(1, 2);
+```
+
+means:
+
+```js
+Start from index 1
+Remove 2 elements
+```
+
+---
+
+## `splice()` adding elements
+
+```js
+let arr = [10, 20, 50];
+
+arr.splice(2, 0, 30, 40);
+
+console.log(arr); // [10, 20, 30, 40, 50]
+```
+
+Here:
+
+```js
+arr.splice(2, 0, 30, 40);
+```
+
+means:
+
+```js
+Start at index 2
+Remove 0 elements
+Add 30 and 40
+```
+
+---
+
+## `splice()` replacing elements
+
+```js
+let arr = [10, 20, 30, 40];
+
+arr.splice(1, 2, 99, 100);
+
+console.log(arr); // [10, 99, 100, 40]
+```
+
+Here:
+
+```js
+arr.splice(1, 2, 99, 100);
+```
+
+means:
+
+```js
+Start at index 1
+Remove 2 elements: 20, 30
+Insert 99, 100
+```
+
+---
+
+# Memory Trick: `slice` vs `splice`
+
+## `slice`
+
+Think:
+
+```js
+slice = copy a slice of cake
+```
+
+You take a slice, but the original cake remains.
+
+So:
+
+```js
+slice does not mutate
+```
+
+## `splice`
+
+Think:
+
+```js
+splice = surgery
+```
+
+You cut into the original array and change it.
+
+So:
+
+```js
+splice mutates
+```
+
+---
+
+# `slice` vs `splice` Table
+
+| Method     | Changes original array? | Returns          | Main use                    |
+| ---------- | ----------------------: | ---------------- | --------------------------- |
+| `slice()`  |                      No | New copied array | Copy part of array          |
+| `splice()` |                     Yes | Removed elements | Add/remove/replace elements |
+
+---
+
+# 2. `join()` vs `concat()` vs `push()` vs `unshift()`
+
+## `join()`
+
+`join()` converts array elements into a **string**.
+
+It does **not** change the original array.
+
+```js
+let arr = ["I", "love", "JS"];
+
+let result = arr.join(" ");
+
+console.log(result); // "I love JS"
+console.log(arr);    // ["I", "love", "JS"]
+```
+
+Default separator is comma:
+
+```js
+let arr = [1, 2, 3];
+
+console.log(arr.join()); // "1,2,3"
+```
+
+Custom separator:
+
+```js
+console.log(arr.join("-")); // "1-2-3"
+console.log(arr.join(""));  // "123"
+```
+
+Memory:
+
+```js
+join = join array elements into a string
+```
+
+---
+
+## `concat()`
+
+`concat()` combines arrays or values and returns a **new array**.
+
+It does **not** change the original array.
+
+```js
+let arr1 = [1, 2];
+let arr2 = [3, 4];
+
+let result = arr1.concat(arr2);
+
+console.log(result); // [1, 2, 3, 4]
+console.log(arr1);   // [1, 2]
+```
+
+It can also add values:
+
+```js
+let arr = [1, 2];
+
+let result = arr.concat(3, 4);
+
+console.log(result); // [1, 2, 3, 4]
+```
+
+Important:
+
+```js
+concat returns a new array
+```
+
+So this does not modify the original:
+
+```js
+let arr = [1, 2];
+
+arr.concat(3);
+
+console.log(arr); // [1, 2]
+```
+
+Correct:
+
+```js
+let result = arr.concat(3);
+
+console.log(result); // [1, 2, 3]
+```
+
+Memory:
+
+```js
+concat = concatenate arrays into a new array
+```
+
+---
+
+## `push()`
+
+`push()` adds elements to the **end** of the original array.
+
+It mutates the array.
+
+It returns the **new length**.
+
+```js
+let arr = [1, 2];
+
+let result = arr.push(3);
+
+console.log(arr);    // [1, 2, 3]
+console.log(result); // 3
+```
+
+Add multiple values:
+
+```js
+let arr = [1, 2];
+
+arr.push(3, 4, 5);
+
+console.log(arr); // [1, 2, 3, 4, 5]
+```
+
+Memory:
+
+```js
+push = push to the back/end
+```
+
+---
+
+## `unshift()`
+
+`unshift()` adds elements to the **start** of the original array.
+
+It mutates the array.
+
+It returns the **new length**.
+
+```js
+let arr = [2, 3];
+
+let result = arr.unshift(1);
+
+console.log(arr);    // [1, 2, 3]
+console.log(result); // 3
+```
+
+Add multiple values:
+
+```js
+let arr = [3, 4];
+
+arr.unshift(1, 2);
+
+console.log(arr); // [1, 2, 3, 4]
+```
+
+Memory:
+
+```js
+unshift = add before the current first element
+```
+
+---
+
+# Main Comparison Table
+
+| Method      | Purpose                 | Changes original array? | Returns          |
+| ----------- | ----------------------- | ----------------------: | ---------------- |
+| `slice()`   | Copy part of array      |                      No | New array        |
+| `splice()`  | Add/remove/replace      |                     Yes | Removed elements |
+| `join()`    | Convert array to string |                      No | String           |
+| `concat()`  | Merge arrays/values     |                      No | New array        |
+| `push()`    | Add to end              |                     Yes | New length       |
+| `unshift()` | Add to start            |                     Yes | New length       |
+
+---
+
+# Very Important Return Values
+
+This is where many bugs happen.
+
+## `push()` returns length, not array
+
+```js
+let arr = [1, 2];
+
+let result = arr.push(3);
+
+console.log(result); // 3
+console.log(arr);    // [1, 2, 3]
+```
+
+Wrong expectation:
+
+```js
+// result is not [1, 2, 3]
+```
+
+---
+
+## `unshift()` returns length, not array
+
+```js
+let arr = [2, 3];
+
+let result = arr.unshift(1);
+
+console.log(result); // 3
+console.log(arr);    // [1, 2, 3]
+```
+
+---
+
+## `concat()` returns new array
+
+```js
+let arr = [1, 2];
+
+let result = arr.concat(3);
+
+console.log(result); // [1, 2, 3]
+console.log(arr);    // [1, 2]
+```
+
+---
+
+## `join()` returns string
+
+```js
+let arr = [1, 2, 3];
+
+let result = arr.join("-");
+
+console.log(result);        // "1-2-3"
+console.log(typeof result); // "string"
+```
+
+---
+
+## `splice()` returns removed elements
+
+```js
+let arr = [10, 20, 30, 40];
+
+let result = arr.splice(1, 2);
+
+console.log(result); // [20, 30]
+console.log(arr);    // [10, 40]
+```
+
+---
+
+# How to Remember Quickly
+
+## Methods that do not mutate original array
+
+```js
+slice
+concat
+join
+```
+
+Memory:
+
+```js
+slice = copies
+concat = creates new combined array
+join = creates string
+```
+
+They return something new.
+
+---
+
+## Methods that mutate original array
+
+```js
+splice
+push
+unshift
+```
+
+Memory:
+
+```js
+splice = surgery on original
+push = add to original end
+unshift = add to original start
+```
+
+They change the array.
+
+---
+
+# Direction Memory Trick
+
+```js
+push      -> add at end
+unshift   -> add at start
+pop       -> remove from end
+shift     -> remove from start
+```
+
+Think of an array like a queue:
+
+```js
+[start] 1, 2, 3 [end]
+```
+
+```js
+unshift(0)  -> [0, 1, 2, 3]
+push(4)     -> [1, 2, 3, 4]
+shift()     -> removes 1
+pop()       -> removes 3
+```
+
+---
+
+# `join()` vs `concat()`
+
+These two are often confused.
+
+## `concat()`
+
+Array result:
+
+```js
+[1, 2].concat([3, 4]);
+// [1, 2, 3, 4]
+```
+
+## `join()`
+
+String result:
+
+```js
+[1, 2, 3, 4].join("-");
+// "1-2-3-4"
+```
+
+Memory:
+
+```js
+concat -> array + array = array
+join   -> array elements joined as string
+```
+
+---
+
+# `concat()` vs `push()`
+
+Both can add values, but they behave differently.
+
+## `concat()`
+
+Does not mutate.
+
+```js
+let arr = [1, 2];
+
+let result = arr.concat(3);
+
+console.log(arr);    // [1, 2]
+console.log(result); // [1, 2, 3]
+```
+
+## `push()`
+
+Mutates.
+
+```js
+let arr = [1, 2];
+
+let result = arr.push(3);
+
+console.log(arr);    // [1, 2, 3]
+console.log(result); // 3
+```
+
+Memory:
+
+```js
+concat = returns new array
+push = changes original array
+```
+
+---
+
+# Final Cheat Sheet
+
+```js
+// Copy part, no mutation
+arr.slice(start, end);
+
+// Cut/add/replace, mutates
+arr.splice(start, deleteCount, items...);
+
+// Convert to string
+arr.join(separator);
+
+// Merge into new array
+arr.concat(valuesOrArrays);
+
+// Add to end, mutates, returns length
+arr.push(value);
+
+// Add to start, mutates, returns length
+arr.unshift(value);
+```
+
+Best memory line:
+
+```js
+slice copies, splice cuts.
+join strings, concat combines.
+push ends, unshift starts.
+```
+
 ### Question1 
  What would be the output of following code?
  ```
