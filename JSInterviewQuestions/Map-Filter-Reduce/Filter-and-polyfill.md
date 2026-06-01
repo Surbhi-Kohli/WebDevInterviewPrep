@@ -44,7 +44,7 @@ Output:
 
 # 2. Simple Polyfill
 
-This is the simple version:
+This is the simple version, good for interviews :
 
 ```js
 Array.prototype.myFilter = function(callback, context) { //filter accepts callback and context
