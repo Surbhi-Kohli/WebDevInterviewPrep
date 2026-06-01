@@ -72,6 +72,8 @@ Array.prototype.myReduce = function(fn, initial) {
 
     values.forEach(item => {
         initial = initial !== undefined ? fn(initial, item) : item
+    //Why compare with undefined? : a function parameter is not passed, JavaScript gives it the value : undefined
+    //So this check is used so that when no initial value is passed, the first array item becomes the starting accumulator.
     })
 
     return initial;
@@ -80,6 +82,45 @@ var values = [2, 5, 5]
 values.reduce((a, b) => a * b)  // 50
 values.myReduce((a, b) => a * b)  // 50
 ```
+for loop version:
+```
+Array.prototype.myReduceLoop = function(fn, initial) {
+    let values = this;
+
+    for (let i = 0; i < values.length; i++){
+        if (initial == undefined)
+            initial = this[i]
+        else
+          initial = fn(initial,this[i])
+    }
+
+    return initial;
+}
+
+
+```
+
+#### Problem with above reduce polyfill:
+
+The polyfill cannot tell the difference between:```myReduce(callback)``` and ```myReduce(callback, undefined)```
+In both cases:```initial === undefined ```.So better check is  use arguments.length.
+Array.prototype.myReduce = function(callback, initialValue) {
+  let hasInitialValue = arguments.length > 1;
+
+  let accumulator = initialValue;
+
+  for (let i = 0; i < this.length; i++) {
+    if (!hasInitialValue) {
+      accumulator = this[i];
+      hasInitialValue = true;
+    } else {
+      accumulator = callback(accumulator, this[i], i, this);
+    }
+  }
+
+  return accumulator;
+};
+
 ###  Object Deep clone 
 ```
 function deepClone(object) {
