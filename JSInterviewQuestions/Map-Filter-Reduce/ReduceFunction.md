@@ -179,6 +179,20 @@ console.log(flatten(arr)); //[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 we recursively call the flattenArray function on it. If the current value is not an array, we simply 
 concatenate the value with the final flattened array.*/
 ```
+Using push:
+```
+function flatten(arr) {
+  return arr.reduce((acc, currentVal) => {
+    if (Array.isArray(currentVal)) {
+      acc.push(...flatten(currentVal));//acc.push(...[2, 3, 4]);makes each element get pushed separately in array
+    } else {
+      acc.push(currentVal);
+    }
+
+    return acc;
+  }, []);
+}
+```
 ----
 ## Chaining map, filter and reduce:
 In JavaScript, we use the filter method to filter items stored in an array using a callback. We use the map method to create
