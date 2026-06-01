@@ -265,8 +265,18 @@ let ans=numbers.reduce((acc,val)=>{
   val==0?acc.push(val):acc.unshift(val);
    return acc;
 },[])
-let ans2=ans.splice(ans.indexOf(0));
+let ans2=ans.splice(ans.indexOf(0));//splice() mutates the original array,after this line, ans2=[0,0,0] and ans=[1,5,3,7,4,8]
 
 ans=ans.reverse().concat(ans2);
 console.log(ans);//[1, 5, 3, 7, 4, 8, 0, 0, 0]
+```
+Side notes:
+unshift() is an array method that adds one or more elements to the beginning of an array.
+It modifies the original array and returns the new length of the array.
+```
+let arr = [2, 3, 4];
+
+arr.unshift(1);
+
+console.log(arr); // [1, 2, 3, 4]
 ```
