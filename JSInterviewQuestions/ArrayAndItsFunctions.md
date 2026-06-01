@@ -14,53 +14,29 @@ The easiest way to remember these methods is to ask two questions:
 ## `slice()`
 
 `slice()` copies a portion of an array and returns a **new array**.It does **not** change the original array.
+* Syntax: ```array.slice(start, end)```
+* Behavior: It copies from the start index up to, but not including, the end index.
+* Omitted parameters: If you pass no arguments, it clones the entire array.
 
 ```js
 let arr = [10, 20, 30, 40, 50];
-
+Extract elements from index 1 up to index 4 (excluded)
 let result = arr.slice(1, 4);
 
 console.log(result); // [20, 30, 40]
 console.log(arr);    // [10, 20, 30, 40, 50]
 ```
 
-Syntax:
-
-```js
-arr.slice(startIndex, endIndex);
-```
-
-Important:
-
-```js
-endIndex is not included
-```
-
-Example:
-
-```js
-arr.slice(1, 4);
-```
-
-means:
-
-```js
-Start from index 1
-Stop before index 4
-```
-
-So it takes:
-
-```js
-20, 30, 40
-```
 
 ---
 
 ## `splice()`
 
-`splice()` changes the original array.
-
+`splice()` changes the original array.This method directly modifies the data structure in place.
+* Syntax: array.splice(start, deleteCount, item1, item2, ...)
+* Behavior: It goes to the start index, removes the number of items specified by deleteCount, and then inserts any new items at that position.
+* Returns: It returns what was removed. If nothing was removed, it returns an empty array.
+  
 It can:
 
 ```js
@@ -69,34 +45,23 @@ add elements
 replace elements
 ```
 
-It returns the **removed elements**.
-
 ```js
 let arr = [10, 20, 30, 40, 50];
 
-let removed = arr.splice(1, 2);
+let removed = arr.splice(1, 2);//Start from index 1.Remove 2 elements
 
 console.log(removed); // [20, 30]
 console.log(arr);     // [10, 40, 50]
 ```
 
-Syntax:
-
-```js
-arr.splice(startIndex, deleteCount, item1, item2, ...)
 ```
+const colors = ['Red', 'Green', 'Blue'];
 
-Example:
+// At index 1, remove 1 item ('Green'), and insert 'Yellow' & 'Purple'
+const removed = colors.splice(1, 1, 'Yellow', 'Purple');
 
-```js
-arr.splice(1, 2);
-```
-
-means:
-
-```js
-Start from index 1
-Remove 2 elements
+console.log(removed); // ['Green'] (The item that was removed)
+console.log(colors);  // ['Red', 'Yellow', 'Purple', 'Blue'] (Original array changed)
 ```
 
 ---
@@ -152,43 +117,6 @@ Insert 99, 100
 ```
 
 ---
-
-# Memory Trick: `slice` vs `splice`
-
-## `slice`
-
-Think:
-
-```js
-slice = copy a slice of cake
-```
-
-You take a slice, but the original cake remains.
-
-So:
-
-```js
-slice does not mutate
-```
-
-## `splice`
-
-Think:
-
-```js
-splice = surgery
-```
-
-You cut into the original array and change it.
-
-So:
-
-```js
-splice mutates
-```
-
----
-
 # `slice` vs `splice` Table
 
 | Method     | Changes original array? | Returns          | Main use                    |
