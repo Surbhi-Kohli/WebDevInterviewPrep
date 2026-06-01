@@ -302,7 +302,7 @@ It does not need `thisArg`.
 
 Your simple version is good for basic understanding, but it is not fully native-like(A native method is a method already provided by JavaScript.).
 Since we are writing a polyfill, we want our method to behave as close as possible to a native method.
-Native array methods are non-enumerable.So our polyfill should also be non-enumerable.
+Native array methods are non-enumerable.So our polyfill should also be non-enumerable, but currently it is not, although it is good enough high level implementation for interviews.
 ```js
 Array.prototype.myFilter = function(callback, context) {
   let arr = [];
@@ -320,17 +320,17 @@ Array.prototype.myFilter = function(callback, context) {
 Problems:
 
 ```js
-1. It does not check if callback is a function.
-2. It does not handle null or undefined properly.
-3. It does not skip holes in sparse arrays.
-4. It adds myFilter as an enumerable property.
+1. It adds myFilter as an enumerable property.
+2. It does not check if callback is a function.
+3. It does not handle null or undefined properly.
+4. It does not skip holes in sparse arrays.
 5. It does not convert this to an object for array-like values.
 6. It keeps reading this.length during every loop iteration.
 ```
 
 ---
 
-# 6. Problem: Direct Assignment Makes `myFilter` Enumerable
+## 5.1 . Problem: Direct Assignment Makes `myFilter` Enumerable
 
 When you write:
 
@@ -381,9 +381,9 @@ myFilter
 
 That is not good because native array methods like `filter`, `map`, `forEach`, `push`, and `pop` do **not** show up in `for...in`.
 
----
 
-# 7. What Does Enumerable Mean?
+
+### 5.1.1 What Does Enumerable Mean?
 
 Enumerable means:
 
@@ -443,7 +443,7 @@ means hidden during enumeration.
 
 ---
 
-# 8. Close-to-Native Polyfill
+# 6. Close-to-Native Polyfill
 
 A better version is:
 
@@ -707,49 +707,6 @@ if (obj[i] !== undefined)
 ```
 
 
-
-
-
-
-
-
-## Close-to-native polyfill
-
-```js
-Object.defineProperty(Array.prototype, "myFilter", {
-  value: function(callback, context) {
-    "use strict";
-
-    if (this == null) {
-      throw new TypeError("Array.prototype.myFilter called on null or undefined");
-    }
-
-    if (typeof callback !== "function") {
-      throw new TypeError(callback + " is not a function");
-    }
-
-    let obj = Object(this);
-    let length = obj.length >>> 0;
-    let result = [];
-
-    for (let i = 0; i < length; i++) {
-      if (i in obj) {
-        let value = obj[i];
-
-        if (callback.call(context, value, i, obj)) {
-          result.push(value);
-        }
-      }
-    }
-
-    return result;
-  },
-  writable: true,
-  enumerable: false,
-  configurable: true
-});
-```
-
 Better because:
 
 ```js
@@ -764,7 +721,7 @@ Better because:
 
 ---
 
-# 19. Best Interview Explanation
+# 7. Best Interview Explanation
 
 A simple `filter` polyfill loops through the array, calls the callback for each element, and pushes the element into a result array if the callback returns a truthy value.
 
