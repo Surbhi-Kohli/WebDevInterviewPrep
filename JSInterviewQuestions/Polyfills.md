@@ -104,6 +104,7 @@ Array.prototype.myReduceLoop = function(fn, initial) {
 
 The polyfill cannot tell the difference between:```myReduce(callback)``` and ```myReduce(callback, undefined)```
 In both cases:```initial === undefined ```.So better check is  use arguments.length.
+```
 Array.prototype.myReduce = function(callback, initialValue) {
   let hasInitialValue = arguments.length > 1;
 
@@ -120,7 +121,7 @@ Array.prototype.myReduce = function(callback, initialValue) {
 
   return accumulator;
 };
-
+```
 ###  Object Deep clone 
 ```
 function deepClone(object) {
