@@ -115,6 +115,14 @@ Start at index 1
 Remove 2 elements: 20, 30
 Insert 99, 100
 ```
+### Memory Aid: 
+
+S-L-I-C-E: Think of a slice of cake. You take a slice to look at it or eat it, but the structural recipe of the cake remains unharmed.
+S-P-L-I-C-E: The P can stand for Purge (removing items) or Push (inserting items) directly into the original source.In film editing or gardening, splicing means cutting something open and joining new pieces into it. That is exactly what splice() does in JavaScript: it cuts the array open, removes a section, and joins new items into the gap.
+
+###  Remember the Arguments via the Names
+* slice(start, end)The Trick: Think of a physical ruler. To cut a slice out of something, you need to mark where to start cutting and where to stop cutting.Formula: [Start Point] to [End Point]
+* splice(start, count)The Trick: Remember that S-P-L-I-C-E has a P and a C.P stands for Position (where to cut).C stands for Count (how many to delete).Formula: [Position], [Count]
 
 ---
 # `slice` vs `splice` Table
