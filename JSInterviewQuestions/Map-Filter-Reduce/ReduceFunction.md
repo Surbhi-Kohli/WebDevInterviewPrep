@@ -136,11 +136,35 @@ let ans=arr.reduce((acc,currentVal)=>acc.concat(currentVal),[]);
 console.log(ans); //[0,1,2,3,4,5,6]
 ```
 We pass an empty array as the initial value so the items in the first array are concatenated with it to create a flattened array.
+**Important**: concat function concats 2 arrays and returns a new array.concat() does not change the original array.It returns a new array.
+
+```js
+let arr1 = [1, 2];
+let arr2 = [3, 4];
+
+let result = arr1.concat(arr2);
+
+console.log(result); // [1, 2, 3, 4]
+console.log(arr1);   // [1, 2]
+console.log(arr2);   // [3, 4]
+
+```
+Adding a Single Value
+
+```js
+let arr = [1, 2];
+
+let result = arr.concat(3);
+
+console.log(result); // [1, 2, 3]
+console.log(arr);    // [1, 2]
+```
+
 If the first array has more than one level of nested arrays, we can recursively call the reduce function to flatten and then 
     concatenate them with the final array. 
  
 ```js
-let arr=[[0,1],2,[3,[4]],5,[[6]]];
+let arr=[[0,1],2,[3,[4]],5,[[6]],[7,[8,9]]];
 function flatten(arr)
 {
   return arr.reduce((acc,currentVal)=>{
@@ -149,21 +173,27 @@ function flatten(arr)
   []);
 
 }
-console.log(flatten(arr)); //[0, 1, 2, 3, 4, 5, 6]
+console.log(flatten(arr)); //[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 /*If the current value accepted by the callback is an array, as verified using the isArray method, 
 we recursively call the flattenArray function on it. If the current value is not an array, we simply 
 concatenate the value with the final flattened array.*/
 ```
-//
-/**************************************************************************************************************************************/
-//Chaining map, filter and reduce:
-//What if you need to get firstName of all people whose age is less than 30
-//one way would be to filter and then map on that via chaining
-```
+----
+## Chaining map, filter and reduce:
+In JavaScript, we use the filter method to filter items stored in an array using a callback. We use the map method to create
+a new array using the old array using the logic passed inside a callback. Sometimes we have to use these two methods, one after 
+the other to create a new array with the results we filter using some conditions.
+What if you need to get firstName of all people whose age is less than 30:
+one way would be to filter and then map on that via chaining
+```js
 const output2=users.filter(x=>x.age<30).map(el=>el.firstName);
 console.log(output2);
-//doing the same with using just reduce:
+```
+Doing the same with using just reduce:Using reduce() in place of filter().map()
+Instead of using two array methods, you can use the JavaScript array reduce method to complete the same task. It will reduce the completion 
+time because now you only iterate through the array only once, not twice.
+```
 const output3=users.reduce((acc,curr)=>{
    if(curr.age<30)
    acc.push(curr.firstName);
@@ -171,31 +201,9 @@ const output3=users.reduce((acc,curr)=>{
 },[])
 console.log(output3);
 ```
-/*************************************************************************************************************************************/
-```//Specifying count of occurence of each element in the array
-let names=["surbhi","nagraj","harshu","harshu","surbhi","surbhi"];
 
-let ans=names.reduce((acc,currentVal)=>{
-  acc[currentVal]=acc[currentVal]+1||1;
-  return acc;
-},{});
-console.log(ans);
-/*Output:
-{
-  harshu: 2,
-  nagraj: 1,
-  surbhi: 3
-}
-*/```
-/**Using reduce() in place of filter().map()
-In JavaScript, we use the filter method to filter items stored in an array using a callback. We use the map method to create
-a new array using the old array using the logic passed inside a callback. Sometimes we have to use these two methods, one after 
-the other to create a new array with the results we filter using some conditions.
 
-Instead of using two array methods, you can use the JavaScript array reduce method to complete the same task. It will reduce the completion 
-time because now you only iterate through the array only once, not twice.
-
-For example, let’s take the following scenario where we want to create an array of square roots of numbers greater than 30.*/
+Another example, let’s take the following scenario where we want to create an array of square roots of numbers greater than 30.*/
 ```
 let numbers=[4,25,36,121,553,16,53,5,42,1];
 let filteredArray=numbers.filter(num=>num<30).map(el=>Math.sqrt(el));
@@ -210,11 +218,11 @@ let ans=numbers.reduce((acc,val)=>{
 },[])
 console.log(ans);
 ```
-/***Program to print array such that all even elements come to left and all odd elements come to right
+Program to print array such that all even elements come to left and all odd elements come to right
 Example:Input-[1,2,4,3,10,8,13]
         Output-[8, 10, 4, 2, 1, 3, 13]
         
-**/
+
 ```
 let numbers=[1,2,4,3,10,8,13];
 let ans=numbers.reduce((acc,val)=>{
@@ -235,8 +243,9 @@ let ans=numbers.reduce((acc,val)=>{
 },[])
 //Output:[8,4,7,3,5,1,0,0,0]
 ```
-```
+
 //Solution that maintains the relative order of non-zero elements
+```
 let numbers=[1,0,5,3,0,7,4,0,8];
 let ans=numbers.reduce((acc,val)=>{
   val==0?acc.push(val):acc.unshift(val);
