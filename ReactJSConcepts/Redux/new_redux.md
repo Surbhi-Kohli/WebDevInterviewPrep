@@ -49,7 +49,7 @@ export const authReducer = authSlice.reducer;
 ```
 #### 2. The Cart Slice (Reducer 2) [8, 9] 
 This reducer only watches and modifies the state.cart slice. [10] 
-
+```
 import { createSlice } from '@reduxjs/toolkit';
 const cartSlice = createSlice({
   name: 'cart',
@@ -66,8 +66,9 @@ const cartSlice = createSlice({
     }
   }
 });
-export const { addToCart, clearCart } = cartSlice.actions;export const cartReducer = cartSlice.reducer;
-
+export const { addToCart, clearCart } = cartSlice.actions;
+export const cartReducer = cartSlice.reducer;
+```
 #### 3. Combining Them Into the Store
 We pass both reducers to configureStore. It automatically combines them behind the scenes. [11, 12, 13] 
 ```
@@ -97,6 +98,7 @@ Here is how [Redux](https://redux.js.org/) processes it:
 Sometimes, multiple reducers should respond to the exact same action. [22] 
 For example, when a user clicks "Log Out", you want to clear the user profile (authReducer) AND wipe the shopping cart clean so the next guest user doesn't see the previous user's items (cartReducer). [23] 
 With multiple reducers, you can listen to the logout action in both files, allowing a single dispatch to reset two completely different sections of your global state simultaneously. [24, 25] 
+
 Would you like to see how to use the extraReducers feature in a slice to make the cartReducer reset itself automatically when a logout action happens?
 
 [1] [https://link.springer.com](https://link.springer.com/chapter/10.1007/979-8-8688-2105-9_4)
