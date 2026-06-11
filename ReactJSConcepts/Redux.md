@@ -3,8 +3,9 @@
 
 Let's build a mini-e-commerce app to see how and why multiple reducers manage a single global state.
 Our app has two main features: a Shopping Cart and a User Authentication system. [1, 2, 3] 
+
 ------------------------------
-## The Goal: The Global State Structure
+### The Goal: The Global State Structure
 Even though we write separate reducers, Redux merges them into a single, unified global state object that looks like this: [4, 5] 
 
 {
@@ -19,13 +20,13 @@ Even though we write separate reducers, Redux merges them into a single, unified
 }
 
 ------------------------------
-## Why We Split This Into Multiple Reducers
+### Why We Split This Into Multiple Reducers
 
    1. Clean Boundaries: The cart code shouldn't care about login tokens, and the login code shouldn't care about shopping item prices.
    2. Team Scalability: One developer can rewrite the checkout/cart logic without any risk of breaking the login system.
 
 ------------------------------
-## Code Example: Managing State with Multiple Reducers
+### Code Example: Managing State with Multiple Reducers
 Here is how we build this using modern Redux Toolkit.
 ## 1. The Authentication Slice (Reducer 1)
 This reducer only watches and modifies the state.auth slice. [6, 7] 
