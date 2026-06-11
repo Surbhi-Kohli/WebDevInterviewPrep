@@ -1,7 +1,8 @@
 ## give an example of app with state managed by redux and how and why multiple reducers would manage the state
 
 Let's build a mini-e-commerce app to see how and why multiple reducers manage a single global state.
-Our app has two main features: a Shopping Cart and a User Authentication system. [1, 2, 3] 
+Our app has two main features: a Shopping Cart and a User Authentication system. [1, 2, 3]  
+
 ------------------------------
 ### The Goal: The Global State Structure
 Even though we write separate reducers, Redux merges them into a single, unified global state object that looks like this: [4, 5] 
@@ -129,13 +130,13 @@ Would you like to see how to use the extraReducers feature in a slice to make th
 
 
 
-# how will state be for these 3 reducers, will it be one single object with nested values
+## how will state be for these 3 reducers, will it be one single object with nested values
 
 Yes, it will be one single, flat object where each reducer controls its own nested key. [1] 
 Redux merges them so that your entire application state is structured like a single tree. [2, 3, 4] 
-## How the State Looks Under the Hood
+### How the State Looks Under the Hood
 If you have three separate domain reducers—authReducer, productsReducer, and cartReducer—and combine them using configureStore, your absolute global Redux state looks exactly like this:
-
+```
 {
   "auth": {
     "isLoggedIn": true,
@@ -150,8 +151,8 @@ If you have three separate domain reducers—authReducer, productsReducer, and c
     "total": 0
   }
 }
-
-## The Slice of Responsibility
+```
+### The Slice of Responsibility
 The most important thing to understand is that each reducer only sees and manages its own key.
 
 * authReducer only receives and can modify the data inside { isLoggedIn, user }. It is completely blind to the cart or products keys.
@@ -159,10 +160,12 @@ The most important thing to understand is that each reducer only sees and manage
 
 Redux handles the glue work. When a reducer updates its specific nested value, Redux plugs it back into this main global object and notifies React. 
 
-## How You Access It in a Component
+### How You Access It in a Component
 Because it is one single object, accessing it with modern Redux hooks (like useSelector) is straightforward. You just point to the specific nested key you need: 
 ```
-// Accessing the auth nested valueconst username = useSelector(state => state.auth.user);
-// Accessing the cart nested valueconst cartItems = useSelector(state => state.cart.items);
+// Accessing the auth nested value
+const username = useSelector(state => state.auth.user);
+// Accessing the cart nested value
+const cartItems = useSelector(state => state.cart.items);
 
 ```
