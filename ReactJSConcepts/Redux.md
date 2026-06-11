@@ -1,3 +1,6 @@
+## give an example of app with state managed by redux and how and why multiple reducers would manage the state
+
+
 Let's build a mini-e-commerce app to see how and why multiple reducers manage a single global state.
 Our app has two main features: a Shopping Cart and a User Authentication system. [1, 2, 3] 
 ------------------------------
