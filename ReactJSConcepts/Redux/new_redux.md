@@ -1,4 +1,4 @@
-## give an example of app with state managed by redux and how and why multiple reducers would manage the state
+# Q give an example of app with state managed by redux and how and why multiple reducers would manage the state
 
 Let's build a mini-e-commerce app to see how and why multiple reducers manage a single global state.
 Our app has two main features: a Shopping Cart and a User Authentication system. [1, 2, 3]  
@@ -128,9 +128,81 @@ Would you like to see how to use the extraReducers feature in a slice to make th
 [24] [https://medium.com](https://medium.com/@shley_ng/architecture-design-patterns-flux-7b6eb6ea2635)
 
 
+## Q for each component do we have separate reducer?how to decide creating  diferent reducers
+No, you do not create a separate reducer for every single React component. [1, 2] 
+Components represent the User Interface (UI) layout, while reducers represent your Data Domain (Business Logic). A single reducer often provides data to dozens of different components. [3] 
+Here is the exact framework you can use to decide when to create a new reducer.
+------------------------------
+## The Rule of Thumb: Organize by "Domain", Not by UI
+You should create a new reducer based on features or data entities, not based on visual files or screen views. [4, 5] 
+## ❌ The Wrong Way (One Reducer Per Component/Page)
 
+* HeaderReducer
+* SidebarReducer
+* UserProfilePageReducer
+* CheckoutButtonReducer
 
-## how will state be for these 3 reducers, will it be one single object with nested values
+Why this fails: If the Header, Sidebar, and UserProfilePage all need to display the user's name, you would have to duplicate the login logic across three different reducers, fracturing your state.
+## The Right Way (Organized by Data Domains)
+
+* authReducer: Manages everything about the current user (token, username, permissions).
+* productsReducer: Manages the catalog data (list of items, search filters, loading states).
+* cartReducer: Manages the shopping list (items added, quantities, coupon codes). [6, 7, 8] 
+
+------------------------------
+## A 3-Step Checklist to Decide When to Create a New Reducer
+Ask yourself these three questions when building your app:
+## 1. Is this data completely independent?
+If the data can exist without knowing anything about other data, it deserves its own reducer.
+
+* Example: A list of products fetched from an API doesn't care who is logged in. It should be in a separate products reducer.
+
+## 2. Will this state be shared by unrelated parts of the app?
+If multiple, completely separate screens need this data, group it into a shared domain reducer.
+
+* Example: The shopping cart data is needed on the product page (to add items), the header (to show the total count), and the checkout page. It gets its own cart reducer. [9, 10, 11] 
+
+## 3. Is the code getting too long or messy?
+If a single reducer file grows past a few hundred lines or feels like it is handling too many different tasks, it is time to break it apart. [12] 
+
+* Example: If your userReducer is handling both user profile updates and user payment history, split it into userProfileReducer and billingReducer.
+
+------------------------------
+## When to Bypass Redux Entirely (Local State)
+You shouldn't even use a Redux reducer if the data is only used by one component and doesn't need to be saved globally. Instead, use React's built-in useState hook. [13, 14, 15, 16] 
+
+| Use Local React State (useState) [17, 18, 19, 20, 21] | Use a Redux Reducer (createSlice) |
+|---|---|
+| Is a dropdown menu open or closed? | Is the user logged in? |
+| Is a loading spinner spinning on a button? | What items are currently in the shopping cart? |
+| The text typed into a search input field. | A cached list of 500 products fetched from a server. |
+| Form validation error messages. | Global user theme settings (Dark/Light mode). |
+
+If you are working on a feature right now, tell me what data it uses and which components need to see it. I can help you decide whether it needs a new reducer or just local state!
+
+[1] [https://dev.to](https://dev.to/supminn/combining-multiple-reducers-in-react-3ple)
+[2] [https://christianalfoni.com](https://christianalfoni.com/articles/transition-your-reducer)
+[3] [https://dev.to](https://dev.to/andrejnaumovski/straightening-out-the-reactredux-learning-curve-part-1---intro-to-react-18b)
+[4] [https://blogs.purecode.ai](https://blogs.purecode.ai/blogs/react-usereducer)
+[5] [https://github.com](https://github.com/agraboso/redux-api-middleware/issues/65)
+[6] [https://dineshigdd.medium.com](https://dineshigdd.medium.com/how-to-use-reducers-with-usereducer-hook-in-react-e3e6ff8a0897)
+[7] [https://medium.com](https://medium.com/parito-labs-blog/a-generic-reducer-to-manage-load-update-state-in-react-b97dc727e97a)
+[8] [https://gurindernarang.medium.com](https://gurindernarang.medium.com/reducers-in-react-641734b58edf)
+[9] [https://blog.bitsrc.io](https://blog.bitsrc.io/react-context-api-a-replacement-for-redux-6e20790492b3)
+[10] [https://www.linkedin.com](https://www.linkedin.com/learning/blazor-webassembly-foundational-skills/cascading-values-and-parameters)
+[11] [https://www.hlt-cnc.com](https://www.hlt-cnc.com/blog/what-is-the-role-of-a-reducer-in-a-flux-architecture-792918.html)
+[12] [https://www.reddit.com](https://www.reddit.com/r/angular/comments/k9a7ve/is_it_good_practice_to_make_components_as_dumb_as/)
+[13] [https://forum.freecodecamp.org](https://forum.freecodecamp.org/t/react-redux-flow/427088)
+[14] [https://redux.js.org](https://redux.js.org/style-guide/)
+[15] [https://www.reddit.com](https://www.reddit.com/r/reactjs/comments/15az5pb/is_it_a_bad_practice_to_put_api_calls_in_reducers/)
+[16] [https://javascript.plainenglish.io](https://javascript.plainenglish.io/react-hooks-the-complete-guide-5c176ca825f6)
+[17] [https://dev.to](https://dev.to/med_code/redux-simplified-a-beginners-guide-for-web-developers-55h3)
+[18] [https://www.smashingmagazine.com](https://www.smashingmagazine.com/2016/06/an-introduction-to-redux/)
+[19] [https://carbondesignsystem.com](https://carbondesignsystem.com/components/dropdown/usage/)
+[20] [https://medium.com](https://medium.com/@fknussel/redux-3cb5aac94a66)
+[21] [https://www.perssondennis.com](https://www.perssondennis.com/articles/21-fantastic-react-design-patterns-and-when-to-use-them)
+
+## Q how will state be for these 3 reducers, will it be one single object with nested values
 
 Yes, it will be one single, flat object where each reducer controls its own nested key. [1] 
 Redux merges them so that your entire application state is structured like a single tree. [2, 3, 4] 
