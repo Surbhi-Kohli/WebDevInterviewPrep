@@ -72,7 +72,8 @@ export const { addToCart, clearCart } = cartSlice.actions;export const cartReduc
 ## 3. Combining Them Into the Store
 We pass both reducers to configureStore. It automatically combines them behind the scenes. [11, 12, 13] 
 ```
-import { configureStore } from '@reduxjs/toolkit';import { authReducer } from './authSlice';import { cartReducer } from './cartSlice';
+import { configureStore } from '@reduxjs/toolkit';
+import { authReducer } from './authSlice';import { cartReducer } from './cartSlice';
 export const store = configureStore({
   reducer: {
     auth: authReducer, // Directs state.auth changes here
