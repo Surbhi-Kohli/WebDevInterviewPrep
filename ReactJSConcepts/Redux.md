@@ -7,7 +7,7 @@ Our app has two main features: a Shopping Cart and a User Authentication system.
 ------------------------------
 ### The Goal: The Global State Structure
 Even though we write separate reducers, Redux merges them into a single, unified global state object that looks like this: [4, 5] 
-
+```
 {
   "auth": {
     "isLoggedIn": true,
@@ -18,7 +18,7 @@ Even though we write separate reducers, Redux merges them into a single, unified
     "totalPrice": 1050
   }
 }
-
+```
 ------------------------------
 ### Why We Split This Into Multiple Reducers
 
@@ -30,7 +30,7 @@ Even though we write separate reducers, Redux merges them into a single, unified
 Here is how we build this using modern Redux Toolkit.
 ## 1. The Authentication Slice (Reducer 1)
 This reducer only watches and modifies the state.auth slice. [6, 7] 
-
+```
 import { createSlice } from '@reduxjs/toolkit';
 const authSlice = createSlice({
   name: 'auth',
@@ -47,10 +47,10 @@ const authSlice = createSlice({
   }
 });
 export const { login, logout } = authSlice.actions;export const authReducer = authSlice.reducer;
-
+```
 ## 2. The Cart Slice (Reducer 2) [8, 9] 
 This reducer only watches and modifies the state.cart slice. [10] 
-
+```
 import { createSlice } from '@reduxjs/toolkit';
 const cartSlice = createSlice({
   name: 'cart',
@@ -68,10 +68,10 @@ const cartSlice = createSlice({
   }
 });
 export const { addToCart, clearCart } = cartSlice.actions;export const cartReducer = cartSlice.reducer;
-
+```
 ## 3. Combining Them Into the Store
 We pass both reducers to configureStore. It automatically combines them behind the scenes. [11, 12, 13] 
-
+```
 import { configureStore } from '@reduxjs/toolkit';import { authReducer } from './authSlice';import { cartReducer } from './cartSlice';
 export const store = configureStore({
   reducer: {
@@ -79,7 +79,7 @@ export const store = configureStore({
     cart: cartReducer  // Directs state.cart changes here
   }
 });
-
+```
 ------------------------------
 ## How Redux Manages the Flow Under the Hood
 When a user clicks "Log Out", your React component dispatches the action:
