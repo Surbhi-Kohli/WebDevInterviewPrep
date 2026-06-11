@@ -2,11 +2,11 @@
 
 
 Let's build a mini-e-commerce app to see how and why multiple reducers manage a single global state.
-Our app has two main features: a Shopping Cart and a User Authentication system. [1, 2, 3] 
+Our app has two main features: a Shopping Cart and a User Authentication system. 
 
 ------------------------------
 ### The Goal: The Global State Structure
-Even though we write separate reducers, Redux merges them into a single, unified global state object that looks like this: [4, 5] 
+Even though we write separate reducers, Redux merges them into a single, unified global state object that looks like this:  
 ```
 {
   "auth": {
@@ -29,7 +29,7 @@ Even though we write separate reducers, Redux merges them into a single, unified
 ### Code Example: Managing State with Multiple Reducers
 Here is how we build this using modern Redux Toolkit.
 ## 1. The Authentication Slice (Reducer 1)
-This reducer only watches and modifies the state.auth slice. [6, 7] 
+This reducer only watches and modifies the state.auth slice. 
 ```
 import { createSlice } from '@reduxjs/toolkit';
 const authSlice = createSlice({
@@ -48,8 +48,8 @@ const authSlice = createSlice({
 });
 export const { login, logout } = authSlice.actions;export const authReducer = authSlice.reducer;
 ```
-## 2. The Cart Slice (Reducer 2) [8, 9] 
-This reducer only watches and modifies the state.cart slice. [10] 
+## 2. The Cart Slice (Reducer 2) 
+This reducer only watches and modifies the state.cart slice. 
 ```
 import { createSlice } from '@reduxjs/toolkit';
 const cartSlice = createSlice({
@@ -70,7 +70,7 @@ const cartSlice = createSlice({
 export const { addToCart, clearCart } = cartSlice.actions;export const cartReducer = cartSlice.reducer;
 ```
 ## 3. Combining Them Into the Store
-We pass both reducers to configureStore. It automatically combines them behind the scenes. [11, 12, 13] 
+We pass both reducers to configureStore. It automatically combines them behind the scenes. 
 ```
 import { configureStore } from '@reduxjs/toolkit';
 import { authReducer } from './authSlice';import { cartReducer } from './cartSlice';
@@ -84,18 +84,18 @@ export const store = configureStore({
 ------------------------------
 ## How Redux Manages the Flow Under the Hood
 When a user clicks "Log Out", your React component dispatches the action:
-dispatch(logout()) which outputs the action object { type: 'auth/logout' }. [14] 
+dispatch(logout()) which outputs the action object { type: 'auth/logout' }. 
 Here is how [Redux](https://redux.js.org/) processes it:
 
    1. The Single Master Reducer receives the { type: 'auth/logout' } action.
    2. It passes this action to both authReducer and cartReducer.
    3. cartReducer looks at the type (auth/logout), realizes it doesn't care about login states, and instantly returns its current state completely untouched.
    4. authReducer looks at the type, matches its logout case, and changes isLoggedIn to false.
-   5. Redux updates the central store, and only components listening to state.auth will re-render. [15, 16, 17, 18, 19] 
+   5. Redux updates the central store, and only components listening to state.auth will re-render.
+      
+## The "Special Case": One Action, Multiple Reducers 
+Sometimes, multiple reducers should respond to the exact same action. 
+For example, when a user clicks "Log Out", you want to clear the user profile (authReducer) AND wipe the shopping cart clean so the next guest user doesn't see the previous user's items (cartReducer).
+With multiple reducers, you can listen to the logout action in both files, allowing a single dispatch to reset two completely different sections of your global state simultaneously.  
 
-## The "Special Case": One Action, Multiple Reducers [20, 21] 
-Sometimes, multiple reducers should respond to the exact same action. [22] 
-For example, when a user clicks "Log Out", you want to clear the user profile (authReducer) AND wipe the shopping cart clean so the next guest user doesn't see the previous user's items (cartReducer). [23] 
-With multiple reducers, you can listen to the logout action in both files, allowing a single dispatch to reset two completely different sections of your global state simultaneously. [24, 25] 
-Would you like to see how to use the extraReducers feature in a slice to make the cartReducer reset itself automatically when a logout action happens?
 
