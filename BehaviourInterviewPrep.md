@@ -18,7 +18,23 @@
 * Action: "Due to the context-switching, I missed a manual configuration update during the deployment step, which triggered a production fallout. The moment the monitoring alerts fired, I owned the mistake immediately. I notified my manager and tech lead, triaged the root cause, and collaborated to quickly coordinate an emergency change request (CRQ) to redeploy with the correct configuration, minimizing our downtime."
 * Result: "Once production was stable, I drafted a detailed Root Cause Analysis (RCA). I realized the true vulnerability wasn't human error, but the manual step itself. I partnered with our SRE team to completely automate the configuration injection into our continuous delivery (CD) pipeline. This eliminated manual drift entirely, ensuring that this specific category of deployment failure could never happen again."
 
-## Question 4 : You clearly have the technical depth and leadership skills we are looking for. But out of all the companies you could join right now, why do you want to bring your talents specifically to our company?
+## Question 4: Give an example of some work which shows your Customer obsession, security vs UX, ownership ?
+
+One project I'm particularly proud of was improving the account-linking experience for Cisco Security Cloud customers who were linking their existing Duo accounts.
+
+* The flow worked like this (Sitaution): when an administrator initiated account linking, we sent them an email containing a secure provisioning link. That link contained a short-lived bearer token valid for seven days. If the administrator didn't use the link within that period, it expired and they had no self-service recovery path—they had to contact support to generate a new link.
+* Task : We wanted to make the resend link flow somehow self service or better UX for customer.
+* Action : At first glance, one possible solution was simply to increase the token validity from 7 days to 14 or even 30 days. That would reduce the number of expired links. However, after analyzing the security implications, we realized this wasn't the right solution.
+The provisioning link contained a bearer token embedded in the email URL. If an attacker gained temporary access to the administrator's mailbox through phishing or email compromise, they could use that token to link the wrong Duo account to a Cisco Security Cloud billing relationship. Increasing the token lifetime would significantly increase that attack window, which weakened our security posture.
+
+Instead, we focused on solving the customer's actual problem rather than the symptom. The customer didn't need longer-lived tokens—they needed a simple way to recover when a token expired.
+
+We designed a secure self-service resend flow. When an administrator clicked an expired link, we showed a "Resend provisioning email" option. Behind the scenes, the resend request went through our existing event-driven provisioning pipeline, where we validated that the request still existed, hadn't already been completed, belonged to the correct administrator, and hadn't exceeded the allowed resend limit before generating a brand-new short-lived token. The original expired token remained unusable.
+
+I liked this solution because it balanced both customer experience and security. Customers could recover without contacting support, while we preserved the security principle of keeping bearer tokens short-lived. We also added controls like resend limits and an audit trail, making the feature secure, observable, and easier to operate.
+
+
+## Question 5 : You clearly have the technical depth and leadership skills we are looking for. But out of all the companies you could join right now, why do you want to bring your talents specifically to our company?
 
 I want to join XX because I am genuinely fascinated by the IAM and security domain. In my past roles, I’ve had hands-on experience building custom SSO flows and working alongside enterprise identity products like Duo. I know firsthand how incredibly complex, business-critical, and high-stakes identity infrastructure is. XX is the gold standard in this space. Joining this team allows me to apply my domain expertise to solve identity problems at a massive, global scale, alongside the engineers who are actively shaping the future of web security.
 
