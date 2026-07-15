@@ -1,6 +1,3 @@
-Absolutely. Below are consolidated notes that build the concepts from first principles, including all the questions you asked throughout this discussion. These are written in the style of interview notes and should give you a solid mental model.
-
----
 
 # Bundlers (Webpack, Rollup, Parcel, Vite)
 
