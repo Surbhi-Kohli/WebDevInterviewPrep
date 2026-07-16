@@ -982,6 +982,176 @@ Browser CSS Engine
 ```
 
 ---
+17. How Different Bundlers Handle CSS
+
+The concepts are the same, but the implementation differs.
+
+Common Concepts (All Modern Bundlers)
+
+Every modern bundler generally does the following:
+```
+import "./App.css"
+
+↓
+
+Treat CSS as a dependency
+
+↓
+
+Add CSS to dependency graph
+
+↓
+
+Resolve @import
+
+↓
+
+Resolve url(...)
+
+↓
+
+Process CSS
+
+↓
+
+Development
+
+Inject styles with HMR
+
+────────────
+
+Production
+
+Extract CSS
+
+↓
+
+Generate styles.css
+
+↓
+
+Optimize + Minify + Hash
+```
+This is true for
+
+Webpack
+Vite
+Parcel
+Rollup (with plugins)
+Rspack
+Turbopack
+
+Implementation Differences:
+| Feature                       | Webpack                | Vite                             | Parcel   | Rollup                |
+| ----------------------------- | ---------------------- | -------------------------------- | -------- | --------------------- |
+| CSS support                   | Uses loaders           | Built-in                         | Built-in | Plugins               |
+| Parse CSS imports             | `css-loader`           | Built-in                         | Built-in | PostCSS plugin        |
+| Inject CSS during development | `style-loader`         | Built-in                         | Built-in | Plugin                |
+| CSS HMR                       | Yes                    | Yes                              | Yes      | Depends on dev server |
+| Extract CSS                   | `MiniCssExtractPlugin` | Built-in                         | Built-in | Plugin                |
+| SCSS support                  | `sass-loader`          | Built-in (with `sass` installed) | Built-in | Plugin                |
+
+Webpack
+
+You configure
+```
+css-loader
+
+style-loader
+
+MiniCssExtractPlugin
+```
+Vite
+
+No explicit loaders.
+
+Simply write
+
+import "./App.css";
+
+Development
+
+* native ES Modules
+* CSS injection
+* HMR
+
+Production
+* uses Rollup
+* extracts CSS
+* hashes filenames
+
+  Rollup
+
+Rollup itself bundles JavaScript.
+
+CSS support comes through plugins like
+
+rollup-plugin-postcss
+
+Concepts remain identical.
+## Complete CSS lifecycle:
+```
+Developer writes
+
+import "./App.scss"
+
+                │
+                ▼
+
+Bundler finds SCSS
+
+                │
+                ▼
+
+SCSS → CSS
+(sass-loader or built-in support)
+
+                │
+                ▼
+
+Process CSS
+(css-loader or equivalent)
+
+Read CSS
+Resolve @import
+Resolve url(...)
+Build dependency graph
+
+                │
+                ▼
+
+Development
+──────────────
+
+Inject CSS into <style>
+
+(HMR)
+
+                │
+                ▼
+
+Browser CSS Engine
+
+────────────────────────
+
+Production
+──────────────
+
+Extract CSS
+
+↓
+
+styles.[hash].css
+
+↓
+
+<link rel="stylesheet">
+
+↓
+
+Browser CSS Engine
+```
+---
 
 # Interview Summary
 
