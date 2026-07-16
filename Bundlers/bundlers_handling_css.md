@@ -421,9 +421,7 @@ Eventually both files become part of the final stylesheet.
 
 # What Does "Resolve url(...)" Mean?
 
-This refers to CSS syntax,
-
-not JavaScript.
+This refers to CSS syntax, not JavaScript.
 
 Example
 
@@ -433,11 +431,7 @@ Example
 }
 ```
 
-Notice
-
-This is **inside CSS.**
-
-css-loader understands
+Notice,This is **inside CSS.** css-loader understands
 
 > This stylesheet depends on an image.
 
@@ -485,14 +479,11 @@ to
 url("/assets/logo.a92f31.png")
 ```
 
-Without css-loader,
-
-the CSS would still point to
+Without css-loader,the CSS would still point to
 
 ```text
 logo.png
 ```
-
 which no longer exists after the build.
 
 ---
