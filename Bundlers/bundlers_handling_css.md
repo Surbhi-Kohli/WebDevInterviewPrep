@@ -1003,14 +1003,7 @@ Generate styles.css
 
 Optimize + Minify + Hash
 ```
-This is true for
-
-Webpack
-Vite
-Parcel
-Rollup (with plugins)
-Rspack
-Turbopack
+This is true for :Webpack, Vite, Parcel, Rollup (with plugins),Rspack,Turbopack
 
 Implementation Differences:
 | Feature                       | Webpack                | Vite                             | Parcel   | Rollup                |
@@ -1022,7 +1015,7 @@ Implementation Differences:
 | Extract CSS                   | `MiniCssExtractPlugin` | Built-in                         | Built-in | Plugin                |
 | SCSS support                  | `sass-loader`          | Built-in (with `sass` installed) | Built-in | Plugin                |
 
-Webpack
+### Webpack
 
 You configure
 ```
@@ -1032,32 +1025,29 @@ style-loader
 
 MiniCssExtractPlugin
 ```
-Vite
+### Vite
 
 No explicit loaders.
-
 Simply write
-
+```
 import "./App.css";
-
-Development
+```
+#### Development
 
 * native ES Modules
 * CSS injection
 * HMR
 
-Production
+#### Production
 * uses Rollup
 * extracts CSS
 * hashes filenames
 
-  Rollup
+###  Rollup
 
 Rollup itself bundles JavaScript.
 
-CSS support comes through plugins like
-
-rollup-plugin-postcss
+CSS support comes through plugins like rollup-plugin-postcss
 
 Concepts remain identical.
 ## Complete CSS lifecycle:
