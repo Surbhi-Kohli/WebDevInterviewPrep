@@ -273,11 +273,7 @@ Webpack can now process CSS along with JavaScript.
 
 # Where Do Loaders Fit?
 
-Webpack itself only understands JavaScript modules.
-
-Whenever webpack encounters a non-JavaScript file,
-
-it asks
+Webpack itself only understands JavaScript modules.Whenever webpack encounters a non-JavaScript file,it asks
 
 > Which loader knows how to process this file?
 
@@ -363,9 +359,7 @@ Conceptually
 module.exports = ".button { color: blue }"
 ```
 
-Nothing has been styled yet.
-
-Webpack simply understands the CSS now.
+Nothing has been styled yet.Webpack simply understands the CSS now.
 
 ---
 
