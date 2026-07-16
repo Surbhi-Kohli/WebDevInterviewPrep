@@ -185,23 +185,13 @@ The browser never sees the original imports.
 
 ## Therefore
 
-When we say
+When we say > "The browser understands JavaScript imports"
 
-> "The browser understands JavaScript imports"
+we mean > **Native ES Modules.**
 
-we mean
+When we say > "Webpack removes imports"
 
-> **Native ES Modules.**
-
-When we say
-
-> "Webpack removes imports"
-
-we mean
-
-> **Production bundled output.**
-
-Both statements are correct.
+we mean> **Production bundled output.**
 
 ---
 
