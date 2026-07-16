@@ -510,11 +510,7 @@ It **does not** apply styles to the page.
 
 # style-loader
 
-Once webpack understands the CSS,
-
-it still needs to apply it.
-
-That is the job of style-loader.
+Once webpack understands the CSS,it still needs to apply it.That is the job of style-loader.
 
 Conceptually
 
