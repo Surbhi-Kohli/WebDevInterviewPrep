@@ -1034,9 +1034,9 @@ import "./App.css";
 ```
 #### Development
 
-* native ES Modules
-* CSS injection
-* HMR
+* native ES Modules → for JavaScript modules
+* CSS injection → for CSS imports.
+* HMR → for updating changed modules (JS or CSS) without a full page reload.
 
 #### Production
 * uses Rollup
